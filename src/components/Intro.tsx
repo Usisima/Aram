@@ -39,30 +39,42 @@ export default function Intro() {
         p.style.stroke = "none";
       }
     } else {
+      // Primera pasada: dejar todos los trazos completamente desplazados y
+      // solo entonces devolverles la opacidad. Tiene que ser en este orden, o
+      // se veria el logo entero contorneado durante un instante.
+      const longitudes = paths.map((p) => p.getTotalLength());
+
       paths.forEach((p, i) => {
-        const len = p.getTotalLength();
+        const len = longitudes[i];
         if (len < 10) {
           // Artefacto del SVG, no aporta nada dibujarlo.
           p.style.display = "none";
           return;
         }
+        p.style.strokeDasharray = String(len);
+        p.style.strokeDashoffset = String(len);
+        p.style.strokeOpacity = "1";
+      });
+
+      // Segunda pasada: animar. Todas las animaciones usan fill "forwards" y
+      // no "both" a proposito. Con "both" cada animacion impondria su valor
+      // inicial durante su propio retraso, y el contorno del path reaparecia
+      // antes de que le tocara dibujarse.
+      paths.forEach((p, i) => {
+        const len = longitudes[i];
+        if (len < 10) return;
 
         const delay = DELAYS[i] ?? i * 0.2;
         const dur = DURS[i] ?? 0.9;
         // El relleno arranca justo antes de que el trazo se cierre.
         const inicioRelleno = delay + dur - 0.2;
 
-        p.style.strokeDasharray = String(len);
-
-        p.animate(
-          [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
-          {
-            duration: dur * 1000,
-            delay: delay * 1000,
-            easing: EASE,
-            fill: "forwards",
-          },
-        );
+        p.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], {
+          duration: dur * 1000,
+          delay: delay * 1000,
+          easing: EASE,
+          fill: "forwards",
+        });
 
         p.animate([{ fillOpacity: 0 }, { fillOpacity: 1 }], {
           duration: FILL_DUR * 1000,
@@ -95,16 +107,28 @@ export default function Intro() {
   if (!montado) return null;
 
   return (
-    <div
-      ref={ref}
-      className={`${styles.intro} ${oculto ? styles.hide : ""}`}
-      aria-hidden="true"
-    >
-      <Logo
-        className={styles.logo}
-        pathClassName={styles.path}
-        idPrefix="intro"
-      />
-    </div>
+    <>
+      {/* Sin JS nada de esto se anima ni se retira, y el splash taparia la
+          pagina para siempre. Mejor no mostrarlo. */}
+      <noscript>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `.${styles.intro}{display:none}`,
+          }}
+        />
+      </noscript>
+
+      <div
+        ref={ref}
+        className={`${styles.intro} ${oculto ? styles.hide : ""}`}
+        aria-hidden="true"
+      >
+        <Logo
+          className={styles.logo}
+          pathClassName={styles.path}
+          idPrefix="intro"
+        />
+      </div>
+    </>
   );
 }

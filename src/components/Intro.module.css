@@ -36,6 +36,12 @@
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+
+  /* Arranca invisible. El HTML del servidor no puede conocer la longitud de
+     cada trazo, asi que sin esto el navegador pintaria el contorno completo
+     desde que llega el marcado hasta que el JS mide los paths. Intro.tsx lo
+     devuelve a 1 en cada path, ya con el trazo desplazado. */
+  stroke-opacity: 0;
 }
 
 /* Solo en modo oscuro los dos paths con degradado usan su gradiente, tanto
