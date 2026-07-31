@@ -36,6 +36,12 @@
     stroke-linejoin: round;
   }
 
+  /* Los trazos con degradado se dibujan con SU degradado, no en blanco solido:
+     asi el contorno ya nace con la misma luz que tendra el relleno y el borde
+     no "desaparece" al final. */
+  .intro-lp.g-a { stroke: url(#gA); }
+  .intro-lp.g-b { stroke: url(#gB); }
+
   @keyframes introDraw       { to { stroke-dashoffset: 0; } }
   @keyframes introFill       { from { fill-opacity: 0; } to { fill-opacity: 1; } }
   @keyframes introStrokeFade { to { stroke-opacity: 0; } }
@@ -85,7 +91,7 @@
     <path class="intro-lp" fill="#FFFFFF" d="M131,225.7c4.9-6,8.6-12.9,10.8-20.3l0.4-1.3l0,0c-2.3,8.3-6.4,16.1-12.1,22.6h0.1L131,225.7z"/>
 
     <!-- 3: arcos derechos (degradado radial) -->
-    <path class="intro-lp" fill="url(#gA)" d="M245.1,139.7c4.5-25.5,9.2-51.9,14.7-77.7c2.9-14,6.7-28.8,14.4-42.2l0.6-1.1c1.4-2.5,3.1-5.6,6.7-6.7l3.6-1.1
+    <path class="intro-lp g-a" fill="url(#gA)" d="M245.1,139.7c4.5-25.5,9.2-51.9,14.7-77.7c2.9-14,6.7-28.8,14.4-42.2l0.6-1.1c1.4-2.5,3.1-5.6,6.7-6.7l3.6-1.1
       l0.3,3.7c0.1,0.9,0.1,1.7,0.2,2.5c0.1,1.7,0.2,3.3,0.5,4.9c1,7.4,6.9,13.3,14.4,14.2c8,0.8,14.5-3.5,17.1-11.3
       c1.8-4.9,1.3-10.3-1.2-14.8c-2.7-4.7-7.6-8-13.7-9.2c-10.4-2.1-21,0-31.5,6.4c-17.5,10.6-27.1,27.6-34.2,42.9
       c-11.6,25.1-18,51.5-22.7,74.1c-1.8,8.7-3.5,17.5-5.1,26.3c10.8-1.6,21.6-3,32.2-4.3l2.8-0.4C244.4,143.7,244.7,141.7,245.1,139.7z
@@ -96,7 +102,7 @@
       C203,186.3,202.4,189.4,201.9,192.5z"/>
 
     <!-- 4: travesano central + detalles internos (degradado radial) -->
-    <path class="intro-lp" fill="url(#gB)" d="M252,176.8c10.4-1.6,20.7-3.7,30.9-6.4c5.5,2,10.8,4.5,16,7.3c10.7,5.9,17.8,11.8,23,18.9
+    <path class="intro-lp g-b" fill="url(#gB)" d="M252,176.8c10.4-1.6,20.7-3.7,30.9-6.4c5.5,2,10.8,4.5,16,7.3c10.7,5.9,17.8,11.8,23,18.9
       c6,8.3,8.1,16.4,6.4,24.9c-1.1,5.4-3.9,8.7-8.4,9.8c-4.3,1.3-8.8-0.3-11.4-3.9c-2.5-3.4-2.4-8.1,0.2-11.4c1.7-2.3,4.4-3.7,7.3-3.7
       c1.4,0,2.8,0.3,4.1,0.8l5,2l-0.9-5.3c-0.7-4.3-3.7-6.2-5.7-7.4c-0.3-0.2-0.5-0.3-0.8-0.5c-7.3-4.7-15.2-7.6-24.9-10.4
       c-16.1-4.7-32.6-8.6-48.6-12.4l0.2-1.1 M202.9,151.3l0.5-3c-10.8-2.7-21.8-5.5-32.6-8.4v16.9c8.6-1.9,17.3-3.2,25.8-4.5l1.9-0.3
