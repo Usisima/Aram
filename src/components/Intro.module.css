@@ -1,0 +1,48 @@
+/* Splash de entrada: el logo se dibuja trazo por trazo en el centro.
+   La animacion no vive aqui sino en Intro.tsx, con la Web Animations API:
+   las longitudes de cada path solo se conocen en tiempo de ejecucion
+   (getTotalLength), y ademas los @keyframes de un CSS Module reciben un
+   nombre con hash que no se puede referenciar desde JS. */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  transition: opacity 0.7s ease;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo {
+  width: min(54vw, 232px);
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+.path {
+  fill: var(--logo);
+  fill-opacity: 0; /* el relleno entra despues de cerrar el contorno */
+  stroke: var(--logo);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Solo en modo oscuro los dos paths con degradado usan su gradiente, tanto
+   para el relleno como para el contorno que se dibuja: asi el trazo nace ya
+   con la luz final y el borde no se borra de golpe al terminar. En modo claro
+   ninguna regla los distingue, asi que caen a var(--logo) = negro puro. */
+:global([data-theme="dark"]) .path[data-grad] {
+  fill: var(--grad);
+  stroke: var(--grad);
+}

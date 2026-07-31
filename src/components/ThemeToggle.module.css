@@ -1,0 +1,17 @@
+/* Que etiqueta se ve la decide el CSS a partir de data-theme, no el estado de
+   React. Asi el boton no necesita saber el tema para pintarse: el servidor
+   manda las dos etiquetas y el navegador esconde la que no toca, sin
+   desajuste de hidratacion y sin parpadeo. */
+
+.enOscuro,
+.enClaro {
+  display: none;
+}
+
+:global([data-theme="dark"]) .enOscuro {
+  display: inline;
+}
+
+:global([data-theme="light"]) .enClaro {
+  display: inline;
+}
