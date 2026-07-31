@@ -3,15 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
 <title>Aram</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* ── Temas ──────────────────────────────────────────────────────────────
+     Modo oscuro: fondo negro, logo blanco con sus dos degradados.
+     Modo claro:  fondo blanco, logo negro puro (sin degradados).
+     El sistema decide por defecto; data-theme en <html> lo fuerza a mano.  */
+  :root {
+    --bg: #000;
+    --fg: #fff;
+    --logo:   #fff;        /* paths solidos */
+    --logo-a: url(#gA);    /* path con degradado radial A */
+    --logo-b: url(#gB);    /* path con degradado radial B */
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fff;
+      --fg: #000;
+      --logo: #000; --logo-a: #000; --logo-b: #000;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #000;
+    --fg: #fff;
+    --logo: #fff; --logo-a: url(#gA); --logo-b: url(#gB);
+  }
+  :root[data-theme="light"] {
+    --bg: #fff;
+    --fg: #000;
+    --logo: #000; --logo-a: #000; --logo-b: #000;
+  }
+
   body {
-    background: #000;
-    color: #fff;
+    background: var(--bg);
+    color: var(--fg);
     min-height: 100vh;
     font-family: system-ui, sans-serif;
     display: flex;
@@ -21,7 +51,7 @@
 
   /* ── Intro / splash: el SVG se dibuja en el centro ── */
   #intro {
-    position: fixed; inset: 0; z-index: 100000; background: #000;
+    position: fixed; inset: 0; z-index: 100000; background: var(--bg);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 30px; transition: opacity 0.7s ease;
   }
@@ -29,8 +59,9 @@
   #intro .intro-logo { width: min(54vw, 232px); height: auto; overflow: visible; display: block; }
 
   .intro-lp {
-    fill-opacity: 0;          /* el fill (blanco o degradado) entra despues */
-    stroke: #fff;
+    fill: var(--logo);
+    fill-opacity: 0;          /* el fill entra despues de trazar el contorno */
+    stroke: var(--logo);
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -38,9 +69,17 @@
 
   /* Los trazos con degradado se dibujan con SU degradado, no en blanco solido:
      asi el contorno ya nace con la misma luz que tendra el relleno y el borde
-     no "desaparece" al final. */
-  .intro-lp.g-a { stroke: url(#gA); }
-  .intro-lp.g-b { stroke: url(#gB); }
+     no "desaparece" al final. En modo claro las variables valen #000, con lo
+     que estos dos paths caen a negro puro como el resto. */
+  .intro-lp.g-a { fill: var(--logo-a); stroke: var(--logo-a); }
+  .intro-lp.g-b { fill: var(--logo-b); stroke: var(--logo-b); }
+
+  /* ── Interruptor de tema ── */
+  #theme {
+    position: fixed; top: 12px; right: 12px; z-index: 100001;
+    background: none; border: 1px solid currentColor; color: inherit;
+    font: inherit; font-size: 12px; padding: 6px 12px; cursor: pointer;
+  }
 
   @keyframes introDraw       { to { stroke-dashoffset: 0; } }
   @keyframes introFill       { from { fill-opacity: 0; } to { fill-opacity: 1; } }
@@ -126,7 +165,38 @@
   <p>Pantalla principal — si lees esto, funciona.</p>
 </main>
 
+<button id="theme" type="button">tema</button>
+
 <script>
+/* Interruptor de tema: sin data-theme manda el sistema. */
+(function () {
+  var root = document.documentElement;
+  var btn  = document.getElementById('theme');
+  var KEY  = 'aram_theme';
+
+  try {
+    var saved = localStorage.getItem(KEY);
+    if (saved) root.dataset.theme = saved;
+  } catch (e) {}
+
+  function actual() {
+    if (root.dataset.theme) return root.dataset.theme;
+    return matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function etiqueta() { btn.textContent = actual() === 'light' ? 'oscuro' : 'claro'; }
+
+  btn.addEventListener('click', function () {
+    var siguiente = actual() === 'light' ? 'dark' : 'light';
+    root.dataset.theme = siguiente;
+    try { localStorage.setItem(KEY, siguiente); } catch (e) {}
+    etiqueta();
+  });
+
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', etiqueta);
+  etiqueta();
+})();
+
 (function () {
   var intro = document.getElementById('intro');
   if (!intro) return;
