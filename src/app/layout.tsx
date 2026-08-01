@@ -42,12 +42,11 @@ export default function RootLayout({
               <Logo className="h-6 w-auto overflow-visible" />
               <span className="text-sm tracking-[0.2em] uppercase">Aram</span>
             </Link>
+            {/* El editor no aparece aqui a proposito: es una herramienta
+                local, no forma parte del sitio publicado. */}
             <nav className="flex items-center gap-6 text-sm">
               <Link href="/materias" className="text-muted hover:text-foreground">
                 Materias
-              </Link>
-              <Link href="/editor" className="text-muted hover:text-foreground">
-                Editor
               </Link>
               <ThemeToggle />
             </nav>

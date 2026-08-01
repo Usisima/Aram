@@ -2,11 +2,23 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Latex from "@/components/Latex";
-import { getDemostracion, getLibro, getMateria } from "@/lib/data";
+import {
+  getDemostracion,
+  getLibro,
+  getMateria,
+  getRutasDemostraciones,
+} from "@/lib/data";
 
 interface Props {
   params: Promise<{ materia: string; libro: string; demostracion: string }>;
 }
+
+/** El sitio se exporta estatico: hay que enumerar cada pagina al compilar. */
+export async function generateStaticParams() {
+  return getRutasDemostraciones();
+}
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { materia: sm, libro: sl, demostracion: sd } = await params;

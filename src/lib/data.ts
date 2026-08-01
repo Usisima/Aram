@@ -287,3 +287,35 @@ export async function getDemostracion(
 ): Promise<Demostracion | undefined> {
   return demostraciones.find((d) => d.libroId === libroId && d.slug === slug);
 }
+
+/* ── Rutas para la exportacion estatica ────────────────────────────────────
+   Al compilar no hay servidor, asi que hay que enumerar de antemano cada
+   pagina que existira. La union se hace aqui y no en las paginas para que
+   ninguna tenga que conocer la forma de las otras entidades.               */
+
+export async function getRutasLibros(): Promise<
+  { materia: string; libro: string }[]
+> {
+  return libros.flatMap((libro) => {
+    const materia = materias.find((m) => m.id === libro.materiaId);
+    return materia ? [{ materia: materia.slug, libro: libro.slug }] : [];
+  });
+}
+
+export async function getRutasDemostraciones(): Promise<
+  { materia: string; libro: string; demostracion: string }[]
+> {
+  return demostraciones.flatMap((demostracion) => {
+    const libro = libros.find((l) => l.id === demostracion.libroId);
+    const materia = libro && materias.find((m) => m.id === libro.materiaId);
+    return libro && materia
+      ? [
+          {
+            materia: materia.slug,
+            libro: libro.slug,
+            demostracion: demostracion.slug,
+          },
+        ]
+      : [];
+  });
+}
