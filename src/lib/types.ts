@@ -1,38 +1,47 @@
 /**
  * Modelo de datos de la plataforma.
  *
- * Sigue la jerarquia del prompt de desarrollo: Materia -> Libro -> Demostracion.
- * Cada entidad lleva `id` (estable, el que usara la base de datos) y `slug`
- * (legible, el que aparece en la URL). El prompt solo pedia `id`, pero las
- * rutas publicas quedan mucho mejor como /materias/calculo/spivak que con
- * identificadores opacos.
+ * Jerarquia: Materia -> Libro -> Demostracion. Cada entidad lleva `id`
+ * (el del plan de estudios, estable) y `slug` (legible, el que aparece en la
+ * URL), para que las rutas queden como /materias/calculo-diferencial-e-integral-i
+ * en vez de identificadores opacos.
  */
 
-/** Nivel superior: Algebra, Calculo, Topologia, ... */
+/** Una unidad del temario de una materia. */
+export interface Tema {
+  num: string;
+  nombre: string;
+  horas: number;
+  subtemas: string[];
+}
+
+/** Nivel superior: una asignatura del plan de estudios. */
 export interface Materia {
   id: string;
   slug: string;
   nombre: string;
-  /** Color representativo de la materia, en hex. Tine la portada. */
+  /** Color representativo, en hex. */
   color: string;
+  /** Resumen corto; se compone a partir de los primeros temas. */
   descripcion: string;
-  /** Ruta de la ilustracion de portada. */
-  portada: string;
+  /** Clave de la asignatura en el plan. */
+  clave: string;
+  creditos: number;
+  semestre: number;
+  temario: Tema[];
 }
 
-/** Un volumen concreto dentro de una materia: Apostol, Spivak, Rudin, ... */
+/** Un volumen de la bibliografia de una materia. */
 export interface Libro {
   id: string;
   slug: string;
   materiaId: string;
   titulo: string;
   autor: string;
-  edicion: string;
-  /**
-   * El modelo de datos del prompt no incluye el anio, pero la portada si debe
-   * mostrarlo, asi que lo agrego aqui.
-   */
-  anio: number;
+  /** Puede incluir el numero de edicion: "2ª ed. Reverté". */
+  editorial: string;
+  /** Ausente en los pocos titulos donde la fuente no lo indica. */
+  anio?: number;
   portada: string;
   descripcion: string;
 }
@@ -49,14 +58,14 @@ export interface Demostracion {
   tema: string;
   dificultad: Dificultad;
   etiquetas: string[];
-  /** Fuente LaTeX de la demostracion. Es la unica fuente de verdad. */
+  /** Fuente LaTeX. Es la unica fuente de verdad del contenido. */
   latex: string;
   /** ISO 8601. */
   actualizada: string;
 }
 
 /**
- * Materia con las cifras que muestra su portada en la estanteria.
+ * Materia con las cifras que muestra su portada.
  *
  * No se guardan: se derivan contando los hijos, para que no puedan quedar
  * desincronizadas con el contenido real.
@@ -66,11 +75,4 @@ export interface MateriaConResumen extends Materia {
   numDemostraciones: number;
   /** ISO 8601. Ausente si la materia todavia no tiene demostraciones. */
   ultimaActualizacion?: string;
-}
-
-/** Ruta completa hasta una demostracion, para breadcrumbs. */
-export interface Ruta {
-  materia: Materia;
-  libro: Libro;
-  demostracion?: Demostracion;
 }

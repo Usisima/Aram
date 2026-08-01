@@ -1,55 +1,52 @@
 import type { Metadata } from "next";
-import MateriaLibro from "@/components/MateriaLibro";
+import MateriaDisco from "@/components/MateriaDisco";
 import { getMateriasConResumen } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Materias" };
 
-/**
- * Fecha fijada a UTC y a una configuracion regional concreta: el texto se
- * compone aqui, en el servidor, y viaja ya hecho al componente de cliente,
- * asi que no puede haber discrepancia al hidratar.
- */
-const FECHA = new Intl.DateTimeFormat("es-MX", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
-/**
- * Estanteria de materias. Cada una se dibuja como un libro fisico, no como
- * una tarjeta: ver MateriaLibro.
- */
+/** Discoteca de materias: cada asignatura del plan es un disco. */
 export default async function MateriasPage() {
   const materias = await getMateriasConResumen();
 
+  // Se agrupan por semestre, que es el orden natural del plan de estudios.
+  const semestres = [...new Set(materias.map((m) => m.semestre))].sort(
+    (a, b) => a - b,
+  );
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-14">
-      <header className="mb-10">
+      <header className="mb-12">
         <h1 className="text-2xl tracking-tight">Materias</h1>
         <p className="mt-1 text-sm text-muted">
-          Cada volumen reúne los libros y las demostraciones de una disciplina.
+          Matemáticas · Facultad de Ciencias, UNAM
         </p>
       </header>
 
-      <ul className="grid grid-cols-3 gap-5 sm:gap-7 md:grid-cols-4 lg:grid-cols-5">
-        {materias.map((materia) => (
-          <li key={materia.id}>
-            <MateriaLibro
-              nombre={materia.nombre}
-              color={materia.color}
-              href={`/materias/${materia.slug}`}
-              numLibros={materia.numLibros}
-              numDemostraciones={materia.numDemostraciones}
-              ultimaActualizacion={
-                materia.ultimaActualizacion
-                  ? FECHA.format(new Date(`${materia.ultimaActualizacion}T00:00:00Z`))
-                  : undefined
-              }
-            />
-          </li>
-        ))}
-      </ul>
+      {semestres.map((semestre) => (
+        <section key={semestre} className="mb-14">
+          <h2 className="mb-6 text-xs tracking-[0.2em] text-muted uppercase">
+            Semestre {semestre}
+          </h2>
+
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+            {materias
+              .filter((m) => m.semestre === semestre)
+              .map((materia) => (
+                <li key={materia.id}>
+                  <MateriaDisco
+                    nombre={materia.nombre}
+                    color={materia.color}
+                    href={`/materias/${materia.slug}`}
+                    semestre={materia.semestre}
+                    clave={materia.clave}
+                    numLibros={materia.numLibros}
+                    numDemostraciones={materia.numDemostraciones}
+                  />
+                </li>
+              ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

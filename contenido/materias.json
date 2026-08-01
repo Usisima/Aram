@@ -1,0 +1,1255 @@
+[
+  {
+    "id": "algebra_superior_1",
+    "slug": "algebra-superior-i",
+    "nombre": "Álgebra Superior I",
+    "color": "#c2703f",
+    "descripcion": "Conjuntos · Relaciones y funciones · Números naturales y cálculo combinatorio",
+    "clave": "0007",
+    "creditos": 10,
+    "semestre": 1,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Conjuntos",
+        "horas": 12,
+        "subtemas": [
+          "Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal.",
+          "Operaciones con conjuntos: unión, intersección, complemento y diferencia.",
+          "Conjunto potencia. Producto cartesiano. Familias de conjuntos."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Relaciones y funciones",
+        "horas": 19,
+        "subtemas": [
+          "Relaciones (dominio, codominio e imagen).",
+          "Funciones (imágenes e imágenes inversas).",
+          "Composición de funciones. Función inversa.",
+          "Funciones inyectivas, suprayectivas y biyectivas.",
+          "Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos.",
+          "Relaciones de equivalencia y particiones."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Números naturales y cálculo combinatorio",
+        "horas": 12,
+        "subtemas": [
+          "Los números naturales. Principio de inducción.",
+          "Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones.",
+          "Teorema del binomio. Relaciones entre coeficientes binomiales."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Espacios vectoriales",
+        "horas": 12,
+        "subtemas": [
+          "Los espacios ℝ² y ℝ³. Interpretación geométrica.",
+          "El espacio vectorial ℝⁿ.",
+          "Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores.",
+          "Dependencia e independencia lineal.",
+          "Bases. Dimensión."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Matrices y determinantes",
+        "horas": 13,
+        "subtemas": [
+          "Matrices, definición y operaciones. Transpuesta de una matriz.",
+          "Operaciones elementales: Matrices escalón reducidas. Rango de una matriz.",
+          "El determinante de una matriz cuadrada: definición y propiedades.",
+          "Cálculo de determinantes.",
+          "Caracterización del rango de una matriz por medio del determinante."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Sistemas de ecuaciones lineales",
+        "horas": 12,
+        "subtemas": [
+          "Sistemas, soluciones, matriz y matriz aumentada.",
+          "Criterios de existencia de soluciones.",
+          "Regla de Cramer.",
+          "Espacio de soluciones de un sistema no homogéneo.",
+          "Resolución de sistemas (eliminación)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "calculo_1",
+    "slug": "calculo-diferencial-e-integral-i",
+    "nombre": "Cálculo Diferencial e Integral I",
+    "color": "#3f7d6e",
+    "descripcion": "Introducción · Números reales · Funciones y sucesiones",
+    "clave": "0091",
+    "creditos": 18,
+    "semestre": 1,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Introducción",
+        "horas": 6,
+        "subtemas": [
+          "Los problemas que fundamentan al cálculo.",
+          "Ejemplos."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Números reales",
+        "horas": 15,
+        "subtemas": [
+          "Propiedades de los números enteros, racionales y reales y sus operaciones, desigualdades y valor absoluto.",
+          "La propiedad de compleción de los números reales, expansiones decimales."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Funciones y sucesiones",
+        "horas": 30,
+        "subtemas": [
+          "Definición, ejemplos, gráficas y propiedades elementales de las funciones (polinomiales, racionales, trigonométricas, exponenciales, pares e impares, inyectivas y suprayectivas, periódicas, monótonas, acotadas).",
+          "Sucesiones de números reales, sucesiones de Cauchy.",
+          "Suma, producto y cociente de funciones y sucesiones.",
+          "Composición de funciones. Funciones inversas."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Límite",
+        "horas": 30,
+        "subtemas": [
+          "Definición y ejemplos de sucesiones convergentes.",
+          "Criterios elementales para la convergencia de sucesiones.",
+          "Límite de funciones.",
+          "Definición, ejemplos y propiedades básicas del límite de una función.",
+          "Límite de la suma, el producto y el cociente de funciones.",
+          "Límites que involucran al infinito, asíntotas de curvas."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Continuidad",
+        "horas": 22,
+        "subtemas": [
+          "Definición y propiedades de las funciones continuas en un punto.",
+          "La continuidad y la composición.",
+          "Funciones continuas en intervalos cerrados.",
+          "Propiedades de las funciones continuas en intervalos cerrados: máximos, mínimos y teorema de valor intermedio."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Funciones derivables",
+        "horas": 41,
+        "subtemas": [
+          "Razón de cambio y razón instantánea de cambio y velocidad.",
+          "Tangentes de curvas.",
+          "Definición y ejemplos del concepto de derivada.",
+          "Relación entre la continuidad y la derivabilidad de una función.",
+          "Suma, producto y cociente de funciones derivables.",
+          "La regla de la cadena.",
+          "Método de Newton y raíces de funciones. Derivada de la función inversa.",
+          "Derivación implícita.",
+          "Derivadas de orden superior.",
+          "El Teorema del Valor Medio.",
+          "Puntos críticos. Localización de máximos y mínimos relativos, concavidad y puntos de inflexión.",
+          "Problemas de optimización.",
+          "Polinomios de Taylor y forma de Lagrange del residuo.",
+          "El Teorema del Valor Medio Generalizado y la Regla de L'Hôpital."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "geo_analitica_1",
+    "slug": "geometria-analitica-i",
+    "nombre": "Geometría Analítica I",
+    "color": "#6b5ca5",
+    "descripcion": "Introducción · Trigonometría · Espacios vectoriales básicos",
+    "clave": "0244",
+    "creditos": 10,
+    "semestre": 1,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Introducción",
+        "horas": 10,
+        "subtemas": [
+          "Los conceptos geométricos elementales: distancia entre dos puntos, distancia de un punto a una recta, distancia de un punto a un plano; simetría respecto a un punto, respecto a una recta y respecto a un plano.",
+          "Introducción de coordenadas cartesianas en el plano y en el espacio y el método analítico.",
+          "Lugares geométricos del plano y el espacio definidos por ecuaciones y desigualdades elementales. Gráficas de funciones de primer y segundo grados en una y dos variables."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Trigonometría",
+        "horas": 15,
+        "subtemas": [
+          "Razones trigonométricas; primeras relaciones. El Teorema de Pitágoras.",
+          "Resolución de triángulos. Congruencia. Semejanza.",
+          "Rectas y puntos notables de un triángulo.",
+          "Ángulo central y ángulo inscrito. Potencia de un punto respecto a una circunferencia.",
+          "Funciones trigonométricas. Identidades trigonométricas.",
+          "Coordenadas polares. Curvas en coordenadas polares.",
+          "Curvas paramétricas.",
+          "Coordenadas esféricas y cilíndricas. Superficies coordenadas. Superficies paramétricas."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Espacios vectoriales básicos",
+        "horas": 20,
+        "subtemas": [
+          "Definición y ejemplos de un espacio vectorial real (ℝ², ℝ³, las funciones reales de variable real; fuerzas planas y espaciales).",
+          "Subespacios vectoriales; ejemplos.",
+          "Independencia lineal, conjunto generador, base, dimensión. Dimensión de una curva y de una superficie.",
+          "Producto escalar, producto vectorial, triple producto escalar. Interpretación geométrica de cada uno y propiedades."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Rectas, planos, semiplanos y semiespacios",
+        "horas": 15,
+        "subtemas": [
+          "Ecuaciones cartesianas y paramétricas de la recta en ℝ². Fórmula para la distancia de un punto a una recta. División de un segmento en una razón dada. Semiplanos.",
+          "Rectas en ℝ³; rectas que se cruzan, distancia de un punto a una recta. Distancia entre dos rectas.",
+          "Ecuaciones cartesianas y paramétricas de un plano en ℝ³. Distancia de un punto a un plano. Semiespacios.",
+          "Sistemas de ecuaciones lineales. Transversalidad.",
+          "Sistemas de desigualdades lineales."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Cónicas",
+        "horas": 20,
+        "subtemas": [
+          "Definición, trazado y nomenclatura. Simetrías y extensión.",
+          "Ecuaciones canónicas; sistema coordenado 'natural'.",
+          "Cónicas con ejes paralelos a los coordenados. Traslaciones.",
+          "Rotaciones en ℝ². Clasificación de formas cuadráticas (discriminante).",
+          "Definición general de cónica (excentricidad). Secciones de un cono.",
+          "La tangente a una cónica; propiedad focal.",
+          "Cónicas parametrizadas.",
+          "Familias de cónicas."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "geo_moderna_1",
+    "slug": "geometria-moderna-i",
+    "nombre": "Geometría Moderna I",
+    "color": "#7d5a9c",
+    "descripcion": "Fundamentos de geometría euclidiana · Triángulos y congruencias · Círculos y polígonos",
+    "clave": "0249",
+    "creditos": 10,
+    "semestre": 1,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Fundamentos de geometría euclidiana",
+        "horas": 12,
+        "subtemas": [
+          "Los axiomas de Euclides y Hilbert",
+          "Incidencia, orden y separación",
+          "Congruencia de segmentos y ángulos",
+          "Postulado de las paralelas"
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Triángulos y congruencias",
+        "horas": 14,
+        "subtemas": [
+          "Criterios de congruencia de triángulos (LLL, LAL, ALA, etc.)",
+          "Propiedades de triángulos isósceles",
+          "Desigualdades en triángulos",
+          "Construcciones con regla y compás"
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Círculos y polígonos",
+        "horas": 12,
+        "subtemas": [
+          "Propiedades de circunferencias y cuerdas",
+          "Ángulos inscritos y centrales",
+          "Polígonos regulares y sus propiedades",
+          "Medida de arcos"
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Semejanza y proporciones",
+        "horas": 12,
+        "subtemas": [
+          "Razones y proporciones",
+          "Criterios de semejanza de triángulos",
+          "Teorema de Pitágoras y recíproco",
+          "Medios proporcionales"
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Geometría del triángulo",
+        "horas": 10,
+        "subtemas": [
+          "Puntos notables: baricentro, ortocentro, circuncentro, incentro",
+          "Recta de Euler",
+          "Circunferencia de los nueve puntos"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "algebra_superior_2",
+    "slug": "algebra-superior-ii",
+    "nombre": "Álgebra Superior II",
+    "color": "#c2703f",
+    "descripcion": "Números enteros · Divisibilidad · Números complejos",
+    "clave": "0008",
+    "creditos": 10,
+    "semestre": 2,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Números enteros",
+        "horas": 15,
+        "subtemas": [
+          "El anillo de los números enteros.",
+          "ℤ como dominio entero.",
+          "El orden en ℤ.",
+          "Principio de inducción. Principio del buen orden.",
+          "Unidades en ℤ."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Divisibilidad",
+        "horas": 25,
+        "subtemas": [
+          "Propiedades elementales.",
+          "Algoritmo de la división.",
+          "Máximo común divisor. Algoritmo de Euclides. Mínimo común múltiplo.",
+          "Soluciones enteras de una ecuación lineal.",
+          "Números primos. Factorización única.",
+          "Congruencias. Congruencias lineales. Teorema chino del residuo."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Números complejos",
+        "horas": 15,
+        "subtemas": [
+          "El campo de los números complejos.",
+          "Conjugación. Módulo o norma.",
+          "Raíces cuadradas. La ecuación de 2° grado.",
+          "Representación polar. Teorema de De Moivre. Raíces n-ésimas."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Polinomios y ecuaciones polinomiales",
+        "horas": 25,
+        "subtemas": [
+          "Polinomios con coeficientes en un campo K. Operaciones. El dominio entero K[x].",
+          "Divisibilidad. Algoritmo de la división.",
+          "Máximo común divisor. Algoritmo de Euclides.",
+          "Polinomios irreducibles. Factorización única.",
+          "Evaluación. Raíces de un polinomio. Teorema del residuo. Teorema del factor. Factorización de polinomios. División sintética.",
+          "Raíces múltiples. Derivadas y multiplicidad.",
+          "Teorema fundamental del álgebra. Consecuencias."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "calculo_2",
+    "slug": "calculo-diferencial-e-integral-ii",
+    "nombre": "Cálculo Diferencial e Integral II",
+    "color": "#3f7d6e",
+    "descripcion": "Integral definida · Teorema Fundamental del Cálculo · Las funciones logaritmo y exponencial",
+    "clave": "0092",
+    "creditos": 18,
+    "semestre": 2,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Integral definida",
+        "horas": 28,
+        "subtemas": [
+          "Ejemplos que conducen al concepto de integral definida (área bajo una curva, trabajo).",
+          "Sumas superiores e inferiores (o sumas de Riemann).",
+          "Definición y ejemplos de la integral definida de una función continua.",
+          "Propiedades básicas de la integral definida.",
+          "Teorema del valor medio para la integral.",
+          "Ejemplos de funciones integrables con un número finito o infinito de puntos de discontinuidad.",
+          "La función de Riemann."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Teorema Fundamental del Cálculo",
+        "horas": 19,
+        "subtemas": [
+          "La integral como función del límite superior (integral indefinida).",
+          "Propiedades de la integral indefinida.",
+          "Demostración de los teoremas fundamentales del cálculo.",
+          "Integración directa.",
+          "Integrales impropias.",
+          "Criterios de convergencia de las integrales impropias."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Las funciones logaritmo y exponencial",
+        "horas": 19,
+        "subtemas": [
+          "Definición de la función logaritmo a través de la integral.",
+          "Propiedades de las funciones logarítmicas.",
+          "La función exponencial como inversa de la función logaritmo.",
+          "Propiedades de las funciones exponenciales.",
+          "Derivación logarítmica.",
+          "Funciones que sólo pueden expresarse en términos de una integral: Funciones elípticas."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Las funciones trigonométricas a través de la integral (Opcional)",
+        "horas": 7,
+        "subtemas": [
+          "Definición de π por medio de una integral.",
+          "Propiedades de las funciones trigonométricas.",
+          "Funciones trigonométricas inversas."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Métodos de integración y aplicaciones de la integral definida",
+        "horas": 28,
+        "subtemas": [
+          "Métodos de sustitución o cambio de variable.",
+          "Integración por partes.",
+          "Teorema del valor medio para integrales.",
+          "Polinomios de Taylor y forma de Cauchy del residuo.",
+          "Fracciones parciales; método de coeficientes indeterminados para la integración de funciones racionales.",
+          "Métodos numéricos de integración."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Aplicaciones",
+        "horas": 19,
+        "subtemas": [
+          "Cálculo de áreas de regiones planas.",
+          "Área en coordenadas polares.",
+          "Longitud de una curva y distancia recorrida por una partícula.",
+          "Volumen y área de sólidos de revolución.",
+          "Trabajo, densidad y masa.",
+          "Cálculo de momentos.",
+          "Problemas de decaimiento radioactivo, ley de Malthus, oscilación de un resorte, ecuación logística."
+        ]
+      },
+      {
+        "num": "7",
+        "nombre": "Series",
+        "horas": 24,
+        "subtemas": [
+          "Definición y ejemplos de sucesiones y series convergentes y no convergentes.",
+          "Criterios de convergencia para sucesiones y para series con términos positivos.",
+          "Series alternantes y convergencia absoluta de una serie.",
+          "Criterio de Leibniz.",
+          "Reordenamiento de los términos de una serie.",
+          "Ejemplos elementales de series de potencias.",
+          "Ejemplos de series de Fourier."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "geo_analitica_2",
+    "slug": "geometria-analitica-ii",
+    "nombre": "Geometría Analítica II",
+    "color": "#6b5ca5",
+    "descripcion": "Superficies cuádricas · Transformaciones · La geometría de la esfera",
+    "clave": "0245",
+    "creditos": 10,
+    "semestre": 2,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Superficies cuádricas",
+        "horas": 20,
+        "subtemas": [
+          "Cilindros. Cilindros sobre cónicas.",
+          "Superficies de revolución. Superficies de revolución generadas por cónicas.",
+          "La ecuación de 2° grado sin términos mixtos.",
+          "Simetrías y extensión de superficies cuádricas.",
+          "Cuádricas con ejes paralelos a los coordenados.",
+          "Superficies regladas.",
+          "Plano tangente a una cuádrica."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Transformaciones",
+        "horas": 35,
+        "subtemas": [
+          "Definición y ejemplos de transformaciones lineales en ℝ² y en ℝ³. Proyecciones, homotecias.",
+          "La matriz de una transformación lineal respecto a una base. Subespacios invariantes.",
+          "Definición y ejemplos de transformaciones rígidas en ℝ² y en ℝ³. Subgrupos. Descomposición de una transformación rígida como una lineal seguida de una traslación.",
+          "Eliminación de los términos mixtos de la ecuación general de 2° grado en 3 variables por una rotación adecuada.",
+          "Transformaciones afines. Perspectiva."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "La geometría de la esfera",
+        "horas": 10,
+        "subtemas": [
+          "Geodésicas.",
+          "Un poco de trigonometría esférica."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Transformaciones de Möbius",
+        "horas": 15,
+        "subtemas": [
+          "Interpretación geométrica de la suma y el producto de números complejos.",
+          "El plano complejo extendido. Transformaciones de Möbius. Principales propiedades.",
+          "Introducción a la geometría hiperbólica."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "algebra_lineal_1",
+    "slug": "algebra-lineal-i",
+    "nombre": "Álgebra Lineal I",
+    "color": "#b0563a",
+    "descripcion": "Espacios vectoriales · Matrices · Transformaciones lineales",
+    "clave": "0005",
+    "creditos": 10,
+    "semestre": 3,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Espacios vectoriales",
+        "horas": 15,
+        "subtemas": [
+          "Campos.",
+          "Espacios vectoriales.",
+          "Subespacios vectoriales.",
+          "Dependencia lineal.",
+          "Bases y dimensión.",
+          "Sumas directas."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Matrices",
+        "horas": 10,
+        "subtemas": [
+          "El espacio de las matrices.",
+          "Multiplicación de matrices. Matrices elementales. Matriz inversa.",
+          "Sistemas de ecuaciones lineales."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Transformaciones lineales",
+        "horas": 12,
+        "subtemas": [
+          "El espacio de las transformaciones lineales.",
+          "Núcleo e imagen de una transformación lineal.",
+          "Composición de transformaciones lineales.",
+          "La transformación inversa.",
+          "Espacios isomorfos."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Transformaciones lineales y matrices",
+        "horas": 12,
+        "subtemas": [
+          "La transformación lineal asociada a una matriz.",
+          "La matriz asociada a una transformación lineal.",
+          "Isomorfismos entre el espacio de matrices y el de transformaciones lineales.",
+          "Cambios de base."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Producto escalar",
+        "horas": 17,
+        "subtemas": [
+          "Productos escalares y hermitianos.",
+          "Ortogonalidad.",
+          "Productos positivos, normas y ángulos.",
+          "Coeficientes de Fourier.",
+          "Bases ortogonales (caso positivo).",
+          "Complemento ortogonal de un subespacio. Aplicación a los sistemas de ecuaciones.",
+          "Bases ortogonales (caso general).",
+          "Espacio dual."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Determinantes",
+        "horas": 10,
+        "subtemas": [
+          "Unicidad del determinante.",
+          "Determinante de un producto.",
+          "Invertibilidad de matrices y determinantes.",
+          "Determinante de un operador lineal."
+        ]
+      },
+      {
+        "num": "7",
+        "nombre": "Transformaciones simétricas",
+        "horas": 4,
+        "subtemas": [
+          "Definición y propiedades elementales de valores y vectores propios.",
+          "Polinomio característico.",
+          "Existencia de valores propios reales de transformaciones simétricas.",
+          "Teorema espectral para transformaciones simétricas.",
+          "Ejemplos."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "calculo_3",
+    "slug": "calculo-diferencial-e-integral-iii",
+    "nombre": "Cálculo Diferencial e Integral III",
+    "color": "#3f7d6e",
+    "descripcion": "Funciones de ℝ en ℝN · Espacios normados (opcional) · Topología de ℝN y funciones de ℝN en ℝM",
+    "clave": "0093",
+    "creditos": 18,
+    "semestre": 3,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Funciones de ℝ en ℝN",
+        "horas": 28,
+        "subtemas": [
+          "Funciones de ℝ en ℝN como curvas en el espacio, límites y derivadas en términos de las componentes.",
+          "La diferencial de una curva en el espacio, velocidad y el vector tangente, rapidez.",
+          "Propiedades de los límites y la derivada con respecto a la suma y el producto.",
+          "Curvas rectificables, longitud de arco, parametrización unitaria por longitud de arco.",
+          "Normal principal, curvatura, torsión y plano osculante.",
+          "Ejemplos de curvas en el plano y en el espacio.",
+          "Fórmula de Frenet y Serret (opcional)."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Espacios normados (opcional)",
+        "horas": 7,
+        "subtemas": [
+          "Espacios vectoriales, normas en ℝN."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Topología de ℝN y funciones de ℝN en ℝM",
+        "horas": 18,
+        "subtemas": [
+          "Conjuntos abiertos, cerrados, frontera.",
+          "Caracterización de compactos, teorema de Heine-Borel (opcional), producto de compactos.",
+          "Conexidad y conexidad relativa.",
+          "Definición de coordenadas polares, cilíndricas y esféricas.",
+          "Funciones de ℝN en ℝM, límites y continuidad.",
+          "Teoremas de continuidad en compactos o en conexos.",
+          "Teorema de Bolzano y Weierstrass.",
+          "Funciones continuas en compactos."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Funciones de ℝN en ℝ",
+        "horas": 28,
+        "subtemas": [
+          "Conjuntos de nivel y gráficas.",
+          "Diferenciabilidad, propiedades, derivadas direccionales y derivadas parciales.",
+          "Gradiente de una función, propiedades: dirección de máximo cambio, definición de puntos críticos.",
+          "Teorema del valor medio, criterio de diferenciabilidad en términos de las parciales, derivadas de orden superior, plano tangente a una superficie.",
+          "Diferenciales de orden k, aproximación por polinomios de Taylor."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Transformaciones (opcional)",
+        "horas": 7,
+        "subtemas": [
+          "Matrices, determinantes, y resolución de sistemas.",
+          "Valores y vectores propios.",
+          "Formas bilineales y cuadráticas."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Funciones de ℝN en ℝM",
+        "horas": 28,
+        "subtemas": [
+          "Diferenciabilidad, jacobiano, regla de la cadena, ortogonalidad del gradiente a los conjuntos de nivel.",
+          "Teoremas de la función inversa e implícita con demostraciones.",
+          "Teorema del rango (opcional).",
+          "Definición del operador de divergencia, laplaciano y rotacional."
+        ]
+      },
+      {
+        "num": "7",
+        "nombre": "Máximos y mínimos",
+        "horas": 28,
+        "subtemas": [
+          "Puntos críticos, formas cuadráticas definidas positivas, diagonalización y criterios de positividad, hessianos para detectar máximos, mínimos y puntos silla.",
+          "Máximos y mínimos con restricciones, multiplicadores de Lagrange."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "algebra_lineal_2",
+    "slug": "algebra-lineal-ii",
+    "nombre": "Álgebra Lineal II",
+    "color": "#b0563a",
+    "descripcion": "Formas bilineales y operadores · Diagonalización · Triangulación",
+    "clave": "0006",
+    "creditos": 10,
+    "semestre": 4,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Formas bilineales y operadores",
+        "horas": 15,
+        "subtemas": [
+          "Formas bilineales.",
+          "Formas cuadráticas.",
+          "Operadores autoadjuntos (simétricos y hermitianos).",
+          "Operadores unitarios y ortogonales.",
+          "Teorema de Sylvester sobre la signatura de una forma."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Diagonalización",
+        "horas": 15,
+        "subtemas": [
+          "Vectores y valores propios.",
+          "Polinomio característico.",
+          "Diagonalización y bases de vectores propios."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Triangulación",
+        "horas": 10,
+        "subtemas": [
+          "Existencia de una triangulación sobre ℂ.",
+          "Teorema de Hamilton-Cayley.",
+          "Diagonalización de operadores unitarios."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "El Teorema Espectral",
+        "horas": 15,
+        "subtemas": [
+          "Operadores simétricos sobre ℝ.",
+          "Operadores normales sobre ℂ."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Forma canónica de Jordan",
+        "horas": 25,
+        "subtemas": [
+          "Descomposición primaria.",
+          "Forma canónica de Jordan."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "calculo_4",
+    "slug": "calculo-diferencial-e-integral-iv",
+    "nombre": "Cálculo Diferencial e Integral IV",
+    "color": "#3f7d6e",
+    "descripcion": "Integrales múltiples · Integral de línea · Integral de superficie",
+    "clave": "0094",
+    "creditos": 18,
+    "semestre": 4,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Integrales múltiples",
+        "horas": 32,
+        "subtemas": [
+          "Área de un conjunto plano.",
+          "Integral de una función de dos variables, como volumen debajo de una superficie y sumas de Riemann.",
+          "Propiedades de las integrales.",
+          "Conjuntos de medida cero.",
+          "Cálculo de integrales múltiples, teoremas de Fubini, integración sobre dominios más generales.",
+          "Integrales triples y cálculo de volúmenes.",
+          "Teorema del cambio de variables e integrales en polares, cilíndricas, esféricas.",
+          "Integrales impropias. Funciones no continuas. Integrales sobre regiones no acotadas.",
+          "Convergencia uniforme, teorema de Fubini, derivación bajo la integral."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Integral de línea",
+        "horas": 22,
+        "subtemas": [
+          "Integración de funciones escalares sobre curvas paramétricas, independencia de la parametrización.",
+          "Integrales de línea en campos vectoriales, cálculo del trabajo.",
+          "Integrales de línea en campos del tipo gradiente y campos conservativos.",
+          "Teorema de Green, aplicaciones y ejemplos."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Integral de superficie",
+        "horas": 22,
+        "subtemas": [
+          "Superficies parametrizadas, vector normal y plano tangente.",
+          "Integración sobre superficies parametrizadas y cálculo de áreas.",
+          "Independencia de la parametrización.",
+          "Integración de funciones escalares y vectoriales sobre superficies orientables.",
+          "Integrales en coordenadas curvilíneas."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Teoremas integrales",
+        "horas": 32,
+        "subtemas": [
+          "Teorema de la divergencia en el plano. Teorema de Green, aplicación al laplaciano.",
+          "Teorema de Stokes, rotacional, vorticidad.",
+          "Teorema de Gauss y Stokes en el espacio.",
+          "Flujos a través de una superficie. Identidades de Green.",
+          "Problemas de Laplace. El laplaciano en distintas coordenadas.",
+          "Principio del máximo para la ecuación del calor. Función de Green."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Convergencia uniforme y series de potencias",
+        "horas": 9,
+        "subtemas": [
+          "Convergencia uniforme en una variable, propiedades.",
+          "La prueba M de Weierstrass. Ejemplos de funciones continuas en ningún punto diferenciables.",
+          "Series de potencias, series de Taylor, intervalos de convergencia, derivación e integración término a término."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Optativo: Integral de Fourier",
+        "horas": 9,
+        "subtemas": [
+          "Propiedades, teorema de inversión, Lema de Riemann-Lebesgue, Parseval, convolución.",
+          "Integral de Fresnel. Ecuación de onda con transformada de Fourier. Transformada de Laplace.",
+          "Desigualdad de Bessel, teoremas de convergencia uniforme. La ecuación de calor y de onda."
+        ]
+      },
+      {
+        "num": "7",
+        "nombre": "Optativo: Métodos numéricos en integrales múltiples",
+        "horas": 9,
+        "subtemas": [
+          "Métodos del trapecio y de Simpson.",
+          "Cuadraturas gaussianas.",
+          "Integración en límites arbitrarios. Cálculo de errores. Método de Montecarlo."
+        ]
+      },
+      {
+        "num": "8",
+        "nombre": "Optativo: Formas diferenciales",
+        "horas": 9,
+        "subtemas": [
+          "Derivada exterior, formas cerradas, formas exactas.",
+          "Cambios de variables para formas diferenciales.",
+          "Orientación de superficies. Integrales de formas diferenciales.",
+          "Teorema de Stokes en variedades, elemento de volumen."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ecuaciones_diferenciales_1",
+    "slug": "ecuaciones-diferenciales-i",
+    "nombre": "Ecuaciones Diferenciales I",
+    "color": "#a8863c",
+    "descripcion": "Introducción · Ecuaciones diferenciales lineales de primer orden · Ecuaciones diferenciales no lineales de primer orden",
+    "clave": "0162",
+    "creditos": 10,
+    "semestre": 4,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Introducción",
+        "horas": 4,
+        "subtemas": [
+          "Repaso de nociones básicas y planteamiento de problemas generales.",
+          "Campos vectoriales en ℝn y su ecuación diferencial asociada.",
+          "Definición de espacio fásico, solución y retrato fase de una ecuación diferencial.",
+          "Métodos geométricos para analizar el retrato fase: isóclinas, familias de curvas paramétricas.",
+          "Existencia y unicidad de soluciones; aproximación de la solución y cuantificación del error."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Ecuaciones diferenciales lineales de primer orden",
+        "horas": 5,
+        "subtemas": [
+          "Ecuaciones homogéneas.",
+          "Ecuaciones no homogéneas y métodos de variación de parámetros.",
+          "Teorema de Existencia y Unicidad y dependencia continua respecto a condiciones iniciales."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Ecuaciones diferenciales no lineales de primer orden",
+        "horas": 10,
+        "subtemas": [
+          "Ecuaciones separables, ecuaciones exactas y el método del factor integrante.",
+          "Ejemplos y aplicaciones.",
+          "Teorema de Existencia y Unicidad de Picard.",
+          "Ecuación integral, iterados de Picard. Convergencia de los iterados de Picard.",
+          "Lema de Gronwall, dependencia de las condiciones iniciales."
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Ecuaciones diferenciales lineales de segundo orden",
+        "horas": 10,
+        "subtemas": [
+          "Ecuaciones diferenciales homogéneas con coeficientes constantes.",
+          "Propiedades del conjunto de soluciones, independencia lineal de soluciones, wronskiano.",
+          "Solución general.",
+          "Ecuaciones no homogéneas, variación de parámetros, coeficientes indeterminados.",
+          "Vibraciones mecánicas. Oscilaciones amortiguadas y forzadas, resonancias."
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Ecuaciones lineales de segundo orden con coeficientes variables",
+        "horas": 10,
+        "subtemas": [
+          "Métodos de solución por series de potencia.",
+          "Cálculo del radio de convergencia.",
+          "Ecuaciones singulares y el método de Frobenius.",
+          "Ejemplos: ecuaciones de Hermite, Laguerre, Euler, Bessel, Legendre, Tchebycheff, ecuación hipergeométrica."
+        ]
+      },
+      {
+        "num": "6",
+        "nombre": "Optativo: Transformada de Laplace y de Fourier",
+        "horas": 6,
+        "subtemas": [
+          "Métodos de solución y aplicaciones para resolver ecuaciones de segundo orden."
+        ]
+      },
+      {
+        "num": "7",
+        "nombre": "Sistemas de ecuaciones de primer orden lineales",
+        "horas": 17,
+        "subtemas": [
+          "Reducción de ecuaciones de orden n a un sistema de n ecuaciones de primer orden.",
+          "Sistema de ecuaciones de primer orden homogéneas. Soluciones linealmente independientes.",
+          "Ecuación del wronskiano y su solución. Matriz fundamental y solución general.",
+          "Ecuaciones con coeficientes constantes, exponencial de una matriz, valores y vectores propios.",
+          "Núcleo de la matriz y vector propio generalizado, teorema de Cayley-Hamilton.",
+          "Sistema de ecuaciones de primer orden no homogéneas. Método de variación de parámetros.",
+          "Teorema de existencia y unicidad para sistemas homogéneos de primer orden.",
+          "Aplicaciones: osciladores acoplados, tanques de salmueras, circuitos eléctricos, sistemas de poblaciones."
+        ]
+      },
+      {
+        "num": "8",
+        "nombre": "Introducción a la teoría cualitativa",
+        "horas": 12,
+        "subtemas": [
+          "Estabilidad de la solución de equilibrio de sistemas lineales homogéneos con coeficientes constantes.",
+          "Clasificación de los puntos de equilibrio en el plano y en el espacio.",
+          "Plano fase.",
+          "Linearización de los puntos de equilibrio de un sistema no lineal.",
+          "Descripción cualitativa de los conjuntos límites y el Teorema de Poincaré-Bendixson.",
+          "Dibujo cualitativo del plano fase."
+        ]
+      },
+      {
+        "num": "9",
+        "nombre": "Optativo: Ecuaciones en diferencias y métodos numéricos",
+        "horas": 6,
+        "subtemas": [
+          "Ecuaciones lineales en diferencias.",
+          "Aplicaciones: el método de Newton.",
+          "Método de Euler. Métodos de Runge-Kutta."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "algebra_moderna_1",
+    "slug": "algebra-moderna-i",
+    "nombre": "Álgebra Moderna I",
+    "color": "#9c4221",
+    "descripcion": "Teoría elemental de grupos · Homomorfismos · Tópicos avanzados",
+    "clave": "0001",
+    "creditos": 10,
+    "semestre": 5,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Teoría elemental de grupos",
+        "horas": 25,
+        "subtemas": [
+          "Grupos.",
+          "Subgrupos.",
+          "Grupos cíclicos.",
+          "Grupos de permutaciones. Ciclos, transposiciones, paridad y el grupo alternante.",
+          "Clases laterales y el teorema de Lagrange.",
+          "Subgrupos normales y Grupo cociente.",
+          "Productos directos y grupos abelianos finitos."
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Homomorfismos",
+        "horas": 20,
+        "subtemas": [
+          "Homomorfismos.",
+          "Teorema de Cayley.",
+          "Teoremas de Isomorfismo."
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Tópicos avanzados",
+        "horas": 35,
+        "subtemas": [
+          "Series de subgrupos.",
+          "Teorema de Jordan-Hölder.",
+          "Acción de un grupo en un conjunto. La ecuación de clases.",
+          "Teoremas de Sylow.",
+          "Demostración del Teorema Fundamental de los grupos abelianos finitos."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "analisis_matematico_1",
+    "slug": "analisis-matematico-i",
+    "nombre": "Análisis Matemático I",
+    "color": "#2f6f7d",
+    "descripcion": "Espacios métricos · Convergencia uniforme · Compacidad",
+    "clave": "0009",
+    "creditos": 10,
+    "semestre": 5,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Espacios métricos",
+        "horas": 20,
+        "subtemas": [
+          "Definición y ejemplos de espacios métricos",
+          "Convergencia de sucesiones en espacios métricos",
+          "Conjuntos abiertos, cerrados y sus propiedades",
+          "Continuidad en espacios métricos",
+          "Homeomorfismos",
+          "Espacios completos. Teorema de Baire",
+          "Teorema de punto fijo de Banach"
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Convergencia uniforme",
+        "horas": 20,
+        "subtemas": [
+          "Sucesiones de funciones: convergencia puntual y uniforme",
+          "Series de funciones: convergencia puntual y uniforme",
+          "Criterio de Weierstrass para series de funciones",
+          "Continuidad del límite uniforme",
+          "Derivación e integración de límites uniformes"
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Compacidad",
+        "horas": 10,
+        "subtemas": [
+          "Compacidad en espacios métricos",
+          "Teorema de Heine-Borel en \\(\\mathbb{R}^n\\)",
+          "Equicontinuidad y el teorema de Arzelà-Ascoli"
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Teorema de aproximación de Weierstrass",
+        "horas": 10,
+        "subtemas": [
+          "Polinomios de Bernstein y teorema de Weierstrass",
+          "Álgebras de funciones continuas",
+          "Teorema de Stone-Weierstrass"
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Integral de Riemann-Stieljes",
+        "horas": 20,
+        "subtemas": [
+          "Definición de la integral de Riemann-Stieljes",
+          "Condiciones de integrabilidad",
+          "Propiedades de la integral",
+          "Funciones de variación acotada como integradoras",
+          "Integración por partes y cambio de variable"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "variable_compleja_1",
+    "slug": "variable-compleja-i",
+    "nombre": "Variable Compleja I",
+    "color": "#8c4a6b",
+    "descripcion": "Preliminares y analicidad · Integración · Series",
+    "clave": "0840",
+    "creditos": 10,
+    "semestre": 5,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Preliminares y analicidad",
+        "horas": 20,
+        "subtemas": [
+          "Números complejos: álgebra y geometría",
+          "Representación polar, fórmula de Euler, raíces",
+          "Funciones de variable compleja: límite y continuidad",
+          "Derivada compleja",
+          "Ecuaciones de Cauchy-Riemann",
+          "Funciones analíticas y armónicas",
+          "Funciones elementales: exponencial, logaritmo, trigonométricas, potencias"
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Integración",
+        "horas": 20,
+        "subtemas": [
+          "Integral de línea compleja",
+          "Teorema de Cauchy-Goursat",
+          "Dominio simplemente conexo",
+          "Fórmulas integrales de Cauchy",
+          "Consecuencias: Liouville, teorema fundamental del álgebra, principio del módulo máximo"
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Series",
+        "horas": 20,
+        "subtemas": [
+          "Series de potencias en \\(\\mathbb{C}\\)",
+          "Radio de convergencia",
+          "Series de Taylor de funciones analíticas",
+          "Series de Laurent",
+          "Clasificación de singularidades aisladas: evitables, polos y esenciales",
+          "Teorema de Casorati-Weierstrass"
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Teorema del residuo y aplicaciones",
+        "horas": 20,
+        "subtemas": [
+          "Residuo de una función en un punto singular",
+          "Teorema de los residuos",
+          "Cálculo de integrales reales impropias mediante residuos",
+          "Integrales trigonométricas",
+          "Lema de Jordan"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "analisis_matematico_2",
+    "slug": "analisis-matematico-ii",
+    "nombre": "Análisis Matemático II",
+    "color": "#2f6f7d",
+    "descripcion": "Medida de Lebesgue en \\(\\mathbb{R}^n\\) · Integral de Lebesgue · Teoremas de convergencia",
+    "clave": "0010",
+    "creditos": 10,
+    "semestre": 6,
+    "temario": [
+      {
+        "num": "1",
+        "nombre": "Medida de Lebesgue en \\(\\mathbb{R}^n\\)",
+        "horas": 20,
+        "subtemas": [
+          "Medida exterior de Lebesgue en \\(\\mathbb{R}^n\\)",
+          "Conjuntos medibles Lebesgue",
+          "Propiedades de la medida: σ-aditividad, regularidad",
+          "Conjuntos de medida cero"
+        ]
+      },
+      {
+        "num": "2",
+        "nombre": "Integral de Lebesgue",
+        "horas": 20,
+        "subtemas": [
+          "Funciones medibles",
+          "Integral de Lebesgue de funciones simples y no negativas",
+          "Integral de Lebesgue de funciones integrables",
+          "Teorema de Beppo Levi (convergencia monótona)",
+          "Lema de Fatou",
+          "Teorema de convergencia dominada de Lebesgue",
+          "Relación con la integral de Riemann",
+          "Teorema de Fubini-Tonelli",
+          "Cambio de variable en la integral de Lebesgue"
+        ]
+      },
+      {
+        "num": "3",
+        "nombre": "Teoremas de convergencia",
+        "horas": 20,
+        "subtemas": [
+          "Convergencia puntual y convergencia en medida",
+          "Teorema de Egorov",
+          "Diferenciación bajo el signo de integral",
+          "Integral dependiente de un parámetro"
+        ]
+      },
+      {
+        "num": "4",
+        "nombre": "Espacio \\(L^2\\)",
+        "horas": 13,
+        "subtemas": [
+          "Desigualdades de Hölder y Minkowski",
+          "Los espacios \\(L^p\\) como espacios de Banach",
+          "El espacio \\(L^2\\) como espacio de Hilbert",
+          "Proyección ortogonal y complemento ortogonal",
+          "Bases ortonormales y series de Fourier en \\(L^2\\)"
+        ]
+      },
+      {
+        "num": "5",
+        "nombre": "Temas opcionales",
+        "horas": 7,
+        "subtemas": [
+          "Medidas con signo y teorema de Radon-Nikodym",
+          "Medidas de Borel y medidas de Radon",
+          "Transformada de Fourier en \\(L^1\\) y \\(L^2\\)",
+          "Convolución y sus propiedades"
+        ]
+      }
+    ]
+  }
+]

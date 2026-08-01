@@ -1,257 +1,149 @@
 /**
- * Fuente de datos temporal, en memoria.
+ * Acceso al contenido.
  *
- * Existe para que las paginas se puedan construir y revisar antes de decidir
- * la base de datos. Cuando entre PostgreSQL, estas funciones se reemplazan por
- * consultas reales y las paginas no deberian cambiar: por eso todas son async
- * desde ya.
+ * La fuente de verdad son los archivos de contenido/, no este modulo: las
+ * materias y los libros en JSON, y cada demostracion en su propio .tex. Eso
+ * es lo que permite que el editor local escriba contenido y que la compilacion
+ * lo recoja sin tocar codigo.
+ *
+ * Solo se usa desde componentes de servidor, que en este proyecto se ejecutan
+ * al compilar. Nunca debe importarse desde un componente de cliente: usa
+ * node:fs.
  */
 
+import { readFile, readdir } from "node:fs/promises";
+import path from "node:path";
 import type {
   Demostracion,
+  Dificultad,
   Libro,
   Materia,
   MateriaConResumen,
 } from "./types";
 
-/*
- * Los colores de las seis primeras materias vienen dados por el prompt de la
- * pagina de Materias (azul oscuro, verde, morado, naranja, amarillo, rojo
- * vino). Las otras tres no estaban asignadas: se eligieron manteniendo el
- * mismo registro apagado y academico, y separadas en tono de las anteriores.
+const RAIZ = path.join(process.cwd(), "contenido");
+const DEMOSTRACIONES = path.join(RAIZ, "demostraciones");
+
+/**
+ * Cada archivo .tex empieza con `clave: valor` por linea, una linea con solo
+ * `---`, y despues el LaTeX. Se parte a mano para no depender de un lector de
+ * YAML por cinco campos.
  */
+function partir(texto: string): { meta: Record<string, string>; cuerpo: string } {
+  const lineas = texto.replace(/\r\n/g, "\n").split("\n");
+  const corte = lineas.indexOf("---");
 
-export const materias: Materia[] = [
-  {
-    id: "m-algebra",
-    slug: "algebra",
-    nombre: "Álgebra",
-    color: "#1e3a5f",
-    descripcion: "Estructuras algebraicas, grupos, anillos y cuerpos.",
-    portada: "",
-  },
-  {
-    id: "m-calculo",
-    slug: "calculo",
-    nombre: "Cálculo",
-    color: "#b8541f",
-    descripcion: "Límites, derivadas, integrales y series.",
-    portada: "",
-  },
-  {
-    id: "m-topologia",
-    slug: "topologia",
-    nombre: "Topología",
-    color: "#5b3a7e",
-    descripcion: "Espacios topológicos, continuidad, compacidad y conexidad.",
-    portada: "",
-  },
-  {
-    id: "m-geometria-diferencial",
-    slug: "geometria-diferencial",
-    nombre: "Geometría Diferencial",
-    color: "#6d2635",
-    descripcion: "Variedades, curvatura y formas diferenciales.",
-    portada: "",
-  },
-  {
-    id: "m-probabilidad",
-    slug: "probabilidad",
-    nombre: "Probabilidad",
-    color: "#a67c1a",
-    descripcion:
-      "Espacios de probabilidad, variables aleatorias y convergencia.",
-    portada: "",
-  },
-  {
-    id: "m-analisis-real",
-    slug: "analisis-real",
-    nombre: "Análisis Real",
-    color: "#2c5f4a",
-    descripcion: "Construcción de los reales, medida e integración de Lebesgue.",
-    portada: "",
-  },
-  {
-    id: "m-analisis-complejo",
-    slug: "analisis-complejo",
-    nombre: "Análisis Complejo",
-    color: "#3b3f7a",
-    descripcion: "Funciones holomorfas, series de Laurent y residuos.",
-    portada: "",
-  },
-  {
-    id: "m-logica",
-    slug: "logica",
-    nombre: "Lógica",
-    color: "#3f4550",
-    descripcion:
-      "Lógica proposicional, de primer orden y teoremas de completitud.",
-    portada: "",
-  },
-  {
-    id: "m-teoria-numeros",
-    slug: "teoria-de-numeros",
-    nombre: "Teoría de Números",
-    color: "#5c6b1f",
-    descripcion: "Divisibilidad, congruencias y distribución de los primos.",
-    portada: "",
-  },
+  if (corte === -1) return { meta: {}, cuerpo: texto.trim() };
+
+  const meta: Record<string, string> = {};
+  for (const linea of lineas.slice(0, corte)) {
+    const separador = linea.indexOf(":");
+    if (separador === -1) continue;
+    meta[linea.slice(0, separador).trim()] = linea.slice(separador + 1).trim();
+  }
+
+  return { meta, cuerpo: lineas.slice(corte + 1).join("\n").trim() };
+}
+
+const DIFICULTADES: Dificultad[] = [
+  "introductoria",
+  "intermedia",
+  "avanzada",
 ];
 
-export const libros: Libro[] = [
-  {
-    id: "l-apostol",
-    slug: "apostol",
-    materiaId: "m-calculo",
-    titulo: "Calculus, Vol. I",
-    autor: "Tom M. Apostol",
-    edicion: "2.ª edición",
-    anio: 1967,
-    portada: "",
-    descripcion:
-      "Introducción al cálculo desde la integral, con énfasis en el rigor y en el álgebra lineal.",
-  },
-  {
-    id: "l-spivak",
-    slug: "spivak",
-    materiaId: "m-calculo",
-    titulo: "Calculus",
-    autor: "Michael Spivak",
-    edicion: "4.ª edición",
-    anio: 2008,
-    portada: "",
-    descripcion:
-      "Curso de cálculo tratado como análisis: construye los reales y demuestra cada resultado.",
-  },
-  {
-    id: "l-stewart",
-    slug: "stewart",
-    materiaId: "m-calculo",
-    titulo: "Cálculo de una variable",
-    autor: "James Stewart",
-    edicion: "8.ª edición",
-    anio: 2015,
-    portada: "",
-    descripcion:
-      "Curso estándar de cálculo, orientado a aplicaciones y a gran volumen de ejercicios.",
-  },
-  {
-    id: "l-rudin",
-    slug: "rudin",
-    materiaId: "m-analisis-real",
-    titulo: "Principles of Mathematical Analysis",
-    autor: "Walter Rudin",
-    edicion: "3.ª edición",
-    anio: 1976,
-    portada: "",
-    descripcion:
-      "El «Baby Rudin»: análisis en espacios métricos, con demostraciones muy compactas.",
-  },
-];
-
-export const demostraciones: Demostracion[] = [
-  {
-    id: "d-tfc",
-    slug: "teorema-fundamental-del-calculo",
-    libroId: "l-spivak",
-    titulo: "Demostración del Teorema Fundamental del Cálculo",
-    tema: "Integración",
-    dificultad: "intermedia",
-    etiquetas: ["integral", "continuidad", "derivada"],
-    latex: String.raw`\begin{teorema}
-Sea $f$ integrable en $[a,b]$ y definamos $F(x)=\int_a^x f(t)\,dt$.
-Si $f$ es continua en $c \in [a,b]$, entonces $F$ es derivable en $c$ y
-\[
-  F'(c) = f(c).
-\]
-\end{teorema}
-
-\begin{demostracion}
-Para $h \neq 0$ con $c+h \in [a,b]$,
-\[
-  \frac{F(c+h)-F(c)}{h} = \frac{1}{h}\int_c^{c+h} f(t)\,dt .
-\]
-Sea $\varepsilon > 0$. Por continuidad de $f$ en $c$ existe $\delta>0$ tal que
-$|t-c|<\delta$ implica $|f(t)-f(c)|<\varepsilon$. Entonces, para $0<|h|<\delta$,
-\[
-  \left| \frac{1}{h}\int_c^{c+h} f(t)\,dt - f(c) \right|
-  = \left| \frac{1}{h}\int_c^{c+h} \bigl(f(t)-f(c)\bigr)\,dt \right|
-  \le \varepsilon .
-\]
-Por lo tanto el límite existe y vale $f(c)$. \qed
-\end{demostracion}`,
-    actualizada: "2026-07-31",
-  },
-  {
-    id: "d-valor-medio",
-    slug: "teorema-del-valor-medio",
-    libroId: "l-spivak",
-    titulo: "Teorema del valor medio",
-    tema: "Derivadas",
-    dificultad: "introductoria",
-    etiquetas: ["derivada", "Rolle"],
-    latex: String.raw`\begin{teorema}
-Si $f$ es continua en $[a,b]$ y derivable en $(a,b)$, existe $c \in (a,b)$ con
-\[
-  f'(c) = \frac{f(b)-f(a)}{b-a}.
-\]
-\end{teorema}
-
-\begin{demostracion}
-Definimos
-\[
-  g(x) = f(x) - \frac{f(b)-f(a)}{b-a}\,(x-a).
-\]
-Entonces $g$ es continua en $[a,b]$, derivable en $(a,b)$ y $g(a)=g(b)=f(a)$.
-Por el teorema de Rolle existe $c \in (a,b)$ tal que $g'(c)=0$, es decir
-$f'(c) = \dfrac{f(b)-f(a)}{b-a}$. \qed
-\end{demostracion}`,
-    actualizada: "2026-07-28",
-  },
-  {
-    id: "d-heine-borel",
-    slug: "heine-borel",
-    libroId: "l-rudin",
-    titulo: "Teorema de Heine-Borel",
-    tema: "Compacidad",
-    dificultad: "avanzada",
-    etiquetas: ["compacidad", "espacios métricos", "cubrimientos"],
-    latex: String.raw`\begin{teorema}
-Un subconjunto $K \subseteq \mathbb{R}^n$ es compacto si y sólo si es cerrado y acotado.
-\end{teorema}
-
-\begin{demostracion}
-Esbozo. Si $K$ es compacto, el cubrimiento por bolas $B(0,m)$ con $m \in \mathbb{N}$
-admite subcubrimiento finito, luego $K$ es acotado; y el complemento de $K$ es
-abierto separando puntos, luego $K$ es cerrado.
-
-Recíprocamente, si $K$ es cerrado y acotado está contenido en una celda
-$[-r,r]^n$, que es compacta por bisección sucesiva, y todo cerrado dentro de un
-compacto es compacto. \qed
-\end{demostracion}`,
-    actualizada: "2026-07-30",
-  },
-];
-
-/* ── Accesos ───────────────────────────────────────────────────────────────
-   Async a proposito: cuando esto sea PostgreSQL, la firma no cambia.        */
-
-export async function getMaterias(): Promise<Materia[]> {
-  return materias;
+function aDificultad(valor: string | undefined): Dificultad {
+  return DIFICULTADES.find((d) => d === valor) ?? "intermedia";
 }
 
 /**
- * Materias con las cifras que muestra la portada de cada libro en la
- * estanteria. Se cuentan al vuelo para que no puedan quedar desincronizadas;
- * contra PostgreSQL esto sera un par de agregados.
+ * El contenido se lee una vez por proceso. Al compilar se recorren todas las
+ * paginas y no tiene sentido volver al disco en cada una; en desarrollo, cada
+ * recarga arranca un proceso nuevo.
  */
+let cache: Promise<{
+  materias: Materia[];
+  libros: Libro[];
+  demostraciones: Demostracion[];
+}> | null = null;
+
+async function leerTodo() {
+  const [materias, libros] = await Promise.all([
+    readFile(path.join(RAIZ, "materias.json"), "utf8").then(
+      (t) => JSON.parse(t) as Materia[],
+    ),
+    readFile(path.join(RAIZ, "libros.json"), "utf8").then(
+      (t) => JSON.parse(t) as Libro[],
+    ),
+  ]);
+
+  // contenido/demostraciones/<id del libro>/<slug>.tex
+  const carpetas = await readdir(DEMOSTRACIONES, { withFileTypes: true }).catch(
+    () => [],
+  );
+
+  const demostraciones: Demostracion[] = [];
+
+  for (const carpeta of carpetas) {
+    if (!carpeta.isDirectory()) continue;
+    const libroId = carpeta.name;
+    const archivos = await readdir(path.join(DEMOSTRACIONES, libroId));
+
+    for (const archivo of archivos) {
+      if (!archivo.endsWith(".tex")) continue;
+
+      const slug = archivo.slice(0, -4);
+      const { meta, cuerpo } = partir(
+        await readFile(path.join(DEMOSTRACIONES, libroId, archivo), "utf8"),
+      );
+
+      demostraciones.push({
+        id: `${libroId}/${slug}`,
+        slug,
+        libroId,
+        titulo: meta.titulo ?? slug,
+        tema: meta.tema ?? "",
+        dificultad: aDificultad(meta.dificultad),
+        etiquetas: meta.etiquetas
+          ? meta.etiquetas.split(",").map((e) => e.trim()).filter(Boolean)
+          : [],
+        latex: cuerpo,
+        actualizada: meta.actualizada ?? "",
+      });
+    }
+  }
+
+  return { materias, libros, demostraciones };
+}
+
+function contenido() {
+  cache ??= leerTodo();
+  return cache;
+}
+
+/* ── Accesos ────────────────────────────────────────────────────────────── */
+
+export async function getMaterias(): Promise<Materia[]> {
+  const { materias } = await contenido();
+  return [...materias].sort(
+    (a, b) => a.semestre - b.semestre || a.nombre.localeCompare(b.nombre, "es"),
+  );
+}
+
+export async function getMateria(slug: string): Promise<Materia | undefined> {
+  const { materias } = await contenido();
+  return materias.find((m) => m.slug === slug);
+}
+
+/** Materias con las cifras que muestra su portada. */
 export async function getMateriasConResumen(): Promise<MateriaConResumen[]> {
+  const { libros, demostraciones } = await contenido();
+  const materias = await getMaterias();
+
   return materias.map((materia) => {
     const suyos = libros.filter((l) => l.materiaId === materia.id);
-    const idsLibros = new Set(suyos.map((l) => l.id));
-    const suyas = demostraciones.filter((d) => idsLibros.has(d.libroId));
-
-    const fechas = suyas.map((d) => d.actualizada).sort();
+    const ids = new Set(suyos.map((l) => l.id));
+    const suyas = demostraciones.filter((d) => ids.has(d.libroId));
+    const fechas = suyas.map((d) => d.actualizada).filter(Boolean).sort();
 
     return {
       ...materia,
@@ -262,11 +154,8 @@ export async function getMateriasConResumen(): Promise<MateriaConResumen[]> {
   });
 }
 
-export async function getMateria(slug: string): Promise<Materia | undefined> {
-  return materias.find((m) => m.slug === slug);
-}
-
 export async function getLibros(materiaId: string): Promise<Libro[]> {
+  const { libros } = await contenido();
   return libros.filter((l) => l.materiaId === materiaId);
 }
 
@@ -274,10 +163,14 @@ export async function getLibro(
   materiaId: string,
   slug: string,
 ): Promise<Libro | undefined> {
+  const { libros } = await contenido();
   return libros.find((l) => l.materiaId === materiaId && l.slug === slug);
 }
 
-export async function getDemostraciones(libroId: string): Promise<Demostracion[]> {
+export async function getDemostraciones(
+  libroId: string,
+): Promise<Demostracion[]> {
+  const { demostraciones } = await contenido();
   return demostraciones.filter((d) => d.libroId === libroId);
 }
 
@@ -285,17 +178,18 @@ export async function getDemostracion(
   libroId: string,
   slug: string,
 ): Promise<Demostracion | undefined> {
+  const { demostraciones } = await contenido();
   return demostraciones.find((d) => d.libroId === libroId && d.slug === slug);
 }
 
 /* ── Rutas para la exportacion estatica ────────────────────────────────────
    Al compilar no hay servidor, asi que hay que enumerar de antemano cada
-   pagina que existira. La union se hace aqui y no en las paginas para que
-   ninguna tenga que conocer la forma de las otras entidades.               */
+   pagina que existira.                                                     */
 
 export async function getRutasLibros(): Promise<
   { materia: string; libro: string }[]
 > {
+  const { materias, libros } = await contenido();
   return libros.flatMap((libro) => {
     const materia = materias.find((m) => m.id === libro.materiaId);
     return materia ? [{ materia: materia.slug, libro: libro.slug }] : [];
@@ -305,6 +199,7 @@ export async function getRutasLibros(): Promise<
 export async function getRutasDemostraciones(): Promise<
   { materia: string; libro: string; demostracion: string }[]
 > {
+  const { materias, libros, demostraciones } = await contenido();
   return demostraciones.flatMap((demostracion) => {
     const libro = libros.find((l) => l.id === demostracion.libroId);
     const materia = libro && materias.find((m) => m.id === libro.materiaId);

@@ -50,8 +50,10 @@ export default async function LibroPage({ params }: Props) {
       />
 
       <h1 className="text-2xl tracking-tight">{libro.titulo}</h1>
-      <p className="mb-8 text-muted">
-        {libro.autor} · {libro.edicion} · {libro.anio}
+      <p className="mt-2 mb-10 text-sm text-muted">
+        {libro.autor}
+        {libro.editorial && ` · ${libro.editorial}`}
+        {libro.anio && ` · ${libro.anio}`}
       </p>
 
       {demostraciones.length === 0 ? (

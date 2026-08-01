@@ -1,0 +1,22 @@
+titulo: Teorema del valor medio
+tema: Derivadas
+dificultad: introductoria
+etiquetas: derivada, Rolle
+actualizada: 2026-07-28
+---
+\begin{teorema}
+Si $f$ es continua en $[a,b]$ y derivable en $(a,b)$, existe $c \in (a,b)$ con
+\[
+  f'(c) = \frac{f(b)-f(a)}{b-a}.
+\]
+\end{teorema}
+
+\begin{demostracion}
+Definimos
+\[
+  g(x) = f(x) - \frac{f(b)-f(a)}{b-a}\,(x-a).
+\]
+Entonces $g$ es continua en $[a,b]$, derivable en $(a,b)$ y $g(a)=g(b)=f(a)$.
+Por el teorema de Rolle existe $c \in (a,b)$ tal que $g'(c)=0$, es decir
+$f'(c) = \dfrac{f(b)-f(a)}{b-a}$. \qed
+\end{demostracion}

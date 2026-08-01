@@ -1,0 +1,19 @@
+titulo: Teorema de Heine-Borel
+tema: Compacidad
+dificultad: avanzada
+etiquetas: compacidad, espacios métricos, cubrimientos
+actualizada: 2026-07-30
+---
+\begin{teorema}
+Un subconjunto $K \subseteq \mathbb{R}^n$ es compacto si y sólo si es cerrado y acotado.
+\end{teorema}
+
+\begin{demostracion}
+Esbozo. Si $K$ es compacto, el cubrimiento por bolas $B(0,m)$ con $m \in \mathbb{N}$
+admite subcubrimiento finito, luego $K$ es acotado; y el complemento de $K$ es
+abierto separando puntos, luego $K$ es cerrado.
+
+Recíprocamente, si $K$ es cerrado y acotado está contenido en una celda
+$[-r,r]^n$, que es compacta por bisección sucesiva, y todo cerrado dentro de un
+compacto es compacto. \qed
+\end{demostracion}
