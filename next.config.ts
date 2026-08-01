@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
+/**
+ * El sitio vive en una subruta de usisima.github.io, no en la raiz.
+ * Sensible a mayusculas: tiene que coincidir con el nombre del repositorio.
+ */
+const BASE = "/Aram";
+
 const nextConfig: NextConfig = {
+  /**
+   * Next antepone basePath a los enlaces y a sus propios recursos, pero no al
+   * src de una imagen sin optimizar ni a nada que se referencie a mano desde
+   * public/. Se expone aqui para poder componer esas rutas (ver lib/rutas).
+   */
+  env: { NEXT_PUBLIC_BASE_PATH: BASE },
+
   /**
    * Exportacion estatica: `next build` escribe HTML, CSS y JS planos en out/,
    * sin servidor detras. Es lo que permite publicar gratis en GitHub Pages.
@@ -12,12 +25,7 @@ const nextConfig: NextConfig = {
    */
   output: "export",
 
-  /**
-   * El sitio no vive en la raiz del dominio sino en usisima.github.io/Aram,
-   * asi que todos los enlaces y recursos cuelgan de aqui. Sensible a
-   * mayusculas: tiene que coincidir con el nombre del repositorio.
-   */
-  basePath: "/Aram",
+  basePath: BASE,
 
   /**
    * Cada ruta se escribe como carpeta con su index.html. Sin esto, un host

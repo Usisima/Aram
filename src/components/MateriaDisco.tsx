@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
+import { recurso } from "@/lib/rutas";
 import styles from "./MateriaDisco.module.css";
 
 /** Duracion base de las transiciones, en segundos. */
@@ -15,8 +17,7 @@ interface Props {
   nombre: string;
   color: string;
   href: string;
-  semestre: number;
-  clave: string;
+  portada: string;
   numLibros: number;
   numDemostraciones: number;
 }
@@ -25,8 +26,7 @@ export default function MateriaDisco({
   nombre,
   color,
   href,
-  semestre,
-  clave,
+  portada,
   numLibros,
   numDemostraciones,
 }: Props) {
@@ -67,10 +67,17 @@ export default function MateriaDisco({
           scale: { duration: DUR, ease: "easeOut" },
         }}
       >
-        <div className={styles.etiqueta}>
-          <span className={styles.semestre}>Sem {semestre}</span>
-          <span className={styles.clave}>{clave}</span>
-        </div>
+        {portada && (
+          <Image
+            src={recurso(portada)}
+            alt=""
+            fill
+            className={styles.arte}
+            sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 20vw"
+          />
+        )}
+        <div className={styles.surcos} />
+        <div className={styles.brillo} />
         <div className={styles.eje} />
       </motion.div>
 

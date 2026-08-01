@@ -28,7 +28,8 @@ export default async function MateriasPage() {
             Semestre {semestre}
           </h2>
 
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+          {/* Tres discos en telefono, como pediste; mas columnas al ensanchar. */}
+          <ul className="grid grid-cols-3 gap-x-5 gap-y-9 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-5">
             {materias
               .filter((m) => m.semestre === semestre)
               .map((materia) => (
@@ -37,8 +38,7 @@ export default async function MateriasPage() {
                     nombre={materia.nombre}
                     color={materia.color}
                     href={`/materias/${materia.slug}`}
-                    semestre={materia.semestre}
-                    clave={materia.clave}
+                    portada={materia.portada}
                     numLibros={materia.numLibros}
                     numDemostraciones={materia.numDemostraciones}
                   />

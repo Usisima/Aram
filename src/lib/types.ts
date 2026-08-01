@@ -28,6 +28,8 @@ export interface Materia {
   clave: string;
   creditos: number;
   semestre: number;
+  /** Ruta publica de la ilustracion que hace de cara del disco. */
+  portada: string;
   temario: Tema[];
 }
 
