@@ -55,6 +55,19 @@ export interface Demostracion {
   actualizada: string;
 }
 
+/**
+ * Materia con las cifras que muestra su portada en la estanteria.
+ *
+ * No se guardan: se derivan contando los hijos, para que no puedan quedar
+ * desincronizadas con el contenido real.
+ */
+export interface MateriaConResumen extends Materia {
+  numLibros: number;
+  numDemostraciones: number;
+  /** ISO 8601. Ausente si la materia todavia no tiene demostraciones. */
+  ultimaActualizacion?: string;
+}
+
 /** Ruta completa hasta una demostracion, para breadcrumbs. */
 export interface Ruta {
   materia: Materia;

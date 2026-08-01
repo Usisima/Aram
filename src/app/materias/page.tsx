@@ -1,38 +1,52 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { getMaterias } from "@/lib/data";
+import MateriaLibro from "@/components/MateriaLibro";
+import { getMateriasConResumen } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Materias" };
 
 /**
- * Cuadricula de materias. El prompt pide que cada tarjeta parezca la portada
- * de un libro (ilustracion, color representativo, animacion al pasar el
- * cursor); esto todavia es la version estructural, sin ilustraciones.
+ * Fecha fijada a UTC y a una configuracion regional concreta: el texto se
+ * compone aqui, en el servidor, y viaja ya hecho al componente de cliente,
+ * asi que no puede haber discrepancia al hidratar.
+ */
+const FECHA = new Intl.DateTimeFormat("es-MX", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/**
+ * Estanteria de materias. Cada una se dibuja como un libro fisico, no como
+ * una tarjeta: ver MateriaLibro.
  */
 export default async function MateriasPage() {
-  const materias = await getMaterias();
+  const materias = await getMateriasConResumen();
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
-      <Breadcrumbs migas={[{ nombre: "Materias" }]} />
+    <div className="mx-auto max-w-6xl px-6 py-14">
+      <header className="mb-10">
+        <h1 className="text-2xl tracking-tight">Materias</h1>
+        <p className="mt-1 text-sm text-muted">
+          Cada volumen reúne los libros y las demostraciones de una disciplina.
+        </p>
+      </header>
 
-      <h1 className="mb-8 text-2xl tracking-tight">Materias</h1>
-
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-5">
+      <ul className="grid grid-cols-3 gap-5 sm:gap-7 md:grid-cols-4 lg:grid-cols-5">
         {materias.map((materia) => (
           <li key={materia.id}>
-            <Link
+            <MateriaLibro
+              nombre={materia.nombre}
+              color={materia.color}
               href={`/materias/${materia.slug}`}
-              className="flex h-44 flex-col justify-end rounded-xl border border-border p-5 transition-transform hover:-translate-y-1"
-              style={{
-                background: `linear-gradient(160deg, ${materia.color}22, transparent 70%)`,
-                borderTopColor: materia.color,
-              }}
-            >
-              <h2 className="text-lg">{materia.nombre}</h2>
-              <p className="mt-1 text-sm text-muted">{materia.descripcion}</p>
-            </Link>
+              numLibros={materia.numLibros}
+              numDemostraciones={materia.numDemostraciones}
+              ultimaActualizacion={
+                materia.ultimaActualizacion
+                  ? FECHA.format(new Date(`${materia.ultimaActualizacion}T00:00:00Z`))
+                  : undefined
+              }
+            />
           </li>
         ))}
       </ul>

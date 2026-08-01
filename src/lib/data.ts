@@ -7,14 +7,26 @@
  * desde ya.
  */
 
-import type { Demostracion, Libro, Materia } from "./types";
+import type {
+  Demostracion,
+  Libro,
+  Materia,
+  MateriaConResumen,
+} from "./types";
+
+/*
+ * Los colores de las seis primeras materias vienen dados por el prompt de la
+ * pagina de Materias (azul oscuro, verde, morado, naranja, amarillo, rojo
+ * vino). Las otras tres no estaban asignadas: se eligieron manteniendo el
+ * mismo registro apagado y academico, y separadas en tono de las anteriores.
+ */
 
 export const materias: Materia[] = [
   {
     id: "m-algebra",
     slug: "algebra",
     nombre: "Álgebra",
-    color: "#7c3aed",
+    color: "#1e3a5f",
     descripcion: "Estructuras algebraicas, grupos, anillos y cuerpos.",
     portada: "",
   },
@@ -22,7 +34,7 @@ export const materias: Materia[] = [
     id: "m-calculo",
     slug: "calculo",
     nombre: "Cálculo",
-    color: "#0d9488",
+    color: "#b8541f",
     descripcion: "Límites, derivadas, integrales y series.",
     portada: "",
   },
@@ -30,7 +42,7 @@ export const materias: Materia[] = [
     id: "m-topologia",
     slug: "topologia",
     nombre: "Topología",
-    color: "#c2410c",
+    color: "#5b3a7e",
     descripcion: "Espacios topológicos, continuidad, compacidad y conexidad.",
     portada: "",
   },
@@ -38,7 +50,7 @@ export const materias: Materia[] = [
     id: "m-geometria-diferencial",
     slug: "geometria-diferencial",
     nombre: "Geometría Diferencial",
-    color: "#1d4ed8",
+    color: "#6d2635",
     descripcion: "Variedades, curvatura y formas diferenciales.",
     portada: "",
   },
@@ -46,15 +58,16 @@ export const materias: Materia[] = [
     id: "m-probabilidad",
     slug: "probabilidad",
     nombre: "Probabilidad",
-    color: "#b91c1c",
-    descripcion: "Espacios de probabilidad, variables aleatorias y convergencia.",
+    color: "#a67c1a",
+    descripcion:
+      "Espacios de probabilidad, variables aleatorias y convergencia.",
     portada: "",
   },
   {
     id: "m-analisis-real",
     slug: "analisis-real",
     nombre: "Análisis Real",
-    color: "#0369a1",
+    color: "#2c5f4a",
     descripcion: "Construcción de los reales, medida e integración de Lebesgue.",
     portada: "",
   },
@@ -62,7 +75,7 @@ export const materias: Materia[] = [
     id: "m-analisis-complejo",
     slug: "analisis-complejo",
     nombre: "Análisis Complejo",
-    color: "#a21caf",
+    color: "#3b3f7a",
     descripcion: "Funciones holomorfas, series de Laurent y residuos.",
     portada: "",
   },
@@ -70,15 +83,16 @@ export const materias: Materia[] = [
     id: "m-logica",
     slug: "logica",
     nombre: "Lógica",
-    color: "#4d7c0f",
-    descripcion: "Lógica proposicional, de primer orden y teoremas de completitud.",
+    color: "#3f4550",
+    descripcion:
+      "Lógica proposicional, de primer orden y teoremas de completitud.",
     portada: "",
   },
   {
     id: "m-teoria-numeros",
     slug: "teoria-de-numeros",
     nombre: "Teoría de Números",
-    color: "#a16207",
+    color: "#5c6b1f",
     descripcion: "Divisibilidad, congruencias y distribución de los primos.",
     portada: "",
   },
@@ -118,7 +132,8 @@ export const libros: Libro[] = [
     edicion: "8.ª edición",
     anio: 2015,
     portada: "",
-    descripcion: "Curso estándar de cálculo, orientado a aplicaciones y a gran volumen de ejercicios.",
+    descripcion:
+      "Curso estándar de cálculo, orientado a aplicaciones y a gran volumen de ejercicios.",
   },
   {
     id: "l-rudin",
@@ -191,7 +206,7 @@ Entonces $g$ es continua en $[a,b]$, derivable en $(a,b)$ y $g(a)=g(b)=f(a)$.
 Por el teorema de Rolle existe $c \in (a,b)$ tal que $g'(c)=0$, es decir
 $f'(c) = \dfrac{f(b)-f(a)}{b-a}$. \qed
 \end{demostracion}`,
-    actualizada: "2026-07-31",
+    actualizada: "2026-07-28",
   },
   {
     id: "d-heine-borel",
@@ -214,7 +229,7 @@ Recíprocamente, si $K$ es cerrado y acotado está contenido en una celda
 $[-r,r]^n$, que es compacta por bisección sucesiva, y todo cerrado dentro de un
 compacto es compacto. \qed
 \end{demostracion}`,
-    actualizada: "2026-07-31",
+    actualizada: "2026-07-30",
   },
 ];
 
@@ -223,6 +238,28 @@ compacto es compacto. \qed
 
 export async function getMaterias(): Promise<Materia[]> {
   return materias;
+}
+
+/**
+ * Materias con las cifras que muestra la portada de cada libro en la
+ * estanteria. Se cuentan al vuelo para que no puedan quedar desincronizadas;
+ * contra PostgreSQL esto sera un par de agregados.
+ */
+export async function getMateriasConResumen(): Promise<MateriaConResumen[]> {
+  return materias.map((materia) => {
+    const suyos = libros.filter((l) => l.materiaId === materia.id);
+    const idsLibros = new Set(suyos.map((l) => l.id));
+    const suyas = demostraciones.filter((d) => idsLibros.has(d.libroId));
+
+    const fechas = suyas.map((d) => d.actualizada).sort();
+
+    return {
+      ...materia,
+      numLibros: suyos.length,
+      numDemostraciones: suyas.length,
+      ultimaActualizacion: fechas.at(-1),
+    };
+  });
 }
 
 export async function getMateria(slug: string): Promise<Materia | undefined> {

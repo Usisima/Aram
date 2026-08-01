@@ -12,7 +12,8 @@ La especificación completa está en [`.md`](.md).
 | Framework | Next.js 16 (App Router) + React 19 + TypeScript | listo |
 | Estilos | Tailwind CSS v4 | listo |
 | Matemáticas | KaTeX, renderizado en el servidor | listo |
-| Animación | Motion (Framer Motion) | instalado, sin usar todavía |
+| Animación | Motion (Framer Motion) | listo |
+| Iconos | Lucide | listo |
 | Editor | Monaco (`@monaco-editor/react`) | instalado, sin usar todavía |
 | Tema | next-themes (`data-theme` en `<html>`) | listo |
 | Base de datos | PostgreSQL | **sin decidir** |
@@ -34,12 +35,13 @@ npm run lint
 src/
   app/
     page.tsx                                   pantalla principal (intro animada)
-    materias/page.tsx                          cuadrícula de materias
+    materias/page.tsx                          estantería de materias
     materias/[materia]/page.tsx                libros de la materia
     materias/[materia]/[libro]/page.tsx        demostraciones (Pills)
     materias/[materia]/[libro]/[demostracion]/ ficha completa
     editor/page.tsx                            pendiente
   components/
+    MateriaLibro.tsx  una materia dibujada como libro físico
     Logo.tsx          el logo en SVG, reutilizable
     Intro.tsx         splash: el logo se dibuja trazo por trazo
     Latex.tsx         renderiza la fuente LaTeX con KaTeX (Server Component)
