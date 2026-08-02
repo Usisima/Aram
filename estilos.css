@@ -1,0 +1,157 @@
+:root {
+  --fondo: #000;
+  --texto: #e8e8e8;
+  --tenue: #888;
+  --linea: #222;
+  --acento: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--fondo);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.envoltorio {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+/* Navegación */
+
+.cabecera {
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding-bottom: 1.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+.cabecera .marca {
+  font-weight: 600;
+  color: var(--acento);
+  margin-right: auto;
+}
+
+/* Texto */
+
+h1,
+h2,
+h3 {
+  color: var(--acento);
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+a {
+  color: var(--acento);
+  text-decoration-color: var(--tenue);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: var(--acento);
+}
+
+.fecha {
+  color: var(--tenue);
+  font-size: 0.875rem;
+}
+
+/* Migas de pan */
+
+.miga {
+  font-size: 0.8125rem;
+  color: var(--tenue);
+  margin-bottom: 2rem;
+}
+
+.miga a {
+  color: var(--tenue);
+  text-decoration: none;
+}
+
+.miga a:hover {
+  color: var(--acento);
+  text-decoration: underline;
+}
+
+.miga .sep {
+  margin: 0 0.5rem;
+  opacity: 0.5;
+}
+
+.miga .actual {
+  color: var(--texto);
+}
+
+/* Listas de navegacion: materias, libros, secciones, entradas */
+
+.lista {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.lista li {
+  border-bottom: 1px solid var(--linea);
+}
+
+.lista a {
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+  color: var(--acento);
+}
+
+.lista a:hover {
+  padding-left: 0.5rem;
+  transition: padding-left 0.15s ease;
+}
+
+.lista .nota {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--tenue);
+  margin-top: 0.125rem;
+}
+
+/* Aun sin contenido: se ve, pero no lleva a ningun sitio. */
+.lista .pendiente {
+  display: block;
+  padding: 1rem 0;
+  color: #4a4a4a;
+  cursor: default;
+}
+
+.pie {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+  color: var(--tenue);
+  font-size: 0.875rem;
+}
