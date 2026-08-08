@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Cálculo Diferencial e Integral III · Aram</title>
+    <link rel="icon" href="../../../assets/favicon.svg" />
+    <link rel="manifest" href="../../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../../estilos.css" />
+    <link rel="stylesheet" href="../../../assets/katex/katex.min.css" />
+    <script src="../../../assets/tema.js"></script>
+    <script defer src="../../../assets/sinred.js"></script>
+    <script src="../../../assets/rejilla.js"></script>
+  </head>
+  <body>
+    <script src="../../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../../matematicas/materias/index.html">Materias</a>
+        <span class="sep">/</span>
+        <span class="actual">Cálculo Diferencial e Integral III</span>
+      </nav>
+
+      <main>
+        <h1>Cálculo Diferencial e Integral III</h1>
+
+        <h2>Bibliografía básica</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <a class="libro" href="../../../matematicas/libros/marsden.html" style="--tono: 10">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Basic Complex Analysis</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Marsden & Hoffman · 1999</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/thomas.html" style="--tono: 3">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Cálculo (Varias Variables)</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Thomas & Finney · 1996</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/apostol.html" style="--tono: 0">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Mathematical Analysis</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Tom M. Apostol · 1974</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/courant.html" style="--tono: 0">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Differential and Integral Calculus</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Richard Courant · 1936</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/courant2.html" style="--tono: 8">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Introduction to Calculus and Analysis</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Courant & John · 1989</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/lang.html" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Calculus of Several Variables</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Serge Lang · 1987</span>
+            </a>
+          </li>
+        </ul>
+
+        <h2>Bibliografía complementaria</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <a class="libro" href="../../../matematicas/libros/buck.html" style="--tono: 0">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Advanced Calculus</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Buck, R.C. · 1978</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/budak.html" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Multiple Integrals Field Theory and Series</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Budak, B.M.; Fomin, S.V. · 1973</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/crowell.html" style="--tono: 3">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Cálculo de Funciones Vectoriales</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Crowell, R.; Trotter, H.; Williamson, R. · 1973</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/fulks.html" style="--tono: 9">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Cálculo Avanzado</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Fulks, W. · 1970</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/spivak2.html" style="--tono: 9">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Cálculo en Variedades. Ed</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Spivak, M. · 1987</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/spivak3.html" style="--tono: 7">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Cálculo Infinitesimal (2a ed). Ed</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Spivak, M. · 1998</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/stein.html" style="--tono: 2">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Calculus and Analytic Geometry</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Stein, S.K. · 1992</span>
+            </a>
+          </li>
+          <li>
+            <a class="libro" href="../../../matematicas/libros/widder.html" style="--tono: 0">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Advanced Calculus</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Widder, D.V. · 1989</span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

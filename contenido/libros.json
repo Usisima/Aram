@@ -1,0 +1,699 @@
+{
+ "halmos": {
+  "titulo": "Teoría intuitiva de los conjuntos",
+  "autor": "Paul Halmos",
+  "editorial": "",
+  "anio": "1960",
+  "definiciones": [
+   {
+    "divisor": "Capítulo 1 · Lo básico"
+   },
+   {
+    "id": "numerable",
+    "nombre": "Conjunto numerable",
+    "cuerpo": "Un conjunto es numerable cuando se puede poner en correspondencia uno a uno con $\\mathbb{N}$."
+   }
+  ],
+  "demostraciones": [
+   {
+    "divisor": "Capítulo 2 · Cardinalidad"
+   },
+   {
+    "id": "cantor-diagonal",
+    "nombre": "El intervalo no es numerable",
+    "general": true,
+    "cuerpo": "$[0,1]$ no es numerable.",
+    "demostracion": "Suponiendo una lista de todos los reales del intervalo, se construye uno que difiere del $n$-ésimo en su $n$-ésima cifra. Ese número está en el intervalo y no en la lista, así que la lista no los tenía todos."
+   },
+   {
+    "id": "union-numerable",
+    "nombre": "Unión numerable de numerables",
+    "general": false,
+    "cuerpo": "La unión de una familia numerable de conjuntos numerables es numerable.",
+    "demostracion": "Se recorren en diagonal, como los racionales. Requiere elección numerable, y por eso se deja aquí y no en la sección general."
+   }
+  ]
+ },
+ "spivak": {
+  "titulo": "Cálculo infinitesimal",
+  "autor": "Michael Spivak",
+  "editorial": "2ª ed. Reverté",
+  "anio": "1967",
+  "definiciones": [],
+  "demostraciones": [
+   {
+    "capitulo": "Prólogo"
+   },
+   {
+    "divisor": "Propiedades básicas de los números"
+   },
+   {
+    "id": "spivak-p1",
+    "nombre": "Asociatividad",
+    "cuerpo": "$$a + (b + c) = (a + b) + c$$",
+    "etiqueta": "P1",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p2",
+    "nombre": "Existencia de una identidad para la suma",
+    "cuerpo": "$$a + 0 = 0 + a = a$$",
+    "etiqueta": "P2",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p3",
+    "nombre": "Existencia de inversos para la suma",
+    "cuerpo": "$$a + (-a) = (-a) + a = 0$$",
+    "etiqueta": "P3",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p4",
+    "nombre": "Ley conmutativa para la suma",
+    "cuerpo": "$$a + b = b + a$$",
+    "etiqueta": "P4",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p5",
+    "nombre": "Ley asociativa para la multiplicación",
+    "cuerpo": "$$a \\cdot (b \\cdot c) = (a \\cdot b) \\cdot c$$",
+    "etiqueta": "P5",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p6",
+    "nombre": "Existencia de una identidad para la multiplicación",
+    "cuerpo": "$$a \\cdot 1 = 1 \\cdot a = a, \\quad 1 \\neq 0$$",
+    "etiqueta": "P6",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p7",
+    "nombre": "Existencia de inversos para la multiplicación",
+    "cuerpo": "$$a \\cdot a^{-1} = a^{-1} \\cdot a = 1, \\quad a \\neq 0$$",
+    "etiqueta": "P7",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p8",
+    "nombre": "Ley conmutativa para la multiplicación",
+    "cuerpo": "$$a \\cdot b = b \\cdot a$$",
+    "etiqueta": "P8",
+    "tipo": "propiedad"
+   },
+   {
+    "id": "spivak-p9",
+    "nombre": "Ley distributiva",
+    "cuerpo": "$$a \\cdot (b + c) = a \\cdot b + a \\cdot c$$",
+    "etiqueta": "P9",
+    "tipo": "propiedad"
+   }
+  ]
+ },
+ "thomas": {
+  "titulo": "Cálculo (Varias Variables)",
+  "autor": "Thomas & Finney",
+  "editorial": "9ª ed. Addison-Wesley",
+  "anio": "1996",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "arizmendi": {
+  "titulo": "Cálculo Diferencial e Integral",
+  "autor": "Arizmendi, Carrillo, Lara & Lluis-Riera",
+  "editorial": "Las Prensas de Ciencias, UNAM",
+  "anio": "",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "courant": {
+  "titulo": "Differential and Integral Calculus",
+  "autor": "Richard Courant",
+  "editorial": "Vol. II, 2ª ed. Wiley-Interscience",
+  "anio": "1936",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "lang": {
+  "titulo": "Calculus of Several Variables",
+  "autor": "Serge Lang",
+  "editorial": "3ª ed. Springer",
+  "anio": "1987",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "arizmendi2": {
+  "titulo": "Cálculo. Primer curso, nivel superior",
+  "autor": "Arizmendi, Carrillo Hoyo & Lara Aparicio",
+  "editorial": "Addison-Wesley Iberoamericana",
+  "anio": "1987",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "cardenas": {
+  "titulo": "Álgebra Superior",
+  "autor": "Cárdenas, Lluis, Raggi & Tomás",
+  "editorial": "Trillas",
+  "anio": "1974",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "nachbin": {
+  "titulo": "Álgebra Elemental",
+  "autor": "Leopoldo Nachbin",
+  "editorial": "OEA",
+  "anio": "1986",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "galarza": {
+  "titulo": "Geometría Analítica: Una Introducción a la Geometría",
+  "autor": "Ana Irene Ramírez Galarza",
+  "editorial": "Las Prensas de Ciencias, UNAM",
+  "anio": "1998",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "efimov": {
+  "titulo": "Geometría Superior",
+  "autor": "N. Efimov",
+  "editorial": "MIR",
+  "anio": "1984",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "bracho": {
+  "titulo": "Geometría",
+  "autor": "Javier Bracho",
+  "editorial": "Las Prensas de Ciencias, UNAM",
+  "anio": "2009",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "preston": {
+  "titulo": "Modern Analytic Geometry",
+  "autor": "Preston & Lovaglia",
+  "editorial": "Harper & Row",
+  "anio": "1970",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "hartshorne": {
+  "titulo": "Geometry: Euclid and Beyond",
+  "autor": "Hartshorne, R.",
+  "editorial": "Springer",
+  "anio": "2000",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "prenowitz": {
+  "titulo": "Basic Concepts of Geometry",
+  "autor": "Prenowitz, W.; Jordan, M.",
+  "editorial": "Ardsley House",
+  "anio": "1989",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "hoffman": {
+  "titulo": "Álgebra Lineal",
+  "autor": "Hoffman & Kunze",
+  "editorial": "Prentice Hall",
+  "anio": "1973",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "friedberg": {
+  "titulo": "Álgebra Lineal",
+  "autor": "Friedberg, Insel & Spence",
+  "editorial": "Publicaciones Cultural",
+  "anio": "1982",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "curtis": {
+  "titulo": "Linear Algebra",
+  "autor": "Morton L. Curtis",
+  "editorial": "Springer",
+  "anio": "1984",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "nomizu": {
+  "titulo": "Fundamentals of Linear Algebra",
+  "autor": "Katsumi Nomizu",
+  "editorial": "McGraw-Hill",
+  "anio": "1966",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "mora": {
+  "titulo": "Álgebra Lineal",
+  "autor": "H. Rincón Mora",
+  "editorial": "Las Prensas de Ciencias, UNAM",
+  "anio": "",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "marsden": {
+  "titulo": "Basic Complex Analysis",
+  "autor": "Marsden & Hoffman",
+  "editorial": "3ª ed. Freeman",
+  "anio": "1999",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "apostol": {
+  "titulo": "Mathematical Analysis",
+  "autor": "Tom M. Apostol",
+  "editorial": "2ª ed. Addison-Wesley",
+  "anio": "1974",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "courant2": {
+  "titulo": "Introduction to Calculus and Analysis",
+  "autor": "Courant & John",
+  "editorial": "Vol. II, Springer",
+  "anio": "1989",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "arnold": {
+  "titulo": "Ordinary Differential Equations",
+  "autor": "V.I. Arnold",
+  "editorial": "Springer",
+  "anio": "1992",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "blanchard": {
+  "titulo": "Differential Equations",
+  "autor": "Blanchard, Devaney & Hall",
+  "editorial": "4ª ed. Cengage",
+  "anio": "2012",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "braun": {
+  "titulo": "Differential Equations and Their Applications",
+  "autor": "Martin Braun",
+  "editorial": "4ª ed. Springer",
+  "anio": "1993",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "derrick": {
+  "titulo": "Elementary Differential Equations",
+  "autor": "Derrick & Grossman",
+  "editorial": "4ª ed. Addison-Wesley",
+  "anio": "1997",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "herstein": {
+  "titulo": "Topics in Algebra",
+  "autor": "Israel N. Herstein",
+  "editorial": "2ª ed. Wiley",
+  "anio": "",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "fraleigh": {
+  "titulo": "A First Course in Abstract Algebra",
+  "autor": "John B. Fraleigh",
+  "editorial": "7ª ed. Addison-Wesley",
+  "anio": "2003",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "rotman": {
+  "titulo": "An Introduction to the Theory of Groups",
+  "autor": "Joseph J. Rotman",
+  "editorial": "4ª ed. Springer",
+  "anio": "1995",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "rudin": {
+  "titulo": "Principles of Mathematical Analysis",
+  "autor": "Walter Rudin",
+  "editorial": "3ª ed. McGraw-Hill",
+  "anio": "1976",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "kolmogorov": {
+  "titulo": "Elementos de la Teoría de Funciones y del Análisis Funcional",
+  "autor": "Kolmogorov & Fomin",
+  "editorial": "Mir",
+  "anio": "1975",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "bartle": {
+  "titulo": "Introduction to Real Analysis",
+  "autor": "Bartle & Sherbert",
+  "editorial": "4ª ed. Wiley",
+  "anio": "2011",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "jost": {
+  "titulo": "Postmodern Analysis",
+  "autor": "Jürgen Jost",
+  "editorial": "3ª ed. Springer",
+  "anio": "2005",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "wheeden": {
+  "titulo": "Measure and Integral",
+  "autor": "Wheeden & Zygmund",
+  "editorial": "2ª ed. CRC Press",
+  "anio": "2015",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "ahlfors": {
+  "titulo": "Complex Analysis",
+  "autor": "Lars V. Ahlfors",
+  "editorial": "3ª ed. McGraw-Hill",
+  "anio": "1979",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "churchill": {
+  "titulo": "Complex Variables and Applications",
+  "autor": "Churchill & Brown",
+  "editorial": "9ª ed. McGraw-Hill",
+  "anio": "2014",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "orive": {
+  "titulo": "Variable Compleja",
+  "autor": "Antonio Lascurain Orive",
+  "editorial": "Las Prensas de Ciencias, UNAM",
+  "anio": "2003",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "dodge": {
+  "titulo": "Logic and Numbers",
+  "autor": "Dodge, C.W.",
+  "editorial": "Weber & Schmidt",
+  "anio": "1969",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "gentile": {
+  "titulo": "Aritmética Elemental",
+  "autor": "Gentile, E.R.",
+  "editorial": "OEA",
+  "anio": "1985",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "grimaldi": {
+  "titulo": "Matemáticas Discreta y Combinatoria",
+  "autor": "Grimaldi, R.P.",
+  "editorial": "STE",
+  "anio": "1998",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "grossman": {
+  "titulo": "Álgebra Lineal",
+  "autor": "Grossman, S.I.",
+  "editorial": "McGraw-Hill",
+  "anio": "1996",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "halmos2": {
+  "titulo": "Teoría Intuitiva de los Conjuntos. Ed",
+  "autor": "Halmos, P.R.",
+  "editorial": "Continental",
+  "anio": "1973",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "lang2": {
+  "titulo": "Álgebra Lineal",
+  "autor": "Lang, S.",
+  "editorial": "STE",
+  "anio": "1986",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "niven": {
+  "titulo": "Introducción a la Teoría de los Números",
+  "autor": "Niven, I.M.; Zuckerman, H.S.",
+  "editorial": "Limusa-Wiley",
+  "anio": "1969",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "dodge2": {
+  "titulo": "Sets, Logic and Numbers",
+  "autor": "Dodge, C.W.",
+  "editorial": "Weber & Schmidt",
+  "anio": "1969",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "apostol2": {
+  "titulo": "Calculus, Volumen I. Ed. Reverté S.A",
+  "autor": "Apostol, T.M.",
+  "editorial": "",
+  "anio": "2001",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "banach": {
+  "titulo": "Cálculo Diferencial e Integral",
+  "autor": "Banach, S.",
+  "editorial": "UTEHA",
+  "anio": "1991",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "kuratowski": {
+  "titulo": "Introducción al Cálculo",
+  "autor": "Kuratowski, K.",
+  "editorial": "Limusa-Wiley",
+  "anio": "1970",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "buck": {
+  "titulo": "Advanced Calculus",
+  "autor": "Buck, R.C.",
+  "editorial": "McGraw-Hill",
+  "anio": "1978",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "budak": {
+  "titulo": "Multiple Integrals Field Theory and Series",
+  "autor": "Budak, B.M.; Fomin, S.V.",
+  "editorial": "MIR",
+  "anio": "1973",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "crowell": {
+  "titulo": "Cálculo de Funciones Vectoriales",
+  "autor": "Crowell, R.; Trotter, H.; Williamson, R.",
+  "editorial": "Prentice Hall Internacional",
+  "anio": "1973",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "fulks": {
+  "titulo": "Cálculo Avanzado",
+  "autor": "Fulks, W.",
+  "editorial": "Limusa-Wiley",
+  "anio": "1970",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "spivak2": {
+  "titulo": "Cálculo en Variedades. Ed",
+  "autor": "Spivak, M.",
+  "editorial": "Reverté",
+  "anio": "1987",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "spivak3": {
+  "titulo": "Cálculo Infinitesimal (2a ed). Ed",
+  "autor": "Spivak, M.",
+  "editorial": "Reverté",
+  "anio": "1998",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "stein": {
+  "titulo": "Calculus and Analytic Geometry",
+  "autor": "Stein, S.K.",
+  "editorial": "McGraw-Hill",
+  "anio": "1992",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "widder": {
+  "titulo": "Advanced Calculus",
+  "autor": "Widder, D.V.",
+  "editorial": "Dover",
+  "anio": "1989",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "spivak4": {
+  "titulo": "Cálculo Infinitesimal (2ª ed). Ed",
+  "autor": "Spivak, M.",
+  "editorial": "Reverté",
+  "anio": "1998",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "eves": {
+  "titulo": "Estudio de las Geometrías",
+  "autor": "Eves, H.",
+  "editorial": "UTEHA",
+  "anio": "1969",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "hilbert": {
+  "titulo": "Geometry and the Imagination. Vínculos Matemáticos No",
+  "autor": "Hilbert, D.; Cohn-Vossen, S.",
+  "editorial": "150, Facultad de Ciencias, UNAM",
+  "anio": "2000",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "birkhoff": {
+  "titulo": "A Survey of Modern Algebra",
+  "autor": "Birkhoff, G.; MacLane, S.",
+  "editorial": "Macmillan",
+  "anio": "1977",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "jacobson": {
+  "titulo": "Lectures in Abstract Algebra, Vol. II",
+  "autor": "Jacobson, N.",
+  "editorial": "Van Nostrand",
+  "anio": "1951",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "lluis": {
+  "titulo": "Álgebra Lineal, Álgebra Multilineal y K-Teoría Algebraica Clásica",
+  "autor": "Lluis, E.",
+  "editorial": "Addison-Wesley Iberoamericana",
+  "anio": "1990",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "nickerson": {
+  "titulo": "Advanced Calculus",
+  "autor": "Nickerson, H.K.; Spencer, D.C.; Steenrod, N.E.",
+  "editorial": "Van Nostrand",
+  "anio": "1959",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "jacobson2": {
+  "titulo": "Lectures in Abstract Algebra",
+  "autor": "Jacobson, N.",
+  "editorial": "Springer",
+  "anio": "1980",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "lang3": {
+  "titulo": "Algebra",
+  "autor": "Lang, S.",
+  "editorial": "Springer Verlag",
+  "anio": "2002",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "brezis": {
+  "titulo": "Functional Analysis, Sobolev Spaces and Partial Differential Equations",
+  "autor": "Brézis, H.",
+  "editorial": "Springer",
+  "anio": "2011",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "dieudonne": {
+  "titulo": "Foundations of Modern Analysis",
+  "autor": "Dieudonné, J.",
+  "editorial": "Academic Press",
+  "anio": "1969",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "lieb": {
+  "titulo": "Analysis",
+  "autor": "Lieb, E.H.; Loss, M.",
+  "editorial": "AMS",
+  "anio": "2001",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "royden": {
+  "titulo": "Real Analysis",
+  "autor": "Royden, H.L.; Fitzpatrick, P.",
+  "editorial": "Pearson",
+  "anio": "2010",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "schwartz": {
+  "titulo": "Analyse",
+  "autor": "Schwartz, L.",
+  "editorial": "Hermann",
+  "anio": "1967",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "boyce": {
+  "titulo": "Elementary Differential Equations and Boundary Value Problems. J",
+  "autor": "Boyce, W.; DiPrima, R.",
+  "editorial": "Wiley",
+  "anio": "2001",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "hasser": {
+  "titulo": "Análisis Matemático. Vol. 2. Ed",
+  "autor": "Hasser, N.B.; LaSalle, J.P.; Sullivan, J.A.",
+  "editorial": "Trillas",
+  "anio": "1977",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "markusevich": {
+  "titulo": "Theory of Functions of a Complex Variable",
+  "autor": "Markusevich, A.I.",
+  "editorial": "Prentice-Hall",
+  "anio": "1965",
+  "definiciones": [],
+  "demostraciones": []
+ },
+ "titchmarsh": {
+  "titulo": "The Theory of Functions",
+  "autor": "Titchmarsh, E.C.",
+  "editorial": "Oxford University Press",
+  "anio": "1939",
+  "definiciones": [],
+  "demostraciones": []
+ }
+}

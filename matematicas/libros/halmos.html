@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Teoría intuitiva de los conjuntos · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/materias/index.html">Materias</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/materias/conjuntos/index.html">Teoría de Conjuntos</a>
+        <span class="sep">/</span>
+        <span class="actual">Teoría intuitiva de los conjuntos</span>
+      </nav>
+
+      <main>
+        <h1>Teoría intuitiva de los conjuntos</h1>
+
+        <p class="ruta">Paul Halmos · 1960</p>
+
+        <p class="tambien">Bibliografía de <a href="../../matematicas/materias/conjuntos/index.html">Teoría de Conjuntos</a> (básica)</p>
+
+        <h2>Definiciones</h2>
+
+        <details class="grupo">
+          <summary class="grupo-titulo">Capítulo 1 · Lo básico</summary>
+          <div class="grupo-cuerpo">
+            <div class="dentro">
+        <p class="simple" id="numerable"><b>Conjunto numerable.</b> Un conjunto es numerable cuando se puede poner en correspondencia uno a uno con <!--m:$\mathbb{N}$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\mathbb{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6889em;"></span><span class="mord mathbb">N</span></span></span></span><!--/m-->.</p>
+
+            </div>
+          </div>
+        </details>
+
+        <h2>Teoremas</h2>
+
+        <details class="grupo">
+          <summary class="grupo-titulo">Capítulo 2 · Cardinalidad</summary>
+          <div class="grupo-cuerpo">
+            <div class="dentro">
+        <details class="prueba">
+          <summary class="prueba-enunciado">
+          <fieldset class="enunciado" id="cantor-diagonal">
+            <legend class="etiqueta">El intervalo no es numerable</legend>
+            <!--m:$[0,1]$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span><!--/m--> no es numerable.
+          </fieldset>
+          </summary>
+          <div class="prueba-cuerpo">
+            <div class="dentro">
+              <p>Suponiendo una lista de todos los reales del intervalo, se construye uno que difiere del <!--m:$n$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><!--/m-->-ésimo en su <!--m:$n$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><!--/m-->-ésima cifra. Ese número está en el intervalo y no en la lista, así que la lista no los tenía todos.</p>
+            </div>
+          </div>
+        </details>
+
+        <details class="prueba">
+          <summary class="prueba-enunciado">
+          <fieldset class="enunciado" id="union-numerable">
+            <legend class="etiqueta">Unión numerable de numerables</legend>
+            La unión de una familia numerable de conjuntos numerables es numerable.
+          </fieldset>
+          </summary>
+          <div class="prueba-cuerpo">
+            <div class="dentro">
+              <p>Se recorren en diagonal, como los racionales. Requiere elección numerable, y por eso se deja aquí y no en la sección general.</p>
+            </div>
+          </div>
+        </details>
+
+            </div>
+          </div>
+        </details>
+      </main>
+    </div>
+  </body>
+</html>

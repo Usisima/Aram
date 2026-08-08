@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Matemáticas · Aram</title>
+    <link rel="icon" href="../assets/favicon.svg" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="apple-touch-icon" href="../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../estilos.css" />
+    <link rel="stylesheet" href="../assets/katex/katex.min.css" />
+    <script src="../assets/tema.js"></script>
+    <script defer src="../assets/sinred.js"></script>
+    <script src="../assets/rejilla.js"></script>
+    <script src="../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <span class="actual">Matemáticas</span>
+      </nav>
+
+      <main>
+        <h1>Matemáticas</h1>
+
+        <div class="titulo-fila">
+          <h2>Matemáticos</h2>
+          <a class="mas" href="../matematicas/matematicos/index.html">Ver los 47</a>
+        </div>
+
+        <ul class="caras" data-limite="6">
+          <li data-id="euclides" data-busca="euclides de alejandria grecia helenistica siglo iii a.c. ordeno la geometria en trece libros y enseno a demostrar">
+            <a href="../matematicas/matematicos/euclides.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/gr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/euclides-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Euclides de Alejandría</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="arquimedes" data-busca="arquimedes de siracusa siracusa, magna grecia c. 287 – 212 a.c. midio la esfera y se adelanto dieciocho siglos al calculo">
+            <a href="../matematicas/matematicos/arquimedes.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../assets/voxel/arquimedes-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Arquímedes de Siracusa</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="newton" data-busca="isaac newton inglaterra 1643 – 1727 el calculo y la gravitacion, en un mismo libro">
+            <a href="../matematicas/matematicos/newton.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../assets/voxel/newton-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Isaac Newton</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="euler" data-busca="leonhard euler suiza 1707 – 1783 escribio mas que nadie, y ciego escribio aun mas">
+            <a href="../matematicas/matematicos/euler.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../assets/voxel/euler-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Leonhard Euler</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="gauss" data-busca="carl friedrich gauss brunswick, alemania 1777 – 1855 pocas cosas, pero maduras">
+            <a href="../matematicas/matematicos/gauss.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/gauss-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Carl Friedrich Gauss</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="riemann" data-busca="bernhard riemann hannover, alemania 1826 – 1866 cambio la idea de espacio y dejo abierta la pregunta mas dificil">
+            <a href="../matematicas/matematicos/riemann.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/riemann-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Bernhard Riemann</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cantor" data-busca="georg cantor alemania 1845 – 1918 demostro que hay infinitos mas grandes que otros">
+            <a href="../matematicas/matematicos/cantor.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/cantor-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Georg Cantor</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="hilbert" data-busca="david hilbert prusia, alemania 1862 – 1943 puso los cimientos y repartio el trabajo del siglo xx">
+            <a href="../matematicas/matematicos/hilbert.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/hilbert-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">David Hilbert</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="noether" data-busca="emmy noether alemania 1882 – 1935 el algebra abstracta, y la simetria detras de toda ley de conservacion">
+            <a href="../matematicas/matematicos/noether.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/noether-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Emmy Noether</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cardano" data-busca="gerolamo cardano milan, italia 1501 – 1576 publico como resolver la cubica y abrio la puerta a los imaginarios">
+            <a href="../matematicas/matematicos/cardano.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../assets/voxel/cardano-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Gerolamo Cardano</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="kepler" data-busca="johannes kepler sacro imperio, alemania 1571 – 1630 puso los planetas en elipses y dejo una conjetura de naranjas">
+            <a href="../matematicas/matematicos/kepler.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/kepler-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Johannes Kepler</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="descartes" data-busca="rene descartes francia 1596 – 1650 cruzo el algebra con la geometria y le puso ejes al plano">
+            <a href="../matematicas/matematicos/descartes.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/descartes-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">René Descartes</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="fermat" data-busca="pierre de fermat francia 1607 – 1665 magistrado de oficio, y el aficionado que dejo tres siglos de trabajo">
+            <a href="../matematicas/matematicos/fermat.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/fermat-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pierre de Fermat</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="pascal" data-busca="blaise pascal francia 1623 – 1662 probabilidad, presion y una maquina de calcular, antes de los cuarenta">
+            <a href="../matematicas/matematicos/pascal.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/pascal-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Blaise Pascal</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="leibniz" data-busca="gottfried wilhelm leibniz alemania 1646 – 1716 la notacion del calculo que seguimos usando, y el sistema binario">
+            <a href="../matematicas/matematicos/leibniz.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/leibniz-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Gottfried Wilhelm Leibniz</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="bernoulli" data-busca="jacob bernoulli basilea, suiza 1655 – 1705 la ley de los grandes numeros y los numeros que llevan su apellido">
+            <a href="../matematicas/matematicos/bernoulli.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../assets/voxel/bernoulli-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Jacob Bernoulli</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="lagrange" data-busca="joseph-louis lagrange turin, italia 1736 – 1813 rehizo la mecanica sin dibujar un solo diagrama">
+            <a href="../matematicas/matematicos/lagrange.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../assets/voxel/lagrange-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Joseph-Louis Lagrange</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="laplace" data-busca="pierre-simon laplace francia 1749 – 1827 la mecanica del cielo y la probabilidad como forma de razonar">
+            <a href="../matematicas/matematicos/laplace.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/laplace-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pierre-Simon Laplace</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="legendre" data-busca="adrien-marie legendre francia 1752 – 1833 minimos cuadrados, y la sospecha de como se reparten los primos">
+            <a href="../matematicas/matematicos/legendre.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/legendre-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Adrien-Marie Legendre</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="fourier" data-busca="joseph fourier francia 1768 – 1830 cualquier onda es una suma de senos, por rara que parezca">
+            <a href="../matematicas/matematicos/fourier.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/fourier-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Joseph Fourier</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="faraday" data-busca="michael faraday inglaterra 1791 – 1867 vio el campo antes de que nadie supiera escribirlo">
+            <a href="../matematicas/matematicos/faraday.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../assets/voxel/faraday-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Michael Faraday</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="ramanujan" data-busca="srinivasa ramanujan india 1887 – 1920 miles de formulas sin demostracion, y casi todas ciertas">
+            <a href="../matematicas/matematicos/ramanujan.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/in.svg)">
+                <img class="cara-retrato" src="../assets/voxel/ramanujan-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Srinivasa Ramanujan</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="pitagoras" data-busca="pitagoras de samos samos, grecia c. 570 – c. 495 a.c. fundo una escuela donde el numero era el principio de todo">
+            <a href="../matematicas/matematicos/pitagoras.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/gr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/pitagoras-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pitágoras de Samos</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="hipatia" data-busca="hipatia de alejandria alejandria, egipto romano c. 355 – 415 edito y enseno lo que de otro modo se habria perdido">
+            <a href="../matematicas/matematicos/hipatia.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/eg.svg)">
+                <img class="cara-retrato" src="../assets/voxel/hipatia-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Hipatia de Alejandría</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="juarismi" data-busca="muhammad al-juarismi corasmia, califato abasi c. 780 – c. 850 le dio nombre al algebra y al algoritmo">
+            <a href="../matematicas/matematicos/juarismi.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ir.svg)">
+                <img class="cara-retrato" src="../assets/voxel/juarismi-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Muhammad al-Juarismi</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="fibonacci" data-busca="leonardo de pisa pisa, italia c. 1170 – c. 1250 trajo las cifras arabes a europa con un problema de conejos">
+            <a href="../matematicas/matematicos/fibonacci.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../assets/voxel/fibonacci-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Leonardo de Pisa</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="galois" data-busca="evariste galois francia 1811 – 1832 a los veinte anos dejo dicho por que la quintica no se resuelve">
+            <a href="../matematicas/matematicos/galois.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/galois-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Évariste Galois</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="abel" data-busca="niels henrik abel noruega 1802 – 1829 cerro un problema de tres siglos y murio pobre a los veintiseis">
+            <a href="../matematicas/matematicos/abel.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/no.svg)">
+                <img class="cara-retrato" src="../assets/voxel/abel-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Niels Henrik Abel</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cauchy" data-busca="augustin-louis cauchy francia 1789 – 1857 le puso al analisis los limites que le faltaban">
+            <a href="../matematicas/matematicos/cauchy.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/cauchy-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Augustin-Louis Cauchy</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="poincare" data-busca="henri poincare francia 1854 – 1912 el ultimo que abarco las matematicas enteras">
+            <a href="../matematicas/matematicos/poincare.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/poincare-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Henri Poincaré</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="kovalevskaya" data-busca="sofia kovalevskaya rusia 1850 – 1891 primera mujer con catedra de matematicas en europa">
+            <a href="../matematicas/matematicos/kovalevskaya.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ru.svg)">
+                <img class="cara-retrato" src="../assets/voxel/kovalevskaya-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Sofia Kovalévskaya</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="godel" data-busca="kurt godel austria 1906 – 1978 demostro que ningun sistema puede probarlo todo sobre si mismo">
+            <a href="../matematicas/matematicos/godel.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/at.svg)">
+                <img class="cara-retrato" src="../assets/voxel/godel-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Kurt Gödel</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="turing" data-busca="alan turing inglaterra 1912 – 1954 definio que es calcular, y de paso invento el ordenador">
+            <a href="../matematicas/matematicos/turing.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../assets/voxel/turing-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Alan Turing</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="neumann" data-busca="john von neumann hungria 1903 – 1957 toco todo lo que se dejaba tocar, y lo dejo fundado">
+            <a href="../matematicas/matematicos/neumann.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/hu.svg)">
+                <img class="cara-retrato" src="../assets/voxel/neumann-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">John von Neumann</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="hardy" data-busca="godfrey harold hardy inglaterra 1877 – 1947 puso el rigor continental en inglaterra y trajo a ramanujan">
+            <a href="../matematicas/matematicos/hardy.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../assets/voxel/hardy-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Godfrey Harold Hardy</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="tales" data-busca="tales de mileto mileto, jonia c. 624 – c. 546 a.c. el primero del que se dice que demostro algo">
+            <a href="../matematicas/matematicos/tales.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/gr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/tales-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Tales de Mileto</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="diofanto" data-busca="diofanto de alejandria alejandria, egipto romano siglo iii empezo a escribir el algebra con simbolos, y dejo los problemas que fermat leia">
+            <a href="../matematicas/matematicos/diofanto.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/eg.svg)">
+                <img class="cara-retrato" src="../assets/voxel/diofanto-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Diofanto de Alejandría</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="brahmagupta" data-busca="brahmagupta bhillamala, india 598 – c. 668 escribio las reglas del cero y de los numeros negativos">
+            <a href="../matematicas/matematicos/brahmagupta.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/in.svg)">
+                <img class="cara-retrato" src="../assets/voxel/brahmagupta-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Brahmagupta</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="khayyam" data-busca="omar jayam nishapur, persia 1048 – 1131 resolvio cubicas cortando conicas, y escribio los rubaiyat">
+            <a href="../matematicas/matematicos/khayyam.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ir.svg)">
+                <img class="cara-retrato" src="../assets/voxel/khayyam-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Omar Jayam</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="tartaglia" data-busca="niccolo tartaglia brescia, italia 1500 – 1557 resolvio la cubica y perdio el pleito por contarlo">
+            <a href="../matematicas/matematicos/tartaglia.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../assets/voxel/tartaglia-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Niccolò Tartaglia</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="viete" data-busca="francois viete francia 1540 – 1603 puso letras donde antes habia palabras">
+            <a href="../matematicas/matematicos/viete.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/viete-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">François Viète</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="napier" data-busca="john napier escocia 1550 – 1617 convirtio las multiplicaciones en sumas">
+            <a href="../matematicas/matematicos/napier.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/sco.svg)">
+                <img class="cara-retrato" src="../assets/voxel/napier-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">John Napier</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="weierstrass" data-busca="karl weierstrass prusia, alemania 1815 – 1897 el padre del analisis moderno, y quien enseno a kovalevskaya">
+            <a href="../matematicas/matematicos/weierstrass.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../assets/voxel/weierstrass-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Karl Weierstrass</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="germain" data-busca="sophie germain francia 1776 – 1831 escribio a gauss firmando como hombre para que la leyeran">
+            <a href="../matematicas/matematicos/germain.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../assets/voxel/germain-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Sophie Germain</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="lovelace" data-busca="ada lovelace inglaterra 1815 – 1852 escribio el primer programa para una maquina que no llego a existir">
+            <a href="../matematicas/matematicos/lovelace.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../assets/voxel/lovelace-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Ada Lovelace</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="kolmogorov" data-busca="andrei kolmogorov rusia 1903 – 1987 le dio axiomas a la probabilidad">
+            <a href="../matematicas/matematicos/kolmogorov.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/ru.svg)">
+                <img class="cara-retrato" src="../assets/voxel/kolmogorov-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Andréi Kolmogórov</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="erdos" data-busca="paul erdos hungria 1913 – 1996 sin casa ni puesto fijo, escribio mil quinientos articulos con quinientos coautores">
+            <a href="../matematicas/matematicos/erdos.html">
+              <span class="cara-foto" style="--bandera: url(../assets/banderas/hu.svg)">
+                <img class="cara-retrato" src="../assets/voxel/erdos-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Paul Erdős</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="lista">
+          <li><a href="../matematicas/materias/index.html">Materias</a></li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

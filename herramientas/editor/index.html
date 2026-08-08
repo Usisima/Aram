@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Taller · Aram</title>
+    <link rel="stylesheet" href="/assets/katex/katex.min.css" />
+    <link rel="stylesheet" href="editor.css" />
+  </head>
+  <body>
+    <header class="barra">
+      <nav class="modos">
+        <button class="modo activo" data-modo="voxel">Voxel</button>
+        <button class="modo" data-modo="texto">Aportes</button>
+        <button class="modo" data-modo="materias">Materias</button>
+      </nav>
+      <span class="aviso" data-aviso></span>
+      <button class="accion" data-construir>Reconstruir sitio</button>
+    </header>
+
+    <!-- ── Editor de personajes ── -->
+    <main class="taller" data-panel="voxel">
+      <aside class="columna izquierda">
+        <div class="cabecera">
+          <h2>Personajes</h2>
+          <button class="mini" data-nuevo>+ nuevo</button>
+        </div>
+        <ul class="gente" data-gente></ul>
+      </aside>
+
+      <section class="escena">
+        <div class="lienzo" data-lienzo></div>
+        <div class="pie">
+          <label>id <input class="campo corto" data-id spellcheck="false" /></label>
+          <label>sexo
+            <select data-sexo>
+              <option value="m">m</option>
+              <option value="f">f</option>
+            </select>
+          </label>
+          <button class="accion" data-guardar>Guardar personaje</button>
+          <span class="dato" data-cuenta></span>
+        </div>
+      </section>
+
+      <aside class="columna derecha">
+        <div class="colores">
+          <h2>Color</h2>
+          <div class="fila-color">
+            <label>pelo <input type="color" data-color="color" /></label>
+            <select class="paleta" data-paleta="color"></select>
+          </div>
+          <div class="fila-color">
+            <label>piel <input type="color" data-color="piel" /></label>
+            <select class="paleta" data-paleta="piel"></select>
+          </div>
+          <div class="fila-color">
+            <label>ojos <input type="color" data-color="ojos" /></label>
+            <select class="paleta" data-paleta="ojos"></select>
+          </div>
+        </div>
+
+        <nav class="pestanas" data-pestanas>
+          <button class="pestana activa" data-tipo="cabello">Cabello</button>
+          <button class="pestana" data-tipo="barba">Barba</button>
+          <button class="pestana" data-tipo="atuendo">Atuendo</button>
+          <button class="pestana" data-tipo="cara">Cara</button>
+        </nav>
+        <input class="campo" data-filtro placeholder="filtrar piezas" spellcheck="false" />
+
+        <!-- Mover la pieza de la pestaña abierta. Un vóxel por pulsación. -->
+        <div class="mover">
+          <span class="rotulo">mover <b data-mover-que>cabello</b></span>
+          <div class="cruz">
+            <button class="flecha" data-mover="0,1,0" title="arriba">↑</button>
+            <button class="flecha" data-mover="0,0,-1" title="adelante">◤</button>
+            <button class="flecha" data-mover="-1,0,0" title="izquierda">←</button>
+            <button class="flecha cero" data-mover="0,0,0" title="centrar">·</button>
+            <button class="flecha" data-mover="1,0,0" title="derecha">→</button>
+            <button class="flecha" data-mover="0,-1,0" title="abajo">↓</button>
+            <button class="flecha" data-mover="0,0,1" title="atrás">◢</button>
+            <span class="dato" data-mover-valor></span>
+          </div>
+        </div>
+        <div class="catalogo" data-catalogo></div>
+      </aside>
+    </main>
+
+    <!-- ── Editor de aportes ── -->
+    <main class="taller oculto" data-panel="texto">
+      <aside class="columna izquierda">
+        <div class="cabecera">
+          <h2>Aportes añadidos</h2>
+          <button class="mini" data-aporte-nuevo>+ nuevo</button>
+        </div>
+        <!-- Por quién lo firma o por dónde va: con treinta aportes en una lista
+             plana no se encuentra ninguno. -->
+        <nav class="pestanas" data-por>
+          <button class="pestana activa" data-agrupar="materia">Por materia</button>
+          <button class="pestana" data-agrupar="autor">Por personaje</button>
+        </nav>
+        <ul class="gente arbol" data-lista-aportes></ul>
+      </aside>
+
+      <section class="escrito">
+        <!-- Dos filas: lo que identifica el aporte y, debajo, de dónde sale
+             dentro de un libro. Con asterisco, lo que puede quedarse vacío. -->
+        <div class="rejilla-campos">
+          <label>materia
+            <span class="con-boton">
+              <select data-a-materia></select>
+              <button class="mini" data-materia-nueva
+                title="crear una materia nueva en el sitio">+ nueva</button>
+            </span>
+          </label>
+          <label>autor *
+            <select data-a-autor></select>
+          </label>
+          <label>nombre del aporte
+            <input class="campo" data-a-nombre spellcheck="false" />
+          </label>
+          <label>tema en la materia *
+            <span class="con-boton">
+              <input class="campo" data-a-tema list="temas" spellcheck="false" />
+              <button class="mini" data-nuevo-divisor="tema"
+                title="dar de alta este tema en la materia">+</button>
+            </span>
+          </label>
+        </div>
+
+        <div class="rejilla-campos segunda">
+          <label>libro *
+            <select data-a-libro></select>
+          </label>
+          <label>capítulo *
+            <span class="con-boton">
+              <input class="campo" data-a-capitulo list="capitulos" spellcheck="false" />
+              <button class="mini" data-nuevo-divisor="capitulo"
+                title="dar de alta este capítulo en el libro">+</button>
+            </span>
+          </label>
+          <label>tema en el libro *
+            <span class="con-boton">
+              <input class="campo" data-a-tema-libro list="temas-libro" spellcheck="false" />
+              <button class="mini" data-nuevo-divisor="temaLibro"
+                title="dar de alta este tema en el libro">+</button>
+            </span>
+          </label>
+          <label>tipo
+            <select data-a-tipo>
+              <option>teorema</option>
+              <option>lema</option>
+              <option>definición</option>
+              <option>corolario</option>
+              <option>identidad</option>
+              <option>propiedad</option>
+              <option>ejercicio</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Lo que se puede poner en la ruta, sacado de la materia elegida. -->
+        <datalist id="temas" data-temas></datalist>
+        <datalist id="capitulos" data-capitulos></datalist>
+        <datalist id="temas-libro" data-temas-libro></datalist>
+
+        <!-- A la izquierda se escribe y a la derecha se ve: arriba el enunciado
+             o el problema, debajo la demostración o la resolución, y el render
+             al lado, que es lo que se mira mientras se teclea. -->
+        <div class="taller-latex">
+          <div class="columna-latex">
+            <label class="alto">
+              <span data-rotulo-arriba>enunciado · LaTeX</span>
+              <textarea class="codigo" data-a-latex spellcheck="false"
+                placeholder="e^{i\pi} + 1 = 0"></textarea>
+            </label>
+            <label class="alto">
+              <span data-rotulo-abajo>demostración · LaTeX</span>
+              <textarea class="codigo" data-a-segundo spellcheck="false"></textarea>
+            </label>
+          </div>
+
+          <div class="previa">
+            <span class="etiqueta">vista previa · en vivo</span>
+            <div data-previa></div>
+          </div>
+        </div>
+
+        <div class="pie">
+          <button class="accion" data-a-guardar>Guardar aporte</button>
+          <button class="mini" data-a-borrar>Borrar</button>
+          <span class="dato" data-a-ruta></span>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── Contenido de las materias ── -->
+    <main class="taller oculto" data-panel="materias">
+      <aside class="columna izquierda">
+        <div class="cabecera">
+          <h2>Materias</h2>
+        </div>
+        <ul class="gente" data-m-lista></ul>
+        <div class="cabecera">
+          <h2>Sección</h2>
+        </div>
+        <ul class="gente" data-m-secciones></ul>
+      </aside>
+
+      <section class="escena listado">
+        <div class="cabecera">
+          <h2 data-m-donde>—</h2>
+          <span>
+            <button class="mini" data-m-nueva-entrada>+ entrada</button>
+            <button class="mini" data-m-nuevo-divisor>+ tema</button>
+            <button class="mini" data-m-nuevo-capitulo>+ capítulo</button>
+          </span>
+        </div>
+        <ul class="gente arbol" data-m-entradas></ul>
+      </section>
+
+      <aside class="columna derecha ancha">
+        <div class="cabecera">
+          <h2>Lo que dice</h2>
+          <button class="mini" data-m-guardar>Guardar sección</button>
+        </div>
+        <div class="escrito">
+          <!-- Todo lo que sitúa a la entrada: su id, su sección, su capítulo y
+               su tema. Sin esto no hay forma de saber por qué sale donde sale. -->
+          <p class="etiquetas" data-m-etiquetas>—</p>
+          <div class="rejilla-campos">
+            <label>tipo
+              <select data-m-tipo>
+                <option value="">— sin tipo —</option>
+                <option>teorema</option>
+                <option>lema</option>
+                <option>definición</option>
+                <option>corolario</option>
+                <option>identidad</option>
+                <option>propiedad</option>
+                <option>ejercicio</option>
+              </select>
+            </label>
+            <label>etiqueta · para numerarla
+              <input class="campo" data-m-etiqueta spellcheck="false"
+                placeholder="P1, Teorema 1.4…" />
+            </label>
+            <label>nombre
+              <input class="campo" data-m-nombre spellcheck="false" />
+            </label>
+          </div>
+          <label class="alto">enunciado · LaTeX
+            <textarea class="codigo" data-m-cuerpo spellcheck="false"></textarea>
+          </label>
+          <label class="alto">demostración o resolución · LaTeX
+            <textarea class="codigo" data-m-segundo spellcheck="false"></textarea>
+          </label>
+          <div class="cabecera">
+            <h2>También demostrado en</h2>
+            <button class="mini" data-m-general hidden>subir a la general</button>
+          </div>
+          <ul class="gente enlaces" data-m-enlaces></ul>
+          <div class="previa">
+            <span class="etiqueta">vista previa · en vivo</span>
+            <div data-m-previa></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <script src="/assets/voxel3d/three.min.js"></script>
+    <script src="/assets/katex/katex.min.js"></script>
+    <script src="editor.js"></script>
+  </body>
+</html>

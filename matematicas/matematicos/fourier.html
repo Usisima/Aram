@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Joseph Fourier · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Joseph Fourier</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="fourier">
+          <h1>Joseph Fourier</h1>
+          <button class="mas" type="button" data-fav="fourier" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="fourier"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Acompañó a Napoleón a Egipto como secretario de la expedición científica y volvió convertido en prefecto. Entre la administración y la egiptología escribió sobre cómo se propaga el calor.</p>
+        <p>Su idea —que una función cualquiera se descompone en senos y cosenos— escandalizó a Lagrange y a Laplace, que estaban en el tribunal que juzgó la memoria. Tardó quince años en publicarse, y hoy es la herramienta con la que se procesa cualquier señal.</p>
+        <p>En 1824 describió además que la atmósfera retiene calor: es la primera descripción del efecto invernadero.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1768 – 1830 · Francia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>21 de marzo de 1768, Auxerre</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>16 de mayo de 1830, París</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Francesa</dd>
+                    <dt>Instituciones</dt>
+                    <dd>École Polytechnique, Académie des sciences</dd>
+                    <dt>Área</dt>
+                    <dd>Análisis, física matemática</dd>
+                    <dt>Maestros</dt>
+                    <dd>Joseph-Louis Lagrange, Pierre-Simon Laplace</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 1">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Théorie analytique de la chaleur</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1822</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="lagrange" data-busca="joseph-louis lagrange turin, italia 1736 – 1813 rehizo la mecanica sin dibujar un solo diagrama">
+            <a href="../../matematicas/matematicos/lagrange.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/lagrange-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Joseph-Louis Lagrange</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="laplace" data-busca="pierre-simon laplace francia 1749 – 1827 la mecanica del cielo y la probabilidad como forma de razonar">
+            <a href="../../matematicas/matematicos/laplace.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/laplace-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pierre-Simon Laplace</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="galois" data-busca="evariste galois francia 1811 – 1832 a los veinte anos dejo dicho por que la quintica no se resuelve">
+            <a href="../../matematicas/matematicos/galois.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/galois-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Évariste Galois</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

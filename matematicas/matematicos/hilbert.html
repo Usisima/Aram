@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>David Hilbert · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">David Hilbert</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="hilbert">
+          <h1>David Hilbert</h1>
+          <button class="mas" type="button" data-fav="hilbert" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="hilbert"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>De Königsberg, y desde 1895 en Gotinga, que convirtió en el centro matemático del mundo hasta que el nazismo lo vació en 1933.</p>
+        <p>En el congreso de París de 1900 planteó una lista de problemas pendientes. Buena parte de las matemáticas del siglo XX consistió en atacarlos. Defendió la teoría de conjuntos de Cantor cuando casi nadie lo hacía: «nadie nos expulsará del paraíso que Cantor creó».</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1862 – 1943 · Prusia, Alemania</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>23 de enero de 1862, Königsberg, Prusia</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>14 de febrero de 1943, Gotinga</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Alemana</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad de Königsberg, Universidad de Gotinga</dd>
+                    <dt>Área</dt>
+                    <dd>Álgebra, análisis funcional, geometría, fundamentos</dd>
+                    <dt>Discípulos</dt>
+                    <dd>Hermann Weyl, Ernst Zermelo, Richard Courant</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Conjeturas</h2>
+
+        <h3>Abiertas</h3>
+        <p>El octavo sigue abierto: es la <a href="../../matematicas/matematicos/riemann.html">hipótesis de Riemann</a>.</p>
+
+        <h3>Resueltas</h3>
+        <p>De los 23 problemas de 1900, la mayoría están resueltos o precisados.</p>
+        <p>El segundo —la consistencia de la aritmética— lo cerró Gödel en 1931, pero en contra: ningún sistema que contenga la aritmética puede probar su propia consistencia.</p>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 3">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Grundlagen der Geometrie</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1899</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 5">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Grundlagen der Mathematik</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1934–1939, con Paul Bernays</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Mathematische Probleme (los 23 problemas)</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1900</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="cantor" data-busca="georg cantor alemania 1845 – 1918 demostro que hay infinitos mas grandes que otros">
+            <a href="../../matematicas/matematicos/cantor.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/cantor-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Georg Cantor</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="riemann" data-busca="bernhard riemann hannover, alemania 1826 – 1866 cambio la idea de espacio y dejo abierta la pregunta mas dificil">
+            <a href="../../matematicas/matematicos/riemann.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/riemann-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Bernhard Riemann</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="noether" data-busca="emmy noether alemania 1882 – 1935 el algebra abstracta, y la simetria detras de toda ley de conservacion">
+            <a href="../../matematicas/matematicos/noether.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/noether-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Emmy Noether</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="godel" data-busca="kurt godel austria 1906 – 1978 demostro que ningun sistema puede probarlo todo sobre si mismo">
+            <a href="../../matematicas/matematicos/godel.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/at.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/godel-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Kurt Gödel</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="neumann" data-busca="john von neumann hungria 1903 – 1957 toco todo lo que se dejaba tocar, y lo dejo fundado">
+            <a href="../../matematicas/matematicos/neumann.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/hu.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/neumann-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">John von Neumann</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="turing" data-busca="alan turing inglaterra 1912 – 1954 definio que es calcular, y de paso invento el ordenador">
+            <a href="../../matematicas/matematicos/turing.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/turing-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Alan Turing</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

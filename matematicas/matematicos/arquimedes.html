@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Arquímedes de Siracusa · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Arquímedes de Siracusa</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="arquimedes">
+          <h1>Arquímedes de Siracusa</h1>
+          <button class="mas" type="button" data-fav="arquimedes" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="arquimedes"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Vivió y trabajó en Siracusa, en la Sicilia griega. Murió durante la toma romana de la ciudad, en el 212 a.C.</p>
+        <p>En <em>El Método</em>, perdido hasta 1906, explica cómo llegaba a sus resultados pesando figuras imaginariamente antes de demostrarlos por el método de exhaución. Es un razonamiento con infinitos que no volvería a aparecer hasta el cálculo.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">c. 287 – 212 a.C. · Siracusa, Magna Grecia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>c. 287 a.C., Siracusa</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>212 a.C., Siracusa</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Siracusa, Magna Grecia</dd>
+                    <dt>Área</dt>
+                    <dd>Geometría, mecánica, hidrostática</dd>
+                    <dt>Influencias</dt>
+                    <dd>Eudoxo de Cnido, Euclides</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 3">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">El Método</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">hallado en 1906</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Sobre la esfera y el cilindro</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">siglo III a.C.</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Sobre los cuerpos flotantes</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">siglo III a.C.</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 2">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">El arenario</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">siglo III a.C.</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 3">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">El Método</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">siglo III a.C.</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="euclides" data-busca="euclides de alejandria grecia helenistica siglo iii a.c. ordeno la geometria en trece libros y enseno a demostrar">
+            <a href="../../matematicas/matematicos/euclides.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/gr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/euclides-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Euclides de Alejandría</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="newton" data-busca="isaac newton inglaterra 1643 – 1727 el calculo y la gravitacion, en un mismo libro">
+            <a href="../../matematicas/matematicos/newton.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/newton-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Isaac Newton</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="pitagoras" data-busca="pitagoras de samos samos, grecia c. 570 – c. 495 a.c. fundo una escuela donde el numero era el principio de todo">
+            <a href="../../matematicas/matematicos/pitagoras.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/gr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/pitagoras-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pitágoras de Samos</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

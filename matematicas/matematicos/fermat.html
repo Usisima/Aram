@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Pierre de Fermat · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Pierre de Fermat</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="fermat">
+          <h1>Pierre de Fermat</h1>
+          <button class="mas" type="button" data-fav="fermat" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="fermat"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Era jurista en Toulouse; las matemáticas las hacía fuera de horas y casi nunca publicaba. Lo que se sabe de él está en sus cartas y en los márgenes de sus libros.</p>
+        <p>Con Pascal, en un intercambio de cartas de 1654 sobre el reparto de una apuesta interrumpida, fundó el cálculo de probabilidades. Y su método de máximos y mínimos se adelanta al cálculo diferencial.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1607 – 1665 · Francia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>1607, Beaumont-de-Lomagne</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>12 de enero de 1665, Castres</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Francesa</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Parlamento de Toulouse</dd>
+                    <dt>Área</dt>
+                    <dd>Teoría de números, probabilidad, análisis</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Conjeturas</h2>
+
+        <h3>Resueltas</h3>
+        <p><strong>Último teorema de Fermat.</strong> No hay enteros positivos con <!--m:$a^{n} + b^{n} = c^{n}$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mi>n</mi></msup><mo>+</mo><msup><mi>b</mi><mi>n</mi></msup><mo>=</mo><msup><mi>c</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">a^{n} + b^{n} = c^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6644em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span><!--/m--> para <!--m:$n \gt 2$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>&gt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n \gt 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span><!--/m-->. Lo anotó hacia 1637 en el margen de una <em>Aritmética</em> de Diofanto, con la nota de que la demostración no le cabía. Costó 358 años: la cerró Andrew Wiles en 1994.</p>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 2">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Varia opera mathematica</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1679</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 5">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Correspondencia con Pascal sobre el reparto de apuestas</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1654</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="pascal" data-busca="blaise pascal francia 1623 – 1662 probabilidad, presion y una maquina de calcular, antes de los cuarenta">
+            <a href="../../matematicas/matematicos/pascal.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/pascal-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Blaise Pascal</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="descartes" data-busca="rene descartes francia 1596 – 1650 cruzo el algebra con la geometria y le puso ejes al plano">
+            <a href="../../matematicas/matematicos/descartes.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/descartes-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">René Descartes</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="euler" data-busca="leonhard euler suiza 1707 – 1783 escribio mas que nadie, y ciego escribio aun mas">
+            <a href="../../matematicas/matematicos/euler.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/euler-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Leonhard Euler</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

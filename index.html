@@ -2,9 +2,21 @@
 <html lang="es" data-intro>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Aram</title>
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="assets/katex/katex.min.css" />
+    <script src="assets/tema.js"></script>
+    <script defer src="assets/sinred.js"></script>
+    <script src="assets/rejilla.js"></script>
   </head>
   <body>
     <script src="assets/intro.js"></script>
@@ -15,18 +27,11 @@
         <p>Apuntes, demostraciones y ejercicios.</p>
 
         <ul class="lista">
-          <li>
-            <a href="matematicas.html">
-              Matemáticas
-              <span class="nota">Licenciatura en Matemáticas</span>
-            </a>
-          </li>
-          <li><span class="pendiente">Actuaría</span></li>
-          <li><span class="pendiente">Física</span></li>
+          <li><a href="matematicas/index.html">Matemáticas</a></li>
         </ul>
+
       </main>
 
-      <footer class="pie">Aram · 2026</footer>
     </div>
   </body>
 </html>

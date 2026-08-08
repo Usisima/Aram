@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Arnés de horneado voxel</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script src="three.min.js"></script>
+  </head>
+  <body>
+    <script>
+      /**
+       * Arnés mínimo para hornear animaciones voxel a tiras de sprites.
+       *
+       * Del motor de Math/campus se toma solo lo que dibuja: construcción de
+       * la malla por hueso y aplicación de la pose. Queda fuera toda la
+       * simulación —hambre, rutas, conversaciones—, que aquí no pinta nada.
+       *
+       * Lo conduce hornear.mjs por CDP: prepara(modelo, anim) y luego
+       * fotograma(i) para cada uno, capturando entre medias.
+       */
+
+      const FACES = [
+        { n: [1, 0, 0], d: [1, 0, 0], c: [[1,0,0],[1,1,0],[1,1,1],[1,0,1]] },
+        { n: [-1, 0, 0], d: [-1, 0, 0], c: [[0,0,0],[0,0,1],[0,1,1],[0,1,0]] },
+        /* anim +Y = modelo +Z */
+        { n: [0, 1, 0], d: [0, 0, 1], c: [[0,1,0],[0,1,1],[1,1,1],[1,1,0]] },
+        { n: [0, -1, 0], d: [0, 0, -1], c: [[0,0,0],[1,0,0],[1,0,1],[0,0,1]] },
+        /* anim +Z = modelo +Y (arriba) */
+        { n: [0, 0, 1], d: [0, 1, 0], c: [[0,0,1],[1,0,1],[1,1,1],[0,1,1]] },
+        { n: [0, 0, -1], d: [0, -1, 0], c: [[0,0,0],[0,1,0],[1,1,0],[1,0,0]] },
+      ];
+
+      const LADO = Number(new URLSearchParams(location.search).get("lado") || 256);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        preserveDrawingBuffer: true,
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(LADO, LADO);
+      renderer.setClearColor(0x000000, 0);
+      document.body.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+
+      /* Ortográfica y no en perspectiva: para un sprite conviene que el
+         personaje no cambie de escala con la profundidad. */
+      const camera = new THREE.OrthographicCamera(-24, 24, 24, -24, 0.1, 500);
+
+      /* El retrato sí va en perspectiva, y por eso lleva cámara aparte: el
+         horneado de animaciones necesita la ortográfica —un sprite no puede
+         cambiar de escala con la profundidad— pero una cara plana, sin fuga,
+         parece una calcomanía. */
+      const camaraRetrato = new THREE.PerspectiveCamera(35, 1, 0.1, 500);
+      camera.position.set(38, 30, 46);
+      camera.lookAt(0, 16, 0);
+
+      /* Las mismas intensidades que el visor de la pagina: si no, la cara
+         horneada de la tarjeta y el modelo en vivo no se parecerian. */
+      scene.add(new THREE.AmbientLight(0xffffff, 0.58));
+      const sol = new THREE.DirectionalLight(0xfff4e0, 0.42);
+      sol.position.set(40, 60, 30);
+      scene.add(sol);
+      const relleno = new THREE.DirectionalLight(0x88aaff, 0.16);
+      relleno.position.set(-40, 20, -30);
+      scene.add(relleno);
+
+      const material = new THREE.MeshLambertMaterial({
+        vertexColors: true,
+        side: THREE.DoubleSide,
+      });
+
+      function mallaDeHueso(voxels, palette, cx, cz, occ, off) {
+        const pos = [], nor = [], col = [];
+        const hay = (x, y, z) => occ.has(x + "," + y + "," + z);
+        for (const v of voxels) {
+          const mx = v[0], my = v[1], mz = v[2];
+          const ax = mx - cx - off[0], ay = mz - cz - off[1], az = my - off[2];
+          const c = palette[v[3]];
+          const r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+          for (const f of FACES) {
+            /* Cara pegada a otro voxel: no se ve, no se emite. */
+            if (hay(mx + f.d[0], my + f.d[1], mz + f.d[2])) continue;
+            for (const k of [0, 1, 2, 0, 2, 3]) {
+              const q = f.c[k];
+              pos.push(ax + q[0], ay + q[1], az + q[2]);
+              nor.push(f.n[0], f.n[1], f.n[2]);
+              col.push(r, g, b);
+            }
+          }
+        }
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+        geo.setAttribute("normal", new THREE.Float32BufferAttribute(nor, 3));
+        geo.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+        return geo;
+      }
+
+      let ANIMS = null;
+      let rig = null;
+      let animActual = null;
+
+      async function cargar() {
+        ANIMS = await (await fetch("anims.json")).json();
+      }
+
+      window.__prepararModelo = async function (nombre) {
+        if (!ANIMS) await cargar();
+        /* Se quita el SOPORTE, que es lo que se añadió a la escena; quitando
+           `root` —que cuelga del soporte— el modelo anterior se quedaba dentro
+           y los personajes se apilaban unos sobre otros. Con una carga de
+           página por modelo no se notaba: al hornear varios seguidos, sí. */
+        if (rig) scene.remove(rig.soporte);
+
+        const modelo = await (await fetch(`modelos/${nombre}.json`)).json();
+        const cx = modelo.dims[0] / 2, cz = modelo.dims[2] / 2;
+
+        const porHueso = {}, occ = new Set();
+        for (const v of modelo.voxels) {
+          const hueso = modelo.bones[v[4]];
+          (porHueso[hueso] || (porHueso[hueso] = [])).push(v);
+          occ.add(v[0] + "," + v[1] + "," + v[2]);
+        }
+
+        const root = new THREE.Group();
+        const grupos = {};
+        for (const hueso in porHueso) {
+          const g = new THREE.Group();
+          const piv = ANIMS.pivots[hueso];
+          const off = piv || [0, 0, 0];
+          if (piv) g.position.set(piv[0], piv[1], piv[2]);
+          g.add(new THREE.Mesh(mallaDeHueso(porHueso[hueso], modelo.palette, cx, cz, occ, off), material));
+          g.userData.pivot = piv || null;
+          root.add(g);
+          grupos[hueso] = g;
+        }
+        /* La animación es Z-arriba; el mundo de three, Y-arriba. */
+        root.rotation.x = -Math.PI / 2;
+
+        /* El giro va en un soporte aparte, y el modelo se centra dentro de él.
+           Girando `root` directamente, el personaje ORBITABA en vez de rotar:
+           su geometría no está en el origen —cada hueso se coloca en su
+           pivote— así que el eje de giro le pasaba por fuera y se salía del
+           encuadre en los ángulos intermedios. */
+        const soporte = new THREE.Group();
+        soporte.add(root);
+        scene.add(soporte);
+
+        /* Encuadre calculado del modelo, no fijado a ojo: cada personaje tiene
+           su altura según peinado y sombrero, y con un frustum fijo a unos se
+           les cortaban los pies. */
+        let caja = new THREE.Box3().setFromObject(root);
+        const centro = caja.getCenter(new THREE.Vector3());
+
+        /* Centrado horizontal sobre el eje de giro. La altura se respeta: el
+           personaje debe quedar de pie, no flotando por su punto medio. */
+        root.position.x -= centro.x;
+        root.position.z -= centro.z;
+
+        caja = new THREE.Box3().setFromObject(soporte);
+        const tam = caja.getSize(new THREE.Vector3());
+        const alturaMedia = (caja.min.y + caja.max.y) / 2;
+
+        /* El radio se toma de la diagonal horizontal, no del lado mayor: al
+           girar, la anchura aparente pasa de X a Z, y con el lado corto se
+           salía de cuadro a 45°. El margen deja sitio a los brazos abiertos. */
+        const diagonal = Math.hypot(tam.x, tam.z);
+        const radio = Math.max(diagonal, tam.y) * 0.62;
+
+        camera.left = -radio;
+        camera.right = radio;
+        camera.top = radio;
+        camera.bottom = -radio;
+        camera.updateProjectionMatrix();
+        camera.position.set(radio * 1.6, alturaMedia + radio * 1.1, radio * 2);
+        camera.lookAt(0, alturaMedia, 0);
+
+        rig = { root, soporte, grupos };
+        return { huesos: Object.keys(grupos).length, alto: +tam.y.toFixed(1) };
+      };
+
+      window.__prepararAnim = function (nombre) {
+        animActual = ANIMS.anims[nombre];
+        return animActual ? { fps: animActual.fps, fotogramas: animActual.frames.length } : null;
+      };
+
+      /**
+       * Encuadra solo la cabeza, de frente: el retrato de las tarjetas.
+       *
+       * Se mide la caja del hueso `head`, que arrastra consigo cara, ojos,
+       * cejas, pelo, barba y sombrero —todos se atan a ese hueso al componer el
+       * modelo—, así que el encuadre se ajusta solo a cada peinado en vez de
+       * recortar por una fracción fija: con un valor a ojo, a los de melena
+       * larga se les rebanaba el pelo y a los calvos les sobraba medio cuadro.
+       *
+       * En tres cuartos y en perspectiva, no de frente: de frente la cabeza es
+       * un rectángulo con dos ojos y no se le ve el volumen. Girado se ve que
+       * es un cuerpo con lados, y la perspectiva acerca la nariz y aleja la
+       * oreja, que es lo que le da relieve.
+       */
+      window.__retrato = function (opciones) {
+        const o = opciones || {};
+        const cabeza = rig.grupos.head;
+        if (!cabeza) return null;
+
+        rig.soporte.rotation.y = ((o.grados === undefined ? 32 : o.grados) * Math.PI) / 180;
+        rig.soporte.updateMatrixWorld(true);
+
+        const caja = new THREE.Box3().setFromObject(cabeza);
+        const c = caja.getCenter(new THREE.Vector3()); // solo para el modo automatico
+        const t = caja.getSize(new THREE.Vector3());
+
+        camaraRetrato.aspect = 1;
+        camaraRetrato.updateProjectionMatrix();
+        const semi = (camaraRetrato.fov * Math.PI) / 360;
+
+        /* La DISTANCIA es lo que se fija para que todos salgan al mismo zoom.
+         *
+         * Encuadrar cada cabeza para que llene el cuadro no iguala nada: las
+         * cabezas miden de catorce a diecisiete vóxeles según el peinado, así
+         * que al dejarlas todas del mismo alto en píxeles el que llevaba melena
+         * salía a 16 px por vóxel y el rapado a 20 — un 18 % de diferencia de
+         * zoom, y se notaba. A la misma distancia, un vóxel mide lo mismo en
+         * todos, que es la definición de estar al mismo zoom. */
+        const d = o.distancia || t.y / 2 / Math.tan(semi) + t.z / 2;
+
+        /* Se apunta al PIVOTE del hueso de la cabeza, no al centro de su caja.
+         *
+         * Todos los modelos comparten esqueleto, así que ese pivote está a la
+         * misma altura en los veintidós —16,97— mientras que el centro de la
+         * caja se mueve siete vóxeles según el peinado y la barba: la barba
+         * larga de Euclides tira la caja hacia abajo y su cara salía siete
+         * vóxeles más arriba que la de los demás. Apuntando al hueso, la cara
+         * cae a la misma altura en todos y lo que sobra de pelo o de barba
+         * asoma por donde tenga que asomar.
+         *
+         * El desplazamiento sube del cuello a media cara. */
+        const piv = cabeza.getWorldPosition(new THREE.Vector3());
+        const mira = new THREE.Vector3(piv.x, piv.y + 7.5, piv.z);
+        camaraRetrato.position.set(mira.x, mira.y, mira.z + d);
+        camaraRetrato.lookAt(mira);
+
+        /* Aquí se pinta, y con SU cámara. En este archivo solo dibujan
+           __interpolar y __fotograma, que son los que usa el horneado de
+           animaciones; el retrato es una foto suelta y tiene que pedirlo él. */
+        renderer.render(scene, camaraRetrato);
+
+        return { alto: +t.y.toFixed(2), ancho: +t.x.toFixed(2) };
+      };
+
+      /**
+       * Enseña solo la cabeza, o vuelve a enseñarlo todo.
+       *
+       * Sirve para medirla sin que los hombros ni el atuendo entren en la
+       * cuenta: son de anchos muy distintos según el oficio y falseaban la
+       * medida.
+       */
+      window.__soloCabeza = function (si) {
+        for (const h in rig.grupos) if (h !== "head") rig.grupos[h].visible = !si;
+        renderer.render(scene, camaraRetrato);
+        return true;
+      };
+
+      /**
+       * Caja de los píxeles pintados en el último dibujo.
+       *
+       * Esta es la medida que vale. La caja geométrica de la cabeza decía que
+       * dos modelos eran iguales —21,84 × 17 los dos, a la misma distancia— y en
+       * pantalla uno salía un 20 % más grande que el otro: en perspectiva no
+       * proyecta igual un vóxel de delante que uno de detrás, y el que marca el
+       * ancho de la caja no está a la misma profundidad en todos.
+       */
+      window.__silueta = function () {
+        const c = renderer.domElement;
+        const aux = document.createElement("canvas");
+        aux.width = c.width;
+        aux.height = c.height;
+        aux.getContext("2d").drawImage(c, 0, 0);
+        const d = aux.getContext("2d").getImageData(0, 0, aux.width, aux.height).data;
+
+        let x0 = Infinity, y0 = Infinity, x1 = -1, y1 = -1;
+        for (let y = 0; y < aux.height; y++)
+          for (let x = 0; x < aux.width; x++)
+            if (d[(y * aux.width + x) * 4 + 3] > 8) {
+              if (x < x0) x0 = x;
+              if (x > x1) x1 = x;
+              if (y < y0) y0 = y;
+              if (y > y1) y1 = y;
+            }
+
+        return x1 < 0 ? null : { ancho: x1 - x0 + 1, alto: y1 - y0 + 1 };
+      };
+
+      /* Giro horizontal del personaje. Se aplica al contenedor, no a la
+         cámara, para que la luz siga viniendo del mismo sitio: si girase la
+         cámara, el personaje quedaría iluminado igual por todos los lados y se
+         perdería el volumen. */
+      window.__angulo = function (grados) {
+        rig.soporte.rotation.y = (grados * Math.PI) / 180;
+        return true;
+      };
+
+      /**
+       * Pose intermedia entre dos fotogramas clave.
+       *
+       * Las animaciones vienen a 5-12 fps, que en pantalla se ve a saltos. Aquí
+       * se interpola con slerp entre los dos claves que rodean al instante
+       * pedido, igual que hace el motor en tiempo real, y así se puede hornear
+       * a los fps que se quiera sin inventar poses.
+       */
+      window.__interpolar = function (t) {
+        const fs = animActual.frames;
+        /* Los fotogramas sin datos se saltan: aplicarlos devolvería los huesos
+           a reposo y el personaje daría un tirón en mitad del bucle. */
+        const utiles = [];
+        for (let i = 0; i < fs.length; i++)
+          if (Object.keys(fs[i]).length) utiles.push(i);
+
+        const pos = t * utiles.length;
+        const i0 = Math.floor(pos) % utiles.length;
+        const i1 = (i0 + 1) % utiles.length;
+        const k = pos - Math.floor(pos);
+        const a = fs[utiles[i0]], b = fs[utiles[i1]];
+
+        const qa = new THREE.Quaternion(), qb = new THREE.Quaternion();
+        const pa = new THREE.Vector3(), pb = new THREE.Vector3();
+
+        for (const hueso in rig.grupos) {
+          const g = rig.grupos[hueso];
+          const piv = g.userData.pivot;
+          if (!piv) continue;
+          const fa = a[hueso], fb = b[hueso];
+
+          if (fa) { qa.set(fa.q[1], fa.q[2], fa.q[3], fa.q[0]); pa.set(piv[0]+fa.d[0], piv[1]+fa.d[1], piv[2]+fa.d[2]); }
+          else { qa.set(0,0,0,1); pa.set(piv[0], piv[1], piv[2]); }
+          if (fb) { qb.set(fb.q[1], fb.q[2], fb.q[3], fb.q[0]); pb.set(piv[0]+fb.d[0], piv[1]+fb.d[1], piv[2]+fb.d[2]); }
+          else { qb.set(0,0,0,1); pb.set(piv[0], piv[1], piv[2]); }
+
+          g.quaternion.copy(qa).slerp(qb, k);
+          g.position.copy(pa).lerp(pb, k);
+        }
+        renderer.render(scene, camera);
+        return true;
+      };
+
+      /* Fotogramas sin datos: los hay (idle trae 2 de 24 vacíos). Aplicar uno
+         devolvería todos los huesos a reposo y el personaje daría un tirón en
+         mitad del bucle. Se avisa para que el horneado los salte. */
+      window.__vacio = function (i) {
+        return Object.keys(animActual.frames[i % animActual.frames.length]).length === 0;
+      };
+
+      window.__fotograma = function (i) {
+        const fr = animActual.frames[i % animActual.frames.length];
+        for (const hueso in rig.grupos) {
+          const g = rig.grupos[hueso];
+          const piv = g.userData.pivot;
+          if (!piv) continue;
+          const bf = fr[hueso];
+          if (bf) {
+            /* El cuaternión viene [w,x,y,z] y three lo quiere (x,y,z,w). */
+            g.quaternion.set(bf.q[1], bf.q[2], bf.q[3], bf.q[0]);
+            g.position.set(piv[0] + bf.d[0], piv[1] + bf.d[1], piv[2] + bf.d[2]);
+          } else {
+            g.quaternion.set(0, 0, 0, 1);
+            g.position.set(piv[0], piv[1], piv[2]);
+          }
+        }
+        renderer.render(scene, camera);
+        return true;
+      };
+
+      window.__listo = cargar();
+    </script>
+  </body>
+</html>

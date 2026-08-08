@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ada Lovelace · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Ada Lovelace</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="lovelace">
+          <h1>Ada Lovelace</h1>
+          <button class="mas" type="button" data-fav="lovelace" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="lovelace"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Hija de Byron, a quien no llegó a conocer, y educada en matemáticas por decisión de su madre, que temía la vena poética del padre. A los diecisiete conoció a Babbage y su máquina diferencial.</p>
+        <p>Al traducir un artículo italiano sobre la máquina analítica añadió unas notas que ocupan el triple que el original. En la nota G está el algoritmo para calcular los números de Bernoulli con la máquina, y en las anteriores la idea que Babbage no llegó a formular: que aquello no servía solo para números, sino para cualquier cosa que se pudiera representar con símbolos.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1815 – 1852 · Inglaterra</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>10 de diciembre de 1815, Londres</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>27 de noviembre de 1852, Londres</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Reino Unido</dd>
+                    <dt>Área</dt>
+                    <dd>Cálculo mecánico, análisis</dd>
+                    <dt>Maestros</dt>
+                    <dd>Augustus De Morgan, Mary Somerville</dd>
+                    <dt>Colaborador</dt>
+                    <dd>Charles Babbage</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 9">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Notes to the Sketch of the Analytical Engine</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1843</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="turing" data-busca="alan turing inglaterra 1912 – 1954 definio que es calcular, y de paso invento el ordenador">
+            <a href="../../matematicas/matematicos/turing.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/turing-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Alan Turing</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="faraday" data-busca="michael faraday inglaterra 1791 – 1867 vio el campo antes de que nadie supiera escribirlo">
+            <a href="../../matematicas/matematicos/faraday.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/faraday-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Michael Faraday</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="bernoulli" data-busca="jacob bernoulli basilea, suiza 1655 – 1705 la ley de los grandes numeros y los numeros que llevan su apellido">
+            <a href="../../matematicas/matematicos/bernoulli.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/bernoulli-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Jacob Bernoulli</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

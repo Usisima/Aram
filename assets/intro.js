@@ -3,11 +3,11 @@
  * el contorno se borra. Autocontenido — inyecta sus propios estilos, asi que a
  * una pagina le basta con <script src="assets/intro.js"></script>.
  *
- * Sobre el SVG: dos de los cinco trazos van rellenos con un degradado radial y
- * no con blanco liso. Por eso el relleno se anima con fill-opacity y nunca
- * tocando `fill`: animar el color aplastaria el degradado. Esos dos trazos
- * usan el degradado tambien para el contorno, de modo que el trazo nace ya con
- * su luz final y el borde no cambia de golpe al desvanecerse.
+ * El logo se dibuja sobre la foto de fondo, en la tinta que marque el tema.
+ * Los dos degradados radiales que traia el SVG original estaban pensados para
+ * fondo negro y no servian para las dos versiones: se usa tinta plana. El
+ * relleno se sigue animando con fill-opacity y no tocando `fill`, que es
+ * justo lo que deja el color en manos del CSS.
  *
  * Los tiempos viven en cada path (data-inicio) y la duracion se calcula con la
  * longitud real medida en runtime, a velocidad de "boligrafo" constante. La
@@ -37,6 +37,11 @@
   /* Marca de "ya estuvimos en el sitio en esta pestana". */
   var CLAVE = "aram_visitado";
 
+  /* Ni la tinta del logo ni la foto se fijan aqui: salen de las variables que
+     define estilos.css (--tinta, --foto, --cielo), que cambian con el tema. Es
+     lo que hace que el trazo sea negro sobre el cielo palido del modo claro y
+     blanco sobre el cielo negro del oscuro, sin una linea de JavaScript. */
+
   /* ── Trazos ──
      El orden de `inicio` reproduce la coreografia original: primero el cuerpo
      izquierdo, luego los arcos derechos, y el travesano central al final. */
@@ -55,13 +60,11 @@
     {
       /* arcos derechos: antes eran dos paths, ahora uno solo */
       inicio: 0.5,
-      grad: "gA",
       d: "M245.1,139.7c4.5-25.5,9.2-51.9,14.7-77.7c2.9-14,6.7-28.8,14.4-42.2l0.6-1.1c1.4-2.5,3.1-5.6,6.7-6.7l3.6-1.1l0.3,3.7c0.1,0.9,0.1,1.7,0.2,2.5c0.1,1.7,0.2,3.3,0.5,4.9c1,7.4,6.9,13.3,14.4,14.2c8,0.8,14.5-3.5,17.1-11.3c1.8-4.9,1.3-10.3-1.2-14.8c-2.7-4.7-7.6-8-13.7-9.2c-10.4-2.1-21,0-31.5,6.4c-17.5,10.6-27.1,27.6-34.2,42.9c-11.6,25.1-18,51.5-22.7,74.1c-1.8,8.7-3.5,17.5-5.1,26.3c10.8-1.6,21.6-3,32.2-4.3l2.8-0.4C244.4,143.7,244.7,141.7,245.1,139.7z M201.9,192.5c-4.1,25-8.4,50.8-13.9,76.1c-3.2,14.8-6.7,26.9-12.9,38.3c-0.2,0.4-0.4,0.8-0.7,1.2c-1.6,3.1-3.8,7.3-9.6,8.7l-5.2,1.2l1.7-5.1c2.4-7.5,0.1-14.5-6.1-18.7c-2.7-1.8-5.8-2.7-9-2.7c-3.8-0.1-7.4,1.3-10.2,3.8c-5.7,5.2-7.5,11.9-5.1,19.3c2.3,7.2,8,11.5,17,12.7c13.4,1.8,25.8-2.3,38.1-12.6c10.4-8.7,18.6-20.2,26.6-37.3c10.4-22.3,15.3-46.8,20-70.5l0.6-3c1.7-8.4,3.3-16.8,4.8-25.2l-2,0.3l-3.4,0.5c-1.8,0.3-3.7,0.5-5.5,0.7l-3.5,0.4l-5.9,0.7l-2.9,0.4l-8.4,1l-2.9,0.4C203,186.3,202.4,189.4,201.9,192.5z",
     },
     {
       /* travesano central + detalles internos */
       inicio: 1.3,
-      grad: "gB",
       d: "M252,176.8c10.4-1.6,20.7-3.7,30.9-6.4c5.5,2,10.8,4.5,16,7.3c10.7,5.9,17.8,11.8,23,18.9c6,8.3,8.1,16.4,6.4,24.9c-1.1,5.4-3.9,8.7-8.4,9.8c-4.3,1.3-8.8-0.3-11.4-3.9c-2.5-3.4-2.4-8.1,0.2-11.4c1.7-2.3,4.4-3.7,7.3-3.7c1.4,0,2.8,0.3,4.1,0.8l5,2l-0.9-5.3c-0.7-4.3-3.7-6.2-5.7-7.4c-0.3-0.2-0.5-0.3-0.8-0.5c-7.3-4.7-15.2-7.6-24.9-10.4c-16.1-4.7-32.6-8.6-48.6-12.4l0.2-1.1 M202.9,151.3l0.5-3c-10.8-2.7-21.8-5.5-32.6-8.4v16.9c8.6-1.9,17.3-3.2,25.8-4.5l1.9-0.3 M140.5,98.9c-0.9-0.7-1.9-1.3-2.9-1.7c-1.4-0.6-2.9-0.9-4.5-0.9c-1.6,0-3.1,0.3-4.5,1c-3.1,1.6-5.4,4.6-6.2,8c-1.8,6.5-0.9,13.3,2.7,20.2c3.3,6.3,8,11.7,14.8,16.8v-12.4c-2.7-1.3-5.3-2.8-7.8-4.4l-0.6-0.4c-1.7-1.1-4-2.5-4.6-5.4L126,116l3.7-0.1h1.7c1.1,0,2.1,0,3.1-0.1c2.4-0.2,4.6-1.2,6.2-2.8c1.5-1.4,2.4-3.2,2.8-5.2c0.7-3.2-0.4-6.5-2.8-8.7L140.5,98.9z",
     },
     {
@@ -71,76 +74,61 @@
     },
   ];
 
-  /* Los degradados del SVG original, tal cual los exporto Illustrator. */
-  var PARADAS_A =
-    "<stop offset='0' stop-color='#000000'/>" +
-    "<stop offset='0.00738' stop-color='#090909'/>" +
-    "<stop offset='0.04768' stop-color='#373737'/>" +
-    "<stop offset='0.09309' stop-color='#626262'/>" +
-    "<stop offset='0.1419' stop-color='#888888'/>" +
-    "<stop offset='0.195' stop-color='#A8A8A8'/>" +
-    "<stop offset='0.2537' stop-color='#C4C4C4'/>" +
-    "<stop offset='0.32' stop-color='#DADADA'/>" +
-    "<stop offset='0.3974' stop-color='#EBEBEB'/>" +
-    "<stop offset='0.4931' stop-color='#F6F6F6'/>" +
-    "<stop offset='0.6274' stop-color='#FDFDFD'/>" +
-    "<stop offset='1' stop-color='#FFFFFF'/>";
-
-  var PARADAS_B =
-    "<stop offset='0' stop-color='#000000'/>" +
-    "<stop offset='0.2295' stop-color='#404040'/>" +
-    "<stop offset='0.6104' stop-color='#A6A6A6'/>" +
-    "<stop offset='0.8755' stop-color='#E6E6E6'/>" +
-    "<stop offset='1' stop-color='#FFFFFF'/>";
+  /* Clase en el <html> mientras el splash esta puesto. */
+  var BLOQUEO = "intro-bloqueo";
 
   var ESTILOS = [
-    ".intro{position:fixed;inset:0;z-index:100;background:#000;display:flex;",
-    "align-items:center;justify-content:center;transition:opacity 0.7s ease}",
+    /* La caja tiene que ser identica a la del fondo tenue de las paginas
+       (body::before en estilos.css): misma posicion y misma altura 100lvh. Con
+       `cover`, una caja de otra altura recorta y escala la foto de otra
+       manera, y al desvanecerse la intro el mar saltaba a otra altura. Con
+       `inset:0` la altura era la del viewport actual, que en el movil no
+       coincide con lvh mientras se ve la barra del navegador. */
+    ".intro{position:fixed;top:0;left:0;right:0;height:100vh;height:100lvh;",
+    "z-index:100;display:flex;",
+    "flex-direction:column;gap:4.375rem;",
+    "align-items:center;justify-content:center;transition:opacity 0.7s ease;",
+    /* El logo no se centra en la pantalla sino en la franja de cielo: con este
+       relleno abajo, la caja util es el 80% superior y el centro del logo cae
+       a un 40% de altura, despejado del mar. En lvh, la misma unidad que la
+       altura de la caja, o el 40% se mediria contra otra referencia. */
+    "padding-bottom:20vh;padding-bottom:20lvh;",
+    /* Durante la intro el gesto de desplazar no hace nada: ni arrastra la
+       pagina de debajo ni rebota contra el borde. */
+    "touch-action:none;overscroll-behavior:contain;",
+    /* Mismo encuadre que el fondo tenue de las paginas: al desvanecerse la
+       intro, la foto no salta de sitio, solo se lava. El color del cielo
+       debajo evita el destello mientras la imagen carga. */
+    "background:var(--cielo) var(--foto) center top/cover no-repeat}",
     ".intro-fuera{opacity:0;pointer-events:none}",
-    ".intro-logo{width:min(54vw,232px);height:auto;overflow:visible;display:block}",
+    "html." + BLOQUEO + ",html." + BLOQUEO + " body{overflow:hidden;",
+    "overscroll-behavior:none}",
+    /* El tope va en proporcion al viewport fijo de 980: con el de 188px, que
+       era el bueno para 390, el logo quedaba a menos de la mitad al reducirse
+       la pagina. 188 x 980/390 = 472. */
+    ".intro-logo{width:min(43.7vw,472px);height:auto;overflow:visible;display:block}",
     /* Arranca invisible: el marcado no puede saber la longitud de cada trazo,
        asi que sin esto se veria el logo entero contorneado hasta que el JS
        mide los paths. animar() lo devuelve a 1 ya con el trazo desplazado. */
-    ".intro-trazo{fill:#fff;fill-opacity:0;stroke:#fff;stroke-width:1.6;",
-    "stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0}",
-    ".intro-trazo[data-grad]{fill:var(--grad);stroke:var(--grad)}",
+    ".intro-trazo{fill:var(--tinta);fill-opacity:0;stroke:var(--tinta);",
+    "stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;",
+    "stroke-opacity:0}",
+    /* Arranca invisible y entra al terminar el trazado, ya desde JS. El
+       relleno a la izquierda compensa el espaciado de la ultima letra, que si
+       no descentra la palabra. */
+    ".intro-nombre{margin:0;font-size:1.75rem;letter-spacing:0.5em;",
+    "padding-left:0.5em;text-transform:uppercase;color:var(--tenue);",
+    "opacity:0}",
   ].join("");
 
-  /* ── Marcado ──
-     `prefijo` mantiene unicos los id de los degradados: son globales al
-     documento y la pagina de pruebas dibuja mas de un logo a la vez. */
+  /* ── Marcado ── */
 
-  function marcado(prefijo) {
-    var gA = prefijo + "-gA";
-    var gB = prefijo + "-gB";
-    var ids = { gA: gA, gB: gB };
-
-    var defs =
-      "<defs>" +
-      "<radialGradient id='" +
-      gA +
-      "' cx='224.1669' cy='163.91' r='133.7365' gradientUnits='userSpaceOnUse'>" +
-      PARADAS_A +
-      "</radialGradient>" +
-      "<radialGradient id='" +
-      gB +
-      "' cx='225.2052' cy='163.9378' r='127.1349'" +
-      " gradientTransform='matrix(0.9432 0.3321 -0.1788 0.5079 42.1031 5.8777)'" +
-      " gradientUnits='userSpaceOnUse'>" +
-      PARADAS_B +
-      "</radialGradient>" +
-      "</defs>";
-
+  function marcado() {
     var paths = TRAZOS.map(function (t) {
-      var extra = t.grad
-        ? " data-grad='" + t.grad + "' style=\"--grad:url(#" + ids[t.grad] + ')"'
-        : "";
       return (
         "<path class='intro-trazo' data-inicio='" +
         t.inicio +
-        "'" +
-        extra +
-        " d='" +
+        "' d='" +
         t.d +
         "'/>"
       );
@@ -149,7 +137,6 @@
     return (
       "<svg class='intro-logo' viewBox='0 0 334.4 327.8'" +
       " xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Aram'>" +
-      defs +
       paths +
       "</svg>"
     );
@@ -162,14 +149,6 @@
     var paths = Array.prototype.slice.call(
       svg.querySelectorAll(".intro-trazo"),
     );
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      paths.forEach(function (p) {
-        p.style.fillOpacity = "1";
-        p.style.strokeOpacity = "0";
-      });
-      return 0;
-    }
 
     /* Primera pasada: medir y dejar cada trazo completamente desplazado antes
        de devolverle la opacidad. Tiene que ser en este orden o se ve el logo
@@ -241,20 +220,54 @@
     var capa = document.createElement("div");
     capa.className = "intro";
     capa.setAttribute("aria-hidden", "true");
-    capa.innerHTML = marcado("intro");
+    capa.innerHTML = marcado() + "<p class='intro-nombre'>Ukishima</p>";
     document.body.appendChild(capa);
+    document.documentElement.classList.add(BLOQUEO);
 
     var fin = animar(capa.querySelector("svg"));
+    /* El nombre entra justo al cerrarse el ultimo trazo, no antes. */
+    nombrar(capa.querySelector(".intro-nombre"), fin);
 
     setTimeout(
       function () {
         capa.classList.add("intro-fuera");
+        /* El scroll se devuelve al empezar el fundido, no al final: para
+           cuando el dedo llega, la pagina ya responde. */
+        document.documentElement.classList.remove(BLOQUEO);
         setTimeout(function () {
-          if (capa.parentNode) capa.parentNode.removeChild(capa);
+          retirar(capa);
         }, DESVANECIDO);
       },
       fin * 1000 + PERMANENCIA,
     );
+  }
+
+  function nombrar(nombre, fin) {
+    if (!nombre) return;
+
+    if (!fin) {
+      nombre.style.opacity = "1";
+      return;
+    }
+
+    var DUR = 0.9;
+    nombre.animate(
+      [
+        { opacity: 0, transform: "translateY(8px)" },
+        { opacity: 1, transform: "none" },
+      ],
+      {
+        duration: DUR * 1000,
+        delay: Math.max(0, (fin - DUR) * 1000),
+        easing: "ease",
+        fill: "forwards",
+      },
+    );
+  }
+
+  function retirar(capa) {
+    if (capa && capa.parentNode) capa.parentNode.removeChild(capa);
+    document.documentElement.classList.remove(BLOQUEO);
   }
 
   /* ── Cuando toca ──
@@ -299,6 +312,15 @@
     if (tipo === "reload") return true;
     return !visitado();
   }
+
+  /* Al volver con el gesto de retroceso la pagina puede restaurarse desde la
+     bfcache exactamente como se dejo. Si se salio de ella mientras el splash
+     seguia en pantalla, vuelve montado y congelado. Los scripts no se
+     reejecutan en ese caso, asi que hay que retirarlo aqui. */
+  window.addEventListener("pageshow", function (ev) {
+    if (!ev.persisted) return;
+    retirar(document.querySelector(".intro"));
+  });
 
   var hoja = document.createElement("style");
   hoja.textContent = ESTILOS;

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Michael Faraday · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Michael Faraday</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="faraday">
+          <h1>Michael Faraday</h1>
+          <button class="mas" type="button" data-fav="faraday" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="faraday"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p><strong>No era matemático</strong>, y conviene decirlo: apenas manejaba álgebra. Encuadernador de aprendiz, llegó a la ciencia por los libros que encuadernaba y trabajó siempre con experimentos y con imágenes, no con ecuaciones.</p>
+        <p>Su idea de las líneas de fuerza —el espacio alrededor de un imán está él mismo en tensión— parecía cosa de aficionado hasta que Maxwell la escribió en ecuaciones y resultó ser la estructura de toda la física posterior. Está aquí por eso: por lo que hizo posible.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1791 – 1867 · Inglaterra</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>22 de septiembre de 1791, Newington Butts, Londres</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>25 de agosto de 1867, Hampton Court</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Inglesa</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Royal Institution</dd>
+                    <dt>Área</dt>
+                    <dd>Electromagnetismo, electroquímica</dd>
+                    <dt>Maestro</dt>
+                    <dd>Humphry Davy</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 5">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Experimental Researches in Electricity</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1839</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 5">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Experimental Researches in Electricity</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1839–1855</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 10">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">La historia química de una vela</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1861</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="newton" data-busca="isaac newton inglaterra 1643 – 1727 el calculo y la gravitacion, en un mismo libro">
+            <a href="../../matematicas/matematicos/newton.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/en.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/newton-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Isaac Newton</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

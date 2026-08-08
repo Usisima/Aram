@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Muhammad al-Juarismi · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Muhammad al-Juarismi</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="juarismi">
+          <h1>Muhammad al-Juarismi</h1>
+          <button class="mas" type="button" data-fav="juarismi" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="juarismi"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Trabajó en la Casa de la Sabiduría de Bagdad. Su tratado de <em>al-jabr</em> resuelve por orden las ecuaciones de primer y segundo grado con dos operaciones: <em>al-jabr</em>, pasar al otro lado lo que resta, y <em>al-muqabala</em>, cancelar lo que se repite. De la primera sale la palabra álgebra.</p>
+        <p>De la versión latina de su libro sobre el cálculo indio, que empieza «Dixit Algorizmi», sale la palabra algoritmo. Todo su álgebra está escrita con palabras: no hay un solo símbolo, ni siquiera para la incógnita.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">c. 780 – c. 850 · Corasmia, califato abasí</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>c. 780, Corasmia</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>c. 850, Bagdad</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>califato abasí</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Casa de la Sabiduría, Bagdad</dd>
+                    <dt>Área</dt>
+                    <dd>Álgebra, aritmética, astronomía, geografía</dd>
+                    <dt>Influencias</dt>
+                    <dd>Brahmagupta, Diofanto, Euclides</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Compendio de cálculo por completación y comparación</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">c. 820</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 5">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Sobre el cálculo con los números indios</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">c. 825</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 2">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Imagen de la Tierra</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">c. 833</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="fibonacci" data-busca="leonardo de pisa pisa, italia c. 1170 – c. 1250 trajo las cifras arabes a europa con un problema de conejos">
+            <a href="../../matematicas/matematicos/fibonacci.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/fibonacci-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Leonardo de Pisa</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cardano" data-busca="gerolamo cardano milan, italia 1501 – 1576 publico como resolver la cubica y abrio la puerta a los imaginarios">
+            <a href="../../matematicas/matematicos/cardano.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/cardano-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Gerolamo Cardano</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="hipatia" data-busca="hipatia de alejandria alejandria, egipto romano c. 355 – 415 edito y enseno lo que de otro modo se habria perdido">
+            <a href="../../matematicas/matematicos/hipatia.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/eg.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/hipatia-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Hipatia de Alejandría</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

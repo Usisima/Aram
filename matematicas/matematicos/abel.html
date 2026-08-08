@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Niels Henrik Abel · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Niels Henrik Abel</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="abel">
+          <h1>Niels Henrik Abel</h1>
+          <button class="mas" type="button" data-fav="abel" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="abel"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Con veintiún años demostró que la ecuación general de quinto grado no se resuelve por radicales, y pagó de su bolsillo la impresión del folleto. Para que cupiera en seis páginas lo dejó tan comprimido que casi nadie lo entendió.</p>
+        <p>Recorrió Europa buscando un puesto que nunca llegó. Murió de tuberculosis a los veintiséis años; dos días después salió de Berlín la carta que le ofrecía la cátedra.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1802 – 1829 · Noruega</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>5 de agosto de 1802, Nedstrand</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>6 de abril de 1829, Froland</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Noruega</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad de Cristianía</dd>
+                    <dt>Área</dt>
+                    <dd>Álgebra, análisis, funciones elípticas</dd>
+                    <dt>Influencias</dt>
+                    <dd>Cauchy, Legendre, Gauss</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 1">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Mémoire sur les équations algébriques</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1824</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 6">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Recherches sur les fonctions elliptiques</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1827</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 7">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Sur une propriété remarquable d'une classe d'équations</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1829</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="galois" data-busca="evariste galois francia 1811 – 1832 a los veinte anos dejo dicho por que la quintica no se resuelve">
+            <a href="../../matematicas/matematicos/galois.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/galois-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Évariste Galois</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="legendre" data-busca="adrien-marie legendre francia 1752 – 1833 minimos cuadrados, y la sospecha de como se reparten los primos">
+            <a href="../../matematicas/matematicos/legendre.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/legendre-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Adrien-Marie Legendre</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="gauss" data-busca="carl friedrich gauss brunswick, alemania 1777 – 1855 pocas cosas, pero maduras">
+            <a href="../../matematicas/matematicos/gauss.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/gauss-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Carl Friedrich Gauss</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cauchy" data-busca="augustin-louis cauchy francia 1789 – 1857 le puso al analisis los limites que le faltaban">
+            <a href="../../matematicas/matematicos/cauchy.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/cauchy-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Augustin-Louis Cauchy</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

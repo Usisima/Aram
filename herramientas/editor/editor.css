@@ -1,0 +1,715 @@
+/* Taller — la ventana de edición.
+ *
+ * Negro entero, a propósito: se mira un modelo iluminado y un cuadro de código,
+ * y cualquier cosa clara alrededor tira de la vista. La única fuente de luz de
+ * la ventana es el personaje.
+ *
+ * No comparte hoja con el sitio: aquí no hay cuadrícula, ni rem escalado, ni
+ * medidas en celdas. Es una herramienta, no una página.
+ */
+
+:root {
+  --negro: #000;
+  --carbon: #0b0b0b;
+  --panel: #121212;
+  --raya: #262626;
+  --texto: #e6e6e6;
+  --tenue: #8a8a8a;
+  --apagado: #4d4d4d;
+  --marca: #d9d9d9;
+  --mono: ui-monospace, "Cascadia Mono", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--negro);
+  color: var(--texto);
+  font: 13px/1.5 system-ui, "Segoe UI", sans-serif;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ── Barra ── */
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 40px;
+  padding: 0 0.75rem;
+  background: var(--carbon);
+  border-bottom: 1px solid var(--raya);
+  /* Sitio para arrastrar la ventana cuando va sin marco de navegador. */
+  -webkit-app-region: drag;
+}
+
+.barra button,
+.barra .aviso {
+  -webkit-app-region: no-drag;
+}
+
+.modos {
+  display: flex;
+  gap: 2px;
+}
+
+.modo {
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--raya);
+  border-radius: 999px;
+  background: none;
+  color: var(--tenue);
+  font: inherit;
+  cursor: pointer;
+}
+
+.modo.activo {
+  border-color: var(--marca);
+  color: var(--texto);
+}
+
+.aviso {
+  flex: 1;
+  color: var(--tenue);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.aviso.mal {
+  color: #e08b7a;
+}
+
+.accion,
+.mini {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--raya);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+.mini {
+  padding: 0.15rem 0.5rem;
+  color: var(--tenue);
+  font-size: 12px;
+}
+
+.accion:hover,
+.mini:hover,
+.modo:hover {
+  border-color: var(--marca);
+}
+
+/* ── Reparto de la ventana ── */
+
+.taller {
+  display: grid;
+  grid-template-columns: 200px 1fr 300px;
+  height: calc(100% - 40px);
+}
+
+.taller[data-panel="texto"] {
+  grid-template-columns: 240px 1fr;
+}
+
+.oculto {
+  display: none;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--carbon);
+  border-right: 1px solid var(--raya);
+}
+
+.columna.derecha {
+  border-right: 0;
+  border-left: 1px solid var(--raya);
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--raya);
+}
+
+h2 {
+  margin: 0;
+  color: var(--tenue);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Lista de personajes y de aportes ── */
+
+.gente {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.gente li {
+  padding: 0.35rem 0.6rem;
+  border-bottom: 1px solid #171717;
+  color: var(--tenue);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gente li:hover {
+  background: #151515;
+  color: var(--texto);
+}
+
+.gente li.activo {
+  background: #1c1c1c;
+  color: var(--texto);
+  box-shadow: inset 2px 0 0 var(--marca);
+}
+
+.gente li small {
+  display: block;
+  color: var(--apagado);
+  font-size: 11px;
+}
+
+/* Carpetas del menú de aportes: materia, y dentro sus temas; o el personaje que
+   lo firma. Plegadas, para que quepan. */
+.arbol .carpeta {
+  padding: 0.3rem 0.6rem;
+  color: var(--tenue);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.arbol .carpeta::before {
+  content: "▸ ";
+  color: var(--apagado);
+}
+
+.arbol .carpeta.abierta::before {
+  content: "▾ ";
+}
+
+.arbol .carpeta.sub {
+  padding-left: 1.4rem;
+  color: var(--apagado);
+}
+
+.arbol .hoja {
+  padding-left: 2.2rem;
+}
+
+.arbol li[hidden] {
+  display: none;
+}
+
+/* El panel de materias: lista, secciones, entradas y el cuadro de escribir. */
+.taller[data-panel="materias"] {
+  grid-template-columns: 190px 1fr 420px;
+}
+
+.columna.ancha .escrito {
+  padding: 0.6rem;
+}
+
+.listado {
+  min-width: 0;
+  background: var(--negro);
+}
+
+.listado .cabecera {
+  border-bottom: 1px solid var(--raya);
+}
+
+.arbol .entrada {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem;
+}
+
+.arbol .entrada .texto {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.arbol .entrada.divisor-fila .texto {
+  color: var(--apagado);
+  font-style: italic;
+}
+
+.arbol .entrada .flecha {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Escena 3D ── */
+
+.escena {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--negro);
+}
+
+.lienzo {
+  flex: 1;
+  min-height: 0;
+  cursor: grab;
+}
+
+.lienzo.girando {
+  cursor: grabbing;
+}
+
+.lienzo canvas {
+  display: block;
+}
+
+.pie {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--carbon);
+  border-top: 1px solid var(--raya);
+}
+
+.dato {
+  color: var(--apagado);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--tenue);
+  font-size: 12px;
+}
+
+.campo,
+select,
+textarea {
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--raya);
+  border-radius: 3px;
+  background: var(--negro);
+  color: var(--texto);
+  font: inherit;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.campo.corto {
+  width: 9ch;
+}
+
+.campo:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--marca);
+}
+
+/* ── Colores ── */
+
+.colores {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--raya);
+}
+
+.fila-color {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.fila-color label {
+  flex: 0 0 5.5rem;
+}
+
+.fila-color .paleta {
+  flex: 1;
+  min-width: 0;
+}
+
+input[type="color"] {
+  width: 34px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--raya);
+  border-radius: 3px;
+  background: none;
+  cursor: pointer;
+}
+
+/* ── Catálogo de piezas ── */
+
+.pestanas {
+  display: flex;
+  border-bottom: 1px solid var(--raya);
+}
+
+.pestana {
+  flex: 1;
+  padding: 0.4rem 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--apagado);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.pestana.activa {
+  border-bottom-color: var(--marca);
+  color: var(--texto);
+}
+
+[data-filtro] {
+  margin: 0.4rem 0.6rem;
+}
+
+/* Mandos para mover la pieza abierta: un vóxel por pulsación, en los seis
+   sentidos. Hacen falta porque hay piezas talladas para otro cráneo y no hay
+   forma de saber de antemano cuánto se les tiene que corregir. */
+.mover {
+  padding: 0.35rem 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--raya);
+}
+
+.rotulo {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--apagado);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rotulo b {
+  color: var(--tenue);
+  font-weight: 600;
+}
+
+.cruz {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.flecha {
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--raya);
+  border-radius: 3px;
+  background: var(--panel);
+  color: var(--tenue);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.flecha:hover {
+  border-color: var(--marca);
+  color: var(--texto);
+}
+
+.flecha.cero {
+  color: var(--apagado);
+}
+
+.cruz .dato {
+  margin-left: auto;
+}
+
+.catalogo {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  align-content: start;
+  padding: 0 0.6rem 0.6rem;
+  overflow-y: auto;
+}
+
+.pieza {
+  position: relative;
+  padding: 2px;
+  border: 1px solid var(--raya);
+  border-radius: 3px;
+  background: #0e0e0e;
+  cursor: pointer;
+}
+
+.pieza:hover {
+  border-color: var(--tenue);
+}
+
+.pieza.puesta {
+  border-color: var(--marca);
+  background: #1a1a1a;
+}
+
+.pieza img {
+  display: block;
+  width: 100%;
+  image-rendering: pixelated;
+}
+
+.pieza span {
+  display: block;
+  overflow: hidden;
+  color: var(--apagado);
+  font-size: 9px;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* El ajuste de un peinado al cráneo, medido: en rojo lo que deja hueco. */
+.pieza b {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  color: var(--apagado);
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.pieza b.flojo {
+  color: #e08b7a;
+}
+
+/* ── Editor de aportes ── */
+
+.escrito {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0.75rem;
+  overflow-y: auto;
+}
+
+.rejilla-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+
+.rejilla-campos label,
+label.alto {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+}
+
+.rejilla-campos .campo,
+.rejilla-campos select {
+  width: 100%;
+}
+
+label.alto {
+  display: flex;
+  flex: 1;
+  min-height: 180px;
+}
+
+/* Campo con su botón pegado, para crear la materia que se acaba de escribir. */
+.con-boton {
+  display: flex;
+  gap: 4px;
+}
+
+.con-boton .campo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Escribir a la izquierda, ver a la derecha. Dentro de la izquierda, el
+   enunciado arriba y la demostración —o la resolución— debajo. */
+.taller-latex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  flex: 1;
+  min-height: 260px;
+}
+
+.columna-latex {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.6rem;
+  min-height: 0;
+}
+
+.columna-latex label.alto {
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .taller-latex {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* La segunda fila de opciones, la de dentro del libro, va un poco apagada: es
+   lo opcional. */
+.rejilla-campos.segunda label {
+  color: var(--apagado);
+}
+
+/* Código y resultado uno al lado del otro: se escribe mirando lo que sale.
+   Si la ventana es estrecha, uno debajo del otro. */
+.escribiendo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  flex: 1;
+  min-height: 220px;
+}
+
+@media (max-width: 900px) {
+  .escribiendo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sin esto, el bloque que toca esconder no se esconde: el `display: grid` de
+   arriba es una regla de autor y le gana al `display: none` que el navegador
+   aplica a `[hidden]`. Los dos cuadros del ejercicio salían siempre. */
+.escribiendo[hidden] {
+  display: none;
+}
+
+/* El enunciado va solo, así que ocupa el ancho entero. */
+.escribiendo.uno {
+  grid-template-columns: 1fr;
+}
+
+.escribiendo > label.alto,
+.escribiendo > .previa {
+  min-height: 0;
+}
+
+.codigo {
+  flex: 1;
+  min-height: 160px;
+  padding: 0.6rem;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  tab-size: 2;
+}
+
+.previa {
+  min-height: 4.5rem;
+  padding: 0.6rem;
+  border: 1px solid var(--raya);
+  border-radius: 3px;
+  background: #080808;
+}
+
+.previa .etiqueta {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--apagado);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* KaTeX viene con el color del texto heredado; sobre negro hay que decirlo. */
+.previa .katex,
+.previa .katex-display {
+  color: var(--texto);
+}
+
+.previa .error {
+  color: #e08b7a;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border: 3px solid var(--carbon);
+  border-radius: 999px;
+}
+
+/* ── Panel de materias: etiquetas, prestadas y enlaces ── */
+
+/* Lo que sitúa a una entrada, en una línea: se lee de reojo y no estorba. */
+.etiquetas {
+  color: var(--apagado);
+  font-family: var(--mono, monospace);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Una entrada prestada de un libro: se edita igual, pero conviene saber que lo
+   que se cambia está escrito en otro sitio. */
+.arbol .entrada .texto.prestada {
+  color: var(--apagado);
+}
+
+/* Los enlaces se marcan a mano, uno por uno, de lo que ya existe. */
+.enlaces {
+  max-height: 9rem;
+  overflow-y: auto;
+}
+
+.enlaces .entrada {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.1rem;
+}
+
+.enlaces .entrada .texto {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 0.78rem;
+}

@@ -1,0 +1,472 @@
+{
+ "euclides": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_shaggyoldmann",
+  "barba": "beard_huge",
+  "piel": "brown1",
+  "color": "platinum",
+  "ojos": "marron"
+ },
+ "arquimedes": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_shaggy",
+  "barba": "beard_kitty_theEpic",
+  "piel": "brown2",
+  "color": "platinum",
+  "ojos": "castano"
+ },
+ "newton": {
+  "sexo": "m",
+  "oficio": "architect",
+  "cara": "m_head",
+  "pelo": "hair_kitty_longerfrizzcurls",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "castano"
+ },
+ "euler": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "hair_kitty_gentleman",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "marron"
+ },
+ "gauss": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "hair_kitty_monkcut",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "azul"
+ },
+ "riemann": {
+  "sexo": "m",
+  "oficio": "potter",
+  "cara": "m_head",
+  "pelo": "kittystyle_simple",
+  "barba": "beard_kitty_magi",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "cantor": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "kittystyle_buzzedshort",
+  "barba": "beard_kitty_burlyjack",
+  "piel": "white",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "hilbert": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head_bald",
+  "pelo": null,
+  "barba": "beard_kitty_Goatee",
+  "piel": "white",
+  "color": "sandy",
+  "ojos": "gris"
+ },
+ "noether": {
+  "sexo": "f",
+  "oficio": "architect",
+  "cara": "f_head",
+  "pelo": "kittystyle_prof",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "castano"
+ },
+ "cardano": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": null,
+  "barba": "beard_kitty_talian",
+  "piel": "brown1",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "kepler": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_spiralcurl",
+  "barba": "beard_kitty_biggoatee",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "marron"
+ },
+ "descartes": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "hair_kitty_long",
+  "barba": "chops_moustache",
+  "piel": "white",
+  "color": "black",
+  "ojos": "castano"
+ },
+ "fermat": {
+  "sexo": "m",
+  "oficio": "potter",
+  "cara": "m_head",
+  "pelo": "hair_kitty_longersimplecurls",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "marron"
+ },
+ "pascal": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "frosted_hair_kitty_eastlong",
+  "barba": null,
+  "piel": "white",
+  "color": "sandy",
+  "ojos": "gris"
+ },
+ "leibniz": {
+  "sexo": "m",
+  "oficio": "architect",
+  "cara": "m_head",
+  "pelo": "hair_kitty_omgsimplecurls",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "bernoulli": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "hair_kitty_fringed",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "verde"
+ },
+ "lagrange": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_workout",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "gris"
+ },
+ "laplace": {
+  "sexo": "m",
+  "oficio": "potter",
+  "cara": "m_head",
+  "pelo": "frosted_hair_2",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "azul"
+ },
+ "legendre": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "kittystyle_papineau",
+  "barba": null,
+  "piel": "white",
+  "color": "sandy",
+  "ojos": "marron"
+ },
+ "fourier": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "m_hair_3",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "faraday": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "m_hair_old_1",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "gris"
+ },
+ "pitagoras": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_thor",
+  "barba": "m_beard_epic",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "hipatia": {
+  "sexo": "f",
+  "oficio": "cleric",
+  "cara": "f_head",
+  "pelo": "hair_kitty_rogue",
+  "barba": null,
+  "piel": "brown1",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "juarismi": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_loki",
+  "barba": "kittybeard_adventure",
+  "piel": "brown1",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "fibonacci": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "hair_kitty_eastlong",
+  "barba": "m_chin_beard",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "galois": {
+  "sexo": "m",
+  "oficio": "architect",
+  "cara": "m_head",
+  "pelo": "hair_kitty_boycut",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "abel": {
+  "sexo": "m",
+  "oficio": "potter",
+  "cara": "m_head",
+  "pelo": "kittystyle_straycurls",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "azul"
+ },
+ "cauchy": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_simple",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "gris"
+ },
+ "poincare": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "kittystyle_1",
+  "barba": "m_beard",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "kovalevskaya": {
+  "sexo": "f",
+  "oficio": "architect",
+  "cara": "f_head",
+  "pelo": "kittystyle_lowbun",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "castano"
+ },
+ "godel": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "neutralstyle_1",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "turing": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "neutralstyle_3",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "neumann": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "kittystyle_buzzed",
+  "barba": null,
+  "piel": "white",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "tales": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_dwarfkin",
+  "barba": "beard_kitty_mightypus",
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "gris"
+ },
+ "diofanto": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "hair_kitty_talian",
+  "barba": "beard_kitty_Seito",
+  "piel": "brown1",
+  "color": "brown",
+  "ojos": "marron"
+ },
+ "brahmagupta": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "neutralstyle_loki",
+  "barba": "beard_kitty_orkus",
+  "piel": "brown2",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "khayyam": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "neutral_kittystyle_papineau",
+  "barba": "kittybeard_burnsgoatee",
+  "piel": "brown1",
+  "color": "black",
+  "ojos": "marron"
+ },
+ "tartaglia": {
+  "sexo": "m",
+  "oficio": "mason",
+  "cara": "m_head",
+  "pelo": "kittystyle_spiral",
+  "barba": "beard_kitty_macho",
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "viete": {
+  "sexo": "m",
+  "oficio": "potter",
+  "cara": "m_head",
+  "pelo": "hair_kitty_splithairsonality",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "gris"
+ },
+ "napier": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "hair_kitty_loki",
+  "barba": "beard_kitty_magi",
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "azul"
+ },
+ "weierstrass": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "kittystyle_buzzed",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "azul"
+ },
+ "germain": {
+  "sexo": "f",
+  "oficio": "architect",
+  "cara": "f_head",
+  "pelo": "hair_kitty_simpleshag",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "castano"
+ },
+ "lovelace": {
+  "sexo": "f",
+  "oficio": "potter",
+  "cara": "f_head",
+  "pelo": "hair_kitty_frizzcurls",
+  "barba": null,
+  "piel": "white",
+  "color": "brown",
+  "ojos": "marron"
+ },
+ "kolmogorov": {
+  "sexo": "m",
+  "oficio": "engineer",
+  "cara": "m_head",
+  "pelo": "kittystyle_papineau",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "gris"
+ },
+ "erdos": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "m_hair_old_1",
+  "barba": null,
+  "piel": "white",
+  "color": "platinum",
+  "ojos": "castano"
+ },
+ "hardy": {
+  "sexo": "m",
+  "oficio": "cleric",
+  "cara": "m_head",
+  "pelo": "m_hair_4",
+  "barba": null,
+  "piel": "white",
+  "color": "sandy",
+  "ojos": "azul"
+ },
+ "ramanujan": {
+  "sexo": "m",
+  "oficio": "carpenter",
+  "cara": "m_head",
+  "pelo": "m_hair_1",
+  "barba": null,
+  "piel": "brown2",
+  "color": "black",
+  "ojos": "marron"
+ }
+}

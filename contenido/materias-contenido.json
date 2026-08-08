@@ -1,0 +1,699 @@
+{
+ "conjuntos": {
+  "definiciones": [
+   {
+    "id": "pertenencia",
+    "nombre": "Pertenencia",
+    "cuerpo": "        <p>Un conjunto queda determinado por sus elementos: $x \\in A$ dice que $x$ es uno de ellos, y dos conjuntos con los mismos elementos son el mismo.</p>"
+   }
+  ],
+  "teoremas": [
+   {
+    "divisor": "Funciones"
+   },
+   {
+    "id": "de-morgan",
+    "nombre": "Leyes de De Morgan",
+    "cuerpo": "$$(A \\cup B)^{c} = A^{c} \\cap B^{c}$$",
+    "demostracion": "        <p>Un elemento está fuera de la unión exactamente cuando no está en ninguno de los dos, que es lo mismo que estar en los dos complementos.</p>"
+   }
+  ],
+  "ejercicios": [
+   {
+    "id": "ej-partes",
+    "nombre": "Conjunto de partes",
+    "cuerpo": "Prueba que si $A$ tiene $n$ elementos, entonces $\\mathcal{P}(A)$ tiene $2^{n}$.",
+    "resolucion": "        <p>Por inducción sobre $n$: al añadir un elemento, cada subconjunto de antes da dos —con él y sin él—, así que la cuenta se dobla.</p>"
+   }
+  ],
+  "libros": [
+   {
+    "libro": "halmos",
+    "papel": "basico"
+   }
+  ],
+  "demostraciones": [
+   {
+    "divisor": "Cardinalidad"
+   },
+   "cantor-diagonal"
+  ],
+  "articulos": [
+   {
+    "id": "nota-russell",
+    "nombre": "Sobre la paradoja de Russell",
+    "cuerpo": "        <p>El conjunto de los conjuntos que no se pertenecen a sí mismos no puede existir. Es lo que obliga a que la teoría sea axiomática y no ingenua.</p>"
+   }
+  ]
+ },
+ "calculo1": {
+  "libros": [
+   {
+    "libro": "spivak",
+    "papel": "basico"
+   },
+   {
+    "libro": "thomas",
+    "papel": "basico"
+   },
+   {
+    "libro": "arizmendi",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "arizmendi2",
+    "papel": "basico"
+   },
+   {
+    "libro": "apostol2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "banach",
+    "papel": "complementario"
+   },
+   {
+    "libro": "kuratowski",
+    "papel": "complementario"
+   }
+  ],
+  "definiciones": [],
+  "teoremas": [
+   {
+    "divisor": "Propiedades básicas de los números"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p1"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p2"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p3"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p4"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p5"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p6"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p7"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p8"
+   },
+   {
+    "de": "spivak",
+    "ref": "spivak-p9"
+   }
+  ]
+ },
+ "algebra-superior1": {
+  "libros": [
+   {
+    "libro": "cardenas",
+    "papel": "basico"
+   },
+   {
+    "libro": "nachbin",
+    "papel": "basico"
+   },
+   {
+    "libro": "dodge",
+    "papel": "complementario"
+   },
+   {
+    "libro": "friedberg",
+    "papel": "complementario"
+   },
+   {
+    "libro": "gentile",
+    "papel": "complementario"
+   },
+   {
+    "libro": "grimaldi",
+    "papel": "complementario"
+   },
+   {
+    "libro": "grossman",
+    "papel": "complementario"
+   },
+   {
+    "libro": "halmos2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "hoffman",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lang2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "niven",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "geometria-analitica1": {
+  "libros": [
+   {
+    "libro": "galarza",
+    "papel": "basico"
+   },
+   {
+    "libro": "efimov",
+    "papel": "basico"
+   },
+   {
+    "libro": "bracho",
+    "papel": "basico"
+   },
+   {
+    "libro": "preston",
+    "papel": "basico"
+   },
+   {
+    "libro": "eves",
+    "papel": "complementario"
+   },
+   {
+    "libro": "hilbert",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "geometria-moderna1": {
+  "libros": [
+   {
+    "libro": "hartshorne",
+    "papel": "complementario"
+   },
+   {
+    "libro": "prenowitz",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "algebra-superior2": {
+  "libros": [
+   {
+    "libro": "cardenas",
+    "papel": "basico"
+   },
+   {
+    "libro": "nachbin",
+    "papel": "basico"
+   },
+   {
+    "libro": "dodge2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "friedberg",
+    "papel": "complementario"
+   },
+   {
+    "libro": "gentile",
+    "papel": "complementario"
+   },
+   {
+    "libro": "grimaldi",
+    "papel": "complementario"
+   },
+   {
+    "libro": "grossman",
+    "papel": "complementario"
+   },
+   {
+    "libro": "halmos2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "hoffman",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lang2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "niven",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "calculo2": {
+  "libros": [
+   {
+    "libro": "spivak",
+    "papel": "basico"
+   },
+   {
+    "libro": "thomas",
+    "papel": "basico"
+   },
+   {
+    "libro": "arizmendi",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "apostol2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "banach",
+    "papel": "complementario"
+   },
+   {
+    "libro": "kuratowski",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "geometria-analitica2": {
+  "libros": [
+   {
+    "libro": "galarza",
+    "papel": "basico"
+   },
+   {
+    "libro": "efimov",
+    "papel": "basico"
+   },
+   {
+    "libro": "bracho",
+    "papel": "basico"
+   },
+   {
+    "libro": "preston",
+    "papel": "basico"
+   },
+   {
+    "libro": "eves",
+    "papel": "complementario"
+   },
+   {
+    "libro": "hilbert",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "algebra-lineal1": {
+  "libros": [
+   {
+    "libro": "hoffman",
+    "papel": "basico"
+   },
+   {
+    "libro": "friedberg",
+    "papel": "basico"
+   },
+   {
+    "libro": "curtis",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "nomizu",
+    "papel": "basico"
+   },
+   {
+    "libro": "mora",
+    "papel": "basico"
+   },
+   {
+    "libro": "birkhoff",
+    "papel": "complementario"
+   },
+   {
+    "libro": "jacobson",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lluis",
+    "papel": "complementario"
+   },
+   {
+    "libro": "nickerson",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "calculo3": {
+  "libros": [
+   {
+    "libro": "marsden",
+    "papel": "basico"
+   },
+   {
+    "libro": "thomas",
+    "papel": "basico"
+   },
+   {
+    "libro": "apostol",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant2",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "buck",
+    "papel": "complementario"
+   },
+   {
+    "libro": "budak",
+    "papel": "complementario"
+   },
+   {
+    "libro": "crowell",
+    "papel": "complementario"
+   },
+   {
+    "libro": "fulks",
+    "papel": "complementario"
+   },
+   {
+    "libro": "spivak2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "spivak3",
+    "papel": "complementario"
+   },
+   {
+    "libro": "stein",
+    "papel": "complementario"
+   },
+   {
+    "libro": "widder",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "algebra-lineal2": {
+  "libros": [
+   {
+    "libro": "curtis",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "nomizu",
+    "papel": "basico"
+   },
+   {
+    "libro": "mora",
+    "papel": "basico"
+   },
+   {
+    "libro": "lluis",
+    "papel": "complementario"
+   },
+   {
+    "libro": "nickerson",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "calculo4": {
+  "libros": [
+   {
+    "libro": "marsden",
+    "papel": "basico"
+   },
+   {
+    "libro": "thomas",
+    "papel": "basico"
+   },
+   {
+    "libro": "apostol",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant",
+    "papel": "basico"
+   },
+   {
+    "libro": "courant2",
+    "papel": "basico"
+   },
+   {
+    "libro": "lang",
+    "papel": "basico"
+   },
+   {
+    "libro": "buck",
+    "papel": "complementario"
+   },
+   {
+    "libro": "budak",
+    "papel": "complementario"
+   },
+   {
+    "libro": "crowell",
+    "papel": "complementario"
+   },
+   {
+    "libro": "fulks",
+    "papel": "complementario"
+   },
+   {
+    "libro": "spivak2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "spivak4",
+    "papel": "complementario"
+   },
+   {
+    "libro": "stein",
+    "papel": "complementario"
+   },
+   {
+    "libro": "widder",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "ecuaciones-diferenciales1": {
+  "libros": [
+   {
+    "libro": "arnold",
+    "papel": "basico"
+   },
+   {
+    "libro": "blanchard",
+    "papel": "basico"
+   },
+   {
+    "libro": "braun",
+    "papel": "basico"
+   },
+   {
+    "libro": "derrick",
+    "papel": "basico"
+   },
+   {
+    "libro": "boyce",
+    "papel": "complementario"
+   },
+   {
+    "libro": "hasser",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "algebra-moderna1": {
+  "libros": [
+   {
+    "libro": "herstein",
+    "papel": "basico"
+   },
+   {
+    "libro": "fraleigh",
+    "papel": "basico"
+   },
+   {
+    "libro": "rotman",
+    "papel": "basico"
+   },
+   {
+    "libro": "jacobson2",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lang3",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "analisis1": {
+  "libros": [
+   {
+    "libro": "apostol",
+    "papel": "basico"
+   },
+   {
+    "libro": "rudin",
+    "papel": "basico"
+   },
+   {
+    "libro": "kolmogorov",
+    "papel": "basico"
+   },
+   {
+    "libro": "bartle",
+    "papel": "basico"
+   },
+   {
+    "libro": "jost",
+    "papel": "basico"
+   },
+   {
+    "libro": "wheeden",
+    "papel": "basico"
+   },
+   {
+    "libro": "brezis",
+    "papel": "complementario"
+   },
+   {
+    "libro": "dieudonne",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lieb",
+    "papel": "complementario"
+   },
+   {
+    "libro": "royden",
+    "papel": "complementario"
+   },
+   {
+    "libro": "schwartz",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "variable-compleja1": {
+  "libros": [
+   {
+    "libro": "ahlfors",
+    "papel": "basico"
+   },
+   {
+    "libro": "churchill",
+    "papel": "basico"
+   },
+   {
+    "libro": "orive",
+    "papel": "basico"
+   },
+   {
+    "libro": "marsden",
+    "papel": "basico"
+   },
+   {
+    "libro": "markusevich",
+    "papel": "complementario"
+   },
+   {
+    "libro": "titchmarsh",
+    "papel": "complementario"
+   }
+  ]
+ },
+ "analisis2": {
+  "libros": [
+   {
+    "libro": "rudin",
+    "papel": "basico"
+   },
+   {
+    "libro": "wheeden",
+    "papel": "basico"
+   },
+   {
+    "libro": "apostol",
+    "papel": "basico"
+   },
+   {
+    "libro": "bartle",
+    "papel": "basico"
+   },
+   {
+    "libro": "jost",
+    "papel": "basico"
+   },
+   {
+    "libro": "kolmogorov",
+    "papel": "basico"
+   },
+   {
+    "libro": "brezis",
+    "papel": "complementario"
+   },
+   {
+    "libro": "dieudonne",
+    "papel": "complementario"
+   },
+   {
+    "libro": "lieb",
+    "papel": "complementario"
+   },
+   {
+    "libro": "royden",
+    "papel": "complementario"
+   },
+   {
+    "libro": "schwartz",
+    "papel": "complementario"
+   }
+  ]
+ }
+}

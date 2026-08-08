@@ -1,3 +1,37 @@
+# Lo que no se sube.
+#
+# El repositorio ES el sitio: GitHub Pages publica la raíz tal cual, así que
+# todo lo que esté aquí acaba servido por internet. Se queda fuera lo que no
+# hace falta para LEER el sitio: el material de trabajo del que salen las cosas
+# —que pesa diez veces más que el sitio entero— y lo que las herramientas dejan
+# al pasar.
+#
+# Nada de esto se borra del disco: sigue donde está, solo que no viaja al
+# repositorio. Lo que sí se publica —los modelos compuestos, las animaciones,
+# los retratos, las fuentes en .woff2— vive en assets/ y se sube entero, para
+# que el sitio se pueda leer sin nada más.
+
+# ── Material de trabajo, del que salen los modelos ──
+# El paquete de peinados (60 MB, un mod de Cube World), las piezas del juego en
+# .qb (38 MB) y el paquete de la fuente en formato de imprenta. De aquí salen
+# los modelos y los .woff2 que sí están en assets/.
+herramientas/voxel/cy_hairstyles/
+herramientas/voxel/qb/
+herramientas/originales/
+
+# Lo compuesto a partir de eso, que se vuelve a generar cuando haga falta:
+# modelos intermedios, catálogos de piezas y hojas de contactos.
+herramientas/voxel/modelos/
+herramientas/voxel/_catalogo/
+herramientas/voxel/_hoja/
+herramientas/voxel/*.png
+herramientas/voxel/anims.json
+herramientas/voxel/three.min.js
+herramientas/editor/piezas/
+
+# ── Del sistema y de las herramientas ──
+__pycache__/
+*.pyc
 .DS_Store
 Thumbs.db
 .vscode/

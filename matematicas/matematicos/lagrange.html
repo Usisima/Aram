@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Joseph-Louis Lagrange · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Joseph-Louis Lagrange</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="lagrange">
+          <h1>Joseph-Louis Lagrange</h1>
+          <button class="mas" type="button" data-fav="lagrange" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="lagrange"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Nació en Turín como Giuseppe Luigi Lagrangia y acabó en París. Entre medias sucedió a Euler en la Academia de Berlín, por recomendación del propio Euler.</p>
+        <p>De su <em>Mécanique analytique</em> presumía de que no contenía ni una figura: había convertido la mecánica en análisis puro. Presidió la comisión que creó el sistema métrico decimal.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1736 – 1813 · Turín, Italia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>25 de enero de 1736, Turín</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>10 de abril de 1813, París</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Reino de Cerdeña; después Francia</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Academia de Berlín, École Polytechnique</dd>
+                    <dt>Área</dt>
+                    <dd>Mecánica, teoría de números, álgebra</dd>
+                    <dt>Discípulos</dt>
+                    <dd>Joseph Fourier, Siméon Poisson</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 11">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Mécanique analytique</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1788</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 8">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Réflexions sur la résolution algébrique des équations</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1771</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="euler" data-busca="leonhard euler suiza 1707 – 1783 escribio mas que nadie, y ciego escribio aun mas">
+            <a href="../../matematicas/matematicos/euler.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/euler-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Leonhard Euler</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="laplace" data-busca="pierre-simon laplace francia 1749 – 1827 la mecanica del cielo y la probabilidad como forma de razonar">
+            <a href="../../matematicas/matematicos/laplace.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/laplace-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pierre-Simon Laplace</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cauchy" data-busca="augustin-louis cauchy francia 1789 – 1857 le puso al analisis los limites que le faltaban">
+            <a href="../../matematicas/matematicos/cauchy.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/cauchy-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Augustin-Louis Cauchy</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="galois" data-busca="evariste galois francia 1811 – 1832 a los veinte anos dejo dicho por que la quintica no se resuelve">
+            <a href="../../matematicas/matematicos/galois.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/galois-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Évariste Galois</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="fourier" data-busca="joseph fourier francia 1768 – 1830 cualquier onda es una suma de senos, por rara que parezca">
+            <a href="../../matematicas/matematicos/fourier.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/fourier-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Joseph Fourier</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

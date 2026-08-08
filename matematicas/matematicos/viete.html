@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>François Viète · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">François Viète</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="viete">
+          <h1>François Viète</h1>
+          <button class="mas" type="button" data-fav="viete" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="viete"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>Abogado y consejero de Enrique IV, hacía matemáticas en el tiempo libre. Su idea es la que cambia todo: usar vocales para las incógnitas y consonantes para las cantidades conocidas. Con eso una ecuación deja de ser un problema concreto y pasa a ser una forma que se manipula.</p>
+        <p>Descifró para la corona francesa el código español de quinientos signos. Felipe II, convencido de que era indescifrable, acusó a Francia de brujería ante el Papa.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1540 – 1603 · Francia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>1540, Fontenay-le-Comte</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>23 de febrero de 1603, París</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Francia</dd>
+                    <dt>Instituciones</dt>
+                    <dd>corte de Enrique IV</dd>
+                    <dt>Área</dt>
+                    <dd>Álgebra, trigonometría, criptoanálisis</dd>
+                    <dt>Influencias</dt>
+                    <dd>Diofanto, Cardano</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 6">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">In artem analyticem isagoge</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1591</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 0">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Canon mathematicus</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1579</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="descartes" data-busca="rene descartes francia 1596 – 1650 cruzo el algebra con la geometria y le puso ejes al plano">
+            <a href="../../matematicas/matematicos/descartes.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/descartes-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">René Descartes</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="fermat" data-busca="pierre de fermat francia 1607 – 1665 magistrado de oficio, y el aficionado que dejo tres siglos de trabajo">
+            <a href="../../matematicas/matematicos/fermat.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/fermat-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Pierre de Fermat</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="cardano" data-busca="gerolamo cardano milan, italia 1501 – 1576 publico como resolver la cubica y abrio la puerta a los imaginarios">
+            <a href="../../matematicas/matematicos/cardano.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/it.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/cardano-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Gerolamo Cardano</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

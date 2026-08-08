@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Andréi Kolmogórov · Aram</title>
+    <link rel="icon" href="../../assets/favicon.svg" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../estilos.css" />
+    <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
+    <script src="../../assets/tema.js"></script>
+    <script defer src="../../assets/sinred.js"></script>
+    <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
+    <script defer src="../../assets/voxel3d/three.min.js"></script>
+    <script defer src="../../assets/voxel3d.js"></script>
+    <script src="../../assets/favoritos.js"></script>
+  </head>
+  <body>
+    <script src="../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../matematicas/matematicos/index.html">Matemáticos</a>
+        <span class="sep">/</span>
+        <span class="actual">Andréi Kolmogórov</span>
+      </nav>
+
+      <main>
+        <div class="titulo-fila" data-ficha="kolmogorov">
+          <h1>Andréi Kolmogórov</h1>
+          <button class="mas" type="button" data-fav="kolmogorov" aria-pressed="false"></button>
+        </div>
+
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="kolmogorov"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
+        </div>
+
+        <p>En 1933, con treinta años, publicó un librito de setenta páginas que define la probabilidad como una medida sobre un espacio: sucesos, una sigma-álgebra y una función que suma uno. Con eso la probabilidad dejó de ser un arte de contar casos y pasó a ser una rama del análisis.</p>
+        <p>Trabajó además en turbulencia, en sistemas dinámicos y en teoría de la información, y dedicó los últimos años a la enseñanza secundaria: montó internados para chicos con talento a los que daba clase él mismo.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1903 – 1987 · Rusia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>25 de abril de 1903, Tambov</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>20 de octubre de 1987, Moscú</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Unión Soviética</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad Estatal de Moscú</dd>
+                    <dt>Área</dt>
+                    <dd>Probabilidad, turbulencia, complejidad, topología</dd>
+                    <dt>Discípulos</dt>
+                    <dd>Arnold, Sinái, Gelfand</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+
+        <h2>Libros</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 9">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Grundbegriffe der Wahrscheinlichkeitsrechnung</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1933</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 8">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Elementos de la teoría de funciones y del análisis funcional</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1954</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <article class="libro" style="--tono: 4">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Local structure of turbulence in incompressible fluid</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1941</span>
+            </article>
+          </li>
+          <li>
+            <article class="libro" style="--tono: 1">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Three approaches to the definition of the quantity of information</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">1965</span>
+            </article>
+          </li>
+        </ul>
+
+        <h2>Relaciones</h2>
+
+        <ul class="caras">
+          <li data-id="poincare" data-busca="henri poincare francia 1854 – 1912 el ultimo que abarco las matematicas enteras">
+            <a href="../../matematicas/matematicos/poincare.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/fr.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/poincare-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Henri Poincaré</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="neumann" data-busca="john von neumann hungria 1903 – 1957 toco todo lo que se dejaba tocar, y lo dejo fundado">
+            <a href="../../matematicas/matematicos/neumann.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/hu.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/neumann-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">John von Neumann</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="hilbert" data-busca="david hilbert prusia, alemania 1862 – 1943 puso los cimientos y repartio el trabajo del siglo xx">
+            <a href="../../matematicas/matematicos/hilbert.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/de.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/hilbert-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">David Hilbert</span>
+              </span>
+            </a>
+          </li>
+          <li data-id="bernoulli" data-busca="jacob bernoulli basilea, suiza 1655 – 1705 la ley de los grandes numeros y los numeros que llevan su apellido">
+            <a href="../../matematicas/matematicos/bernoulli.html">
+              <span class="cara-foto" style="--bandera: url(../../assets/banderas/ch.svg)">
+                <img class="cara-retrato" src="../../assets/voxel/bernoulli-cara.webp" alt="" width="256" height="256" decoding="async" />
+              </span>
+              <span class="cara-pie">
+                <span class="cara-nombre">Jacob Bernoulli</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>

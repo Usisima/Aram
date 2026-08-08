@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Teoría de Conjuntos · Aram</title>
+    <link rel="icon" href="../../../assets/favicon.svg" />
+    <link rel="manifest" href="../../../manifest.json" />
+    <link rel="apple-touch-icon" href="../../../assets/icono-192.png" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="../../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../../estilos.css" />
+    <link rel="stylesheet" href="../../../assets/katex/katex.min.css" />
+    <script src="../../../assets/tema.js"></script>
+    <script defer src="../../../assets/sinred.js"></script>
+    <script src="../../../assets/rejilla.js"></script>
+    <script defer src="../../../assets/desplegable.js"></script>
+  </head>
+  <body>
+    <script src="../../../assets/intro.js"></script>
+
+    <div class="envoltorio">
+      <nav class="miga">
+        <a href="../../../index.html">Inicio</a>
+        <span class="sep">/</span>
+        <a href="../../../matematicas/index.html">Matemáticas</a>
+        <span class="sep">/</span>
+        <a href="../../../matematicas/materias/index.html">Materias</a>
+        <span class="sep">/</span>
+        <span class="actual">Teoría de Conjuntos</span>
+      </nav>
+
+      <main>
+        <h1>Teoría de Conjuntos</h1>
+
+        <h2>Definiciones</h2>
+
+        <p class="simple" id="pertenencia"><b>Pertenencia.</b> Un conjunto queda determinado por sus elementos: <!--m:$x \in A$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">x \in A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span><!--/m--> dice que <!--m:$x$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span><!--/m--> es uno de ellos, y dos conjuntos con los mismos elementos son el mismo.</p>
+
+        <h2>Teoremas</h2>
+
+        <details class="grupo">
+          <summary class="grupo-titulo">Funciones</summary>
+          <div class="grupo-cuerpo">
+            <div class="dentro">
+        <details class="prueba">
+          <summary class="prueba-enunciado">
+          <fieldset class="enunciado" id="de-morgan">
+            <legend class="etiqueta">Leyes de De Morgan</legend>
+            <!--m:$$(A \cup B)^{c} = A^{c} \cap B^{c}$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><msup><mo stretchy="false">)</mo><mi>c</mi></msup><mo>=</mo><msup><mi>A</mi><mi>c</mi></msup><mo>∩</mo><msup><mi>B</mi><mi>c</mi></msup></mrow><annotation encoding="application/x-tex">(A \cup B)^{c} = A^{c} \cap B^{c}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7144em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7144em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span></span></span></span></span></span></span></span></span><!--/m-->
+          </fieldset>
+          </summary>
+          <div class="prueba-cuerpo">
+            <div class="dentro">
+              <p>Un elemento está fuera de la unión exactamente cuando no está en ninguno de los dos, que es lo mismo que estar en los dos complementos.</p>
+            </div>
+          </div>
+        </details>
+
+            </div>
+          </div>
+        </details>
+
+        <h2>Ejercicios</h2>
+
+        <details class="prueba">
+          <summary class="prueba-enunciado">
+          <fieldset class="enunciado" id="ej-partes">
+            <legend class="etiqueta">Conjunto de partes</legend>
+            Prueba que si <!--m:$A$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span><!--/m--> tiene <!--m:$n$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><!--/m--> elementos, entonces <!--m:$\mathcal{P}(A)$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">P</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{P}(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathcal" style="margin-right:0.0822em;">P</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span><!--/m--> tiene <!--m:$2^{n}$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6644em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span><!--/m-->.
+          </fieldset>
+          </summary>
+          <div class="prueba-cuerpo">
+            <div class="dentro">
+              <p>Por inducción sobre <!--m:$n$--><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span><!--/m-->: al añadir un elemento, cada subconjunto de antes da dos —con él y sin él—, así que la cuenta se dobla.</p>
+            </div>
+          </div>
+        </details>
+
+        <h2>Bibliografía básica</h2>
+
+        <ul class="libros libros-fila">
+          <li>
+            <a class="libro" href="../../../matematicas/libros/halmos.html" style="--tono: 1">
+              <span class="libro-tapa">
+                <span class="libro-filete"></span>
+                <span class="libro-titulo">Teoría intuitiva de los conjuntos</span>
+                <span class="libro-filete"></span>
+              </span>
+              <span class="libro-pie">Paul Halmos · 1960</span>
+            </a>
+          </li>
+        </ul>
+
+        <h2>Artículos</h2>
+
+        <fieldset class="enunciado" id="nota-russell">
+          <legend class="etiqueta">Sobre la paradoja de Russell</legend>
+                  <p>El conjunto de los conjuntos que no se pertenecen a sí mismos no puede existir. Es lo que obliga a que la teoría sea axiomática y no ingenua.</p>
+        </fieldset>
+      </main>
+    </div>
+  </body>
+</html>
