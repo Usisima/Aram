@@ -69,23 +69,31 @@
    * que el navegador pueda dibujar. Al terminar se quita el alto en línea y el
    * panel vuelve a medir lo que mida su contenido.
    */
-  function animar(panel, desde, hasta, alAcabar) {
+  function animar(panel, desde, hasta, alAcabar, margenDesde) {
     /* El panel no lleva relleno —lo lleva su caja de dentro—, así que aquí solo
        se mueve el alto: cerrar llega a cero de verdad y abrir descubre sin
        arrastrar el texto. */
+    /* El estado de partida se pone sin transición: el margen que compensa el
+       cuadre tiene que estar puesto ya en el primer fotograma, y con la
+       transición activa se iba animando desde cero —o sea, no compensaba nada
+       justo cuando hacía falta—. */
+    panel.style.transition = "none";
     panel.style.overflow = "hidden";
     panel.style.height = desde + "px";
+    if (margenDesde) panel.style.marginBottom = margenDesde + "px";
 
     /* Leer una medida obliga a recalcular la maqueta aquí mismo. Sin esto el
        navegador junta las dos asignaciones de alto en una sola y no queda
        transición que animar. */
     void panel.offsetHeight;
+    panel.style.transition = "";
 
     var reserva;
 
     /* Y el viaje no empieza hasta que el navegador vaya al día. */
     alCalmarse(function () {
       panel.style.height = hasta + "px";
+      if (margenDesde) panel.style.marginBottom = "0px";
       /* La red de seguridad se arma aquí y no antes: contada desde antes de
          arrancar, saltaba con la animación aún a medias. */
       reserva = setTimeout(fin, DURA + 120);
@@ -96,6 +104,8 @@
       clearTimeout(reserva);
       panel.style.overflow = "";
       panel.style.height = "";
+      panel.style.marginBottom = "";
+      panel.style.transition = "";
       if (alAcabar) alAcabar();
     }
 
@@ -127,27 +137,63 @@
      mitad de él: de eso se encarga la espera de `animar`. */
   function abrir(det) {
     var panel = panelDe(det);
+    var main = document.querySelector("main");
+    var antes = main.getBoundingClientRect().height;
+
     det.open = true;
     recuadrar();
-    /* Y otra vez al terminar. El alto que se mide aquí es el bueno, pero
-       mientras el panel viaja lo de debajo se coloca contra un alto que todavía
-       no es el final; sin este repaso la página se quedaba con las cajas hasta
-       nueve píxeles fuera de raya, y el error crecía con cada una. */
-    animar(panel, 0, panel.getBoundingClientRect().height, recuadrar);
+
+    var alto = panel.getBoundingClientRect().height;
+    var crece = main.getBoundingClientRect().height - antes;
+
+    /* Que al pulsar no se mueva nada. Cuadrar contra el panel abierto mueve
+       además hasta media celda los márgenes de lo que viene debajo, y esa media
+       celda se descontaba de golpe nada más pulsar.
+
+       Si la página crece MENOS de lo que mide el panel, el panel arranca ya con
+       esa diferencia puesta. Si crece más, no hay alto negativo del que
+       arrancar: se cubre con un margen negativo debajo del panel, que sube lo
+       de abajo lo justo y viaja hasta cero con el mismo recorrido. */
+    var sobra = crece - alto;
+    animar(panel, Math.max(0, -sobra), alto, null, sobra > 0 ? -sobra : 0);
   }
 
-  /* Al revés, y sin recuadrar hasta el final: rejilla.js deja el panel con un
-     número entero de celdas de alto, así que quitarlo de en medio no descoloca
-     nada de lo que viene debajo y no hay salto que disimular. */
+  /* Al revés, y cuadrando ANTES de empezar en vez de al terminar.
+     La página estaba cuadrada contra el panel abierto; recuadrarla cuando ya se
+     había cerrado movía lo de debajo media celda con la animación terminada, y
+     eso se ve como un brinco. Cuadrando con el panel plegado —un momento, sin
+     pintar— lo de debajo queda ya en su sitio definitivo y solo tiene que
+     esperar a que el panel termine de encogerse. */
   function cerrar(det) {
     var panel = panelDe(det);
+    var main = document.querySelector("main");
+    var antes = main.getBoundingClientRect().height;
+
+    /* Sin transición mientras se hace la cuenta: devolverle la altura al panel
+       dispararía su propia animación de vuelta, y la de cerrar arrancaba desde
+       cero —es decir, el panel desaparecía de golpe y no se animaba nada—. */
+    panel.style.transition = "none";
+    panel.style.overflow = "hidden";
+    panel.style.height = "0px";
+    recuadrar();
+    var despues = main.getBoundingClientRect().height;
+
+    /* De cuánto es el viaje: no el alto del panel, sino todo lo que la página
+       encoge al plegarlo. Cuadrar contra el panel cerrado mueve además hasta
+       media celda los márgenes de lo que viene debajo, y arrancando desde el
+       alto del panel esa media celda se descontaba de golpe en el primer
+       fotograma. Metida en el viaje, no se ve: nada se mueve al pulsar y todo
+       llega a su sitio a la vez. */
+    var desde = Math.max(0, antes - despues);
+    panel.style.height = desde + "px";
+    void panel.offsetHeight;
+    panel.style.transition = "";
 
     function plegar() {
       det.open = false;
-      recuadrar();
     }
 
-    animar(panel, panel.getBoundingClientRect().height, 0, plegar);
+    animar(panel, desde, 0, plegar);
   }
 
   /**

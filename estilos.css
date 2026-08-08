@@ -553,7 +553,7 @@ summary.pastilla::-webkit-details-marker {
    ni nada que lo mueva, para que cerrarlo llegue a cero de verdad y abrirlo no
    arrastre el texto. Lo que lleva dentro va en `.dentro`, que no se mueve. */
 .demo-cuerpo {
-  transition: height 0.32s ease;
+  transition: height 0.32s ease, margin-bottom 0.32s ease;
 }
 
 .demo-cuerpo > .dentro {
@@ -568,7 +568,18 @@ summary.pastilla::-webkit-details-marker {
 
 /* El relleno de abajo ya separa, y este margen descuadraría el alto del panel,
    que rejilla.js deja en celdas enteras. */
-.demo-cuerpo > .dentro > :last-child {
+/* El último de dentro no deja margen debajo.
+   No es cuestión de gusto: mientras el panel se anima va recortado, y un
+   recorte impide que los márgenes de dentro se escapen por abajo. Al soltarlo
+   al final se escapaban de golpe —medido: el panel pasaba de 75 px a 56, justo
+   una celda— y todo lo que venía después saltaba un renglón. Sin margen que
+   escaparse, el panel mide lo mismo durante el viaje y al terminarlo.
+
+   El hueco de debajo lo pone el relleno del panel, que sí va por dentro y
+   rejilla.js ajusta para dejarlo en un número entero de celdas. */
+.demo-cuerpo > .dentro > :last-child,
+.prueba-cuerpo > .dentro > :last-child,
+.grupo-cuerpo > .dentro > :last-child {
   margin-bottom: 0;
 }
 
@@ -1077,7 +1088,7 @@ summary.pastilla > * {
 .prueba-cuerpo {
   /* Crece en vez de aparecer, como las pastillas: el alto lo lleva
      desplegable.js en píxeles, que `auto` no se interpola. */
-  transition: height 0.32s ease;
+  transition: height 0.32s ease, margin-bottom 0.32s ease;
 }
 
 .prueba-cuerpo > .dentro {
@@ -1135,7 +1146,7 @@ summary.pastilla > * {
 }
 
 .grupo-cuerpo {
-  transition: height 0.32s ease;
+  transition: height 0.32s ease, margin-bottom 0.32s ease;
 }
 
 .grupo-cuerpo > .dentro {
@@ -1525,4 +1536,46 @@ summary.pastilla:active,
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.15em;
+}
+
+/* ── La marca ──
+   El mismo dibujo de la intro y del icono, en pequeño y en tinta plana. Va en
+   dos sitios: al principio de la miga, ocupando el lugar de la palabra
+   «Inicio», y en el pie. No es adorno: es lo que dice de quién es esto sin
+   tener que leerlo. */
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  color: var(--tenue);
+  text-decoration: none;
+  /* Sin transición de color: el resto del sitio tampoco las tiene. */
+}
+
+.marca:hover,
+.marca:focus-visible {
+  color: var(--acento);
+}
+
+.marca-dibujo {
+  display: block;
+  width: var(--celda);
+  height: var(--celda);
+}
+
+/* ── El pie ──
+   Una raya, la marca y el nombre. Cierra la columna y no dice nada más: lo que
+   hay que leer está arriba. */
+
+.pie {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* Dos celdas de aire y nada más. Llevaba una raya arriba y se quitó: era del
+     color de la cuadrícula, así que sobre la cuadrícula no se veía, y en
+     cualquier otro color pesaba más que lo que separa. */
+  margin-top: calc(var(--celda) * 2);
+  color: var(--tenue);
+  font-size: 0.8125rem;
+  line-height: var(--celda);
 }
