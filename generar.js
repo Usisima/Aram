@@ -225,11 +225,16 @@ function conFichas(html) {
 }
 
 function conRaiz(html, raiz) {
-  return html
-    .replace(/\b(href|src)="([^"]+)"/g, (todo, atributo, url) =>
-      DE_FUERA.test(url) ? todo : `${atributo}="${raiz}${url}"`)
-    .replace(/url\(([^)"']+)\)/g, (todo, url) =>
-      DE_FUERA.test(url) ? todo : `url(${raiz}${url})`);
+  /* Solo `href` y `src`. Una `url()` escrita en el `style=` de la página no
+     la resuelve la página, sino la hoja de estilos que la usa, y
+     `estilos.css` está en la raíz: poniéndole los `../` de la página se
+     salía del sitio —las banderas acabaron en un 404 del dominio— y desde
+     la raíz vale igual para todas. */
+  return html.replace(
+    /\b(href|src)="([^"]+)"/g,
+    (todo, atributo, url) =>
+      DE_FUERA.test(url) ? todo : `${atributo}="${raiz}${url}"`,
+  );
 }
 
 /** Mete n espacios delante de cada línea que tenga algo. */
