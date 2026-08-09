@@ -7,12 +7,11 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/katex/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/katex/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/katex/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin />
@@ -21,6 +20,7 @@
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -45,43 +45,47 @@
           <button class="mas" type="button" data-fav="kepler" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Puso los planetas en elipses y dejó una conjetura de naranjas.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/de.svg" alt="" width="24" height="16" decoding="async" />Sacro Imperio, Alemania</span></li>
-          <li><span class="dato">1571 – 1630</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="kepler"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>Heredó de Tycho Brahe las mejores medidas de posiciones planetarias que existían. Pasó años intentando cuadrar la órbita de Marte con circunferencias, hasta que aceptó lo que decían los números: era una elipse.</p>
-          <p>Se ganaba la vida haciendo horóscopos y defendió a su madre de un juicio por brujería que duró seis años. Las tres leyes que llevan su nombre son las que Newton explicaría después con la gravitación.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>27 de diciembre de 1571, Weil der Stadt</dd>
-              <dt>Fallecimiento</dt>
-              <dd>15 de noviembre de 1630, Ratisbona</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Sacro Imperio Romano Germánico</dd>
-              <dt>Instituciones</dt>
-              <dd>Universidad de Tubinga, corte imperial de Praga</dd>
-              <dt>Área</dt>
-              <dd>Astronomía, geometría, óptica</dd>
-              <dt>Maestro</dt>
-              <dd>Michael Mästlin</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="kepler"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>Heredó de Tycho Brahe las mejores medidas de posiciones planetarias que existían. Pasó años intentando cuadrar la órbita de Marte con circunferencias, hasta que aceptó lo que decían los números: era una elipse.</p>
+        <p>Se ganaba la vida haciendo horóscopos y defendió a su madre de un juicio por brujería que duró seis años. Las tres leyes que llevan su nombre son las que Newton explicaría después con la gravitación.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1571 – 1630 · Sacro Imperio, Alemania</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>27 de diciembre de 1571, Weil der Stadt</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>15 de noviembre de 1630, Ratisbona</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Sacro Imperio Romano Germánico</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad de Tubinga, corte imperial de Praga</dd>
+                    <dt>Área</dt>
+                    <dd>Astronomía, geometría, óptica</dd>
+                    <dt>Maestro</dt>
+                    <dd>Michael Mästlin</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Conjeturas</h2>
 
@@ -101,7 +105,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 7">
               <span class="libro-tapa">
@@ -109,10 +113,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
                 <span class="libro-titulo">Astronomia nova</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1609</span>
-              </span>
+              <span class="libro-pie">1609</span>
             </article>
           </li>
           <li>
@@ -122,17 +123,14 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
                 <span class="libro-titulo">Harmonices Mundi</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1619</span>
-              </span>
+              <span class="libro-pie">1619</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 7">
               <span class="libro-tapa">
@@ -140,17 +138,14 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
                 <span class="libro-titulo">Nova stereometria doliorum vinariorum</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1615</span>
-              </span>
+              <span class="libro-pie">1615</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="newton" data-busca="isaac newton inglaterra 1643 – 1727 el calculo y la gravitacion, en un mismo libro">
             <a href="../../matematicas/matematicos/newton.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/en.svg)">

@@ -46,31 +46,6 @@
   font-display: block;
 }
 
-/* ── La segunda letra: DM Sans ──
-   Artemisia es de imprenta griega y se lee de maravilla en párrafo, pero no
-   está hecha para lo diminuto: a 7 u 8 px, con versalitas y entreletra, sus
-   remates se emborronan y un rótulo de sección se convierte en una mancha.
-   Todo lo que NO se lee sino que se consulta —migas, rótulos, cuentas,
-   insignias, fechas, etiquetas de datos— pasa a esta grotesca, que a ese
-   tamaño sigue siendo nítida. La prosa, los títulos y las matemáticas no se
-   tocan: siguen en Artemisia, que es de lo que va el sitio.
-
-   Es un archivo variable (100–1000) y por eso basta uno: los pesos salen del
-   mismo, sin descargar una variante por cada uno. 36 KB en total.
-
-   OFL 1.1, la misma licencia que Artemisia, y va servida desde assets/fuentes/
-   como todo lo demás: el sitio tiene que leerse sin red. */
-@font-face {
-  font-family: "DM Sans";
-  src: url(assets/fuentes/dmsans.woff2) format("woff2-variations");
-  font-weight: 100 1000;
-  font-style: normal;
-  /* `block` por lo mismo que Artemisia: rejilla.js espera a `document.fonts
-     .ready`, que cubre también a esta, así que la espera es la que ya había y
-     no hay un cambio de letra a mitad de página. */
-  font-display: block;
-}
-
 /* ── Temas ──
    Dos versiones de la misma foto: la original (cielo pálido, mar oscuro) para
    el modo claro, y la misma con la luminosidad invertida en LAB (cielo negro,
@@ -84,79 +59,24 @@
    el usuario elige a mano. */
 
 :root {
-  /* Papel, no pantalla. Antes esto era un gris frío (#e8e8e8, el del cielo de
-     la fotografía de entrada) y el sitio se leía como una hoja de cálculo: un
-     cuaderno no es gris, es hueso, crema o arena. La familia entera se mueve
-     al lado cálido —fondos de marfil, tinta de un negro con tierra dentro— y
-     con eso la cuadrícula deja de parecer una retícula de software y empieza a
-     parecer papel pautado, que es lo que el sitio dice ser.
-
-     El texto tampoco es negro puro: #141413 tiene la misma fuerza y no abre el
-     agujero que un #000 hace sobre marfil. */
-  --fondo: #ece5d8;
-  --papel: #fdfbf6;
-  --texto: #1b1a16;
-  --tenue: #605a4e;
-  --apagado: #8f8776;
-  /* Las líneas, finísimas y de bajo contraste: una tinta al 10 %, no un gris
-     opaco. Al ir en alfa valen igual sobre el fondo de la página que sobre el
-     relleno de un recuadro, que es un punto más claro. */
-  --linea: rgba(27, 26, 22, 0.12);
-  /* El marco de un enunciado sí tiene que verse: es lo que dice dónde empieza
-     y acaba lo que se afirma. Aun así es una línea, no un trazo — antes eran
-     2 px de negro puro y eran lo que más pesaba de toda la página. */
-  --marco: rgba(27, 26, 22, 0.16);
-  --acento: #141413;
-  /* El único color del sitio, y contado. NO se usa de relleno ni para teñir
-     familias de cosas: solo para lo que está vivo —el foco del teclado, la
-     entrada a la que apunta la dirección, lo que está marcado—. Si aparece en
-     más de un sitio por pantalla, sobra en alguno.
-     Es el tono más oscuro de la arcilla, no el de marca: sobre marfil el claro
-     se queda en 2,4:1 y este llega a 3,4:1, que es lo que pide un trazo. */
-  --realce: #b8552f;
-
-  /* Los tres tintes de superficie, uno por familia. No tiñen texto ni bordes:
-     son el papel de la tarjeta cuando esa tarjeta pertenece a una de las tres
-     cosas de las que va el sitio —quién escribe, qué se estudia, de dónde
-     sale—. Lavados hasta el punto en que el texto negro encima sigue dando
-     más de 12:1, o sea: se notan y no se leen. */
-  --tinte-gente: #f6e9e0;
-  --tinte-materia: #e9eee6;
-  --tinte-libro: #f5ecd9;
-
-  /* Y la sombra, en dos pasos y siempre corta: una tarjeta se levanta un
-     milímetro del papel, no flota. En tinta y no en negro, que sobre arena un
-     negro puro deja un halo gris. */
-  --alza: 0 1px 2px rgb(27 26 22 / 0.05), 0 2px 8px rgb(27 26 22 / 0.06);
-  --alza-alta: 0 2px 4px rgb(27 26 22 / 0.06), 0 8px 20px rgb(27 26 22 / 0.10);
-  --cielo: #ece5d8;
-  --mar: #1b1a16;
-  --tinta: #1b1a16;
+  /* El gris del cielo de la fotografía de la intro, muestreado de ella y sin
+     el tinte azul: así la pantalla de entrada y la página son el mismo fondo y
+     no hay salto al terminar la animación. */
+  --fondo: #e8e8e8;
+  --papel: #f7f7f7;
+  --texto: #000000;
+  --tenue: #595959;
+  --apagado: #8c8c8c;
+  --linea: #cccccc;
+  --acento: #000000;
+  --cielo: #e8e8e8;
+  --mar: #000000;
+  --tinta: #000000;
   --foto: url(assets/fondo-claro.webp);
   --sombra: none;
-  /* La franja del nombre en las tarjetas: avena, no gris. Es el escalón que
-     separa la bandera del texto y ahora es del mismo material que el papel. */
-  --franja: #e6dcc7;
-  /* La cuadrícula, en la tinta del texto y muy rebajada: sobre papel cálido un
-     negro puro al 8 % tira a azul y se ve la trama antes que el texto. */
-  --rejilla: rgba(27, 26, 22, 0.06);
-  /* La esquina, generosa. Una tarjeta de esquina viva es una caja; con radio
-     se convierte en algo que se puede coger. */
-  --radio: 1.125rem;
-  /* Tres radios, de lo pequeño a lo grande. Las formas del sitio son blandas:
-     una tarjeta lleva esquina generosa y una pastilla, poca. La cápsula está
-     reservada a dos cosas —el campo de búsqueda y el «ver todos» de una
-     cabecera—, que es donde se pide pulsar. */
-  --radio-chico: 0.375rem;
-  --radio-capsula: 999px;
-
-  /* La escala de separación, explicada más abajo. Todos son múltiplos o
-     mitades de celda: la cuadrícula manda también aquí. */
-  --aire-xl: calc(var(--celda) * 2);
-  --aire-l: calc(var(--celda) * 1.5);
-  --aire-m: var(--celda);
-  --aire-s: calc(var(--celda) / 2);
-  --aire-xs: calc(var(--celda) / 4);
+  --franja: #d6d6d6;
+  --rejilla: rgba(0, 0, 0, 0.08);
+  --radio: 1rem;
   /* Lado de la celda de la cuadrícula. Es también la interlínea del texto: de
      ahí que los renglones caigan sobre las rayas. En rem y no en em para que
      no dependa del cuerpo de letra de cada elemento. */
@@ -165,55 +85,24 @@
      para recortarla a celdas enteras: aquí está el único sitio donde se
      escribe. */
   --ancho-max: 40rem;
-  /* La segunda medida: la de RECORRER. `--ancho-max` es la de leer —veinte
-     celdas, unos sesenta y cinco caracteres— y no se toca. Esta es para lo que
-     no se lee renglón a renglón: galerías, bandas de dos columnas y los
-     títulos de sección, que son los que dicen de qué ancho es la página.
-
-     Treinta y cuatro y no cualquier número: la diferencia con la columna tiene
-     que ser PAR para que las dos, centradas en el mismo eje, caigan sobre las
-     mismas rayas verticales. Y con treinta y cuatro entran cinco tarjetas por
-     fila —seis celdas cada una más una de calle—. */
-  --medida-ancha: calc(var(--celda) * 34);
-  /* Las dos letras, cada una con su papel. `--lectura` es lo que se lee y lo
-     que titula; `--rotulo` es lo que se consulta y nunca se lee de corrido. */
-  --lectura: "GFS Artemisia", Georgia, "Times New Roman", serif;
-  --rotulo: "DM Sans", "Segoe UI", system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-tema="claro"]) {
-  /* El modo noche también es cálido: un negro con tierra dentro, no el #000
-     de antes. Sobre negro puro el texto blanco vibra y las líneas o no se ven
-     o se ven demasiado; con este casi-negro la página se lee como papel
-     apagado y la cuadrícula vuelve a ser una trama y no un enrejado. */
-  --fondo: #191713;
-  --papel: #24211c;
-  --texto: #f7f3ea;
-  --tenue: #b4ac9c;
-  --apagado: #8b8375;
-  --linea: rgba(247, 243, 234, 0.13);
-  --marco: rgba(247, 243, 234, 0.18);
-  /* Los mismos tres tintes, hundidos: de noche una superficie no se aclara,
-     se calienta. */
-  --tinte-gente: #2c2420;
-  --tinte-materia: #202722;
-  --tinte-libro: #2b2619;
-  /* Y la sombra pierde sentido sobre negro: lo que levanta una tarjeta es que
-     su papel es más claro que el fondo, no una sombra que no se ve. */
-  --alza: none;
-  --alza-alta: none;
-  --acento: #faf9f5;
-  /* Aquí sí el tono claro de la arcilla: sobre el casi-negro llega a 5,6:1 y
-     el oscuro se apagaría. Mismo papel, distinto valor — como todo lo demás. */
-  --realce: #d97757;
-  --cielo: #191713;
-  --mar: #f7f3ea;
-  --tinta: #f7f3ea;
+  --fondo: #000000;
+  --papel: #000000;
+  --texto: #ffffff;
+  --tenue: #a6a6a6;
+  --apagado: #737373;
+  --linea: #404040;
+  --acento: #ffffff;
+  --cielo: #000000;
+  --mar: #ffffff;
+  --tinta: #ffffff;
   --foto: url(assets/fondo-oscuro.webp);
   --sombra: none;
-  --franja: #2e2c27;
-  --rejilla: rgba(250, 249, 245, 0.07);
+  --franja: #1c1c1c;
+  --rejilla: rgba(255, 255, 255, 0.10);
   }
 }
 
@@ -222,30 +111,20 @@
    sobre todo --rejilla, que al faltar aquí hacía que el botón dejara la
    cuadrícula del tema claro sobre fondo negro. */
 :root[data-tema="oscuro"] {
-  --fondo: #191713;
-  --papel: #24211c;
-  --texto: #f7f3ea;
-  --tenue: #b4ac9c;
-  --apagado: #8b8375;
-  --linea: rgba(247, 243, 234, 0.13);
-  --marco: rgba(247, 243, 234, 0.18);
-  /* Los tres tintes, hundidos: de noche una superficie no se aclara, se
-     calienta. Y sin sombra, que sobre negro no se ve: lo que levanta una
-     tarjeta es que su papel sea más claro que el fondo. */
-  --tinte-gente: #2c2420;
-  --tinte-materia: #202722;
-  --tinte-libro: #2b2619;
-  --alza: none;
-  --alza-alta: none;
-  --acento: #faf9f5;
-  --realce: #d97757;
-  --cielo: #191713;
-  --mar: #f7f3ea;
-  --tinta: #f7f3ea;
+  --fondo: #000000;
+  --papel: #000000;
+  --texto: #ffffff;
+  --tenue: #a6a6a6;
+  --apagado: #737373;
+  --linea: #404040;
+  --acento: #ffffff;
+  --cielo: #000000;
+  --mar: #ffffff;
+  --tinta: #ffffff;
   --foto: url(assets/fondo-oscuro.webp);
   --sombra: none;
-  --franja: #2e2c27;
-  --rejilla: rgba(250, 249, 245, 0.07);
+  --franja: #1c1c1c;
+  --rejilla: rgba(255, 255, 255, 0.10);
 }
 
 * {
@@ -279,11 +158,8 @@ html {
   outline: none;
 }
 
-/* El anillo va en el color de realce, y es uno de los tres o cuatro sitios de
-   todo el sitio donde ese color aparece: el foco del teclado es exactamente
-   «lo que está vivo ahora mismo», que es para lo que está. */
 :focus-visible {
-  outline: 2px solid var(--realce);
+  outline: 2px solid var(--mar);
   outline-offset: 2px;
 }
 
@@ -292,7 +168,7 @@ body {
   min-height: 100vh;
   /* Sin fondo propio: dejaría tapado el ::before, que va detrás. */
   color: var(--texto);
-  font-family: var(--lectura);
+  font-family: "GFS Artemisia", Georgia, "Times New Roman", serif;
   /* El viewport ya no va fijo en 980: la página se maqueta al ancho real del
      teléfono, así que este número es el tamaño que se ve. Con el viewport fijo,
      el móvil reducía todo al 39 % y acababa siendo 8,8px en pantalla —
@@ -402,83 +278,18 @@ h1 {
   margin: 0 0 var(--celda);
 }
 
-/* «Cuántos hay», en la línea del título de un índice. Es el dato que se busca
-   al llegar a una página que es una lista —cuarenta y siete caras,
-   diecisiete materias— y no estaba escrito en ninguna parte: había que
-   contarlas. Mismo recurso que ya usan las secciones en su `h2`, en el otro
-   extremo de la misma línea. */
-h1:has(.cuenta) {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-h1 .cuenta {
-  margin-left: auto;
-}
-
 h2 {
   font-size: 1.25rem;
+  /* Nada por arriba: el hueco sobre un título lo pone el bloque que lo precede,
+     que ya deja su celda. `main` es una columna flex y ahí los márgenes NO se
+     colapsan, se suman: poniendo también una arriba salían dos, y al pasar de
+     una categoría a otra —de las definiciones a los teoremas, de la resolución
+     de un ejercicio a la bibliografía— quedaba un renglón vacío de más.
+
+     Se intentó primero al revés, quitándole el margen al bloque de arriba con
+     `main > :has(+ h2)`, y no valía: un selector de clase como `.simple` pesa
+     más que ese, así que la regla no llegaba a aplicarse nunca. */
   margin: 0 0 var(--celda);
-}
-
-/* ══ La escala de separación ══════════════════════════════════════════════════
-   Todo el sitio separaba todo de todo con una celda: el título de la página, el
-   título de una sección, un párrafo y un recuadro de enunciado estaban a la
-   misma distancia unos de otros, y por tanto nada agrupaba nada. Una página de
-   materia con cinco secciones se leía como una lista de veinte bloques sueltos.
-
-   Con dos valores tampoco había ritmo: o «lejos» o «cerca», y nada en medio.
-   La escala pasa a ser de cinco, que es lo que hace falta para que se note qué
-   va con qué. Todos son múltiplos o mitades de la celda —nunca un píxel
-   suelto—, porque la cuadrícula sigue mandando:
-
-     --aire-xl   2 celdas     entre una sección y la siguiente
-     --aire-l    1,5 celdas   dentro de una sección, entre bloques distintos
-     --aire-m    1 celda      entre bloques que se leen seguidos
-     --aire-s    ½ celda      entre piezas de una misma cosa
-     --aire-xs   ¼ celda      lo más pegado: una portada y su canto
-
-   Los tres primeros valen para el flujo vertical de `main`, donde cada margen
-   tiene que dejar el bloque siguiente sobre una raya. Los dos últimos son para
-   DENTRO de una pieza —una tarjeta, una cabecera, una pastilla—, donde lo que
-   tiene que cuadrar es el alto total de la pieza y no cada hueco por separado.
-   Usar medias celdas en el flujo de `main` no rompe nada —rejilla.js las
-   repone— pero tampoco sirve de nada: acaban redondeadas a la celda.
-
-   En el flujo, entonces:
-
-     DOS celdas   antes de una sección — «aquí empieza otra cosa»
-     UNA celda    entre lo que va dentro de una sección — «esto sigue a esto»
-
-   La celda de arriba la pone el título de sección y la de abajo el bloque que
-   lo precede, que ya la traía. `main` es una columna flex y ahí los márgenes NO
-   se colapsan: se suman, y salen las dos justas. En el archivo estaba escrito
-   que esto se había intentado y daba «un renglón vacío de más» — daba dos
-   celdas, que entonces no se querían y ahora son exactamente lo que se busca.
-
-   Se intentó también al revés, quitándole el margen al bloque de arriba con
-   `main > :has(+ h2)`, y eso sí que no vale: un selector de clase como
-   `.simple` pesa más que ese y la regla no llega a aplicarse nunca. */
-h2,
-.titulo-fila {
-  margin-top: var(--celda);
-}
-
-/* El escalón de dentro de una sección —«Abiertas», «Resueltas»— separa UNA
-   celda, no dos: si separara lo mismo que el título de la sección, no sería un
-   escalón por debajo sino otra sección. Sin esto se quedaba con los márgenes
-   de fábrica del navegador, en `em` y ajenos a la celda, y era el único bloque
-   de la página que no caía en la cuadrícula por sí solo. */
-h3 {
-  font-size: 1.0625rem;
-  margin: 0 0 var(--celda);
-}
-
-/* Lo primero de la página no separa de nada: no hay nada encima. */
-main > :first-child,
-main > .titulo-fila:first-child {
-  margin-top: 0;
 }
 
 p {
@@ -500,12 +311,7 @@ a {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 0.4rem;
-  /* La miga no se lee, se consulta: va en la grotesca. Y así, además, deja de
-     competir con el título que tiene justo debajo, que es del mismo material
-     tipográfico y del mismo cuerpo. */
-  font-family: var(--rotulo);
-  font-size: 0.9375rem;
-  letter-spacing: 0.005em;
+  font-size: 1rem;
   line-height: var(--celda);
   color: var(--tenue);
   margin-bottom: var(--celda);
@@ -551,186 +357,8 @@ h1 {
 .indice .nota {
   display: inline;
   margin-left: 0.5rem;
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--tenue);
-}
-
-/* ── El plan de estudios, en columnas ──
-   Diecisiete nombres en fila india son diecisiete renglones; en tres columnas
-   son seis y se leen igual de bien, porque un nombre de materia no es una
-   frase: se busca, no se lee. Va con `columns` y no con `grid` a propósito —
-   el reparto lo hace el navegador según lo que quepa, y cada renglón mide una
-   celda, así que la lista entera cae en la cuadrícula sea cual sea el reparto. */
-.plan {
-  margin: 0 0 var(--celda);
-  padding: 0;
-  list-style: none;
-  columns: 3;
-  column-gap: var(--celda);
-}
-
-.plan li {
-  margin: 0;
-  /* Un nombre no se parte entre dos columnas. */
-  break-inside: avoid;
-}
-
-/* El asomo de la sección: en fila y se pasa con el dedo, como el carrusel de
-   caras. En columnas dejaba de ser un asomo y se leía como el índice, que es
-   otra página. */
-.plan-fila {
-  display: flex;
-  gap: var(--celda);
-  columns: auto;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  padding-bottom: calc(var(--celda) / 2);
-}
-
-.plan-fila li {
-  flex: 0 0 auto;
-}
-
-.plan-fila a {
-  white-space: nowrap;
-}
-
-.plan a {
-  display: block;
-  line-height: var(--celda);
-  color: var(--acento);
-  text-decoration: none;
-  /* Sitio para el dedo sin romper el renglón: el área de toque la da el alto
-     de la celda, que ya son diecinueve píxeles, más el relleno lateral. */
-  padding-right: 0.5rem;
-}
-
-@media (hover: hover) {
-  .plan a:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--tenue);
-    text-underline-offset: 3px;
-  }
-}
-
-@media (max-width: 32rem) {
-  .plan {
-    columns: 1;
-  }
-}
-
-/* ── El mosaico ──
-   Fichas para ELEGIR, no para leer. Es el gesto que traen las tres
-   referencias: paneles claros de esquina generosa sobre un fondo un punto más
-   oscuro, repartidos en rejilla. Aquí sirve para el índice de materias, que es
-   justo eso —diecisiete puertas— y hasta ahora era una columna de renglones.
-
-   Sin ilustración. Las que había en el disco son carátulas de disco de otro
-   proyecto: un estuche de CD con un espirógrafo rosa delante de «Cálculo
-   Diferencial e Integral I» no dice nada de la materia y dice bastante de otra
-   cosa. La ficha se sostiene con el nombre, que es lo que se busca.
-
-   Nueve celdas por tres, con dos de separación: nueve más dos más nueve son
-   las veinte de la columna. `auto-fill` y no dos columnas fijas para que en
-   una pantalla estrecha pase a una sola en vez de desbordar. */
-.mosaico {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, calc(var(--celda) * 9));
-  gap: var(--celda) calc(var(--celda) * 2);
-  justify-content: center;
-  margin: 0 0 var(--celda);
-  padding: 0;
-  list-style: none;
-}
-
-.mosaico li {
-  margin: 0;
-  display: flex;
-}
-
-.mosaico a {
-  display: flex;
-  /* En columna: el nombre y, debajo, qué lleva dentro. Es la ficha de las
-     referencias —rótulo y línea flaca— y es lo que convierte diecisiete
-     puertas idénticas en diecisiete puertas que se distinguen. */
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  width: 100%;
-  /* Cuatro celdas de alto: tres renglones para el nombre más largo del plan
-     —«Cálculo Diferencial e Integral III»— y uno para el pie. */
-  min-height: calc(var(--celda) * 4);
-  padding: 0 var(--aire-s);
-  border: 1px solid var(--linea);
-  border-radius: var(--radio);
-  /* Maciza, como el recuadro de enunciado: se apoya sobre la cuadrícula. */
-  background: var(--papel);
-  box-shadow: var(--alza);
-  color: var(--acento);
-  text-decoration: none;
-  text-wrap: balance;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.mosaico a:hover,
-.mosaico a:focus-visible {
-  box-shadow: var(--alza-alta);
-}
-
-.ficha-nombre {
-  line-height: var(--celda);
-}
-
-/* Qué lleva dentro, en la letra de los datos y en el tono flojo: se lee de
-   reojo al elegir y no compite con el nombre, que es lo que se busca. */
-.ficha-pie {
-  font-family: var(--rotulo);
-  font-size: 0.6875rem;
-  line-height: var(--celda);
-  letter-spacing: 0.04em;
-  color: var(--apagado);
-}
-
-/* En fila, para el asomo de la sección: la misma ficha, sin partir el nombre a
-   media palabra como hacía la lista de texto que había antes. */
-.mosaico-fila {
-  display: flex;
-  grid-template-columns: none;
-  gap: var(--celda);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  padding-bottom: calc(var(--celda) / 2);
-  justify-content: flex-start;
-}
-
-.mosaico-fila li {
-  flex: 0 0 calc(var(--celda) * 9);
-}
-
-@media (hover: hover) {
-  .mosaico a:hover {
-    border-color: var(--marco);
-  }
-}
-
-.mosaico a:active {
-  transform: translateY(1px);
-}
-
-/* En el teléfono, una sola columna: dos fichas de nombre largo a lo ancho de
-   un móvil dejan «Cálculo Diferencial e» partido en cuatro renglones. */
-@media (max-width: 30rem) {
-  .mosaico {
-    grid-template-columns: 1fr;
-    gap: var(--aire-s);
-  }
-
-  .mosaico a {
-    /* De pie a dos celdas: en una columna el nombre entra en una línea o dos,
-       y tres dejaban un hueco muerto dentro de cada ficha. */
-    min-height: calc(var(--celda) * 2);
-  }
 }
 
 /* Listas de navegación: materias, libros, secciones, entradas */
@@ -780,33 +408,17 @@ h1 {
   cursor: default;
 }
 
-/* Una fila con su pastilla de dato al final: el nombre a la izquierda y el
-   dato pegado al margen derecho, que es donde se leen en columna de un
-   vistazo. Sin `:has` habría que marcar la lista entera desde el generador. */
-.lista a:has(> .dato) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.lista a > .dato {
-  flex: 0 0 auto;
-}
-
 /* Debajo del nombre, qué es la materia y qué hay dentro. Va tenue: es un dato
    de estado, no parte del título. */
 .lista small {
   display: block;
-  font-family: var(--rotulo);
   color: var(--tenue);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .lista .nota {
   display: block;
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--tenue);
   margin-top: 0.125rem;
 }
@@ -842,12 +454,9 @@ h1 {
   gap: 1.25rem;
   height: calc(var(--celda) * 3);
   padding: 0 1.5rem;
-  /* Hoja maciza, como el recuadro de enunciado y las fichas del mosaico: la
-     tarjeta es la unidad de la página y se apoya sobre la cuadrícula en vez de
-     dejarla ver a través. */
+  /* Contorno y nada más: sin papel encima, el fondo de la página —y con él la
+     cuadrícula— se ve a través de la pastilla. */
   border: 1px solid var(--linea);
-  background: var(--papel);
-  box-shadow: var(--alza);
   border-radius: var(--radio);
   text-decoration: none;
   color: var(--texto);
@@ -858,11 +467,9 @@ h1 {
   position: absolute;
   top: 0.75rem;
   right: 1.25rem;
-  font-family: var(--rotulo);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.125rem;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--apagado);
   font-variant-numeric: tabular-nums;
 }
@@ -1038,20 +645,12 @@ body .katex-display {
   /* Sin margen arriba: el párrafo anterior ya pone su celda de separación y,
      como en flex los márgenes no se colapsan, con uno propio salían dos. */
   margin: 0 0 var(--celda);
-  /* Y si no hay nada detrás, tampoco debajo: la celda de abajo separa de lo que
-     venga después, y cuando no viene nada se suma al relleno de la caja y deja
-     un renglón vacío al final de la pastilla. */
   /* Una ecuación larga se desplaza dentro de su caja en vez de ensanchar la
      página: es la diferencia entre poder leerla en el teléfono o no. */
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 0.25rem 0;
-}
-
-body .katex-display:last-child,
-body p:last-child > .katex-display:last-child {
-  margin-bottom: 0;
 }
 
 /* Recuadro de enunciado: una hoja opaca sobre la cuadrícula, con el título
@@ -1063,45 +662,25 @@ body p:last-child > .katex-display:last-child {
    parche corta también la cuadrícula. Así no se tapa nada: el interior es
    transparente y las rayas se ven por dentro y alrededor. */
 .enunciado {
-  /* De 2 px de negro puro a 1 px de tinta al 26 %. El trazo grueso era lo que
-     más pesaba de la página entera: se veía el marco antes que el teorema. Lo
-     que dice ahora dónde empieza el enunciado no es la fuerza de la línea sino
-     que hay una hoja debajo. */
-  border: 1px solid var(--linea);
+  border: 2px solid var(--mar);
   border-radius: var(--radio);
-  /* Macizo, y apoyado. La hoja tapa la cuadrícula donde se posa —que está
-     permitido— y con la sombra corta se despega del fondo: es lo que hace que
-     un enunciado se lea como una ficha que se puede coger y no como un marco
-     dibujado sobre el papel. La cuadrícula sigue intacta alrededor y sigue
-     repartiendo los renglones dentro. */
-  background: var(--papel);
-  box-shadow: var(--alza);
+  /* Sin fondo: se pidió expresamente que dejara ver la cuadrícula. */
   /* Una celda menos el borde: así el texto de dentro sigue cayendo sobre las
      rayas de la cuadrícula a pesar del recuadro. */
-  padding: 0.25rem 1.125rem calc(var(--celda) / 2 - 1px);
+  padding: 0.25rem 1.125rem calc(var(--celda) / 2 - 2px);
   margin: 0 0 var(--celda);
   /* Un fieldset vale por defecto lo que su contenido mínimo, y dentro de una
      columna flex eso ensancharía la página. */
   min-inline-size: 0;
 }
 
-/* El nombre del enunciado, encajado en el filo del recuadro como en un libro.
-   Va en VERSALITAS DE VERDAD y no en `text-transform: uppercase`: Artemisia
-   trae la tabla `smcp`, así que las minúsculas se cambian por versalitas
-   dibujadas para ese cuerpo en vez de por mayúsculas encogidas —que es lo que
-   hacía antes—, y la inicial mantiene su altura. Es la diferencia entre
-   «CONJUNTO DE PARTES» y «Cᴏɴᴊᴜɴᴛᴏ ᴅᴇ ᴘᴀʀᴛᴇs», que es como se compone el rótulo
-   de un teorema desde que hay imprenta. */
 .enunciado .etiqueta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   padding: 0 0.5rem;
   margin-inline-start: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1;
-  font-variant-caps: small-caps;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--tenue);
 }
 
@@ -1111,71 +690,9 @@ body p:last-child > .katex-display:last-child {
   margin-bottom: 0;
 }
 
-/* ══ La pastilla de dato ══════════════════════════════════════════════════════
-   Una sola, y solo donde falta un dato para situar lo que se está leyendo: de
-   dónde era y cuándo vivió el matemático cuya ficha se abre. No clasifica, no
-   se pulsa y no lleva a ningún sitio — por eso es lo más callado que hay en la
-   página: contorno finísimo, sin relleno y sin color. */
-
-.dato {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  /* En celdas no: una pastilla vive DENTRO de un renglón, y lo que no puede
-     hacer es ensancharlo. De ahí el `line-height: 1` y un alto que sale del
-     relleno, siempre por debajo de la celda. */
-  padding: 0.15rem 0.45rem;
-  border: 1px solid var(--linea);
-  border-radius: var(--radio-chico);
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.07em;
-  font-variant-caps: all-small-caps;
-  white-space: nowrap;
-  color: var(--tenue);
-}
-
-/* La bandera dentro de la pastilla de país. El sitio ya usa las banderas para
-   decir de dónde es alguien —van de fondo en las tarjetas—, así que aquí no
-   hace falta explicar el idioma: se reconoce. En 2:3, que es la proporción en
-   la que están dibujadas, y con su filete para que una bandera casi blanca
-   —la de Japón, la de Suiza invertida— no se pierda sobre el papel. */
-.dato-bandera {
-  width: 1rem;
-  height: 0.6667rem;
-  object-fit: cover;
-  border-radius: 1px;
-  box-shadow: 0 0 0 1px var(--linea);
-  flex: 0 0 auto;
-}
-
-/* Una fila de pastillas. Cada fila mide una celda EXACTA —eso lo pone el
-   `min-height` de los hijos, no un alto en la tira— para que una tira que se
-   parte en dos líneas siga ocupando renglones enteros y lo que venga debajo
-   caiga en su raya sin que rejilla.js tenga que rescatarlo. */
-.tira {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0 0.4rem;
-  margin: 0 0 var(--celda);
-  padding: 0;
-  list-style: none;
-}
-
-.tira > li {
-  display: flex;
-  align-items: center;
-  min-height: var(--celda);
-  margin: 0;
-}
-
 /* La demostración arranca en el cuadro inmediato al enunciado, sin renglón
-   muerto en medio: lo poco que falte para cuadrar lo pone rejilla.js.
-   Ya no incluye `+ h2`: un título de sección detrás de un recuadro es un cambio
-   de sección y le tocan sus dos celdas como a cualquier otro. */
+   muerto en medio: lo poco que falte para cuadrar lo pone rejilla.js. */
+.enunciado + h2,
 .enunciado + p {
   margin-top: 0;
 }
@@ -1275,83 +792,6 @@ body p:last-child > .katex-display:last-child {
   h1 {
     padding-right: 0;
   }
-
-  /* ── La segunda medida ──
-     El sitio tenía UNA sola: veinte celdas, de la portada al índice de los
-     cuarenta y siete matemáticos. Veinte celdas es la medida de LEER —unos
-     sesenta y cinco caracteres por renglón, que es lo que aguanta el ojo sin
-     perder el renglón siguiente— y para eso no se toca. Pero un índice no se
-     lee: se recorre, y cuarenta y siete tarjetas en tres columnas dentro de esa
-     misma medida son dieciséis filas de desplazamiento con cuatrocientos
-     cincuenta píxeles de papel vacío a cada lado.
-
-     Así que hay dos medidas. La de leer, veinte celdas, y la de recorrer,
-     treinta y cuatro. Treinta y cuatro y no cualquier número: la diferencia con
-     la columna tiene que ser PAR para que las dos, centradas en el mismo eje,
-     caigan sobre las mismas rayas. Con ellas entran cinco tarjetas por fila
-     —seis celdas cada una más una de separación— y el índice pasa de dieciséis
-     filas a diez.
-
-     Solo la usa lo que es una galería entera: el índice de caras y el carrusel
-     de la página de Matemáticas. Un bloque ancho en mitad de una página de
-     texto no es una segunda medida, es un bulto. */
-  .ancha {
-    width: var(--medida-ancha);
-    /* Centrada respecto a la columna, no respecto a la ventana: la columna ya
-       está cuadrada con la rejilla y de ahí sale todo lo demás. */
-    margin-inline: calc((100% - var(--medida-ancha)) / 2);
-  }
-}
-
-/* ── El margen, que hasta ahora no era sitio de nada ──
-   Un cuaderno tiene margen y en el margen va lo que ordena: la numeración, las
-   referencias, el nombre de lo que se está leyendo. Aquí había veinte celdas de
-   texto y diecisiete de papel en blanco a cada lado sin nada dentro.
-
-   Los títulos de sección salen a ese margen. No es decoración: es lo que
-   resuelve el caso de las quince cajas seguidas iguales —los nueve enunciados
-   de Spivak, uno detrás de otro—, porque bajando por la página el ojo tiene una
-   sola columna que mirar para saber en qué sección va, y esa columna está fuera
-   del texto en vez de interrumpiéndolo.
-
-   Solo se mueven de lado. El alto no cambia, así que la cuadrícula no se entera
-   y rejilla.js sigue midiendo lo mismo. Y solo a partir de 64rem, que es donde
-   hay margen de sobra: por debajo, el título vuelve a su sitio sobre el texto. */
-@media (min-width: 64rem) {
-  /* Los títulos de sección se van a la MEDIDA ANCHA, la misma que las galerías
-     y la misma que la banda de la ficha. Así toda la página tiene un solo eje
-     izquierdo —el de treinta y cuatro celdas— y el texto queda metido siete
-     celdas dentro de él. Sangrarlos a un número cualquiera dejaba tres filos
-     distintos en la misma página: el del título, el de la galería y el del
-     texto, cada uno por su cuenta.
-
-     `main >` a propósito: sale al margen lo que estructura LA PÁGINA, no un
-     rótulo de dentro de un bloque. Un «Información personal» metido en la
-     columna de texto de la banda tiene que quedarse en su columna. */
-  /* `main > h1` incluido: el título de la página es el primer escalón de la
-     estructura, y dejarlo en la columna de leer mientras sus secciones salían
-     al margen ponía el título más adentro que lo que cuelga de él. Solo el h1
-     suelto — el que va dentro de `.titulo-fila` ya lo lleva su fila. */
-  main > h1,
-  main > h2,
-  main > .titulo-fila {
-    width: var(--medida-ancha);
-    margin-inline: calc((100% - var(--medida-ancha)) / 2);
-  }
-
-  /* La frase de entrada y las pastillas NO salen al margen, aunque sean del
-     bloque del título: se leen, y lo que se lee vive en la columna de leer.
-     Se probó a sacarlas con el título y quedaba un escalón huérfano — en una
-     materia sin escribir, el único párrafo de la página aparecía siete celdas
-     a la derecha de todo lo demás y parecía sangrado por error. La regla que
-     queda es de una sola línea: cuelgan los TÍTULOS y las galerías; todo lo
-     que se lee, en su columna. */
-
-  /* El capítulo es un escalón por debajo de la sección y sale la mitad: así el
-     margen tiene dos alturas de sangrado y no una sola fila de todo. */
-  main > .capitulo {
-    margin-left: calc((100% - var(--medida-ancha)) / 4);
-  }
 }
 
 /* ── Personajes voxel ──
@@ -1367,84 +807,13 @@ body p:last-child > .katex-display:last-child {
   object-fit: contain;
 }
 
-/* ── La línea de entrada ──
-   Una frase que dice de qué va lo que viene, justo debajo del título. Va un
-   punto por encima del cuerpo del texto y en el gris de lectura: no es un
-   subtítulo —no compite con el nombre— ni es prosa todavía, es la puerta.
-   Sigue en Artemisia porque esto SÍ se lee. */
-.entrada {
-  font-size: 1.1875rem;
-  line-height: var(--celda);
-  color: var(--tenue);
-  text-wrap: pretty;
-  margin: 0 0 var(--celda);
-}
-
 /* Ficha del personaje: el modelo grande y centrado. */
 .ficha {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--celda);
-  margin: 0 0 var(--celda);
-}
-
-/* ── La banda de dos columnas ──
-   El único sitio del sitio donde dos cosas van AL LADO y no debajo: la figura
-   de un matemático y lo que hay que leer de él. En el teléfono no existe —una
-   columna de trescientos noventa píxeles no se parte en dos— y ahí la banda es
-   simplemente el orden de siempre, apilado.
-
-   Las medidas son las de la hoja: catorce celdas de figura, una de calle y
-   diecinueve de texto, treinta y cuatro en total, que es la medida ancha. La
-   diferencia con la columna de lectura es par, así que las dos caen sobre las
-   mismas rayas. */
-.banda {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 var(--celda);
-}
-
-/* En el teléfono el visor deja de ocupar el ancho entero. No es una cuestión de
-   tamaño sino de reparto: a veintidós celdas el cuadrado mide lo mismo que la
-   pantalla, y como la figura solo llena la mitad de su caja, el resultado era
-   media pantalla de aire entre el nombre y la primera línea de la biografía —
-   o sea, la página de alguien sin una palabra sobre ese alguien hasta el
-   segundo golpe de dedo. A catorce celdas la figura sigue siendo grande para
-   un teléfono y la biografía entra en la primera pantalla.
-   Catorce es par, como las veinte de la columna, así que centrada cae sobre las
-   mismas rayas. */
-.banda .voxel3d {
-  width: calc(var(--celda) * 14);
-}
-
-@media (min-width: 52rem) {
-  .banda {
-    width: var(--medida-ancha);
-    margin-inline: calc((100% - var(--medida-ancha)) / 2);
-    display: grid;
-    grid-template-columns: calc(var(--celda) * 14) 1fr;
-    gap: 0 var(--celda);
-    /* Cada columna con su alto: si la biografía es corta, no estira la caja
-       del modelo, que es cuadrada y tiene que seguir siéndolo. */
-    align-items: start;
-  }
-
-  /* Dentro de la banda el visor deja de salirse de la columna: aquí SU columna
-     mide catorce celdas y es la que manda. */
-  .banda .ficha {
-    margin: 0;
-  }
-
-  .banda .voxel3d {
-    width: 100%;
-  }
-}
-
-/* El primer bloque de cada columna no separa de nada: el hueco de arriba lo
-   puso ya la banda. */
-.banda-texto > :first-child {
-  margin-top: 0;
+  margin: var(--celda) 0;
 }
 
 
@@ -1463,22 +832,16 @@ body p:last-child > .katex-display:last-child {
   display: grid;
   grid-template-columns: repeat(auto-fill, calc(var(--celda) * 4));
   gap: var(--celda);
-  /* Una celda debajo y nada arriba, como cualquier otro bloque de una sección:
-     el hueco de encima ya lo pone el título. Antes llevaba una celda por
-     arriba y otra por abajo y, sumadas a las del título y a las del bloque
-     siguiente, dejaban tres renglones muertos alrededor de una sola portada. */
-  margin-block: 0 var(--celda);
+  margin: var(--celda) 0;
   padding: 0;
   list-style: none;
 }
 
-/* En fila, para pasarlas con el dedo. El relleno de abajo hace de celda de
-   separación —es el hueco de la barra—, así que aquí el margen sobra. */
+/* En fila, para pasarlas con el dedo. */
 .libros-fila {
   display: flex;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  margin-block-end: 0;
   padding-bottom: var(--celda);
 }
 
@@ -1495,104 +858,37 @@ body p:last-child > .katex-display:last-child {
   justify-content: center;
   width: calc(var(--celda) * 4);
   height: calc(var(--celda) * 6);
-  /* Abajo, la celda entera que ocupa el canto: el título no se le mete debajo.
-     Los cuatro por seis no se tocan — es lo que mantiene la portada dentro de
-     la cuadrícula. */
-  padding: var(--aire-s) var(--aire-s) var(--celda);
-  /* Esquina generosa y por igual en los cuatro lados. Antes eran dos radios
-     distintos para fingir un lomo a la izquierda; el lomo ahora está abajo,
-     que es como se ve un libro puesto de frente, y la tapa vuelve a ser un
-     rectángulo redondeado sin más. */
-  border-radius: var(--radio);
-  /* Los doce valores siguen siendo doce y a la misma distancia unos de otros
-     —es lo que hace que dos portadas seguidas no se confundan—, pero dejan de
-     ser grises neutros: sobre papel de marfil una tapa gris se ve azul. Un
-     matiz de tierra muy bajo (30° y 10 % de saturación) las mete en el mismo
-     material que el resto de la página sin volverlas de color. */
-  background: hsl(30 10% calc((var(--tono) * 5%) + 22%));
-  color: #faf9f5;
+  padding: 0.9rem 0.7rem 1.6rem;
+  border-radius: 0.15rem 0.4rem 0.4rem 0.15rem;
+  background: hsl(0 0% calc((var(--tono) * 5%) + 22%));
+  color: #fff;
   text-align: center;
   overflow: hidden;
   text-decoration: none;
-  /* Sombra corta y floja: una tapa apoyada en la mesa, no flotando sobre ella.
-     Antes era 10 px de negro al 35 % y en una fila de seis portadas la página
-     se llenaba de nubes. */
-  box-shadow: 0 1px 4px rgb(20 20 19 / 0.18);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
 }
 
-/* La luz de la tapa: un brillo diagonal desde la esquina de arriba. Nada más.
-   Antes llevaba además un lomo pintado a la izquierda y una sombra al pie —
-   tres degradados sobre una pieza de siete centímetros—, y el lomo ya no va
-   ahí: va abajo y es un elemento de verdad, no un degradado. */
+/* La luz: el lomo oscuro con su filo claro a la izquierda, un brillo diagonal
+   desde la esquina de arriba y la sombra cayendo hacia el pie. Es lo que hace
+   que un rectángulo plano se lea como una tapa. */
 .libro::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgb(255 255 255 / 0.12) 0%,
-    rgb(255 255 255 / 0.02) 40%,
-    transparent 62%
-  );
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.34) 0 3px, rgb(255 255 255 / 0.08) 4px, transparent 9px),
+    linear-gradient(135deg, rgb(255 255 255 / 0.11) 0%, rgb(255 255 255 / 0.02) 38%, transparent 60%),
+    linear-gradient(180deg, transparent 52%, rgb(0 0 0 / 0.36) 100%);
 }
 
-/* El marco interior, como el filete impreso de una cubierta. Se detiene donde
-   empieza el canto: un filete que se metiera por debajo de él lo cruzaría. */
+/* El marco interior, como el filete impreso de una cubierta. */
 .libro::after {
   content: "";
   position: absolute;
-  inset: 6px 6px calc(var(--celda) + 6px);
+  inset: 6px 6px 6px 9px;
   border: 1px solid rgb(255 255 255 / 0.14);
   border-radius: 2px;
-  pointer-events: none;
-}
-
-/* ── El canto ──
-   La franja de abajo, que es el corte del libro visto de frente. Hace dos
-   cosas a la vez y por eso existe: dibuja el libro —una tapa sin canto es un
-   rectángulo— y da un fondo de valor conocido donde poner el autor. Sin él, el
-   nombre caía sobre doce tonos distintos de tapa y en la mitad no se leía.
-
-   Mide una celda exacta, así que la cara de la tapa son cinco y el conjunto
-   sigue siendo seis. */
-.libro-canto {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  height: var(--celda);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 var(--aire-s);
-  /* Un tono de tierra fijo, el mismo en las doce portadas y en los dos temas:
-     es el canto, no la tapa. Que sea constante es lo que hace que una fila de
-     seis portadas se lea como una repisa de libros y no como seis rectángulos
-     de colores distintos. */
-  background: #2a251f;
-  border-radius: 0 0 var(--radio) var(--radio);
-}
-
-/* ── La cinta ──
-   El marcapáginas, colgando del filo de arriba a la derecha. Es el único sitio
-   del sitio donde el color de realce aparece sin que haya un estado detrás, y
-   se lo permite porque no es adorno: es lo que dice «esto es un libro» de un
-   vistazo y a un tamaño en el que el título todavía no se lee.
-
-   La muesca de abajo la hace un `clip-path` de cinco puntos, que es la forma
-   de una cinta cortada en pico. */
-.libro-cinta {
-  position: absolute;
-  top: 0;
-  right: var(--celda);
-  z-index: 2;
-  width: calc(var(--celda) / 3);
-  height: calc(var(--celda) * 1.25);
-  background: var(--realce);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
   pointer-events: none;
 }
 
@@ -1627,46 +923,32 @@ body p:last-child > .katex-display:last-child {
   overflow: hidden;
 }
 
-/* El autor y el año, dentro del canto. En el color de realce, que es donde la
-   referencia lo pone y donde aquí además hace falta: sobre el tono fijo del
-   canto, la arcilla clara da 4,8:1 y se lee; el mismo nombre sobre la tapa
-   dependía de cuál de los doce tonos le tocara. */
 .libro-pie {
-  width: 100%;
+  position: absolute;
+  left: 0.7rem;
+  right: 0.6rem;
+  bottom: 0.55rem;
   z-index: 1;
-  /* A medio centímetro de cuerpo, la grotesca es lo único que se lee: los
-     remates de Artemisia a 5 px se cierran y el nombre del autor se convertía
-     en una línea de puntos. */
-  font-family: var(--rotulo);
-  font-size: 0.5625rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  font-variant-caps: all-small-caps;
-  /* La arcilla clara escrita a pelo y no `var(--realce)`: esa variable cambia
-     de valor con el tema —oscura sobre papel claro— y aquí el fondo no cambia,
-     porque el canto es el mismo en los dos. Con la oscura se quedaba en 3,7:1
-     sobre el canto; con esta son 4,9:1. */
-  color: #d97757;
-  text-align: center;
-  /* Un renglón: el canto mide una celda y lo que no quepa se corta. Antes eran
-     dos porque el nombre iba suelto sobre la tapa y había sitio; dentro del
-     canto no lo hay, y un canto de dos renglones deja de ser un canto. */
-  white-space: nowrap;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+  /* Dos renglones: en cuatro celdas de ancho, un nombre con apellido y año no
+     entra en uno solo y se quedaba en «MICHAEL SPIVA…». */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* En el modo blanco los tonos van al revés: portadas claras sobre papel blanco
    necesitan texto oscuro para leerse, y la luz se atenúa —sobre un gris claro
    el mismo brillo se ve sucio—. */
 :root:not([data-tema="oscuro"]) .libro {
-  /* En claro los doce valores van al revés y el matiz de tierra sube un punto:
-     una tapa clara sobre papel claro necesita algo de cuerpo para no
-     desaparecer. El más claro queda en 84 %, que contra la tinta #141413 da
-     14:1 de sobra para el título. */
-  background: hsl(30 14% calc(84% - (var(--tono) * 5%)));
-  color: #141413;
+  background: hsl(0 0% calc(88% - (var(--tono) * 5%)));
+  color: #111;
 }
 
 :root:not([data-tema="oscuro"]) .libro::before {
@@ -1688,9 +970,9 @@ body p:last-child > .katex-display:last-child {
   text-shadow: none;
 }
 
-/* El canto es del mismo tono en los dos temas —es el corte del libro, no la
-   tapa—, así que el autor tampoco cambia: la arcilla clara sobre él da 4,8:1
-   en claro y en oscuro. */
+:root:not([data-tema="oscuro"]) .libro-pie {
+  color: rgb(0 0 0 / 0.5);
+}
 
 /* ── Título con acción a la derecha ──
    El enlace al índice y el botón de favorito viven en la línea del título, que
@@ -1717,131 +999,33 @@ body p:last-child > .katex-display:last-child {
   margin: 0;
 }
 
-/* ── Los mandos de una cabecera de sección ──
-   A la derecha del título, en su misma línea: la cápsula que lleva al índice
-   completo y, pegadas a ella, las dos flechas que pasan el carrusel. Es el
-   patrón que se repite en las tres secciones que llevan carrusel —las caras,
-   las portadas y el asomo del plan— y por eso se escribe una vez.
-
-   Van a la derecha y no debajo porque el carrusel se pasa con el dedo en el
-   teléfono y con las flechas en el ratón: quien las necesita las busca donde
-   acaba el título, no al final de la fila de tarjetas.
-
-   La fila deja de alinearse por la base y pasa a alinearse por el centro: con
-   `baseline`, un botón redondo cuelga de la línea del título y la cabecera
-   crecía hacia abajo sin motivo. */
-.titulo-fila:has(.mandos) {
-  align-items: center;
-}
-
-.mandos {
-  display: flex;
-  align-items: center;
-  /* De las pequeñas de la escala: la cápsula y las flechas son una misma
-     cosa, no tres cosas seguidas. */
-  gap: var(--aire-s);
-  flex: 0 0 auto;
-}
-
-/* La flecha: un círculo de celda y media, que es la medida más pequeña que
-   sigue siendo cómoda de tocar sin sacar la cabecera de la cuadrícula. El
-   glifo va compuesto, no es un icono: ‹ y › son dos caracteres. */
-.flecha {
-  width: calc(var(--celda) * 1.5);
-  height: calc(var(--celda) * 1.5);
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 1px solid var(--linea);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--papel) 55%, transparent);
-  color: var(--tenue);
-  font-family: var(--rotulo);
-  font-size: 1.125rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-@media (hover: hover) {
-  .flecha:hover:not([disabled]) {
-    border-color: var(--marco);
-    color: var(--acento);
-  }
-}
-
-/* Llegado al extremo, la flecha se apaga en vez de desaparecer: si se fuera,
-   la cabecera cambiaría de ancho al pasar el carrusel y el título bailaría. */
-.flecha[disabled] {
-  opacity: 0.3;
-  cursor: default;
-}
-
-/* Sin flechas donde no hay puntero: en el teléfono el carrusel se pasa con el
-   dedo, y dos botones que repiten un gesto que ya se hace mejor solo ocupan el
-   sitio del título. */
-@media (hover: none) {
-  .flecha {
-    display: none;
-  }
-}
-
-/* Botón de acción: contorno y texto, como el resto de botones del sitio.
-   La cápsula de 999px se cambia por la esquina discreta del resto: una
-   cápsula pide ser pulsada a gritos, y esto es un enlace más. */
+/* Pastilla de acción: contorno y texto, como el resto de botones del sitio. */
 .mas {
   flex: 0 0 auto;
   align-self: center;
-  padding: 0.35rem 0.9rem;
+  padding: 0.35rem 1rem;
   border: 1px solid var(--linea);
-  /* Cápsula, y a propósito: es de las dos únicas del sitio. Un «ver todos» es
-     lo que se pulsa en una cabecera, y la forma tiene que decirlo antes de
-     leerlo. El resto de esquinas del sitio siguen siendo discretas. */
-  border-radius: var(--radio-capsula);
-  background: var(--papel);
-  box-shadow: var(--alza);
-  color: var(--tenue);
-  font-family: var(--rotulo);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  border-radius: 999px;
+  background: none;
+  color: var(--acento);
+  font: inherit;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-@media (hover: hover) {
-  .mas:hover {
-    border-color: var(--marco);
-    color: var(--acento);
-  }
-}
-
-/* Marcado como favorito: el segundo de los pocos sitios donde aparece el color
-   de realce. Y no va solo el color —el botón cambia también de texto—, que
-   distinguir un estado únicamente por el tono deja fuera a quien no lo ve. */
 .mas[aria-pressed="true"] {
-  border-color: var(--realce);
-  color: var(--realce);
+  border-color: var(--acento);
 }
 
 /* La ruta de un aporte añadido desde el taller: de qué materia, tema y capítulo
    sale. Va debajo del enunciado y en pequeño, que es un dato de catalogación y
    no parte del enunciado. */
-.enunciado .ruta,
-.ruta {
-  margin: 0 0 var(--celda);
-  font-family: var(--rotulo);
+.enunciado .ruta {
+  margin: 0;
   color: var(--tenue);
   font-size: 0.8125rem;
-}
-
-.enunciado .ruta {
-  margin-bottom: 0;
 }
 
 /* Cuando el buscador no deja nadie a la vista, la cuadrícula se esconde entera:
@@ -1936,15 +1120,8 @@ summary.pastilla > * {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--apagado);
-  /* Un escalón por debajo del capítulo: mismo gesto, menos cuerpo y más flojo
-     de tono. La jerarquía la marcan el tamaño y el valor, que es todo lo que
-     hay cuando el color está reservado para otra cosa. */
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  font-variant-caps: all-small-caps;
+  color: var(--tenue);
+  font-size: 0.9375rem;
   cursor: pointer;
   list-style: none;
 }
@@ -1963,26 +1140,9 @@ summary.pastilla > * {
 /* El capítulo es un título fijo, no un plegable: agrupa temas y plegarlo
    escondía justo lo que se quiere ver. */
 .capitulo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   margin: var(--celda) 0;
-  /* Versalitas muy espaciadas, como los rótulos de sección de un libro: por
-     debajo del título de la sección y por encima de los temas que lleva, y sin
-     necesidad de otro tamaño de letra para decirlo. */
-  font-family: var(--rotulo);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  font-variant-caps: all-small-caps;
-  color: var(--tenue);
-}
-
-/* Un filete que sale del rótulo y llega al margen: lo que va debajo es suyo. */
-.capitulo::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid var(--linea);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .grupo-cuerpo {
@@ -2007,11 +1167,8 @@ summary.pastilla > * {
   gap: 0.75rem;
   margin-bottom: var(--celda);
   color: var(--tenue);
-  font-family: var(--rotulo);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  font-variant-caps: all-small-caps;
+  font-size: 0.9375rem;
+  font-weight: 400;
 }
 
 .divisor::before,
@@ -2023,84 +1180,23 @@ summary.pastilla > * {
 
 /* ── Buscador ── */
 
-/* El buscador es la herramienta de SU rejilla, así que arranca en el mismo filo
-   que ella y no en la columna de leer, donde quedaba flotando en medio. Ancho
-   de campo, el de la columna: un cuadro de texto de treinta y cuatro celdas
-   para escribir «gauss» es un campo que no sabe lo que se va a escribir. */
 .buscador {
   margin-top: var(--celda);
 }
 
 .buscador input {
-  max-width: calc(var(--celda) * 20);
-}
-
-/* Cápsula con el botón redondo dentro, pegado al filo derecho. Es la segunda
-   —y última— cápsula del sitio: un campo de búsqueda que no parece un campo de
-   búsqueda es lo único que aquí no puede permitirse, porque es la puerta a
-   cuarenta y siete fichas. */
-.buscador {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.buscador input {
   width: 100%;
-  /* Sitio a la derecha para el botón, que va encima. */
-  padding: 0.5rem calc(var(--celda) * 2) 0.5rem 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid var(--linea);
-  border-radius: var(--radio-capsula);
-  /* No `none`: sobre la cuadrícula, un campo transparente no se lee como campo.
-     El mismo papel translúcido del recuadro de enunciado, que ya es el gesto
-     del sitio para «una hoja encima». */
-  background: color-mix(in srgb, var(--papel) 55%, transparent);
+  border-radius: 999px;
+  background: none;
   color: var(--texto);
-  font-family: var(--rotulo);
-  font-size: 0.9375rem;
+  font: inherit;
   line-height: var(--celda);
-  transition: border-color 0.15s ease;
-}
-
-.buscador input:hover,
-.buscador input:focus {
-  border-color: var(--marco);
 }
 
 .buscador input::placeholder {
   color: var(--apagado);
-}
-
-/* El botón: círculo del color de realce, del tamaño de una celda y media, en
-   el filo derecho del campo. Relleno y no de contorno —es el único botón
-   relleno del sitio— porque es lo que la referencia hace y porque un campo de
-   búsqueda pide un remate, no otro contorno más. */
-.buscador-boton {
-  position: absolute;
-  right: var(--aire-xs);
-  width: calc(var(--celda) * 1.5);
-  height: calc(var(--celda) * 1.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--realce);
-  color: #faf9f5;
-  font-family: var(--rotulo);
-  font-size: 1.125rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Sin nada escrito no hay nada que borrar: el botón se apaga pero no se va, o
-   el campo cambiaría de forma al escribir la primera letra. */
-.buscador-boton[disabled] {
-  opacity: 0.28;
-  cursor: default;
 }
 
 .sin-resultados {
@@ -2132,13 +1228,7 @@ summary.pastilla > * {
 .caras {
   display: flex;
   gap: var(--celda);
-  /* `margin-block` y no `margin`: el atajo borraría también los márgenes
-     laterales, que son los que le dan la medida ancha, y la galería volvía a
-     la columna de leer sin que se viera por qué.
-     Arriba lo separa el título de la sección y abajo lo separa el relleno, que
-     va en relleno porque es el hueco de la barra y tiene que estar DENTRO de
-     la caja que scrollea; como ya mide una celda, un margen encima serían dos. */
-  margin-block: 0;
+  margin: var(--celda) 0 0;
   padding: 0 0 var(--celda);
   list-style: none;
   overflow-x: auto;
@@ -2255,12 +1345,8 @@ summary.pastilla > * {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* La bandera es el fondo de un retrato, no el asunto de la tarjeta. Estos
-     valores se eligieron contra un gris frío; sobre papel cálido el rojo y el
-     amarillo se comían la cara que tienen delante. Más apagada y menos viva:
-     sigue diciendo de dónde es sin quitarle la palabra al retrato. */
-  opacity: 0.26;
-  filter: saturate(0.6);
+  opacity: 0.42;
+  filter: saturate(0.85);
 }
 
 /* Alto fijo: con el mismo retrato en todas y la franja de abajo también fija,
@@ -2302,8 +1388,7 @@ summary.pastilla > * {
 }
 
 .cara-dato {
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.35;
   color: var(--tenue);
 }
@@ -2323,9 +1408,8 @@ summary.pastilla > * {
 }
 
 .datos dt {
-  font-family: var(--rotulo);
   color: var(--tenue);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 
 .datos dd {
@@ -2444,9 +1528,8 @@ summary.pastilla:active,
    manda a leer la demostración de otra cosa. */
 .tambien {
   margin: 0 0 var(--celda);
-  font-family: var(--rotulo);
-  color: var(--tenue);
-  font-size: 0.8125rem;
+  color: var(--apagado);
+  font-size: 0.85rem;
 }
 
 .tambien a {
@@ -2492,426 +1575,7 @@ summary.pastilla:active,
      color de la cuadrícula, así que sobre la cuadrícula no se veía, y en
      cualquier otro color pesaba más que lo que separa. */
   margin-top: calc(var(--celda) * 2);
-  font-family: var(--rotulo);
   color: var(--tenue);
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  font-size: 0.8125rem;
   line-height: var(--celda);
-}
-
-
-/* ══ Los detalles ═════════════════════════════════════════════════════════════
-   Lo que el navegador decidía por su cuenta, decidido aquí. Nada de esto añade
-   un elemento ni cambia una medida: es la misma página, dicha igual en todas
-   partes. */
-
-/* Lo que se selecciona, en tinta plana. El azul de fábrica es de otro sitio. */
-::selection {
-  background: var(--tinta);
-  color: var(--fondo);
-}
-
-/* El anillo de foco ya está puesto más arriba y no se toca. Lo único que le
-   falta es aire donde el elemento es grande: pegado a un recuadro de enunciado
-   o a una portada, el trazo se lee como parte del dibujo. */
-.enunciado:focus-visible,
-.prueba-enunciado:focus-visible,
-.pastilla:focus-visible,
-.libro:focus-visible {
-  outline-offset: 4px;
-}
-
-/* ── A lo que apunta la dirección ──
-   Abrir una demostración cambia la dirección para que ese enlace se pueda
-   copiar y compartir; quien lo abra tiene que ver CUÁL de los veinte
-   enunciados de la página es el suyo. Es el tercer y último sitio donde
-   aparece el color de realce, y es el mismo caso que los otros dos: algo que
-   está vivo ahora mismo. Solo el marco — sin fondo, sin sombra y sin mover
-   nada de sitio, que la caja tiene que seguir cayendo donde caía. */
-.enunciado:target,
-:target > summary > .enunciado,
-:target > summary.pastilla {
-  border-color: var(--realce);
-}
-
-/* Las barras de desplazamiento, en el gris de las rayas: en una página que es
-   un cuaderno, una barra azul de sistema es lo único que canta. */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--linea) transparent;
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: var(--linea);
-  border-radius: 3px;
-}
-
-/* Quien ha pedido que no se le mueva la pantalla, no se le mueve. Los paneles
-   siguen abriéndose y cerrándose —el alto lo pone desplegable.js en píxeles—,
-   pero llegan a su sitio de una vez en lugar de viajar. */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ── En papel ──
-   Sin cuadrícula, sin fotografía de fondo y sin botones: tinta negra sobre
-   blanco. Lo que se pliega se imprime abierto, que en papel no hay nada que
-   pulsar, y cada enlace deja escrita su dirección para que se pueda seguir. */
-@media print {
-  :root {
-    --fondo: #fff;
-    --papel: #fff;
-    --texto: #000;
-    --tenue: #333;
-    --apagado: #555;
-    --linea: #bbb;
-    --marco: #444;
-    /* En papel no hay nada vivo: lo que en pantalla va en color de realce se
-       imprime en tinta, que es la única que hay. */
-    --realce: #000;
-    --rejilla: transparent;
-    --foto: none;
-  }
-
-  /* Y el recuadro se imprime sin su hoja: sobre papel de verdad, el papel ya
-     está puesto. */
-  .enunciado,
-  .buscador input {
-    background: none !important;
-  }
-
-  body::before,
-  body::after {
-    display: none !important;
-  }
-
-  body {
-    background: #fff;
-    color: #000;
-  }
-
-  .tema,
-  .mas,
-  .buscador,
-  .intro {
-    display: none !important;
-  }
-
-  .envoltorio {
-    max-width: none;
-    padding: 0;
-  }
-
-  /* Todo abierto: en papel no se despliega nada. */
-  .demo-cuerpo,
-  .prueba-cuerpo,
-  .grupo-cuerpo {
-    display: block !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  details > summary {
-    list-style: none;
-  }
-
-  /* La dirección de cada enlace, detrás del texto: en papel un enlace sin su
-     dirección es una palabra subrayada y nada más. */
-  main a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.75em;
-    color: #555;
-  }
-
-  /* Un enunciado no se parte entre dos hojas. */
-  .enunciado,
-  .pastilla,
-  .libro {
-    break-inside: avoid;
-  }
-}
-
-
-/* ── Al pasar por encima ──
-   Una tarjeta y una portada son enlaces, y no lo parecían. No se mueven ni
-   crecen: en una página que es una cuadrícula, algo que se despega del renglón
-   canta. Se encienden, que es lo justo para saber qué se va a pulsar. */
-
-/* La bandera sube de intensidad —el país es lo que distingue una cara de la de
-   al lado— y el nombre pasa a tinta plena. */
-.caras a:hover .cara-foto::before,
-.caras a:focus-visible .cara-foto::before {
-  opacity: 0.62;
-}
-
-.caras a:hover .cara-nombre,
-.caras a:focus-visible .cara-nombre {
-  color: var(--acento);
-}
-
-/* La portada levanta su sombra, como un libro que se separa del montón. Un
-   punto, no un salto: sigue apoyada. */
-.libro:hover,
-.libro:focus-visible {
-  box-shadow: 0 2px 8px rgb(20 20 19 / 0.28);
-}
-
-:root:not([data-tema="oscuro"]) .libro:hover,
-:root:not([data-tema="oscuro"]) .libro:focus-visible {
-  box-shadow: 0 2px 8px rgb(20 20 19 / 0.16);
-}
-
-
-/* ══ Formas ═══════════════════════════════════════════════════════════════════
-   Los gestos de la bibliografía de Ukishima, traídos a esta paleta: la cabecera
-   de sección con su cuenta a la derecha y la insignia diminuta que dice de qué
-   es cada entrada. Allí distingue el tono; aquí, que no hay color, distinguen el
-   tamaño, el espaciado y el valor del gris. */
-
-/* ── Cabecera de sección ──
-   El título y, a la derecha, cuántas cosas lleva debajo. Entre los dos, un
-   filete que ata la línea de lado a lado: sin él, el número quedaba flotando en
-   mitad de la nada. */
-h2 {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-h2::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid var(--linea);
-}
-
-/* La sección que todavía no tiene nada dentro. Misma cabecera y mismo filo que
-   una llena, en gris: es la forma de la página, no un aviso. Y a una celda de
-   la siguiente en vez de a dos — cinco secciones vacías separadas como
-   secciones de verdad son diez renglones de nada. */
-.vacia {
-  color: var(--apagado);
-  margin-top: 0;
-}
-
-.vacia::after {
-  border-top-color: var(--linea);
-}
-
-/* ── El paso a la materia de al lado ──
-   Dos puertas al pie, la anterior y la siguiente del plan, con su nombre. En
-   el teléfono se apilan; en pantalla ancha van a los dos extremos, que es
-   donde el pulgar y el ojo las buscan. */
-.paso {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: calc(var(--celda) / 2);
-  /* `margin-block` y no el atajo: el atajo pisaría los márgenes laterales, que
-     son los que le dan la medida ancha. Es el mismo tropiezo que ya se llevó
-     una vez la galería de caras. */
-  margin-block: var(--celda) 0;
-}
-
-.paso-ir {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(var(--celda) * 2);
-  padding: 0 1rem;
-  border: 1px solid var(--linea);
-  border-radius: var(--radio);
-  color: var(--acento);
-  text-decoration: none;
-  transition: border-color 0.15s ease;
-}
-
-.paso-rotulo {
-  display: block;
-  font-family: var(--rotulo);
-  font-size: 0.6875rem;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.12em;
-  color: var(--apagado);
-}
-
-.paso-luego {
-  text-align: right;
-  margin-left: auto;
-}
-
-@media (hover: hover) {
-  .paso-ir:hover {
-    border-color: var(--marco);
-  }
-}
-
-.cuenta {
-  order: 1;
-  flex-shrink: 0;
-  font-family: var(--rotulo);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  /* De `--apagado` a `--tenue`: sobre papel cálido el apagado se queda en
-     3,0:1, y a este cuerpo eso es una cifra que hay que adivinar. En `--tenue`
-     son 5,5:1 y sigue sin competir con el título. */
-  color: var(--tenue);
-  /* Cifras de la misma anchura, que es lo que hace que dos secciones seguidas
-     tengan sus números en la misma columna en vez de bailando. */
-  font-variant-numeric: tabular-nums;
-  /* La cifra no arrastra el título fuera de su renglón. */
-  line-height: 1;
-}
-
-/* ── El término definido ──
-   Una definición es una frase, no una ficha: el término va en versalitas y el
-   resto sigue en redonda, como en un diccionario. */
-.simple > b {
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  font-variant-caps: small-caps;
-}
-
-
-/* ══ El tinte de cada familia ═════════════════════════════════════════════════
-   El sitio va de tres cosas: quién escribió las matemáticas, qué se estudia y
-   de dónde sale. Cada una tiene su papel, lavado hasta que el texto negro
-   encima da más de 12:1. Se nota y no se lee, que es justo lo que se pide de un
-   fondo. */
-
-/* Las fichas de materia, sobre verde de pizarra. */
-.mosaico a {
-  background: var(--tinte-materia);
-}
-
-/* Las tarjetas de matemático: la franja del nombre, sobre arcilla. La bandera
-   sigue detrás del retrato y esto es lo que la separa del texto. */
-.cara-pie {
-  background: var(--tinte-gente);
-}
-
-/* Y lo que sale de un libro —el recuadro de un enunciado, la pastilla de un
-   ejercicio— sobre arena. Es el papel del libro del que se ha copiado. */
-.enunciado,
-.pastilla {
-  background: var(--tinte-libro);
-}
-
-/* En la ficha de un matemático el recuadro no viene de un libro sino de quien
-   lo pensó: ahí el papel es el suyo. */
-.ficha .enunciado,
-main > .pastillas .pastilla {
-  background: var(--papel);
-}
-
-
-/* ══ Segunda pasada: las piezas ═══════════════════════════════════════════════
-   El material ya está decidido —papel arena, tarjeta alzada, tres tintes—. Aquí
-   se lleva a lo que quedaba con la forma vieja. */
-
-/* ── La cuenta de una sección ──
-   Era una cifra suelta al final de la línea y pasa a ser una ficha: redonda,
-   sobre papel, del tamaño de una uña. Dice cuánto hay y se lee como un dato,
-   no como un número perdido. */
-.cuenta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: calc(var(--celda) * 1.25);
-  height: var(--celda);
-  padding: 0 var(--aire-xs);
-  border-radius: var(--radio-capsula);
-  background: var(--papel);
-  box-shadow: var(--alza);
-  color: var(--tenue);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0;
-}
-
-/* ── El campo de búsqueda ──
-   Cápsula de papel alzado, como las tarjetas. Es de las dos únicas cápsulas del
-   sitio, y la otra es el «ver todos» de una cabecera: las dos son lo que se
-   pulsa. */
-.buscador input,
-.buscador .campo,
-input[type="search"] {
-  width: 100%;
-  height: calc(var(--celda) * 2);
-  padding: 0 calc(var(--celda) * 2.5) 0 var(--aire-m);
-  border: 1px solid var(--linea);
-  border-radius: var(--radio-capsula);
-  background: var(--papel);
-  box-shadow: var(--alza);
-  color: var(--texto);
-  font-family: var(--rotulo);
-  font-size: 0.9375rem;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-input[type="search"]::placeholder {
-  color: var(--apagado);
-}
-
-/* ── La miga ──
-   En la letra de los datos y en el tono flojo: es dónde estoy, no lo que se
-   lee. El último nivel, el de la página en la que se está, en tinta. */
-.miga {
-  font-family: var(--rotulo);
-  font-size: 0.8125rem;
-}
-
-.miga .actual {
-  color: var(--texto);
-  font-weight: 500;
-}
-
-/* ── El pie ──
-   La marca y el nombre, y nada más. Cierra la columna sin pedir nada. */
-.pie {
-  font-family: var(--rotulo);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--apagado);
-}
-
-/* ── Las portadas ──
-   Los doce valores se eligieron contra un fondo gris frío: sobre arena tiraban
-   a ceniza. Se mueven a la familia de la tierra —el mismo tono que el papel de
-   los libros, con la luz repartida en doce escalones— y siguen distinguiéndose
-   entre sí, que es para lo que están. */
-.libro {
-  background: hsl(32 22% calc(72% - (var(--tono) * 3.2%)));
-  border-radius: var(--radio-chico) var(--radio) var(--radio) var(--radio-chico);
-}
-
-:root:not([data-tema="oscuro"]) .libro {
-  background: hsl(32 24% calc(74% - (var(--tono) * 3.4%)));
-}
-
-/* ── El visor de la ficha ──
-   El modelo va sobre su propio papel, alzado como todo lo demás: antes flotaba
-   sobre la cuadrícula y parecía recortado. */
-.ficha {
-  border-radius: var(--radio);
-  background: var(--tinte-gente);
-  box-shadow: var(--alza);
 }

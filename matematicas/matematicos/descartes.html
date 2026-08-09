@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,45 +42,49 @@
           <button class="mas" type="button" data-fav="descartes" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Cruzó el álgebra con la geometría y le puso ejes al plano.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/fr.svg" alt="" width="24" height="16" decoding="async" />Francia</span></li>
-          <li><span class="dato">1596 – 1650</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="descartes"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p><em>La Géométrie</em> era solo uno de los tres apéndices del <em>Discurso del método</em> (1637), y acabó siendo lo que más pesó: ahí una curva deja de ser un dibujo y pasa a ser una ecuación.</p>
-          <p>Murió en Estocolmo de una neumonía, al parecer por madrugar para dar clase a la reina Cristina; tenía por costumbre trabajar en la cama hasta el mediodía.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>31 de marzo de 1596, La Haye en Touraine</dd>
-              <dt>Fallecimiento</dt>
-              <dd>11 de febrero de 1650, Estocolmo</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Francesa</dd>
-              <dt>Instituciones</dt>
-              <dd>Colegio de La Flèche, Universidad de Poitiers</dd>
-              <dt>Área</dt>
-              <dd>Geometría, filosofía, óptica</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="descartes"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p><em>La Géométrie</em> era solo uno de los tres apéndices del <em>Discurso del método</em> (1637), y acabó siendo lo que más pesó: ahí una curva deja de ser un dibujo y pasa a ser una ecuación.</p>
+        <p>Murió en Estocolmo de una neumonía, al parecer por madrugar para dar clase a la reina Cristina; tenía por costumbre trabajar en la cama hasta el mediodía.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1596 – 1650 · Francia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>31 de marzo de 1596, La Haye en Touraine</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>11 de febrero de 1650, Estocolmo</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Francesa</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Colegio de La Flèche, Universidad de Poitiers</dd>
+                    <dt>Área</dt>
+                    <dd>Geometría, filosofía, óptica</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 2">
               <span class="libro-tapa">
@@ -88,10 +92,7 @@
                 <span class="libro-titulo">Discours de la méthode, con La Géométrie</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1637</span>
-              </span>
+              <span class="libro-pie">1637</span>
             </article>
           </li>
           <li>
@@ -101,17 +102,14 @@
                 <span class="libro-titulo">Principia philosophiae</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1644</span>
-              </span>
+              <span class="libro-pie">1644</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 3">
               <span class="libro-tapa">
@@ -119,17 +117,14 @@
                 <span class="libro-titulo">La Géométrie, apéndice del Discurso del método</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1637</span>
-              </span>
+              <span class="libro-pie">1637</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="fermat" data-busca="pierre de fermat francia 1607 – 1665 magistrado de oficio, y el aficionado que dejo tres siglos de trabajo">
             <a href="../../matematicas/matematicos/fermat.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/fr.svg)">

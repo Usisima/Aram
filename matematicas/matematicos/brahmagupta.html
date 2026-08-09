@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,47 +42,51 @@
           <button class="mas" type="button" data-fav="brahmagupta" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Escribió las reglas del cero y de los números negativos.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/in.svg" alt="" width="24" height="16" decoding="async" />Bhillamala, India</span></li>
-          <li><span class="dato">598 – c. 668</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="brahmagupta"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>Dirigió el observatorio de Ujjain, el centro astronómico de la India. En el <em>Brahmasphutasiddhanta</em>, de 628, aparecen por primera vez el cero tratado como número —no como hueco— y las reglas de la suma y el producto con deudas, que es como llamaba a los negativos.</p>
-          <p>Se equivocó en una sola cosa, y es la que sigue costando: dijo que cero dividido por cero es cero. Con todo lo demás acertó doce siglos antes de que Europa lo aceptara.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>598, Bhillamala</dd>
-              <dt>Fallecimiento</dt>
-              <dd>c. 668, Ujjain</dd>
-              <dt>Nacionalidad</dt>
-              <dd>India</dd>
-              <dt>Instituciones</dt>
-              <dd>observatorio de Ujjain</dd>
-              <dt>Área</dt>
-              <dd>Aritmética, álgebra, astronomía</dd>
-              <dt>Influencias</dt>
-              <dd>Aryabhata</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="brahmagupta"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>Dirigió el observatorio de Ujjain, el centro astronómico de la India. En el <em>Brahmasphutasiddhanta</em>, de 628, aparecen por primera vez el cero tratado como número —no como hueco— y las reglas de la suma y el producto con deudas, que es como llamaba a los negativos.</p>
+        <p>Se equivocó en una sola cosa, y es la que sigue costando: dijo que cero dividido por cero es cero. Con todo lo demás acertó doce siglos antes de que Europa lo aceptara.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">598 – c. 668 · Bhillamala, India</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>598, Bhillamala</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>c. 668, Ujjain</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>India</dd>
+                    <dt>Instituciones</dt>
+                    <dd>observatorio de Ujjain</dd>
+                    <dt>Área</dt>
+                    <dd>Aritmética, álgebra, astronomía</dd>
+                    <dt>Influencias</dt>
+                    <dd>Aryabhata</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 6">
               <span class="libro-tapa">
@@ -90,10 +94,7 @@
                 <span class="libro-titulo">Brahmasphutasiddhanta</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">628</span>
-              </span>
+              <span class="libro-pie">628</span>
             </article>
           </li>
           <li>
@@ -103,17 +104,14 @@
                 <span class="libro-titulo">Khandakhadyaka</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">665</span>
-              </span>
+              <span class="libro-pie">665</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="juarismi" data-busca="muhammad al-juarismi corasmia, califato abasi c. 780 – c. 850 le dio nombre al algebra y al algoritmo">
             <a href="../../matematicas/matematicos/juarismi.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/ir.svg)">

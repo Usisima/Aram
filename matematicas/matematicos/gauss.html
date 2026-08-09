@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,47 +42,51 @@
           <button class="mas" type="button" data-fav="gauss" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Pocas cosas, pero maduras.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/de.svg" alt="" width="24" height="16" decoding="async" />Brunswick, Alemania</span></li>
-          <li><span class="dato">1777 – 1855</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="gauss"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>Hijo de una familia pobre de Brunswick, llamó la atención de niño y el duque le pagó los estudios. A los diecinueve construyó el polígono regular de diecisiete lados con regla y compás, lo que nadie había logrado en dos mil años, y eso lo decidió por las matemáticas.</p>
-          <p>Publicaba poco y tarde — <em>pauca sed matura</em>. En sus diarios aparecieron después resultados que otros tardaron décadas en redescubrir, entre ellos la geometría no euclidiana.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>30 de abril de 1777, Brunswick</dd>
-              <dt>Fallecimiento</dt>
-              <dd>23 de febrero de 1855, Gotinga</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Alemana</dd>
-              <dt>Instituciones</dt>
-              <dd>Universidad y Observatorio de Gotinga</dd>
-              <dt>Área</dt>
-              <dd>Teoría de números, geometría diferencial, estadística, astronomía</dd>
-              <dt>Discípulos</dt>
-              <dd>Bernhard Riemann, Richard Dedekind, Gotthold Eisenstein</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="gauss"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>Hijo de una familia pobre de Brunswick, llamó la atención de niño y el duque le pagó los estudios. A los diecinueve construyó el polígono regular de diecisiete lados con regla y compás, lo que nadie había logrado en dos mil años, y eso lo decidió por las matemáticas.</p>
+        <p>Publicaba poco y tarde — <em>pauca sed matura</em>. En sus diarios aparecieron después resultados que otros tardaron décadas en redescubrir, entre ellos la geometría no euclidiana.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1777 – 1855 · Brunswick, Alemania</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>30 de abril de 1777, Brunswick</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>23 de febrero de 1855, Gotinga</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Alemana</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad y Observatorio de Gotinga</dd>
+                    <dt>Área</dt>
+                    <dd>Teoría de números, geometría diferencial, estadística, astronomía</dd>
+                    <dt>Discípulos</dt>
+                    <dd>Bernhard Riemann, Richard Dedekind, Gotthold Eisenstein</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 11">
               <span class="libro-tapa">
@@ -90,10 +94,7 @@
                 <span class="libro-titulo">Disquisitiones Arithmeticae</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1801</span>
-              </span>
+              <span class="libro-pie">1801</span>
             </article>
           </li>
           <li>
@@ -103,17 +104,14 @@
                 <span class="libro-titulo">Theoria motus corporum coelestium</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1809</span>
-              </span>
+              <span class="libro-pie">1809</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 7">
               <span class="libro-tapa">
@@ -121,10 +119,7 @@
                 <span class="libro-titulo">Disquisitiones generales circa superficies curvas</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1827</span>
-              </span>
+              <span class="libro-pie">1827</span>
             </article>
           </li>
           <li>
@@ -134,17 +129,14 @@
                 <span class="libro-titulo">Disquisitiones generales circa superficies curvas</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1828</span>
-              </span>
+              <span class="libro-pie">1828</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="euler" data-busca="leonhard euler suiza 1707 – 1783 escribio mas que nadie, y ciego escribio aun mas">
             <a href="../../matematicas/matematicos/euler.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/ch.svg)">

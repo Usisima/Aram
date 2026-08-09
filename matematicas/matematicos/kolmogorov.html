@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,47 +42,51 @@
           <button class="mas" type="button" data-fav="kolmogorov" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Le dio axiomas a la probabilidad.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/ru.svg" alt="" width="24" height="16" decoding="async" />Rusia</span></li>
-          <li><span class="dato">1903 – 1987</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="kolmogorov"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>En 1933, con treinta años, publicó un librito de setenta páginas que define la probabilidad como una medida sobre un espacio: sucesos, una sigma-álgebra y una función que suma uno. Con eso la probabilidad dejó de ser un arte de contar casos y pasó a ser una rama del análisis.</p>
-          <p>Trabajó además en turbulencia, en sistemas dinámicos y en teoría de la información, y dedicó los últimos años a la enseñanza secundaria: montó internados para chicos con talento a los que daba clase él mismo.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>25 de abril de 1903, Tambov</dd>
-              <dt>Fallecimiento</dt>
-              <dd>20 de octubre de 1987, Moscú</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Unión Soviética</dd>
-              <dt>Instituciones</dt>
-              <dd>Universidad Estatal de Moscú</dd>
-              <dt>Área</dt>
-              <dd>Probabilidad, turbulencia, complejidad, topología</dd>
-              <dt>Discípulos</dt>
-              <dd>Arnold, Sinái, Gelfand</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="kolmogorov"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>En 1933, con treinta años, publicó un librito de setenta páginas que define la probabilidad como una medida sobre un espacio: sucesos, una sigma-álgebra y una función que suma uno. Con eso la probabilidad dejó de ser un arte de contar casos y pasó a ser una rama del análisis.</p>
+        <p>Trabajó además en turbulencia, en sistemas dinámicos y en teoría de la información, y dedicó los últimos años a la enseñanza secundaria: montó internados para chicos con talento a los que daba clase él mismo.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1903 – 1987 · Rusia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>25 de abril de 1903, Tambov</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>20 de octubre de 1987, Moscú</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Unión Soviética</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad Estatal de Moscú</dd>
+                    <dt>Área</dt>
+                    <dd>Probabilidad, turbulencia, complejidad, topología</dd>
+                    <dt>Discípulos</dt>
+                    <dd>Arnold, Sinái, Gelfand</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 9">
               <span class="libro-tapa">
@@ -90,10 +94,7 @@
                 <span class="libro-titulo">Grundbegriffe der Wahrscheinlichkeitsrechnung</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1933</span>
-              </span>
+              <span class="libro-pie">1933</span>
             </article>
           </li>
           <li>
@@ -103,17 +104,14 @@
                 <span class="libro-titulo">Elementos de la teoría de funciones y del análisis funcional</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1954</span>
-              </span>
+              <span class="libro-pie">1954</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 4">
               <span class="libro-tapa">
@@ -121,10 +119,7 @@
                 <span class="libro-titulo">Local structure of turbulence in incompressible fluid</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1941</span>
-              </span>
+              <span class="libro-pie">1941</span>
             </article>
           </li>
           <li>
@@ -134,17 +129,14 @@
                 <span class="libro-titulo">Three approaches to the definition of the quantity of information</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1965</span>
-              </span>
+              <span class="libro-pie">1965</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="poincare" data-busca="henri poincare francia 1854 – 1912 el ultimo que abarco las matematicas enteras">
             <a href="../../matematicas/matematicos/poincare.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/fr.svg)">

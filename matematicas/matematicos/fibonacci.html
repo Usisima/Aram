@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,45 +42,49 @@
           <button class="mas" type="button" data-fav="fibonacci" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Trajo las cifras árabes a Europa con un problema de conejos.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/it.svg" alt="" width="24" height="16" decoding="async" />Pisa, Italia</span></li>
-          <li><span class="dato">c. 1170 – c. 1250</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="fibonacci"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>Se crió en Bugía, en la costa argelina, donde su padre dirigía una aduana pisana, y allí aprendió de los comerciantes musulmanes el cálculo con cifras indoarábigas. El <em>Liber Abaci</em> lo escribió para convencer a los mercaderes italianos de que ese sistema era mejor que los números romanos y el ábaco.</p>
-          <p>La sucesión que lleva su nombre aparece de pasada, como el ejercicio de una pareja de conejos que cría cada mes. Ni la inventó él —está en la métrica sánscrita siglos antes— ni le dio la menor importancia.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>c. 1170, Pisa</dd>
-              <dt>Fallecimiento</dt>
-              <dd>c. 1250, Pisa</dd>
-              <dt>Nacionalidad</dt>
-              <dd>República de Pisa</dd>
-              <dt>Área</dt>
-              <dd>Aritmética, álgebra, teoría de números</dd>
-              <dt>Influencias</dt>
-              <dd>al-Juarismi, Abu Kamil, Euclides</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="fibonacci"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>Se crió en Bugía, en la costa argelina, donde su padre dirigía una aduana pisana, y allí aprendió de los comerciantes musulmanes el cálculo con cifras indoarábigas. El <em>Liber Abaci</em> lo escribió para convencer a los mercaderes italianos de que ese sistema era mejor que los números romanos y el ábaco.</p>
+        <p>La sucesión que lleva su nombre aparece de pasada, como el ejercicio de una pareja de conejos que cría cada mes. Ni la inventó él —está en la métrica sánscrita siglos antes— ni le dio la menor importancia.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">c. 1170 – c. 1250 · Pisa, Italia</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>c. 1170, Pisa</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>c. 1250, Pisa</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>República de Pisa</dd>
+                    <dt>Área</dt>
+                    <dd>Aritmética, álgebra, teoría de números</dd>
+                    <dt>Influencias</dt>
+                    <dd>al-Juarismi, Abu Kamil, Euclides</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 0">
               <span class="libro-tapa">
@@ -88,10 +92,7 @@
                 <span class="libro-titulo">Liber Abaci</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1202</span>
-              </span>
+              <span class="libro-pie">1202</span>
             </article>
           </li>
           <li>
@@ -101,10 +102,7 @@
                 <span class="libro-titulo">Practica Geometriae</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1220</span>
-              </span>
+              <span class="libro-pie">1220</span>
             </article>
           </li>
           <li>
@@ -114,17 +112,14 @@
                 <span class="libro-titulo">Liber Quadratorum</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1225</span>
-              </span>
+              <span class="libro-pie">1225</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="juarismi" data-busca="muhammad al-juarismi corasmia, califato abasi c. 780 – c. 850 le dio nombre al algebra y al algoritmo">
             <a href="../../matematicas/matematicos/juarismi.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/ir.svg)">

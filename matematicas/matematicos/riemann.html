@@ -7,12 +7,11 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/katex/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/katex/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
@@ -20,6 +19,7 @@
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -44,43 +44,47 @@
           <button class="mas" type="button" data-fav="riemann" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Cambió la idea de espacio y dejó abierta la pregunta más difícil.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/de.svg" alt="" width="24" height="16" decoding="async" />Hannover, Alemania</span></li>
-          <li><span class="dato">1826 – 1866</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="riemann"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>Hijo de un pastor luterano, tímido y de salud frágil. Estudió en Gotinga con Gauss, que en la lección de habilitación de 1854 —sobre las hipótesis en que se funda la geometría— salió, según se cuenta, impresionado como pocas veces.</p>
-          <p>Aquella lección inventó la geometría que sesenta años después usaría Einstein. Murió de tuberculosis a los treinta y nueve años, en Italia, buscando un clima que no llegó a curarle.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>17 de septiembre de 1826, Breselenz, Hannover</dd>
-              <dt>Fallecimiento</dt>
-              <dd>20 de julio de 1866, Selasca, Italia</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Alemana</dd>
-              <dt>Instituciones</dt>
-              <dd>Universidad de Gotinga</dd>
-              <dt>Área</dt>
-              <dd>Análisis complejo, geometría diferencial, teoría de números</dd>
-              <dt>Maestros</dt>
-              <dd>Carl Friedrich Gauss, Peter Dirichlet</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="riemann"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>Hijo de un pastor luterano, tímido y de salud frágil. Estudió en Gotinga con Gauss, que en la lección de habilitación de 1854 —sobre las hipótesis en que se funda la geometría— salió, según se cuenta, impresionado como pocas veces.</p>
+        <p>Aquella lección inventó la geometría que sesenta años después usaría Einstein. Murió de tuberculosis a los treinta y nueve años, en Italia, buscando un clima que no llegó a curarle.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1826 – 1866 · Hannover, Alemania</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>17 de septiembre de 1826, Breselenz, Hannover</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>20 de julio de 1866, Selasca, Italia</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Alemana</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad de Gotinga</dd>
+                    <dt>Área</dt>
+                    <dd>Análisis complejo, geometría diferencial, teoría de números</dd>
+                    <dt>Maestros</dt>
+                    <dd>Carl Friedrich Gauss, Peter Dirichlet</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Conjeturas</h2>
 
@@ -89,7 +93,7 @@
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 7">
               <span class="libro-tapa">
@@ -97,17 +101,14 @@
                 <span class="libro-titulo">Obras completas</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1876</span>
-              </span>
+              <span class="libro-pie">1876</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 8">
               <span class="libro-tapa">
@@ -115,10 +116,7 @@
                 <span class="libro-titulo">Über die Hypothesen, welche der Geometrie zu Grunde liegen</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1854</span>
-              </span>
+              <span class="libro-pie">1854</span>
             </article>
           </li>
           <li>
@@ -128,17 +126,14 @@
                 <span class="libro-titulo">Über die Anzahl der Primzahlen unter einer gegebenen Größe</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1859</span>
-              </span>
+              <span class="libro-pie">1859</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="gauss" data-busca="carl friedrich gauss brunswick, alemania 1777 – 1855 pocas cosas, pero maduras">
             <a href="../../matematicas/matematicos/gauss.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/de.svg)">

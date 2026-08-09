@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,47 +42,51 @@
           <button class="mas" type="button" data-fav="godel" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Demostró que ningún sistema puede probarlo todo sobre sí mismo.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/at.svg" alt="" width="24" height="16" decoding="async" />Austria</span></li>
-          <li><span class="dato">1906 – 1978</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="godel"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>En 1931, con veinticinco años, publicó los dos teoremas que dejaron sin salida el programa de Hilbert. La idea es una diagonal como la de Cantor: numerar las fórmulas de modo que el sistema pueda hablar de sí mismo, y construir una que diga «no soy demostrable».</p>
-          <p>Emigró a Princeton en 1940 y allí fue amigo íntimo de Einstein, que decía ir al instituto solo por el privilegio de volver a casa caminando con él. Murió de inanición, convencido de que lo envenenaban.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Nacimiento</dt>
-              <dd>28 de abril de 1906, Brno</dd>
-              <dt>Fallecimiento</dt>
-              <dd>14 de enero de 1978, Princeton</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Austria, después Estados Unidos</dd>
-              <dt>Instituciones</dt>
-              <dd>Universidad de Viena, Instituto de Estudios Avanzados</dd>
-              <dt>Área</dt>
-              <dd>Lógica, fundamentos, teoría de conjuntos</dd>
-              <dt>Influencias</dt>
-              <dd>Hilbert, Russell, Carnap</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="godel"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>En 1931, con veinticinco años, publicó los dos teoremas que dejaron sin salida el programa de Hilbert. La idea es una diagonal como la de Cantor: numerar las fórmulas de modo que el sistema pueda hablar de sí mismo, y construir una que diga «no soy demostrable».</p>
+        <p>Emigró a Princeton en 1940 y allí fue amigo íntimo de Einstein, que decía ir al instituto solo por el privilegio de volver a casa caminando con él. Murió de inanición, convencido de que lo envenenaban.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">1906 – 1978 · Austria</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Nacimiento</dt>
+                    <dd>28 de abril de 1906, Brno</dd>
+                    <dt>Fallecimiento</dt>
+                    <dd>14 de enero de 1978, Princeton</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Austria, después Estados Unidos</dd>
+                    <dt>Instituciones</dt>
+                    <dd>Universidad de Viena, Instituto de Estudios Avanzados</dd>
+                    <dt>Área</dt>
+                    <dd>Lógica, fundamentos, teoría de conjuntos</dd>
+                    <dt>Influencias</dt>
+                    <dd>Hilbert, Russell, Carnap</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 3">
               <span class="libro-tapa">
@@ -90,17 +94,14 @@
                 <span class="libro-titulo">The Consistency of the Continuum Hypothesis</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1940</span>
-              </span>
+              <span class="libro-pie">1940</span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 6">
               <span class="libro-tapa">
@@ -108,10 +109,7 @@
                 <span class="libro-titulo">Über formal unentscheidbare Sätze der Principia Mathematica</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1931</span>
-              </span>
+              <span class="libro-pie">1931</span>
             </article>
           </li>
           <li>
@@ -121,10 +119,7 @@
                 <span class="libro-titulo">Die Vollständigkeit der Axiome des logischen Funktionenkalküls</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1930</span>
-              </span>
+              <span class="libro-pie">1930</span>
             </article>
           </li>
           <li>
@@ -134,17 +129,14 @@
                 <span class="libro-titulo">An example of a new type of cosmological solutions</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">1949</span>
-              </span>
+              <span class="libro-pie">1949</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="hilbert" data-busca="david hilbert prusia, alemania 1862 – 1943 puso los cimientos y repartio el trabajo del siglo xx">
             <a href="../../matematicas/matematicos/hilbert.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/de.svg)">

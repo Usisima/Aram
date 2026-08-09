@@ -217,27 +217,6 @@
     }
 
     campo.addEventListener("input", filtrar);
-
-    /* El boton redondo del campo: vacia la busqueda y devuelve las cuarenta y
-       siete. Es una accion de verdad y no un adorno con forma de lupa —en el
-       telefono, borrar a mano un campo de busqueda con el teclado tapando
-       media pantalla es lo que mas cuesta de un filtro—. Mientras no hay nada
-       escrito no hay nada que borrar, y entonces se apaga. */
-    var limpiar = document.querySelector("[data-limpiar]");
-    if (limpiar) {
-      var repasarBoton = function () {
-        limpiar.disabled = !campo.value;
-      };
-      limpiar.addEventListener("click", function () {
-        campo.value = "";
-        filtrar();
-        repasarBoton();
-        campo.focus();
-      });
-      campo.addEventListener("input", repasarBoton);
-      repasarBoton();
-    }
-
     /* El navegador conserva el texto del campo al volver atrás. */
     if (campo.value) filtrar();
   }

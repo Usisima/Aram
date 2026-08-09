@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
+    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,43 +42,47 @@
           <button class="mas" type="button" data-fav="diofanto" aria-pressed="false"></button>
         </div>
 
-        <p class="entrada">Empezó a escribir el álgebra con símbolos, y dejó los problemas que Fermat leía.</p>
-
-        <ul class="tira">
-          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/eg.svg" alt="" width="24" height="16" decoding="async" />Alejandría, Egipto romano</span></li>
-          <li><span class="dato">siglo III</span></li>
-        </ul>
-
-        <div class="banda">
-          <div class="ficha">
-            <div
-              class="voxel3d"
-              data-modelo="diofanto"
-              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-            ></div>
-          </div>
-
-          <div class="banda-texto">
-          <p>De su vida solo queda un epigrama que cuenta su edad como un acertijo. De su obra, seis de los trece libros de la <em>Aritmética</em>, una colección de ciento treinta problemas con soluciones enteras o racionales.</p>
-          <p>Fue el primero en abreviar las incógnitas y las potencias con signos en vez de palabras. El ejemplar de Bachet que Fermat tenía en su mesa es donde este escribió, junto al problema octavo del libro segundo, que tenía una demostración maravillosa que no cabía en el margen.</p>
-
-            <h3 class="capitulo">Información personal</h3>
-            <dl class="datos">
-              <dt>Actividad</dt>
-              <dd>Alejandría, siglo III</dd>
-              <dt>Nacionalidad</dt>
-              <dd>Egipto romano</dd>
-              <dt>Área</dt>
-              <dd>Aritmética, ecuaciones indeterminadas</dd>
-              <dt>Influencias</dt>
-              <dd>Herón, tradición babilónica</dd>
-            </dl>
-          </div>
+        <div class="ficha">
+          <div
+            class="voxel3d"
+            data-modelo="diofanto"
+            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+          ></div>
         </div>
+
+        <p>De su vida solo queda un epigrama que cuenta su edad como un acertijo. De su obra, seis de los trece libros de la <em>Aritmética</em>, una colección de ciento treinta problemas con soluciones enteras o racionales.</p>
+        <p>Fue el primero en abreviar las incógnitas y las potencias con signos en vez de palabras. El ejemplar de Bachet que Fermat tenía en su mesa es donde este escribió, junto al problema octavo del libro segundo, que tenía una demostración maravillosa que no cabía en el margen.</p>
+
+        <ul class="pastillas">
+          <li>
+            <details class="demo" id="datos">
+              <summary class="pastilla">
+                <span class="pastilla-texto">
+                  <span class="pastilla-titulo">Información personal</span>
+                  <span class="pastilla-sub">siglo III · Alejandría, Egipto romano</span>
+                </span>
+              </summary>
+              <div class="demo-cuerpo">
+                <div class="dentro">
+                  <dl class="datos">
+                    <dt>Actividad</dt>
+                    <dd>Alejandría, siglo III</dd>
+                    <dt>Nacionalidad</dt>
+                    <dd>Egipto romano</dd>
+                    <dt>Área</dt>
+                    <dd>Aritmética, ecuaciones indeterminadas</dd>
+                    <dt>Influencias</dt>
+                    <dd>Herón, tradición babilónica</dd>
+                  </dl>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
 
         <h2>Libros</h2>
 
-        <ul class="libros ancha libros-fila">
+        <ul class="libros libros-fila">
           <li>
             <article class="libro" style="--tono: 3">
               <span class="libro-tapa">
@@ -86,10 +90,7 @@
                 <span class="libro-titulo">Aritmética</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">siglo III</span>
-              </span>
+              <span class="libro-pie">siglo III</span>
             </article>
           </li>
           <li>
@@ -99,17 +100,14 @@
                 <span class="libro-titulo">Sobre los números poligonales</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-cinta"></span>
-              <span class="libro-canto">
-                <span class="libro-pie">siglo III</span>
-              </span>
+              <span class="libro-pie">siglo III</span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras ancha">
+        <ul class="caras">
           <li data-id="hipatia" data-busca="hipatia de alejandria alejandria, egipto romano c. 355 – 415 edito y enseno lo que de otro modo se habria perdido">
             <a href="../../matematicas/matematicos/hipatia.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/eg.svg)">
