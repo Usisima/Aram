@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
-    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,49 +42,45 @@
           <button class="mas" type="button" data-fav="arquimedes" aria-pressed="false"></button>
         </div>
 
-        <div class="ficha">
-          <div
-            class="voxel3d"
-            data-modelo="arquimedes"
-            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-          ></div>
-        </div>
+        <p class="entrada">Midió la esfera y se adelantó dieciocho siglos al cálculo.</p>
 
-        <p>Vivió y trabajó en Siracusa, en la Sicilia griega. Murió durante la toma romana de la ciudad, en el 212 a.C.</p>
-        <p>En <em>El Método</em>, perdido hasta 1906, explica cómo llegaba a sus resultados pesando figuras imaginariamente antes de demostrarlos por el método de exhaución. Es un razonamiento con infinitos que no volvería a aparecer hasta el cálculo.</p>
-
-        <ul class="pastillas">
-          <li>
-            <details class="demo" id="datos">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">Información personal</span>
-                  <span class="pastilla-sub">c. 287 – 212 a.C. · Siracusa, Magna Grecia</span>
-                </span>
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-                  <dl class="datos">
-                    <dt>Nacimiento</dt>
-                    <dd>c. 287 a.C., Siracusa</dd>
-                    <dt>Fallecimiento</dt>
-                    <dd>212 a.C., Siracusa</dd>
-                    <dt>Nacionalidad</dt>
-                    <dd>Siracusa, Magna Grecia</dd>
-                    <dt>Área</dt>
-                    <dd>Geometría, mecánica, hidrostática</dd>
-                    <dt>Influencias</dt>
-                    <dd>Eudoxo de Cnido, Euclides</dd>
-                  </dl>
-                </div>
-              </div>
-            </details>
-          </li>
+        <ul class="tira">
+          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/it.svg" alt="" width="24" height="16" decoding="async" />Siracusa, Magna Grecia</span></li>
+          <li><span class="dato">c. 287 – 212 a.C.</span></li>
         </ul>
+
+        <div class="banda">
+          <div class="ficha">
+            <div
+              class="voxel3d"
+              data-modelo="arquimedes"
+              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+            ></div>
+          </div>
+
+          <div class="banda-texto">
+          <p>Vivió y trabajó en Siracusa, en la Sicilia griega. Murió durante la toma romana de la ciudad, en el 212 a.C.</p>
+          <p>En <em>El Método</em>, perdido hasta 1906, explica cómo llegaba a sus resultados pesando figuras imaginariamente antes de demostrarlos por el método de exhaución. Es un razonamiento con infinitos que no volvería a aparecer hasta el cálculo.</p>
+
+            <h3 class="capitulo">Información personal</h3>
+            <dl class="datos">
+              <dt>Nacimiento</dt>
+              <dd>c. 287 a.C., Siracusa</dd>
+              <dt>Fallecimiento</dt>
+              <dd>212 a.C., Siracusa</dd>
+              <dt>Nacionalidad</dt>
+              <dd>Siracusa, Magna Grecia</dd>
+              <dt>Área</dt>
+              <dd>Geometría, mecánica, hidrostática</dd>
+              <dt>Influencias</dt>
+              <dd>Eudoxo de Cnido, Euclides</dd>
+            </dl>
+          </div>
+        </div>
 
         <h2>Libros</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 3">
               <span class="libro-tapa">
@@ -92,7 +88,10 @@
                 <span class="libro-titulo">El Método</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">hallado en 1906</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">hallado en 1906</span>
+              </span>
             </article>
           </li>
           <li>
@@ -102,7 +101,10 @@
                 <span class="libro-titulo">Sobre la esfera y el cilindro</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">siglo III a.C.</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">siglo III a.C.</span>
+              </span>
             </article>
           </li>
           <li>
@@ -112,7 +114,10 @@
                 <span class="libro-titulo">Sobre los cuerpos flotantes</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">siglo III a.C.</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">siglo III a.C.</span>
+              </span>
             </article>
           </li>
           <li>
@@ -122,7 +127,10 @@
                 <span class="libro-titulo">El arenario</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">siglo III a.C.</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">siglo III a.C.</span>
+              </span>
             </article>
           </li>
           <li>
@@ -132,14 +140,17 @@
                 <span class="libro-titulo">El Método</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">siglo III a.C.</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">siglo III a.C.</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras">
+        <ul class="caras ancha">
           <li data-id="euclides" data-busca="euclides de alejandria grecia helenistica siglo iii a.c. ordeno la geometria en trece libros y enseno a demostrar">
             <a href="../../matematicas/matematicos/euclides.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/gr.svg)">

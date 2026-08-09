@@ -78,6 +78,11 @@ const libro = (libroId) => `matematicas/libros/${libroId}.html`;
    caben no se pierden, se van a su propia página. */
 const APORTES_FICHA = 3;
 
+/* Cuántas materias se asoman en la página de la sección. Las mismas que caras
+   se asoman ahí arriba: lo justo para ver de qué van, no para elegir. Elegir se
+   hace en el índice, que está a un clic. */
+const MATERIAS_ASOMO = 6;
+
 /**
  * Las fuentes de KaTeX que va a necesitar una página, si es que necesita alguna.
  *
@@ -117,6 +122,9 @@ function plantilla({ titulo, miga, cuerpo, visor, favoritos }) {
      los temas se añadieron después y abrían de golpe— y aquí no hay nada que
      acordarse de marcar. */
   const despliegue = cuerpo.indexOf("<details") >= 0;
+  /* Lo mismo que con el despliegue: se mira el cuerpo en vez de apuntarlo
+     página por página. Solo las páginas con carrusel cargan sus flechas. */
+  const flechas = cuerpo.indexOf('class="flecha"') >= 0;
   const migas = miga
     .map((m, i) => {
       const sep = i ? '\n        <span class="sep">/</span>\n        ' : "";
@@ -142,11 +150,12 @@ function plantilla({ titulo, miga, cuerpo, visor, favoritos }) {
     <link rel="icon" href="assets/favicon.svg" />
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />${fuentesDe(
+    <link rel="preload" href="assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />${fuentesDe(
       cuerpo,
     )
       .map(
@@ -161,6 +170,10 @@ function plantilla({ titulo, miga, cuerpo, visor, favoritos }) {
     <script src="assets/rejilla.js"></script>${
       despliegue
         ? '\n    <script defer src="assets/desplegable.js"></script>'
+        : ""
+    }${
+      flechas
+        ? '\n    <script defer src="assets/carrusel.js"></script>'
         : ""
     }${
       visor
@@ -290,7 +303,9 @@ ${sangrar(cuerpo, 10)}
  */
 function portadas(obras, disposicion) {
   return [
-    `        <ul class="libros${disposicion === "carrusel" ? " libros-fila" : ""}">`,
+    /* `ancha`, como las caras: una estantería de portadas se recorre, no se
+       lee, y va al mismo filo izquierdo que los títulos de sección. */
+    `        <ul class="libros ancha${disposicion === "carrusel" ? " libros-fila" : ""}">`,
     ...obras.map((o) => {
       /* Suma de los códigos del título: determinista y suficiente para
          repartir doce tonos sin que dos vecinos se repitan. */
@@ -316,7 +331,15 @@ function portadas(obras, disposicion) {
         `                <span class="libro-titulo">${o.titulo}</span>`,
         '                <span class="libro-filete"></span>',
         "              </span>",
-        pie ? `              <span class="libro-pie">${pie}</span>` : "",
+        /* La cinta del marcapáginas y el canto de abajo: es lo que convierte
+           un rectángulo de color en un libro a un tamaño en el que el título
+           todavía no se lee. El canto lleva dentro el autor y el año, que
+           antes iban sueltos sobre la tapa y se perdían en la mitad de los
+           doce tonos. */
+        '              <span class="libro-cinta"></span>',
+        '              <span class="libro-canto">',
+        pie ? `                <span class="libro-pie">${pie}</span>` : "",
+        "              </span>",
         `            ${cierra}`,
         "          </li>",
       ]
@@ -339,12 +362,13 @@ ${titulo ? `          <p>${titulo}</p>\n` : ""}${cuerpo}
  *
  * La etiqueta es para numerar —«P1», «Teorema 1.4»—, y va delante porque es por
  * donde se busca. Si no hay, manda el nombre y no se nota que existe el campo.
+ *
+ * El tipo —teorema, propiedad, lema— no se escribe aquí ni en ningún otro sitio
+ * de la página: se guarda, se edita en el taller y es lo que decide en qué
+ * sección acaba cada cosa, pero enseñarlo era repetir en cada línea algo que ya
+ * dice el título de la sección donde está.
  */
-const rotulo = (cosa) =>
-  [cosa.etiqueta || mayuscula(cosa.tipo), cosa.nombre].filter(Boolean).join(" · ");
-
-/** Con mayúscula inicial: los tipos se guardan en minúscula y se leen aquí. */
-const mayuscula = (t) => (t ? t.charAt(0).toUpperCase() + t.slice(1) : "");
+const rotulo = (cosa) => [cosa.etiqueta, cosa.nombre].filter(Boolean).join(" · ");
 
 /**
  * Dónde se lee cada entrada del sitio: su página y su ancla.
@@ -387,6 +411,36 @@ function tambienEn(cosa) {
   return [`        <p class="tambien">También en ${cuales}</p>`, ""];
 }
 
+/**
+ * La cabecera de una sección: el título a la izquierda y los mandos a la
+ * derecha, en la misma línea.
+ *
+ * Los mandos son la cápsula que lleva al índice completo y, si lo que va
+ * debajo es un carrusel, las dos flechas que lo pasan. Se escribe aquí y una
+ * sola vez porque el patrón se repite en las tres secciones que llevan
+ * carrusel, y tres copias del mismo <div> acaban siempre siendo tres
+ * cabeceras ligeramente distintas.
+ *
+ * `pasa` es el id del carrusel al que mandan las flechas. Sin él no se
+ * escriben: una flecha que no pasa nada es un botón muerto.
+ */
+function cabecera({ titulo, cuenta, verTodo, texto, pasa }) {
+  const mandos = [
+    verTodo ? `<a class="mas" href="${verTodo}">${texto}</a>` : "",
+    pasa
+      ? `<button class="flecha" type="button" data-pasa="${pasa}" data-hacia="-1" aria-label="Anterior">‹</button>` +
+        `<button class="flecha" type="button" data-pasa="${pasa}" data-hacia="1" aria-label="Siguiente">›</button>`
+      : "",
+  ].join("");
+
+  return [
+    '        <div class="titulo-fila">',
+    `          <h2>${titulo}${cuenta !== undefined ? `<span class="cuenta">${cuenta}</span>` : ""}</h2>`,
+    `          <span class="mandos">${mandos}</span>`,
+    "        </div>",
+  ];
+}
+
 const MIGA_BASE = [
   { texto: "Inicio", href: "index.html" },
   { texto: "Matemáticas", href: "matematicas/index.html" },
@@ -409,10 +463,13 @@ const M_MATES = [...MIGA_BASE.slice(0, 2), { texto: "Matemáticos", href: `${MAT
  * de asomo. `rejilla` las reparte en cuadrícula y las enseña todas, que es lo
  * que quiere un índice.
  */
-function tarjetas(items, disposicion, limite) {
+function tarjetas(items, disposicion, limite, id) {
   return [
-    `        <ul class="caras${disposicion === "rejilla" ? " caras-rejilla" : ""}"` +
-      `${limite ? ` data-limite="${limite}"` : ""}>`,
+    /* `ancha` es la segunda medida de la hoja: una galería no se lee, se
+       recorre, y en la medida de leer no cabe. Solo la llevan las galerías
+       enteras —el índice y el carrusel—, no los bloques sueltos. */
+    `        <ul class="caras ancha${disposicion === "rejilla" ? " caras-rejilla" : ""}"` +
+      `${limite ? ` data-limite="${limite}"` : ""}${id ? ` id="${id}"` : ""}>`,
     ...items.map((t) => {
       const estilo = t.fondo ? ` style="--bandera: url(${t.fondo})"` : "";
       const dentro = [
@@ -455,7 +512,7 @@ function tarjetas(items, disposicion, limite) {
  * La nacionalidad sigue estando, con su detalle histórico, en los datos
  * personales de la ficha.
  */
-function carrusel(gente, disposicion, limite) {
+function carrusel(gente, disposicion, limite, id) {
   return tarjetas(
     gente.map((m) => ({
       id: m.id,
@@ -472,6 +529,7 @@ function carrusel(gente, disposicion, limite) {
     })),
     disposicion,
     limite,
+    id,
   );
 }
 
@@ -505,17 +563,50 @@ paginas.push({
   cuerpo: [
     "        <h1>Matemáticas</h1>",
     "",
-    /* El enlace al índice va en la misma línea del título, a la derecha: es
-       donde se busca cuando el carrusel se queda corto. */
-    '        <div class="titulo-fila">',
-    "          <h2>Matemáticos</h2>",
-    `          <a class="mas" href="${MATES}/index.html">Ver los ${matematicos.length}</a>`,
-    "        </div>",
+    /* ── El reparto de la sección ──
+       Esta página no tiene contenido propio: reparte hacia los dos sitios donde
+       está, los matemáticos y las materias. Antes eso se leía como un cajón —un
+       carrusel grande con su título y su enlace, y debajo una sola línea de
+       lista que también era una puerta pero no lo parecía—, así que las dos
+       puertas pesaban distinto sin que hubiera razón.
+
+       Ahora son dos bloques iguales: mismo título de sección, misma cuenta a la
+       derecha, mismo enlace al índice. Lo que cambia es el asomo que cada una
+       enseña debajo, porque no se asoman igual: de las caras se reconoce una y
+       se entra, y de las materias lo que se mira es en qué semestre va cada
+       cosa, que es una lista. */
+    ...cabecera({
+      titulo: "Matemáticos",
+      cuenta: matematicos.length,
+      verTodo: `${MATES}/index.html`,
+      texto: "Ver todos",
+      pasa: "caras-asomo",
+    }),
     "",
-    carrusel(matematicos, null, 6),
+    carrusel(matematicos, null, 6, "caras-asomo"),
     "",
-    '        <ul class="lista">',
-    `          <li><a href="${MATERIAS}/index.html">Materias</a></li>`,
+    ...cabecera({
+      titulo: "Materias",
+      cuenta: materias.length,
+      verTodo: `${MATERIAS}/index.html`,
+      texto: "Ver todas",
+      pasa: "plan-asomo",
+    }),
+    "",
+    /* Un asomo, no el índice. Las primeras del plan en una fila que se pasa de
+       lado, igual que las seis caras de arriba: enseña qué clase de cosa hay
+       detrás y deja el resto para su página, que es la que existe para eso.
+       Con el plan entero aquí, la página de materias sobraba y esta dejaba de
+       repartir para convertirse en el índice. */
+    '        <ul class="mosaico mosaico-fila" id="plan-asomo">',
+    ...materias
+      .slice(0, MATERIAS_ASOMO)
+      .map(
+        (m) =>
+          `          <li><a href="${materia(m.id)}">` +
+          `<span class="ficha-nombre">${m.nombre}</span>` +
+          `<span class="ficha-pie">${queLleva(m)}</span></a></li>`,
+      ),
     "        </ul>",
   ].join("\n"),
 });
@@ -526,11 +617,16 @@ paginas.push({
   miga: [...MIGA_BASE.slice(0, 2), { texto: "Matemáticos" }],
   favoritos: true,
   cuerpo: [
-    "        <h1>Matemáticos</h1>",
+    `        <h1>Matemáticos<span class="cuenta">${matematicos.length}</span></h1>`,
     "",
-    '        <div class="buscador">',
+    /* Cápsula con su botón redondo pegado a la derecha, que es la forma que
+       tiene un campo de búsqueda en cualquier teléfono. El botón borra lo
+       escrito: la única acción que un filtro en vivo puede necesitar, porque
+       filtrar ya lo hace solo al teclear. */
+    '        <div class="buscador ancha">',
     '          <label class="visualmente-oculta" for="q">Buscar matemático</label>',
     '          <input id="q" type="search" data-buscador placeholder="Buscar por nombre, país o época" autocomplete="off" />',
+    '          <button class="buscador-boton" type="button" data-limpiar aria-label="Borrar la búsqueda">×</button>',
     "        </div>",
     '        <p class="sin-resultados" data-sin-resultados hidden>Ninguno coincide con esa búsqueda.</p>',
     "",
@@ -566,40 +662,71 @@ for (const m of matematicos) {
     `          <button class="mas" type="button" data-fav="${m.id}" aria-pressed="false"></button>`,
     "        </div>",
     "",
+    /* La línea de entrada: quién fue, en una frase.
+       Estaba escrita en los datos desde el principio —«Escribió más que nadie,
+       y ciego escribió aún más»— y no se enseñaba en ninguna página: solo la
+       usaba el buscador por dentro. Una ficha abría con un nombre y, debajo, un
+       modelo tridimensional de quinientos píxeles; para saber quién era ese
+       señor había que bajar hasta pasarlo. Aquí es lo que distingue la entrada
+       de una ficha de la de una materia o la de un libro: una materia abre con
+       sus secciones y un libro con su autor y su año, porque es lo que son. */
+    `        <p class="entrada">${m.resumen}.</p>`,
+    "",
+    /* De dónde es y cuándo vivió, debajo del nombre y a la vista. Estaban solo
+       dentro de «Información personal», que va plegado: para saber si el Euler
+       que se está mirando es el del XVIII había que abrir un panel. Son los dos
+       datos que sitúan a alguien, y por eso son los dos únicos que suben aquí —
+       el resto sigue dentro, que es de consulta.
+
+       La bandera va dentro de la pastilla del país porque el sitio ya la usa
+       para eso: es el fondo de su tarjeta en el índice, así que quien llega
+       aquí desde ahí la reconoce sin leer. */
+    '        <ul class="tira">',
+    `          <li><span class="dato"><img class="dato-bandera" src="assets/banderas/${m.pais}.svg" alt="" width="24" height="16" decoding="async" />${m.nacionalidad}</span></li>`,
+    `          <li><span class="dato">${m.epoca}</span></li>`,
+    "        </ul>",
+    "",
   ];
 
-  /* El modelo, grande y centrado, antes que nada: es la portada de la ficha. */
+  /* ── La banda: el modelo a un lado y lo que se lee al otro ──
+     Antes esto eran tres bloques apilados —modelo, biografía, datos— y el
+     modelo se comía la pantalla entero: en un portátil se veía el nombre, una
+     línea y un cuadrado de cuatrocientos ochenta píxeles con una figura pequeña
+     en medio. La biografía empezaba por debajo del pliegue, o sea que la página
+     de alguien no decía nada de ese alguien sin desplazar.
+
+     Puestos al lado, el modelo sigue siendo la portada de la ficha —es lo
+     primero que se mira— pero ya no tapa lo que hay que leer, y el aire que le
+     sobraba a su cuadrado lo ocupa la biografía. En el teléfono no hay dos
+     columnas: la banda se apila y queda el orden de siempre. */
   cuerpo.push(
-    '        <div class="ficha">',
-    "          <div",
-    '            class="voxel3d"',
-    `            data-modelo="${m.modelo}"`,
-    '            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"',
-    "          ></div>",
-    "        </div>",
+    '        <div class="banda">',
+    '          <div class="ficha">',
+    "            <div",
+    '              class="voxel3d"',
+    `              data-modelo="${m.modelo}"`,
+    '              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"',
+    "            ></div>",
+    "          </div>",
     "",
-  );
-
-  cuerpo.push(...m.biografia, "");
-
-  /* Los datos personales van plegados: son de consulta, no de lectura, y
-     desplegados empujan hacia abajo lo que sí se quiere leer. */
-  cuerpo.push(
-    '        <ul class="pastillas">',
-    desplegable({
-      id: "datos",
-      titulo: "Información personal",
-      sub: `${m.epoca} · ${m.nacionalidad}`,
-      cuerpo: [
-        '        <dl class="datos">',
-        ...m.personal.flatMap(([k, v]) => [
-          `          <dt>${k}</dt>`,
-          `          <dd>${v}</dd>`,
-        ]),
-        "        </dl>",
-      ].join("\n"),
-    }),
-    "        </ul>",
+    '          <div class="banda-texto">',
+    ...m.biografia.map((l) => "  " + l),
+    "",
+    /* Los datos personales dejan de ir plegados. Iban así porque «desplegados
+       empujan hacia abajo lo que sí se quiere leer», y era verdad mientras
+       fueran un bloque más de una columna única: siete renglones entre la
+       biografía y las conjeturas. Al lado del modelo no empujan nada —la
+       columna del modelo es más alta que ellos— y en cambio quitan un clic
+       para ver siete datos que caben de un vistazo. */
+    '            <h3 class="capitulo">Información personal</h3>',
+    '            <dl class="datos">',
+    ...m.personal.flatMap(([k, v]) => [
+      `              <dt>${k}</dt>`,
+      `              <dd>${v}</dd>`,
+    ]),
+    "            </dl>",
+    "          </div>",
+    "        </div>",
     "",
   );
 
@@ -787,7 +914,7 @@ paginas.push({
   titulo: "Materias",
   miga: [...MIGA_BASE.slice(0, 2), { texto: "Materias" }],
   cuerpo: [
-    "        <h1>Materias</h1>",
+    `        <h1>Materias<span class="cuenta">${materias.length}</span></h1>`,
     "",
     /* Seguidas y en el orden en que se cursan, que es el del plan. Se probó a
        partirlas por semestre con un rótulo en cada uno y se quitó: diecisiete
@@ -795,15 +922,52 @@ paginas.push({
        hacer falta.
 
        Solo el nombre. Debajo iban el asunto de la materia y el recuento de lo
-       que lleva dentro; eso se lee entrando, y en la lista solo estorbaba. */
-    '        <ul class="lista">',
+       que lleva dentro; eso se lee entrando, y en la lista solo estorbaba.
+
+       El semestre tampoco se escribe, ni como rótulo ni como pastilla al lado
+       del nombre. Sigue estando en los datos y sigue siendo lo que pone la
+       lista en este orden —el de la carrera—, pero enseñarlo no se pidió. */
+    /* Mosaico de fichas y no una columna de diecisiete renglones. Un índice de
+       materias no se lee de arriba abajo: se busca una y se entra. En dos
+       columnas de fichas caben las diecisiete en una pantalla, que es la
+       diferencia entre elegir de un vistazo y desplazarse hasta encontrar.
+
+       Nueve celdas de ancho por tres de alto, con dos de separación: nueve y
+       nueve y dos son las veinte justas que mide la columna de lectura, así
+       que el mosaico llena el ancho sin que sobre ni falte nada y cada ficha
+       cae en la cuadrícula por sus cuatro lados, igual que las portadas de
+       cuatro por seis y las caras de seis por seis. */
+    '        <ul class="mosaico">',
     ...materias.map(
-      (m) => `          <li><a href="${materia(m.id)}">${m.nombre}</a></li>`,
+      (m) =>
+        `          <li><a href="${materia(m.id)}">` +
+        `<span class="ficha-nombre">${m.nombre}</span>` +
+        `<span class="ficha-pie">${queLleva(m)}</span></a></li>`,
     ),
     "        </ul>",
     "",
   ].join("\n"),
 });
+
+/**
+ * Qué lleva dentro una materia, en una línea.
+ *
+ * Diecisiete puertas iguales no ayudan a elegir: catorce están vacías y las
+ * otras tres no dicen cuánto tienen. Se cuenta lo escrito y los libros, que son
+ * las dos cosas que hay, y si no hay nada se dice.
+ */
+function queLleva(m) {
+  const escrito = ["definiciones", "teoremas", "ejercicios", "articulos"].reduce(
+    (n, s) => n + (m[s] || []).filter(esEntrada).length,
+    0,
+  );
+  const libros = (m.libros || []).length;
+
+  const partes = [];
+  if (escrito) partes.push(`${escrito} ${escrito === 1 ? "entrada" : "entradas"}`);
+  if (libros) partes.push(`${libros} ${libros === 1 ? "libro" : "libros"}`);
+  return partes.length ? partes.join(" · ") : "sin escribir";
+}
 
 /**
  * Una lista de una sección, con sus divisores.
@@ -817,7 +981,14 @@ function seccion(titulo, lista, estilo) {
   const util = (lista || []).filter(Boolean);
   if (!util.some(esEntrada)) return [];
 
-  const fuera = [`        <h2>${titulo}</h2>`, ""];
+  /* Cuántas cosas hay debajo, en la misma línea del título y a la derecha. Es
+     el dato que se busca antes de entrar en una sección: si hay tres o hay
+     treinta se lee de un vistazo en vez de contando. */
+  const cuantas = util.filter(esEntrada).length;
+  const fuera = [
+    `        <h2>${titulo}<span class="cuenta">${cuantas}</span></h2>`,
+    "",
+  ];
 
   /* Dos niveles de separador, uno dentro del otro: el capítulo agrupa temas y
      el tema agrupa lo que se escribe. Los dos se pliegan. */
@@ -940,7 +1111,11 @@ function seccion(titulo, lista, estilo) {
        botón aparte, se pulsa el enunciado y debajo aparece la prueba. */
     if (!debajo) {
       donde().push(
-        enunciado({ etiqueta: rotulo(cosa), cuerpo: `          ${cosa.cuerpo}`, id: cosa.id }),
+        enunciado({
+          etiqueta: rotulo(cosa),
+          cuerpo: `          ${cosa.cuerpo}`,
+          id: cosa.id
+            }),
         "",
         ...tambienEn(cosa),
       );
@@ -951,7 +1126,11 @@ function seccion(titulo, lista, estilo) {
       '        <details class="prueba">',
       '          <summary class="prueba-enunciado">',
       sangrar(
-        enunciado({ etiqueta: rotulo(cosa), cuerpo: `          ${cosa.cuerpo}`, id: cosa.id }),
+        enunciado({
+          etiqueta: rotulo(cosa),
+          cuerpo: `          ${cosa.cuerpo}`,
+          id: cosa.id
+            }),
         2,
       ),
       "          </summary>",
@@ -988,31 +1167,83 @@ function esEntrada(cosa) {
 
 for (const m of materias) {
   const cuerpo = [`        <h1>${m.nombre}</h1>`, ""];
-  const hayAlgo = [m.definiciones, m.teoremas, m.ejercicios, m.libros, m.articulos]
-    .some((l) => (l || []).some(esEntrada));
+  /* Lo ESCRITO, que no es lo mismo que lo que hay. Catorce de las diecisiete
+     materias tienen su bibliografía puesta y ni una línea escrita dentro: con
+     la cuenta antigua —que miraba también los libros— esas catorce pasaban por
+     llenas y su página abría directamente en una estantería de once portadas,
+     sin decir en ningún sitio que de esa materia todavía no hay nada. */
+  const hayEscrito =
+    [m.definiciones, m.teoremas, m.ejercicios, m.articulos].some((l) =>
+      (l || []).some(esEntrada),
+    ) ||
+    (m.libros || []).some((l) => (l.demostraciones || []).some(esEntrada));
+  const hayLibros = (m.libros || []).some(esEntrada);
 
-  if (!hayAlgo) {
+  if (!hayEscrito) {
+    /* ── La materia vacía ──
+       Son catorce de diecisiete, así que esta es la página más frecuente del
+       sitio y hasta ahora era un párrafo diciendo que no había nada seguido de
+       la lista de lo que habría, escrita en prosa.
+
+       Se compone con la misma regla que el sitio usa en todas partes: lo que
+       aún no existe se enseña en gris y sin enlace, «para que se vea la forma
+       de la jerarquía». Así que la página vacía es la página llena con las
+       secciones apagadas — mismas cabeceras, mismo filo, mismo orden. Se ve de
+       un vistazo qué va a haber ahí y dónde va a estar cada cosa, que es
+       bastante más de lo que decía el párrafo. */
     cuerpo.push(
-      `        <p>${m.resumen}.</p>`,
+      `        <p class="entrada">${m.resumen}.</p>`,
       "",
-      "        <p>Todavía no hay nada escrito aquí. Cuando lo haya, en esta " +
-        "página irán sus definiciones, sus teoremas, sus demostraciones, los " +
-        "ejercicios, la bibliografía y los artículos.</p>",
+      hayLibros
+        ? "        <p>De esta materia todavía no hay nada escrito. Lo que sí " +
+          "hay es con qué: su bibliografía está abajo, y cada portada abre la " +
+          "página del libro.</p>"
+        : "        <p>De esta materia todavía no hay nada escrito.</p>",
       "",
+      ...["Definiciones", "Teoremas", "Ejercicios", "Artículos"].flatMap((s) => [
+        `        <h2 class="vacia">${s}</h2>`,
+        "",
+      ]),
     );
+  }
+
+  if (!hayEscrito) {
+    /* La bibliografía va igual, escrita o no: es lo único que la materia tiene
+       de momento y es de donde saldrá lo demás. */
+    for (const [papel, titulo] of [
+      ["basico", "Bibliografía básica"],
+      ["complementario", "Bibliografía complementaria"],
+    ]) {
+      const suyos = (m.libros || []).filter((l) => l.papel === papel);
+      if (!suyos.length) continue;
+      cuerpo.push(
+        `        <h2>${titulo}<span class="cuenta">${suyos.length}</span></h2>`,
+        "",
+        portadas(suyos.map((l) => ({ ...l, href: libro(l.id) })), "carrusel"),
+        "",
+      );
+    }
   } else {
     /* Sin el asunto de la materia repetido aquí: lo dicen sus secciones. */
-    cuerpo.push(...seccion("Definiciones", m.definiciones, "simple"));
+    cuerpo.push(
+      ...seccion("Definiciones", m.definiciones, "simple"),
+    );
     /* Sin sección aparte de demostraciones: una demostración no se lee suelta,
        se lee con el teorema que demuestra. Cada teorema la lleva dentro —el
        enunciado es la pastilla y la demostración lo que se despliega— y las que
        salen de un libro se leen en la página de ese libro. */
-    cuerpo.push(...seccion("Teoremas", m.teoremas));
+    /* Con insignia: es la única sección donde conviven cinco clases —teorema,
+       lema, corolario, propiedad, identidad— bajo un título que solo nombra a
+       una, y sin ella no hay manera de saber cuál se está leyendo. */
+    cuerpo.push(
+      ...seccion("Teoremas", m.teoremas, null),
+    );
     /* Los ejercicios se leen como los teoremas: el problema en su recuadro, y
        tocándolo aparece la resolución debajo. Antes iban en pastilla, con el
        nombre grande y el enunciado de subtítulo en gris pequeño — el problema
-       se leía como un pie de foto en vez de como el problema. */
-    cuerpo.push(...seccion("Ejercicios", m.ejercicios));
+       se leía como un pie de foto en vez de como el problema.
+       Sin insignia: aquí todo es un ejercicio y el título ya lo dice. */
+    cuerpo.push(...seccion("Ejercicios", m.ejercicios, null));
 
     /* La bibliografía, en dos: la básica y la complementaria. Van separadas
        porque no se usan igual —una es de la que se estudia y la otra es a la
@@ -1024,8 +1255,11 @@ for (const m of materias) {
     ]) {
       const suyos = (m.libros || []).filter((l) => l.papel === papel);
       if (!suyos.length) continue;
+      /* Con su cuenta, como el resto de secciones: «cuántos hay» es lo que se
+         mira antes de entrar, y una fila que se desplaza a lo ancho no deja
+         contarlos de un vistazo. */
       cuerpo.push(
-        `        <h2>${titulo}</h2>`,
+        `        <h2>${titulo}<span class="cuenta">${suyos.length}</span></h2>`,
         "",
         portadas(suyos.map((l) => ({ ...l, href: libro(l.id) })), "carrusel"),
         "",
@@ -1035,6 +1269,31 @@ for (const m of materias) {
     /* Artículos: van a ser PDF que se añaden, no texto. De momento la sección
          existe con lo que haya, para no tener que moverla después. */
     cuerpo.push(...seccion("Artículos", m.articulos));
+  }
+
+  /* ── Por dónde sigo ──
+     Diecisiete materias en el orden en que se cursan, y desde dentro de una no
+     había forma de pasar a la de al lado sin volver al índice. En una página
+     vacía —que son casi todas— eso era además lo único que quedaba por hacer.
+     Van las dos vecinas del plan, con su nombre: una flecha sola no dice a
+     dónde lleva. */
+  const i = materias.indexOf(m);
+  const antes = materias[i - 1];
+  const luego = materias[i + 1];
+  if (antes || luego) {
+    cuerpo.push(
+      /* A la medida ancha: son las dos puertas de la página, no un párrafo, y
+         van a sus dos extremos. */
+      '        <nav class="paso ancha">',
+      antes
+        ? `          <a class="paso-ir" href="${materia(antes.id)}"><span class="paso-rotulo">Anterior</span>${antes.nombre}</a>`
+        : "          <span></span>",
+      luego
+        ? `          <a class="paso-ir paso-luego" href="${materia(luego.id)}"><span class="paso-rotulo">Siguiente</span>${luego.nombre}</a>`
+        : "",
+      "        </nav>",
+      "",
+    );
   }
 
   paginas.push({
@@ -1062,17 +1321,13 @@ for (const [id, l] of Object.entries(CATALOGO)) {
       "",
     ];
 
-    /* Lo mismo que en la materia: las definiciones simples y los teoremas en su
-       recuadro, tocándolo para ver la demostración. Antes eran pastillas, y un
-       libro y una materia se leían distinto sin motivo. */
+    /* Lo mismo que en la materia: las definiciones como frase y los teoremas en
+       su recuadro, tocándolo para ver la demostración. */
     suyo.push(...seccion("Definiciones", l.definiciones, "simple"));
-    suyo.push(...seccion("Teoremas", demos));
+    suyo.push(...seccion("Teoremas", demos, null));
 
     if (!demos.length && !(l.definiciones || []).some(esEntrada)) {
-      suyo.push(
-        "        <p>Todavía no hay nada escrito de este libro.</p>",
-        "",
-      );
+      suyo.push("        <p>Todavía no hay nada escrito de este libro.</p>", "");
     }
 
     /* La miga pasa por la materia de la que es bibliografía básica, si lo es de
@@ -1131,6 +1386,7 @@ function listaParaSinRed() {
     "assets/rejilla.js",
     "assets/intro.js",
     "assets/desplegable.js",
+    "assets/carrusel.js",
     "assets/favoritos.js",
     "assets/sinred.js",
     "assets/katex/katex.min.css",

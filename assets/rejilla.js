@@ -80,6 +80,44 @@
    * desplazando la rejilla hasta el borde de la columna, y eso dejaba una
    * franja sin rayas a la izquierda de la pantalla.
    */
+  /**
+   * Cada fórmula en bloque, en celdas enteras.
+   *
+   * Es lo único de una página que no mide en renglones: el texto tiene por
+   * interlínea la celda y cae solo, pero una fórmula mide lo que mide. Se le
+   * reparte el sobrante alrededor —mitad arriba, mitad abajo— y con eso ocupa
+   * un número entero de celdas.
+   *
+   * Va antes que las cajas a propósito: cuadrada la fórmula, la caja que la
+   * contiene ya no tiene que compensar nada por abajo, que es de donde salía el
+   * renglón vacío al final de los enunciados que acaban en fórmula.
+   */
+  function cuadrarFormulas(c) {
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".katex-display"),
+      function (formula) {
+        formula.style.paddingTop = "";
+        formula.style.paddingBottom = "";
+        if (!visible(formula)) return;
+
+        var estilo = getComputedStyle(formula);
+        var basePT = parseFloat(estilo.paddingTop) || 0;
+        var basePB = parseFloat(estilo.paddingBottom) || 0;
+
+        var alto = formula.getBoundingClientRect().height;
+        var sobra = ((alto % c) + c) % c;
+        var falta = sobra < EPS || c - sobra < EPS ? 0 : c - sobra;
+        if (!falta) return;
+
+        /* La mitad de abajo se lleva el pico: si el reparto no es exacto, más
+           vale que sobre donde no hay nada escrito. */
+        var arriba = Math.floor((falta / 2) * 100) / 100;
+        formula.style.paddingTop = basePT + arriba + "px";
+        formula.style.paddingBottom = basePB + (falta - arriba) + "px";
+      },
+    );
+  }
+
   function cuadrarCajas(main, c) {
     /* La caja ocupa todo el ancho de la columna, con los mismos márgenes
        laterales que el resto del texto. Antes se retranqueaba hasta la primera
@@ -310,6 +348,10 @@
       document.querySelectorAll(".demo-cuerpo, .grupo-cuerpo"),
       visible,
     );
+
+    /* Y las fórmulas antes que las cajas: una fórmula que ya mide celdas
+       enteras no obliga a la caja que la lleva dentro a compensar por abajo. */
+    cuadrarFormulas(c);
 
     /* Las cajas se cuadran antes que los bloques: cambiarles el ancho altera
        los saltos de línea y, con ellos, la altura de todo lo que va debajo.

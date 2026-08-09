@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
-    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,52 +42,48 @@
           <button class="mas" type="button" data-fav="cardano" aria-pressed="false"></button>
         </div>
 
-        <div class="ficha">
-          <div
-            class="voxel3d"
-            data-modelo="cardano"
-            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-          ></div>
-        </div>
+        <p class="entrada">Publicó cómo resolver la cúbica y abrió la puerta a los imaginarios.</p>
 
-        <p>Médico, jugador y matemático, en ese orden según a quién se le pregunte. Vivió de la medicina y de las cartas, y las dos cosas se le notan en la obra.</p>
-        <p>En el <em>Ars Magna</em> (1545) publicó la solución de la ecuación de tercer grado, que había obtenido Tartaglia y le había confiado bajo juramento, y la de cuarto grado, de su discípulo Ferrari. La disputa que siguió es de las más agrias de la historia de las matemáticas.</p>
-        <p>Al resolver esas ecuaciones aparecían raíces de números negativos. Cardano las usó a regañadientes —las llamó «tan sutiles como inútiles»— y con eso empezaron los números complejos.</p>
-
-        <ul class="pastillas">
-          <li>
-            <details class="demo" id="datos">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">Información personal</span>
-                  <span class="pastilla-sub">1501 – 1576 · Milán, Italia</span>
-                </span>
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-                  <dl class="datos">
-                    <dt>Nacimiento</dt>
-                    <dd>24 de septiembre de 1501, Pavía</dd>
-                    <dt>Fallecimiento</dt>
-                    <dd>21 de septiembre de 1576, Roma</dd>
-                    <dt>Nacionalidad</dt>
-                    <dd>Ducado de Milán</dd>
-                    <dt>Instituciones</dt>
-                    <dd>Universidad de Pavía, Universidad de Bolonia</dd>
-                    <dt>Área</dt>
-                    <dd>Álgebra, probabilidad, medicina</dd>
-                    <dt>Discípulo</dt>
-                    <dd>Ludovico Ferrari</dd>
-                  </dl>
-                </div>
-              </div>
-            </details>
-          </li>
+        <ul class="tira">
+          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/it.svg" alt="" width="24" height="16" decoding="async" />Milán, Italia</span></li>
+          <li><span class="dato">1501 – 1576</span></li>
         </ul>
+
+        <div class="banda">
+          <div class="ficha">
+            <div
+              class="voxel3d"
+              data-modelo="cardano"
+              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+            ></div>
+          </div>
+
+          <div class="banda-texto">
+          <p>Médico, jugador y matemático, en ese orden según a quién se le pregunte. Vivió de la medicina y de las cartas, y las dos cosas se le notan en la obra.</p>
+          <p>En el <em>Ars Magna</em> (1545) publicó la solución de la ecuación de tercer grado, que había obtenido Tartaglia y le había confiado bajo juramento, y la de cuarto grado, de su discípulo Ferrari. La disputa que siguió es de las más agrias de la historia de las matemáticas.</p>
+          <p>Al resolver esas ecuaciones aparecían raíces de números negativos. Cardano las usó a regañadientes —las llamó «tan sutiles como inútiles»— y con eso empezaron los números complejos.</p>
+
+            <h3 class="capitulo">Información personal</h3>
+            <dl class="datos">
+              <dt>Nacimiento</dt>
+              <dd>24 de septiembre de 1501, Pavía</dd>
+              <dt>Fallecimiento</dt>
+              <dd>21 de septiembre de 1576, Roma</dd>
+              <dt>Nacionalidad</dt>
+              <dd>Ducado de Milán</dd>
+              <dt>Instituciones</dt>
+              <dd>Universidad de Pavía, Universidad de Bolonia</dd>
+              <dt>Área</dt>
+              <dd>Álgebra, probabilidad, medicina</dd>
+              <dt>Discípulo</dt>
+              <dd>Ludovico Ferrari</dd>
+            </dl>
+          </div>
+        </div>
 
         <h2>Libros</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 3">
               <span class="libro-tapa">
@@ -95,7 +91,10 @@
                 <span class="libro-titulo">Liber de ludo aleae</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">c. 1564</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">c. 1564</span>
+              </span>
             </article>
           </li>
           <li>
@@ -105,7 +104,10 @@
                 <span class="libro-titulo">Ars Magna</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1545</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1545</span>
+              </span>
             </article>
           </li>
           <li>
@@ -115,14 +117,17 @@
                 <span class="libro-titulo">Liber de ludo aleae</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1663, póstumo</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1663, póstumo</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras">
+        <ul class="caras ancha">
           <li data-id="fermat" data-busca="pierre de fermat francia 1607 – 1665 magistrado de oficio, y el aficionado que dejo tres siglos de trabajo">
             <a href="../../matematicas/matematicos/fermat.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/fr.svg)">

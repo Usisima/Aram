@@ -56,56 +56,56 @@
    },
    {
     "id": "spivak-p2",
-    "nombre": "Existencia de una identidad para la suma",
+    "nombre": "Elemento Neutro para la Suma",
     "cuerpo": "$$a + 0 = 0 + a = a$$",
     "etiqueta": "P2",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p3",
-    "nombre": "Existencia de inversos para la suma",
+    "nombre": "Elemento Inverso para la Suma",
     "cuerpo": "$$a + (-a) = (-a) + a = 0$$",
     "etiqueta": "P3",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p4",
-    "nombre": "Ley conmutativa para la suma",
+    "nombre": "Conmutatividad para la Suma",
     "cuerpo": "$$a + b = b + a$$",
     "etiqueta": "P4",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p5",
-    "nombre": "Ley asociativa para la multiplicación",
+    "nombre": "Asociatividad para la Multiplicación",
     "cuerpo": "$$a \\cdot (b \\cdot c) = (a \\cdot b) \\cdot c$$",
     "etiqueta": "P5",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p6",
-    "nombre": "Existencia de una identidad para la multiplicación",
+    "nombre": "Elemento Neutro para la Multiplicación",
     "cuerpo": "$$a \\cdot 1 = 1 \\cdot a = a, \\quad 1 \\neq 0$$",
     "etiqueta": "P6",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p7",
-    "nombre": "Existencia de inversos para la multiplicación",
+    "nombre": "Elemento Inverso para la Multiplicación",
     "cuerpo": "$$a \\cdot a^{-1} = a^{-1} \\cdot a = 1, \\quad a \\neq 0$$",
     "etiqueta": "P7",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p8",
-    "nombre": "Ley conmutativa para la multiplicación",
+    "nombre": "Conmutatividad para la Multiplicación",
     "cuerpo": "$$a \\cdot b = b \\cdot a$$",
     "etiqueta": "P8",
     "tipo": "propiedad"
    },
    {
     "id": "spivak-p9",
-    "nombre": "Ley distributiva",
+    "nombre": "Distributividad",
     "cuerpo": "$$a \\cdot (b + c) = a \\cdot b + a \\cdot c$$",
     "etiqueta": "P9",
     "tipo": "propiedad"

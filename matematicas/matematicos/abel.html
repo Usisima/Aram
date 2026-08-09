@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
-    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,51 +42,47 @@
           <button class="mas" type="button" data-fav="abel" aria-pressed="false"></button>
         </div>
 
-        <div class="ficha">
-          <div
-            class="voxel3d"
-            data-modelo="abel"
-            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-          ></div>
-        </div>
+        <p class="entrada">Cerró un problema de tres siglos y murió pobre a los veintiséis.</p>
 
-        <p>Con veintiún años demostró que la ecuación general de quinto grado no se resuelve por radicales, y pagó de su bolsillo la impresión del folleto. Para que cupiera en seis páginas lo dejó tan comprimido que casi nadie lo entendió.</p>
-        <p>Recorrió Europa buscando un puesto que nunca llegó. Murió de tuberculosis a los veintiséis años; dos días después salió de Berlín la carta que le ofrecía la cátedra.</p>
-
-        <ul class="pastillas">
-          <li>
-            <details class="demo" id="datos">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">Información personal</span>
-                  <span class="pastilla-sub">1802 – 1829 · Noruega</span>
-                </span>
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-                  <dl class="datos">
-                    <dt>Nacimiento</dt>
-                    <dd>5 de agosto de 1802, Nedstrand</dd>
-                    <dt>Fallecimiento</dt>
-                    <dd>6 de abril de 1829, Froland</dd>
-                    <dt>Nacionalidad</dt>
-                    <dd>Noruega</dd>
-                    <dt>Instituciones</dt>
-                    <dd>Universidad de Cristianía</dd>
-                    <dt>Área</dt>
-                    <dd>Álgebra, análisis, funciones elípticas</dd>
-                    <dt>Influencias</dt>
-                    <dd>Cauchy, Legendre, Gauss</dd>
-                  </dl>
-                </div>
-              </div>
-            </details>
-          </li>
+        <ul class="tira">
+          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/no.svg" alt="" width="24" height="16" decoding="async" />Noruega</span></li>
+          <li><span class="dato">1802 – 1829</span></li>
         </ul>
+
+        <div class="banda">
+          <div class="ficha">
+            <div
+              class="voxel3d"
+              data-modelo="abel"
+              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+            ></div>
+          </div>
+
+          <div class="banda-texto">
+          <p>Con veintiún años demostró que la ecuación general de quinto grado no se resuelve por radicales, y pagó de su bolsillo la impresión del folleto. Para que cupiera en seis páginas lo dejó tan comprimido que casi nadie lo entendió.</p>
+          <p>Recorrió Europa buscando un puesto que nunca llegó. Murió de tuberculosis a los veintiséis años; dos días después salió de Berlín la carta que le ofrecía la cátedra.</p>
+
+            <h3 class="capitulo">Información personal</h3>
+            <dl class="datos">
+              <dt>Nacimiento</dt>
+              <dd>5 de agosto de 1802, Nedstrand</dd>
+              <dt>Fallecimiento</dt>
+              <dd>6 de abril de 1829, Froland</dd>
+              <dt>Nacionalidad</dt>
+              <dd>Noruega</dd>
+              <dt>Instituciones</dt>
+              <dd>Universidad de Cristianía</dd>
+              <dt>Área</dt>
+              <dd>Álgebra, análisis, funciones elípticas</dd>
+              <dt>Influencias</dt>
+              <dd>Cauchy, Legendre, Gauss</dd>
+            </dl>
+          </div>
+        </div>
 
         <h2>Artículos</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 1">
               <span class="libro-tapa">
@@ -94,7 +90,10 @@
                 <span class="libro-titulo">Mémoire sur les équations algébriques</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1824</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1824</span>
+              </span>
             </article>
           </li>
           <li>
@@ -104,7 +103,10 @@
                 <span class="libro-titulo">Recherches sur les fonctions elliptiques</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1827</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1827</span>
+              </span>
             </article>
           </li>
           <li>
@@ -114,14 +116,17 @@
                 <span class="libro-titulo">Sur une propriété remarquable d'une classe d'équations</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1829</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1829</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras">
+        <ul class="caras ancha">
           <li data-id="galois" data-busca="evariste galois francia 1811 – 1832 a los veinte anos dejo dicho por que la quintica no se resuelve">
             <a href="../../matematicas/matematicos/galois.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/fr.svg)">

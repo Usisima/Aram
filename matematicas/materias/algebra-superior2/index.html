@@ -7,11 +7,12 @@
     <link rel="icon" href="../../../assets/favicon.svg" />
     <link rel="manifest" href="../../../manifest.json" />
     <link rel="apple-touch-icon" href="../../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../../estilos.css" />
     <link rel="stylesheet" href="../../../assets/katex/katex.min.css" />
     <script src="../../../assets/tema.js"></script>
@@ -35,9 +36,21 @@
       <main>
         <h1>Álgebra Superior II</h1>
 
-        <h2>Bibliografía básica</h2>
+        <p class="entrada">Números enteros, Divisibilidad, Números complejos.</p>
 
-        <ul class="libros libros-fila">
+        <p>De esta materia todavía no hay nada escrito. Lo que sí hay es con qué: su bibliografía está abajo, y cada portada abre la página del libro.</p>
+
+        <h2 class="vacia">Definiciones</h2>
+
+        <h2 class="vacia">Teoremas</h2>
+
+        <h2 class="vacia">Ejercicios</h2>
+
+        <h2 class="vacia">Artículos</h2>
+
+        <h2>Bibliografía básica<span class="cuenta">2</span></h2>
+
+        <ul class="libros ancha libros-fila">
           <li>
             <a class="libro" href="../../../matematicas/libros/cardenas.html" style="--tono: 5">
               <span class="libro-tapa">
@@ -45,7 +58,10 @@
                 <span class="libro-titulo">Álgebra Superior</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Cárdenas, Lluis, Raggi & Tomás · 1974</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Cárdenas, Lluis, Raggi & Tomás · 1974</span>
+              </span>
             </a>
           </li>
           <li>
@@ -55,14 +71,17 @@
                 <span class="libro-titulo">Álgebra Elemental</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Leopoldo Nachbin · 1986</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Leopoldo Nachbin · 1986</span>
+              </span>
             </a>
           </li>
         </ul>
 
-        <h2>Bibliografía complementaria</h2>
+        <h2>Bibliografía complementaria<span class="cuenta">9</span></h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <a class="libro" href="../../../matematicas/libros/dodge2.html" style="--tono: 10">
               <span class="libro-tapa">
@@ -70,7 +89,10 @@
                 <span class="libro-titulo">Sets, Logic and Numbers</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Dodge, C.W. · 1969</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Dodge, C.W. · 1969</span>
+              </span>
             </a>
           </li>
           <li>
@@ -80,7 +102,10 @@
                 <span class="libro-titulo">Álgebra Lineal</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Friedberg, Insel & Spence · 1982</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Friedberg, Insel & Spence · 1982</span>
+              </span>
             </a>
           </li>
           <li>
@@ -90,7 +115,10 @@
                 <span class="libro-titulo">Aritmética Elemental</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Gentile, E.R. · 1985</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Gentile, E.R. · 1985</span>
+              </span>
             </a>
           </li>
           <li>
@@ -100,7 +128,10 @@
                 <span class="libro-titulo">Matemáticas Discreta y Combinatoria</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Grimaldi, R.P. · 1998</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Grimaldi, R.P. · 1998</span>
+              </span>
             </a>
           </li>
           <li>
@@ -110,7 +141,10 @@
                 <span class="libro-titulo">Álgebra Lineal</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Grossman, S.I. · 1996</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Grossman, S.I. · 1996</span>
+              </span>
             </a>
           </li>
           <li>
@@ -120,7 +154,10 @@
                 <span class="libro-titulo">Teoría Intuitiva de los Conjuntos. Ed</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Halmos, P.R. · 1973</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Halmos, P.R. · 1973</span>
+              </span>
             </a>
           </li>
           <li>
@@ -130,7 +167,10 @@
                 <span class="libro-titulo">Álgebra Lineal</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Hoffman & Kunze · 1973</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Hoffman & Kunze · 1973</span>
+              </span>
             </a>
           </li>
           <li>
@@ -140,7 +180,10 @@
                 <span class="libro-titulo">Álgebra Lineal</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Lang, S. · 1986</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Lang, S. · 1986</span>
+              </span>
             </a>
           </li>
           <li>
@@ -150,10 +193,18 @@
                 <span class="libro-titulo">Introducción a la Teoría de los Números</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Niven, I.M.; Zuckerman, H.S. · 1969</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Niven, I.M.; Zuckerman, H.S. · 1969</span>
+              </span>
             </a>
           </li>
         </ul>
+
+        <nav class="paso ancha">
+          <a class="paso-ir" href="../../../matematicas/materias/geometria-moderna1/index.html"><span class="paso-rotulo">Anterior</span>Geometría Moderna I</a>
+          <a class="paso-ir paso-luego" href="../../../matematicas/materias/calculo2/index.html"><span class="paso-rotulo">Siguiente</span>Cálculo Diferencial e Integral II</a>
+        </nav>
       </main>
 
       <footer class="pie">

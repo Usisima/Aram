@@ -7,11 +7,12 @@
     <link rel="icon" href="../../../assets/favicon.svg" />
     <link rel="manifest" href="../../../manifest.json" />
     <link rel="apple-touch-icon" href="../../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../../assets/katex/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../../assets/katex/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../../estilos.css" />
@@ -38,7 +39,7 @@
       <main>
         <h1>Cálculo Diferencial e Integral I</h1>
 
-        <h2>Teoremas</h2>
+        <h2>Teoremas<span class="cuenta">9</span></h2>
 
         <details class="grupo">
           <summary class="grupo-titulo">Propiedades básicas de los números</summary>
@@ -50,42 +51,42 @@
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p2">
-          <legend class="etiqueta">P2 · Existencia de una identidad para la suma</legend>
+          <legend class="etiqueta">P2 · Elemento Neutro para la Suma</legend>
           <!--m:$$a + 0 = 0 + a = a$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mn>0</mn><mo>=</mo><mn>0</mn><mo>+</mo><mi>a</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a + 0 = 0 + a = a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p3">
-          <legend class="etiqueta">P3 · Existencia de inversos para la suma</legend>
+          <legend class="etiqueta">P3 · Elemento Inverso para la Suma</legend>
           <!--m:$$a + (-a) = (-a) + a = 0$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mo>−</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a + (-a) = (-a) + a = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p4">
-          <legend class="etiqueta">P4 · Ley conmutativa para la suma</legend>
+          <legend class="etiqueta">P4 · Conmutatividad para la Suma</legend>
           <!--m:$$a + b = b + a$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>=</mo><mi>b</mi><mo>+</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a + b = b + a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p5">
-          <legend class="etiqueta">P5 · Ley asociativa para la multiplicación</legend>
+          <legend class="etiqueta">P5 · Asociatividad para la Multiplicación</legend>
           <!--m:$$a \cdot (b \cdot c) = (a \cdot b) \cdot c$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⋅</mo><mo stretchy="false">(</mo><mi>b</mi><mo>⋅</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>a</mi><mo>⋅</mo><mi>b</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \cdot (b \cdot c) = (a \cdot b) \cdot c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p6">
-          <legend class="etiqueta">P6 · Existencia de una identidad para la multiplicación</legend>
+          <legend class="etiqueta">P6 · Elemento Neutro para la Multiplicación</legend>
           <!--m:$$a \cdot 1 = 1 \cdot a = a, \quad 1 \neq 0$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⋅</mo><mn>1</mn><mo>=</mo><mn>1</mn><mo>⋅</mo><mi>a</mi><mo>=</mo><mi>a</mi><mo separator="true">,</mo><mspace width="1em"/><mn>1</mn><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a \cdot 1 = 1 \cdot a = a, \quad 1 \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord katex-vbox"><span class="katex-thinbox"><span class="rlap"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="katex-inner"><span class="mord"><span class="mrel"></span></span></span><span class="katex-fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p7">
-          <legend class="etiqueta">P7 · Existencia de inversos para la multiplicación</legend>
+          <legend class="etiqueta">P7 · Elemento Inverso para la Multiplicación</legend>
           <!--m:$$a \cdot a^{-1} = a^{-1} \cdot a = 1, \quad a \neq 0$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⋅</mo><msup><mi>a</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mi>a</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>⋅</mo><mi>a</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mspace width="1em"/><mi>a</mi><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a \cdot a^{-1} = a^{-1} \cdot a = 1, \quad a \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8641em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord katex-vbox"><span class="katex-thinbox"><span class="rlap"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="katex-inner"><span class="mord"><span class="mrel"></span></span></span><span class="katex-fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p8">
-          <legend class="etiqueta">P8 · Ley conmutativa para la multiplicación</legend>
+          <legend class="etiqueta">P8 · Conmutatividad para la Multiplicación</legend>
           <!--m:$$a \cdot b = b \cdot a$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi><mo>=</mo><mi>b</mi><mo>⋅</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">a \cdot b = b \cdot a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span><!--/m-->
         </fieldset>
 
         <fieldset class="enunciado" id="spivak-p9">
-          <legend class="etiqueta">P9 · Ley distributiva</legend>
+          <legend class="etiqueta">P9 · Distributividad</legend>
           <!--m:$$a \cdot (b + c) = a \cdot b + a \cdot c$$--><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>⋅</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>⋅</mo><mi>b</mi><mo>+</mo><mi>a</mi><mo>⋅</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">a \cdot (b + c) = a \cdot b + a \cdot c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span><!--/m-->
         </fieldset>
 
@@ -93,9 +94,9 @@
           </div>
         </details>
 
-        <h2>Bibliografía básica</h2>
+        <h2>Bibliografía básica<span class="cuenta">6</span></h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <a class="libro" href="../../../matematicas/libros/spivak.html" style="--tono: 9">
               <span class="libro-tapa">
@@ -103,7 +104,10 @@
                 <span class="libro-titulo">Cálculo infinitesimal</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Michael Spivak · 1967</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Michael Spivak · 1967</span>
+              </span>
             </a>
           </li>
           <li>
@@ -113,7 +117,10 @@
                 <span class="libro-titulo">Cálculo (Varias Variables)</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Thomas & Finney · 1996</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Thomas & Finney · 1996</span>
+              </span>
             </a>
           </li>
           <li>
@@ -123,7 +130,10 @@
                 <span class="libro-titulo">Cálculo Diferencial e Integral</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Arizmendi, Carrillo, Lara & Lluis-Riera</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Arizmendi, Carrillo, Lara & Lluis-Riera</span>
+              </span>
             </a>
           </li>
           <li>
@@ -133,7 +143,10 @@
                 <span class="libro-titulo">Differential and Integral Calculus</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Richard Courant · 1936</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Richard Courant · 1936</span>
+              </span>
             </a>
           </li>
           <li>
@@ -143,7 +156,10 @@
                 <span class="libro-titulo">Calculus of Several Variables</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Serge Lang · 1987</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Serge Lang · 1987</span>
+              </span>
             </a>
           </li>
           <li>
@@ -153,14 +169,17 @@
                 <span class="libro-titulo">Cálculo. Primer curso, nivel superior</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Arizmendi, Carrillo Hoyo & Lara Aparicio · 1987</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Arizmendi, Carrillo Hoyo & Lara Aparicio · 1987</span>
+              </span>
             </a>
           </li>
         </ul>
 
-        <h2>Bibliografía complementaria</h2>
+        <h2>Bibliografía complementaria<span class="cuenta">3</span></h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <a class="libro" href="../../../matematicas/libros/apostol2.html" style="--tono: 9">
               <span class="libro-tapa">
@@ -168,7 +187,10 @@
                 <span class="libro-titulo">Calculus, Volumen I. Ed. Reverté S.A</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Apostol, T.M. · 2001</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Apostol, T.M. · 2001</span>
+              </span>
             </a>
           </li>
           <li>
@@ -178,7 +200,10 @@
                 <span class="libro-titulo">Cálculo Diferencial e Integral</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Banach, S. · 1991</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Banach, S. · 1991</span>
+              </span>
             </a>
           </li>
           <li>
@@ -188,10 +213,18 @@
                 <span class="libro-titulo">Introducción al Cálculo</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">Kuratowski, K. · 1970</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">Kuratowski, K. · 1970</span>
+              </span>
             </a>
           </li>
         </ul>
+
+        <nav class="paso ancha">
+          <a class="paso-ir" href="../../../matematicas/materias/algebra-superior1/index.html"><span class="paso-rotulo">Anterior</span>Álgebra Superior I</a>
+          <a class="paso-ir paso-luego" href="../../../matematicas/materias/geometria-analitica1/index.html"><span class="paso-rotulo">Siguiente</span>Geometría Analítica I</a>
+        </nav>
       </main>
 
       <footer class="pie">

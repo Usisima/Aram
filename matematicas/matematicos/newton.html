@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
-    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,51 +42,47 @@
           <button class="mas" type="button" data-fav="newton" aria-pressed="false"></button>
         </div>
 
-        <div class="ficha">
-          <div
-            class="voxel3d"
-            data-modelo="newton"
-            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-          ></div>
-        </div>
+        <p class="entrada">El cálculo y la gravitación, en un mismo libro.</p>
 
-        <p>Nació en Woolsthorpe, Lincolnshire. Los años de la peste, 1665 y 1666, los pasó encerrado en la casa familiar: de ahí salieron el cálculo de fluxiones, la descomposición de la luz y la ley de gravitación.</p>
-        <p>Publicó los <em>Principia</em> en 1687 empujado por Halley. Presidió la Royal Society y dirigió la Casa de la Moneda, donde persiguió falsificadores con la misma tenacidad.</p>
-
-        <ul class="pastillas">
-          <li>
-            <details class="demo" id="datos">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">Información personal</span>
-                  <span class="pastilla-sub">1643 – 1727 · Inglaterra</span>
-                </span>
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-                  <dl class="datos">
-                    <dt>Nacimiento</dt>
-                    <dd>4 de enero de 1643, Woolsthorpe, Inglaterra</dd>
-                    <dt>Fallecimiento</dt>
-                    <dd>31 de marzo de 1727, Kensington, Londres</dd>
-                    <dt>Nacionalidad</dt>
-                    <dd>Inglesa</dd>
-                    <dt>Instituciones</dt>
-                    <dd>Trinity College (Cambridge), Royal Society, Casa de la Moneda</dd>
-                    <dt>Área</dt>
-                    <dd>Cálculo, mecánica, óptica</dd>
-                    <dt>Influencias</dt>
-                    <dd>Descartes, Isaac Barrow, John Wallis</dd>
-                  </dl>
-                </div>
-              </div>
-            </details>
-          </li>
+        <ul class="tira">
+          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/en.svg" alt="" width="24" height="16" decoding="async" />Inglaterra</span></li>
+          <li><span class="dato">1643 – 1727</span></li>
         </ul>
+
+        <div class="banda">
+          <div class="ficha">
+            <div
+              class="voxel3d"
+              data-modelo="newton"
+              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+            ></div>
+          </div>
+
+          <div class="banda-texto">
+          <p>Nació en Woolsthorpe, Lincolnshire. Los años de la peste, 1665 y 1666, los pasó encerrado en la casa familiar: de ahí salieron el cálculo de fluxiones, la descomposición de la luz y la ley de gravitación.</p>
+          <p>Publicó los <em>Principia</em> en 1687 empujado por Halley. Presidió la Royal Society y dirigió la Casa de la Moneda, donde persiguió falsificadores con la misma tenacidad.</p>
+
+            <h3 class="capitulo">Información personal</h3>
+            <dl class="datos">
+              <dt>Nacimiento</dt>
+              <dd>4 de enero de 1643, Woolsthorpe, Inglaterra</dd>
+              <dt>Fallecimiento</dt>
+              <dd>31 de marzo de 1727, Kensington, Londres</dd>
+              <dt>Nacionalidad</dt>
+              <dd>Inglesa</dd>
+              <dt>Instituciones</dt>
+              <dd>Trinity College (Cambridge), Royal Society, Casa de la Moneda</dd>
+              <dt>Área</dt>
+              <dd>Cálculo, mecánica, óptica</dd>
+              <dt>Influencias</dt>
+              <dd>Descartes, Isaac Barrow, John Wallis</dd>
+            </dl>
+          </div>
+        </div>
 
         <h2>Libros</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 11">
               <span class="libro-tapa">
@@ -94,7 +90,10 @@
                 <span class="libro-titulo">Philosophiæ Naturalis Principia Mathematica</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1687</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1687</span>
+              </span>
             </article>
           </li>
           <li>
@@ -104,7 +103,10 @@
                 <span class="libro-titulo">Opticks</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1704</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1704</span>
+              </span>
             </article>
           </li>
           <li>
@@ -114,14 +116,17 @@
                 <span class="libro-titulo">Method of Fluxions</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1736, póstumo</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1736, póstumo</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 6">
               <span class="libro-tapa">
@@ -129,14 +134,17 @@
                 <span class="libro-titulo">New Theory about Light and Colours</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1672</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1672</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras">
+        <ul class="caras ancha">
           <li data-id="arquimedes" data-busca="arquimedes de siracusa siracusa, magna grecia c. 287 – 212 a.c. midio la esfera y se adelanto dieciocho siglos al calculo">
             <a href="../../matematicas/matematicos/arquimedes.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/it.svg)">

@@ -1,5 +1,5 @@
 {
- "version": "2026-08-08T02:57:41.094Z",
+ "version": "2026-08-09T03:27:15.412Z",
  "archivos": [
   "index.html",
   "estilos.css",
@@ -11,6 +11,7 @@
   "assets/rejilla.js",
   "assets/intro.js",
   "assets/desplegable.js",
+  "assets/carrusel.js",
   "assets/favoritos.js",
   "assets/sinred.js",
   "assets/katex/katex.min.css",
@@ -164,6 +165,7 @@
   "assets/fuentes/artemisia-400i.woff2",
   "assets/fuentes/artemisia-700.woff2",
   "assets/fuentes/artemisia-700i.woff2",
+  "assets/fuentes/dmsans.woff2",
   "assets/katex/fonts/KaTeX_AMS-Regular.woff2",
   "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
   "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff2",

@@ -7,17 +7,17 @@
     <link rel="icon" href="../../assets/favicon.svg" />
     <link rel="manifest" href="../../manifest.json" />
     <link rel="apple-touch-icon" href="../../assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f0eee6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href="../../assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../../assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../../assets/fuentes/dmsans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../estilos.css" />
     <link rel="stylesheet" href="../../assets/katex/katex.min.css" />
     <script src="../../assets/tema.js"></script>
     <script defer src="../../assets/sinred.js"></script>
     <script src="../../assets/rejilla.js"></script>
-    <script defer src="../../assets/desplegable.js"></script>
     <script defer src="../../assets/voxel3d/three.min.js"></script>
     <script defer src="../../assets/voxel3d.js"></script>
     <script src="../../assets/favoritos.js"></script>
@@ -42,51 +42,47 @@
           <button class="mas" type="button" data-fav="weierstrass" aria-pressed="false"></button>
         </div>
 
-        <div class="ficha">
-          <div
-            class="voxel3d"
-            data-modelo="weierstrass"
-            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
-          ></div>
-        </div>
+        <p class="entrada">El padre del análisis moderno, y quien enseñó a Kovalévskaya.</p>
 
-        <p>Pasó quince años de maestro de instituto —daba gimnasia y caligrafía además de matemáticas— publicando de vez en cuando en la revista del colegio. Un artículo sobre funciones abelianas en 1854 le valió el doctorado honoris causa y, en dos años, una cátedra en Berlín.</p>
-        <p>Es quien dejó el análisis en su forma actual: la definición de límite con épsilon y delta es suya. Dio clases particulares durante cuatro años a Sofia Kovalévskaya, a la que la universidad no admitía, y peleó por su doctorado.</p>
-
-        <ul class="pastillas">
-          <li>
-            <details class="demo" id="datos">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">Información personal</span>
-                  <span class="pastilla-sub">1815 – 1897 · Prusia, Alemania</span>
-                </span>
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-                  <dl class="datos">
-                    <dt>Nacimiento</dt>
-                    <dd>31 de octubre de 1815, Ostenfelde</dd>
-                    <dt>Fallecimiento</dt>
-                    <dd>19 de febrero de 1897, Berlín</dd>
-                    <dt>Nacionalidad</dt>
-                    <dd>Prusia</dd>
-                    <dt>Instituciones</dt>
-                    <dd>Universidad de Berlín</dd>
-                    <dt>Área</dt>
-                    <dd>Análisis, funciones elípticas y abelianas</dd>
-                    <dt>Discípulos</dt>
-                    <dd>Kovalévskaya, Cantor, Frobenius, Schwarz</dd>
-                  </dl>
-                </div>
-              </div>
-            </details>
-          </li>
+        <ul class="tira">
+          <li><span class="dato"><img class="dato-bandera" src="../../assets/banderas/de.svg" alt="" width="24" height="16" decoding="async" />Prusia, Alemania</span></li>
+          <li><span class="dato">1815 – 1897</span></li>
         </ul>
+
+        <div class="banda">
+          <div class="ficha">
+            <div
+              class="voxel3d"
+              data-modelo="weierstrass"
+              data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"
+            ></div>
+          </div>
+
+          <div class="banda-texto">
+          <p>Pasó quince años de maestro de instituto —daba gimnasia y caligrafía además de matemáticas— publicando de vez en cuando en la revista del colegio. Un artículo sobre funciones abelianas en 1854 le valió el doctorado honoris causa y, en dos años, una cátedra en Berlín.</p>
+          <p>Es quien dejó el análisis en su forma actual: la definición de límite con épsilon y delta es suya. Dio clases particulares durante cuatro años a Sofia Kovalévskaya, a la que la universidad no admitía, y peleó por su doctorado.</p>
+
+            <h3 class="capitulo">Información personal</h3>
+            <dl class="datos">
+              <dt>Nacimiento</dt>
+              <dd>31 de octubre de 1815, Ostenfelde</dd>
+              <dt>Fallecimiento</dt>
+              <dd>19 de febrero de 1897, Berlín</dd>
+              <dt>Nacionalidad</dt>
+              <dd>Prusia</dd>
+              <dt>Instituciones</dt>
+              <dd>Universidad de Berlín</dd>
+              <dt>Área</dt>
+              <dd>Análisis, funciones elípticas y abelianas</dd>
+              <dt>Discípulos</dt>
+              <dd>Kovalévskaya, Cantor, Frobenius, Schwarz</dd>
+            </dl>
+          </div>
+        </div>
 
         <h2>Libros</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 5">
               <span class="libro-tapa">
@@ -94,14 +90,17 @@
                 <span class="libro-titulo">Mathematische Werke</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1894</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1894</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Artículos</h2>
 
-        <ul class="libros libros-fila">
+        <ul class="libros ancha libros-fila">
           <li>
             <article class="libro" style="--tono: 8">
               <span class="libro-tapa">
@@ -109,7 +108,10 @@
                 <span class="libro-titulo">Zur Theorie der Abelschen Functionen</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1854</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1854</span>
+              </span>
             </article>
           </li>
           <li>
@@ -119,14 +121,17 @@
                 <span class="libro-titulo">Über continuirliche Functionen eines reellen Arguments</span>
                 <span class="libro-filete"></span>
               </span>
-              <span class="libro-pie">1872</span>
+              <span class="libro-cinta"></span>
+              <span class="libro-canto">
+                <span class="libro-pie">1872</span>
+              </span>
             </article>
           </li>
         </ul>
 
         <h2>Relaciones</h2>
 
-        <ul class="caras">
+        <ul class="caras ancha">
           <li data-id="kovalevskaya" data-busca="sofia kovalevskaya rusia 1850 – 1891 primera mujer con catedra de matematicas en europa">
             <a href="../../matematicas/matematicos/kovalevskaya.html">
               <span class="cara-foto" style="--bandera: url(assets/banderas/ru.svg)">

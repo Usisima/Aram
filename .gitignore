@@ -29,6 +29,12 @@ herramientas/voxel/anims.json
 herramientas/voxel/three.min.js
 herramientas/editor/piezas/
 
+# Las capturas de referencia que se sueltan en la carpeta para enseñar un
+# estilo. No son del sitio y la raíz se publica tal cual.
+/*.jpg
+/*.jpeg
+/*.png
+
 # ── Del sistema y de las herramientas ──
 __pycache__/
 *.pyc
