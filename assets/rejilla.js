@@ -297,43 +297,19 @@
     return hijo && hijo.classList.contains("dentro") ? hijo : panel;
   }
 
+  /**
+   * Recoloca la trama del fondo y nada más.
+   *
+   * Antes esto ajustaba con márgenes y rellenos cada bloque, cada recuadro y
+   * cada panel para que todo cayera en la raya. Se ha soltado a propósito: la
+   * trama se queda como papel y el espacio lo pone el estilo, no la aritmética.
+   *
+   * Se conserva el nombre porque `desplegable.js` la llama al abrir y cerrar un
+   * panel, y las funciones de ajuste siguen escritas justo encima: volver a
+   * atar la página a los renglones es volver a llamarlas desde aquí.
+   */
   function cuadrar() {
     centrarRejilla();
-
-    var main = document.querySelector("main");
-    if (!main) return;
-
-    var c = celda();
-    if (!c) return;
-
-    var paneles = Array.prototype.filter.call(
-      document.querySelectorAll(".demo-cuerpo, .grupo-cuerpo"),
-      visible,
-    );
-
-    /* Las cajas se cuadran antes que los bloques: cambiarles el ancho altera
-       los saltos de línea y, con ellos, la altura de todo lo que va debajo.
-       Su relleno es una medida relativa a la propia caja, así que basta una
-       pasada por mucho que luego todo se desplace. */
-    cuadrarCajas(main, c);
-
-    /* Origen de la cuadrícula: el borde superior del body, que es donde
-       arranca el ::after que la pinta. */
-    var origen = document.body.getBoundingClientRect().top + window.scrollY;
-
-    /* Con desplegables abiertos hacen falta dos vueltas: lo que va dentro de un
-       panel se coloca a partir de donde empieza el panel, y el alto del panel
-       decide dónde cae lo que viene después. Cada cosa depende de la otra, así
-       que se cuadra el tronco, luego los paneles, y se repasa el tronco con los
-       altos ya fijados. */
-    var vueltas = paneles.length ? 2 : 1;
-
-    for (var v = 0; v < vueltas; v++) {
-      cuadrarColumna(main, c, origen);
-      paneles.forEach(function (panel) {
-        cuadrarPanel(panel, c, origen);
-      });
-    }
   }
 
   /* Mientras se cuadra, el contenido se mantiene invisible pero ocupando su

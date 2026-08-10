@@ -17,6 +17,7 @@ const path = require("path");
 
 const { matematicos } = require("./contenido/matematicos.js");
 const { materias, libros: CATALOGO } = require("./contenido/materias.js");
+const { portada } = require("./contenido/portada.js");
 
 /**
  * Los aportes que se añaden desde el taller (herramientas/editor).
@@ -70,6 +71,9 @@ const materia = (id) => `${MATERIAS}/${id}/index.html`;
    lo que se demuestre de él se lee igual desde cualquiera de ellas. Por eso
    cuelga de `libros/` y no de dentro de una materia. */
 const libro = (libroId) => `matematicas/libros/${libroId}.html`;
+const FAVORITOS = "matematicas/favoritos.html";
+/* La búsqueda es de todo el sitio, no solo de matemáticas: vive en la raíz. */
+const BUSCAR = "buscar.html";
 
 /* Cuántos aportes caben en la ficha antes de cortar. La ficha es una
    presentación, no un compendio: quien llega quiere ver quién fue y de qué se
@@ -111,86 +115,255 @@ const fuentesDe = (cuerpo) =>
  */
 const MARCA = `<svg class="marca-dibujo" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M 63.842 115.389 C 57.327 117.144, 48.389 122.749, 44.404 127.580 C 38.264 135.022, 36.541 140.254, 36.525 151.500 C 36.513 160.174, 36.853 162.230, 39.088 167.006 C 42.363 174.001, 47.018 178.651, 53.994 181.894 C 58.600 184.035, 60.974 184.457, 68.518 184.477 C 76.661 184.498, 78.164 184.191, 84.018 181.309 C 89.897 178.416, 102.160 167.533, 107.466 160.500 C 108.961 158.519, 108.993 158.523, 110.879 160.932 C 113.254 163.965, 115.418 169.274, 122.526 189.500 C 128.675 207, 135.975 223.179, 141.108 230.687 C 142.918 233.334, 146.836 237.854, 149.814 240.731 C 152.840 243.654, 155.004 246.548, 154.718 247.291 C 154.438 248.023, 152.249 249.202, 149.854 249.911 C 137.641 253.531, 122.806 263.044, 111.328 274.614 C 97.647 288.406, 91.504 298.252, 79.087 326.291 C 67.184 353.170, 62.249 362.566, 57.049 368.256 C 51.078 374.789, 47.261 376.508, 35.363 378.019 C 20.660 379.888, 22 378.935, 22 387.519 L 22 395 74.364 395 L 126.728 395 134.475 372.250 C 149.168 329.099, 162.325 299.149, 171.704 287.500 C 180.949 276.018, 194.239 269.481, 210.750 268.296 L 219 267.703 219 312.802 C 219 341.554, 218.605 359.742, 217.911 362.980 C 215.529 374.085, 210.194 376.745, 184.750 379.517 L 179 380.144 179 387.572 L 179 395 252.542 395 L 326.084 395 325.792 387.250 L 325.500 379.500 319 378.850 C 311.563 378.106, 300.843 375.487, 296.913 373.455 C 293.139 371.504, 289.256 366.584, 288.044 362.219 C 287.404 359.914, 287.009 341.245, 287.006 313.102 L 287 267.705 295.250 268.357 C 311.342 269.630, 320.533 273.405, 329.542 282.440 C 341.514 294.447, 352.376 317.802, 367.938 365 L 377.665 394.500 430.332 394.759 L 483 395.018 483 387.528 C 483 378.943, 484.251 379.859, 470 378.003 C 459.822 376.677, 452.247 373.306, 447.939 368.186 C 444.481 364.076, 434.747 344.668, 424.074 320.602 C 411.446 292.131, 399.020 275.727, 379.500 261.762 C 373.457 257.438, 362.102 251.677, 356.146 249.911 C 353.751 249.202, 351.564 248.027, 351.285 247.300 C 351.006 246.573, 353.714 242.867, 357.302 239.063 C 367.929 227.797, 374.936 214.019, 384.833 184.923 C 389.789 170.352, 394.026 160.720, 396.021 159.487 C 396.604 159.127, 398.032 160.108, 399.195 161.666 C 404.116 168.261, 416.078 178.897, 421.644 181.626 C 426.773 184.141, 428.617 184.498, 436.500 184.499 C 444.335 184.500, 446.238 184.137, 451.203 181.700 C 454.501 180.080, 458.793 176.800, 461.382 173.920 C 467.378 167.251, 469.488 160.898, 469.495 149.500 C 469.499 141.848, 469.103 139.654, 466.852 134.852 C 462.270 125.079, 453.948 118.417, 442.500 115.359 C 439.750 114.625, 432.854 114.018, 427.176 114.012 C 407.150 113.989, 392.424 121.737, 380.359 138.646 C 374.244 147.214, 370.200 156.413, 362.136 180.091 C 350.990 212.817, 345.978 222.156, 332.076 236.098 C 321.899 246.304, 317.222 248.138, 299.750 248.773 L 287 249.236 287.006 200.868 C 287.009 170.202, 287.395 151.118, 288.060 148.723 C 289.935 141.972, 294.032 138.480, 302.880 136.093 C 307.204 134.926, 314.062 133.641, 318.121 133.236 L 325.500 132.500 325.792 124.750 L 326.084 117 252.542 117 L 179 117 179 124.481 C 179 131.439, 179.157 131.993, 181.250 132.411 C 206.882 137.528, 215.680 142.227, 217.920 152 C 218.546 154.735, 218.961 174.644, 218.976 202.750 L 219 249 208.250 248.988 C 190.864 248.969, 182.981 245.925, 172.940 235.354 C 160.765 222.535, 152.826 207.318, 142.497 177 C 138.844 166.275, 134.077 153.863, 131.905 149.417 C 123.452 132.120, 109.317 119.584, 93.500 115.359 C 87.276 113.697, 70.063 113.714, 63.842 115.389" /></svg>`;
 
-function plantilla({ titulo, miga, cuerpo, visor, favoritos }) {
-  /* Si hay algo que plegar, se carga lo que lo anima. Se mira el cuerpo en vez
-     de pasarlo a mano: apuntarlo página por página se olvidaba —los teoremas y
-     los temas se añadieron después y abrían de golpe— y aquí no hay nada que
-     acordarse de marcar. */
-  const despliegue = cuerpo.indexOf("<details") >= 0;
-  const migas = miga
-    .map((m, i) => {
-      const sep = i ? '\n        <span class="sep">/</span>\n        ' : "";
-      /* El primer nivel es siempre la portada: ahí va la marca en vez de la
-         palabra, que es donde se pulsa para volver a casa. */
-      if (i === 0 && m.href)
-        return `<a class="marca" href="${m.href}" aria-label="${m.texto}">${MARCA}</a>`;
-      return (
-        sep +
-        (m.href
-          ? `<a href="${m.href}">${m.texto}</a>`
-          : `<span class="actual">${m.texto}</span>`)
-      );
-    })
-    .join("");
+/* Los dibujos de la barra, en trazo y sin relleno. Heredan el color del texto.
+   Son más que huecos: el tercero cambia de dibujo con la página. */
+const DIBUJOS = {
+  inicio: '<path d="M3 11 12 3l9 8" /><path d="M5 10v10h14V10" />',
+  /* Matemáticas: una pi. Tres trazos y se lee de lejos, que es lo que se le
+     pide a un dibujo de esta medida. Las patas, a la misma distancia de cada
+     punta del travesaño; y llenando de arriba abajo lo mismo que los demás, que
+     antes ocupaba dos tercios y el botón parecía más pequeño. */
+  matematicas:
+    '<path d="M4 4.5h16" /><path d="M8.5 4.5v15.5" /><path d="M15.5 4.5v15.5" />',
+  /* Una materia: los libros en el estante. */
+  materia:
+    '<path d="M4 4h6v15H4z" /><path d="M10 4h6v15h-6z" /><path d="M16 5l4 1-2 14-4-1" />',
+  /* Un matemático: alguien. */
+  matematico: '<circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" />',
+  /* Volver: una flecha a la izquierda, con la punta abierta de arriba abajo
+     como el resto —cerrada ocupaba trece y medio contra los diecisiete de los
+     otros—. */
+  volver: '<path d="M20 12H4" /><path d="M12 4l-8 8 8 8" />',
+  /* Buscar: la lupa. */
+  buscar: '<circle cx="11" cy="11" r="7" /><path d="M20 20l-4.4-4.4" />',
+  /* Favoritos: la estrella de siempre. */
+  favoritos:
+    '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z" />',
+};
 
+/* El interruptor de modo, lo único que va en la cabecera. Lleva los dos dibujos
+   puestos y la hoja enseña el que toca: el que se ofrece, no el que se está
+   viendo —en claro se ve la luna, que es a donde lleva—. Se hace así, y no
+   cambiando el dibujo con JavaScript, para que salga bien desde el primer
+   fotograma.
+
+   Arriba y no en la barra de abajo porque abajo se va a donde se quiere ir, y
+   esto no es un sitio: es un ajuste, y se toca una vez cada mucho. */
+const INTERRUPTOR = [
+  '      <button class="tema" type="button" title="Cambiar el modo">',
+  '        <svg class="sol" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>',
+  '        <svg class="luna" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5z" /></svg>',
+  "        <span>Cambiar el modo</span>",
+  "      </button>",
+].join("\n");
+
+/**
+ * Los sitios de la barra para una página, cuál está encendido, y por dónde se
+ * sale cuando el encendido es un «Regresar».
+ *
+ * Cinco huecos. El primero, el segundo y el quinto son fijos —la portada, los
+ * favoritos y la búsqueda—. Los otros dos son las dos ramas del sitio, y cada
+ * una va contando por dónde vas dentro de ella:
+ *
+ *   · matemáticas:  Matemáticas → Matemáticos → Regresar (dentro de una ficha)
+ *   · materias:     Materias    → Materias    → Regresar (dentro de un libro)
+ *
+ * El nombre cambia, el hueco no: el botón no se mueve de sitio al entrar y
+ * salir, solo dice otra cosa.
+ *
+ * Lo de `salida` es por esto: a la ficha de un matemático se llega por dos
+ * caminos —desde el índice de matemáticos, o desde el resumen de la portada de
+ * matemáticas sin pasar por él—, y regresar tiene que devolver por donde se
+ * vino, no siempre al índice. El enlace apunta al índice, que es la salida
+ * razonable para quien llega de fuera; `salida` apunta al otro camino, y quien
+ * atiende el botón elige.
+ */
+function barraDe(archivo) {
+  const enMateria =
+    archivo.startsWith(`${MATERIAS}/`) && archivo !== `${MATERIAS}/index.html`;
+  const enFicha = archivo.startsWith(`${MATES}/`) && archivo !== `${MATES}/index.html`;
+  const enLibro = archivo.startsWith("matematicas/libros/");
+
+  /* La rama de las matemáticas y su gente. */
+  let mates = ["matematicas", "Matemáticas", "matematicas/index.html"];
+  /* La rama de las materias y sus libros. */
+  let suyas = ["materia", "Materias", `${MATERIAS}/index.html`];
+  let encendido = "";
+  let salida = "";
+
+  if (enFicha) {
+    /* Dentro de una ficha, el botón de la rama es la salida de la rama. */
+    mates = ["volver", "Regresar", `${MATES}/index.html`];
+    encendido = "volver";
+    salida = "matematicas/index.html";
+  } else if (archivo === `${MATES}/index.html`) {
+    mates = ["matematico", "Matemáticos", `${MATES}/index.html`];
+    encendido = "matematico";
+  } else if (enMateria) {
+    encendido = "materia";
+  } else if (enLibro) {
+    /* De qué materia sale este libro: la primera que lo tenga por bibliografía
+       básica, que es de donde se llega a él. */
+    const id = archivo.slice("matematicas/libros/".length, -".html".length);
+    /* Primero la que lo tiene por bibliografía básica, que es de donde se llega
+       normalmente; si no hay ninguna, la que lo tiene por complementaria. Un
+       libro que solo es complementario también necesita salida. */
+    const suya =
+      materias.find((m) =>
+        (m.libros || []).some((x) => x.id === id && x.papel === "basico"),
+      ) ||
+      materias.find((m) => (m.libros || []).some((x) => x.id === id));
+    if (suya) {
+      /* Siempre «Regresar», nunca el nombre de la materia: dentro de un libro
+         lo que se busca es la salida, y un nombre de treinta letras hacía que
+         la pastilla midiera distinto en cada libro. */
+      suyas = ["volver", "Regresar", materia(suya.id)];
+      encendido = "volver";
+    }
+  } else if (archivo === `${MATERIAS}/index.html`) {
+    encendido = "materia";
+  } else if (archivo === "index.html") {
+    encendido = "inicio";
+  } else if (archivo === "matematicas/index.html") {
+    encendido = "matematicas";
+  } else if (archivo === FAVORITOS) {
+    encendido = "favoritos";
+  } else if (archivo === BUSCAR) {
+    encendido = "buscar";
+  }
+
+  return {
+    encendido,
+    salida,
+    sitios: [
+      ["inicio", "Inicio", "index.html"],
+      ["favoritos", "Favoritos", FAVORITOS],
+      mates,
+      suyas,
+      ["buscar", "Buscar", BUSCAR],
+    ],
+  };
+}
+
+function barra(archivo) {
+  const { encendido, salida, sitios } = barraDe(archivo);
+  return [
+    '    <nav class="barra">',
+    ...sitios.map(([id, nombre, href]) => {
+      const aqui = id === encendido;
+      /* El otro sitio del que se puede venir, apuntado en el propio botón: lo
+         lee quien lo atiende para devolver por donde se vino. */
+      const otra = aqui && id === "volver" && salida ? ` data-salida="${salida}"` : "";
+      return [
+        `      <a href="${href}"${aqui ? ` class="aqui${id === "volver" ? " volver" : ""}" aria-current="page"` : ""}${otra}>`,
+        /* La pastilla es una capa aparte y solo la lleva el encendido: así,
+           en las dos páginas hay una y es la misma, y el navegador la mueve
+           de un hueco al otro en vez de apagarla aquí y encenderla allá. */
+        aqui ? '        <span class="pastilla"></span>' : "",
+        /* Las medidas van en la etiqueta y no solo en la hoja: un svg sin ellas
+           ocupa 300×150 hasta que el CSS llega, y la barra nacía enorme y
+           encogía de golpe. */
+        `        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">${DIBUJOS[id]}</svg>`,
+        /* El nombre siempre está escrito —un lector de pantalla lo necesita—;
+           lo que decide si se ve es la hoja. */
+        `        <span>${nombre}</span>`,
+        "      </a>",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }),
+    "    </nav>",
+  ].join("\n");
+}
+
+/* Texto de relleno, a la espera de contenido de verdad.
+
+   Está por dos razones. La primera, que se probó: con las páginas largas la
+   barra de abajo no da el salto al cambiar de página, y con las cortas sí. Lo
+   que tienen de particular las largas no es el texto, es que se DESPLAZAN, y
+   una página que se desplaza lleva la barra pegada al borde de la ventana.
+
+   La segunda es la de siempre: una página con un título y nada más no se puede
+   mirar. Cuando haya qué escribir, esto se borra —es esta lista y la línea que
+   la pega al final del cuerpo— y el arreglo del salto sigue en pie, porque lo
+   sostiene el píxel de más del alto del cuerpo, en la hoja de estilos. */
+const PAJA = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+  "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+  "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.",
+  "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+  "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.",
+  "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
+  "Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore cum soluta nobis est eligendi optio.",
+]
+  .map((p) => `        <p>${p}</p>`)
+  .join("\n\n");
+
+function plantilla({ titulo, cuerpo, archivo, favoritos }) {
+  /* El botón de regresar solo está dentro de un libro, y solo ahí hace falta lo
+     que limpia el historial. */
+  const conVuelta = barraDe(archivo).encendido === "volver";
   return `<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>${titulo} · Aram</title>
+    <title>${titulo === "Aram" ? titulo : `${titulo} · Aram`}</title>
     <link rel="icon" href="assets/favicon.svg" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="assets/icono-192.png" />
-    <meta name="theme-color" content="#e8e8e8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="preload" href="assets/fuentes/artemisia-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fuentes/artemisia-700.woff2" as="font" type="font/woff2" crossorigin />${fuentesDe(
-      cuerpo,
-    )
-      .map(
-        (f) =>
-          `\n    <link rel="preload" href="assets/katex/fonts/${f}.woff2" as="font" type="font/woff2" crossorigin />`,
-      )
-      .join("")}
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="estilos.css" />
     <link rel="stylesheet" href="assets/katex/katex.min.css" />
-    <script src="assets/tema.js"></script>
     <script defer src="assets/sinred.js"></script>
-    <script src="assets/rejilla.js"></script>${
-      despliegue
-        ? '\n    <script defer src="assets/desplegable.js"></script>'
-        : ""
-    }${
-      visor
-        ? '\n    <script defer src="assets/voxel3d/three.min.js"></script>' +
-          '\n    <script defer src="assets/voxel3d.js"></script>'
-        : ""
-    }${
-      /* Sin `defer`, y a propósito: es quien decide QUÉ tarjetas lleva el
-         carrusel. Aplazado, la página llegaba a pintar las veintidós de la
-         plantilla y un instante después saltaban a ser otras. */
+    <script defer src="assets/tema.js"></script>${
+      conVuelta ? '\n    <script defer src="assets/volver.js"></script>' : ""
+    }
+    <script>
+      /* El modo elegido, puesto antes de pintar nada. Va aquí, en línea y en
+         cada página, y no en un archivo: un archivo llega más tarde y se vería
+         el destello del modo contrario en cada cambio de página.
+
+         De paso deja dicho que hay JavaScript, que es lo que decide si el botón
+         del modo se enseña: sin él no haría nada. */
+      (function () {
+        var raiz = document.documentElement;
+        raiz.dataset.js = "si";
+        try {
+          var modo = localStorage.getItem("tema");
+          if (modo === "claro" || modo === "oscuro") raiz.dataset.tema = modo;
+        } catch (_) {
+          /* Sin almacén se sigue al teléfono, como siempre. */
+        }
+      })();
+
+      /* Cómo se ha llegado a esta página, antes de pintarla: si viene de otra
+         del sitio, la ventana ya está quieta y la barra no tiene que esperar a
+         nada. Va en línea y no en un archivo porque tiene que estar decidido
+         antes del primer fotograma. */
+      addEventListener("pagereveal", function (e) {
+        if (e.viewTransition) document.documentElement.dataset.llegada = "dentro";
+      });
+    </script>${
       favoritos ? '\n    <script src="assets/favoritos.js"></script>' : ""
     }
   </head>
   <body>
-    <script src="assets/intro.js"></script>
+    <header>
+${INTERRUPTOR}
+    </header>
 
-    <div class="envoltorio">
-      <nav class="miga">
-        ${migas}
-      </nav>
-
-      <main>
+    <main>
 ${cuerpo}
-      </main>
 
-      <footer class="pie">
-        <a class="marca" href="index.html" aria-label="Inicio">${MARCA}</a>
-        <span>Aram</span>
-      </footer>
-    </div>
+${PAJA}
+    </main>
+
+${barra(archivo)}
   </body>
 </html>
 `;
@@ -225,13 +398,14 @@ function conFichas(html) {
 }
 
 function conRaiz(html, raiz) {
-  /* Solo `href` y `src`. Una `url()` escrita en el `style=` de la página no
+  /* Solo `href`, `src` y el `data-salida` del botón de regresar —que es una
+     dirección de página como las otras dos—. Una `url()` escrita en el `style=` de la página no
      la resuelve la página, sino la hoja de estilos que la usa, y
      `estilos.css` está en la raíz: poniéndole los `../` de la página se
      salía del sitio —las banderas acabaron en un 404 del dominio— y desde
      la raíz vale igual para todas. */
   return html.replace(
-    /\b(href|src)="([^"]+)"/g,
+    /\b(href|src|data-salida)="([^"]+)"/g,
     (todo, atributo, url) =>
       DE_FUERA.test(url) ? todo : `${atributo}="${raiz}${url}"`,
   );
@@ -255,26 +429,14 @@ const sangrar = (texto, n) => texto.replace(/^(?=[^\n])/gm, " ".repeat(n));
  * algo plegado. assets/desplegable.js solo le añade la transición de alto y el
  * recuadre contra la rejilla.
  */
-function desplegable({ id, titulo, sub, numerada, cuerpo }) {
-  const num = numerada
-    ? '\n                <span class="pastilla-num"></span>'
-    : "";
-
-  return `          <li>
-            <details class="demo" id="${id}">
-              <summary class="pastilla">
-                <span class="pastilla-texto">
-                  <span class="pastilla-titulo">${titulo}</span>
-                  ${sub ? `<span class="pastilla-sub">${sub}</span>` : ""}
-                </span>${num}
-              </summary>
-              <div class="demo-cuerpo">
-                <div class="dentro">
-${sangrar(cuerpo, 10)}
-                </div>
-              </div>
-            </details>
-          </li>`;
+function desplegable({ id, titulo, sub, cuerpo }) {
+  return [
+    `        <h3${id ? ` id="${id}"` : ""}>${titulo}</h3>`,
+    sub ? `        <p>${sub}</p>` : "",
+    cuerpo,
+  ]
+    .filter(Boolean)
+    .join("\n");
 }
 
 /**
@@ -288,50 +450,32 @@ ${sangrar(cuerpo, 10)}
  * `carrusel` los pone en fila para pasarlos con el dedo; sin eso se reparten en
  * cuadrícula, que es lo que quiere un índice.
  */
-function portadas(obras, disposicion) {
+function portadas(obras) {
   return [
-    `        <ul class="libros${disposicion === "carrusel" ? " libros-fila" : ""}">`,
+    "        <ul>",
     ...obras.map((o) => {
-      /* Suma de los códigos del título: determinista y suficiente para
-         repartir doce tonos sin que dos vecinos se repitan. */
-      let n = 0;
-      for (const c of o.titulo) n = (n * 31 + c.charCodeAt(0)) % 1000;
-
-      /* Con `href`, la portada es el enlace a la página del libro; sin él se
-         queda en una lámina que no lleva a ningún sitio, que es lo que
-         corresponde a un libro del que no hay nada escrito. */
-      const abre = o.href ? `<a class="libro" href="${o.href}"` : '<article class="libro"';
-      const cierra = o.href ? "</a>" : "</article>";
-
-      /* El pie: quién lo escribió y de cuándo es. En la bibliografía de una
-         materia el autor es lo que distingue dos libros del mismo asunto; en la
-         ficha de un matemático sobra, porque el autor es él. */
-      const pie = [o.autor, o.anio].filter(Boolean).join(" · ");
-
-      return [
-        "          <li>",
-        `            ${abre} style="--tono: ${n % 12}">`,
-        '              <span class="libro-tapa">',
-        '                <span class="libro-filete"></span>',
-        `                <span class="libro-titulo">${o.titulo}</span>`,
-        '                <span class="libro-filete"></span>',
-        "              </span>",
-        pie ? `              <span class="libro-pie">${pie}</span>` : "",
-        `            ${cierra}`,
-        "          </li>",
-      ]
-        .filter(Boolean)
-        .join("\n");
+      const datos = [o.autor, o.editorial, o.anio].filter(Boolean).join(", ");
+      const texto = datos ? `${o.titulo} — ${datos}` : o.titulo;
+      return o.href
+        ? `          <li><a href="${o.href}">${texto}</a></li>`
+        : `          <li>${texto}</li>`;
     }),
     "        </ul>",
   ].join("\n");
 }
 
+/** La bibliografía de una materia: la misma lista. */
+const filasDeLibros = (obras) => portadas(obras);
+
+
 function enunciado({ etiqueta, titulo, cuerpo, id }) {
-  return `        <fieldset class="enunciado"${id ? ` id="${id}"` : ""}>
-          <legend class="etiqueta">${etiqueta}</legend>
-${titulo ? `          <p>${titulo}</p>\n` : ""}${cuerpo}
-        </fieldset>`;
+  return [
+    `        <h3${id ? ` id="${id}"` : ""}>${etiqueta}</h3>`,
+    titulo ? `        <p>${titulo}</p>` : "",
+    cuerpo,
+  ]
+    .filter(Boolean)
+    .join("\n");
 }
 
 /**
@@ -409,40 +553,14 @@ const M_MATES = [...MIGA_BASE.slice(0, 2), { texto: "Matemáticos", href: `${MAT
  * de asomo. `rejilla` las reparte en cuadrícula y las enseña todas, que es lo
  * que quiere un índice.
  */
-function tarjetas(items, disposicion, limite) {
+function tarjetas(items) {
   return [
-    `        <ul class="caras${disposicion === "rejilla" ? " caras-rejilla" : ""}"` +
-      `${limite ? ` data-limite="${limite}"` : ""}>`,
-    ...items.map((t) => {
-      const estilo = t.fondo ? ` style="--bandera: url(${t.fondo})"` : "";
-      const dentro = [
-        /* La foto va en su propia caja: la bandera es el fondo de ESA caja, no
-           de la tarjeta entera, así no se mete debajo de la franja del nombre. */
-        `              <span class="cara-foto"${estilo}>`,
-        `                <img class="cara-retrato" src="${t.img}" alt="" width="256" height="256" decoding="async" />`,
-        "              </span>",
-        '              <span class="cara-pie">',
-        `                <span class="cara-nombre">${t.titulo}</span>`,
-        t.sub ? `                <span class="cara-dato">${t.sub}</span>` : "",
-        "              </span>",
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      const busca = t.busca
-        ? ` data-busca="${t.busca.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/"/g, "")}"`
-        : "";
-
-      return [
-        t.id ? `          <li data-id="${t.id}"${busca}>` : "          <li>",
-        t.href
-          ? `            <a href="${t.href}">`
-          : '            <span class="pendiente">',
-        dentro,
-        t.href ? "            </a>" : "            </span>",
-        "          </li>",
-      ].join("\n");
-    }),
+    "        <ul>",
+    ...items.map((t) =>
+      t.href
+        ? `          <li><a href="${t.href}">${t.titulo}</a></li>`
+        : `          <li>${t.titulo}</li>`,
+    ),
     "        </ul>",
   ].join("\n");
 }
@@ -520,6 +638,44 @@ paginas.push({
   ].join("\n"),
 });
 
+/* Los favoritos. La página se escribe con todos y `favoritos.js` deja los que
+   estén marcados en este teléfono: la marca vive ahí y no en el sitio, así que
+   la lista no se puede escribir aquí. */
+/* La portada. Se escribe aquí como todas: era la única a mano y cada cambio del
+   armazón —la barra, un script, la cabecera— había que copiárselo aparte. */
+paginas.push({
+  archivo: "index.html",
+  titulo: portada.titulo,
+  cuerpo: [
+    `        <h1>${portada.titulo}</h1>`,
+    "",
+    `        <p>${portada.entrada}</p>`,
+    "",
+    "        <ul>",
+    ...portada.puertas.map(
+      (p) => `          <li><a href="${p.href}">${p.texto}</a></li>`,
+    ),
+    "        </ul>",
+  ].join("\n"),
+});
+
+/* Buscar. Por ahora solo el título: el hueco en la barra y la página a la que
+   lleva, para que el sitio esté completo cuando haya algo que buscar. */
+paginas.push({
+  archivo: BUSCAR,
+  titulo: "Buscar",
+  cuerpo: "        <h1>Buscar</h1>",
+});
+
+paginas.push({
+  archivo: FAVORITOS,
+  titulo: "Favoritos",
+  cuerpo: [
+    "        <h1>Favoritos</h1>",
+  ].join("\n"),
+  favoritos: true,
+});
+
 paginas.push({
   archivo: `${MATES}/index.html`,
   titulo: "Matemáticos",
@@ -560,32 +716,14 @@ for (const m of matematicos) {
   /* `data-ficha` es la marca que lee favoritos.js para anotar la visita, y el
      botón el que la mete o la saca de favoritos. Su texto lo pone el script
      según el estado, así que aquí va vacío. */
-  const cuerpo = [
-    `        <div class="titulo-fila" data-ficha="${m.id}">`,
-    `          <h1>${m.nombre}</h1>`,
-    `          <button class="mas" type="button" data-fav="${m.id}" aria-pressed="false"></button>`,
-    "        </div>",
-    "",
-  ];
-
-  /* El modelo, grande y centrado, antes que nada: es la portada de la ficha. */
-  cuerpo.push(
-    '        <div class="ficha">',
-    "          <div",
-    '            class="voxel3d"',
-    `            data-modelo="${m.modelo}"`,
-    '            data-gestos="idle,idle_sway,idle_foottap,idle_look,happy_idle,laugh,proud,relieved,talk,talk_yes,talk_no,talk_q,talk_dunno,talk_surprise,talk_listen,wave,count,browwipe,look_around2,applaud,fistpump,yawn,warm_hands,dance,dance2,monkey"',
-    "          ></div>",
-    "        </div>",
-    "",
-  );
+  const cuerpo = [`        <h1>${m.nombre}</h1>`, ""];
 
   cuerpo.push(...m.biografia, "");
 
   /* Los datos personales van plegados: son de consulta, no de lectura, y
      desplegados empujan hacia abajo lo que sí se quiere leer. */
   cuerpo.push(
-    '        <ul class="pastillas">',
+    "",
     desplegable({
       id: "datos",
       titulo: "Información personal",
@@ -599,7 +737,7 @@ for (const m of matematicos) {
         "        </dl>",
       ].join("\n"),
     }),
-    "        </ul>",
+    "",
     "",
   );
 
@@ -813,166 +951,39 @@ paginas.push({
  * debajo se reordena solo. Lo demás son recuadros de enunciado, los mismos que
  * llevan los teoremas de las fichas.
  */
-function seccion(titulo, lista, estilo) {
+function seccion(titulo, lista) {
   const util = (lista || []).filter(Boolean);
   if (!util.some(esEntrada)) return [];
 
   const fuera = [`        <h2>${titulo}</h2>`, ""];
 
-  /* Dos niveles de separador, uno dentro del otro: el capítulo agrupa temas y
-     el tema agrupa lo que se escribe. Los dos se pliegan. */
-  let capitulo = null;
-  let tema = null;
-  let enTema = [];      /* lo que lleva el tema abierto */
-  let enCapitulo = [];  /* los temas ya cerrados del capítulo abierto */
-  let pastillas = [];
-
-  const donde = () => {
-    if (tema !== null) return enTema;
-    if (capitulo !== null) return enCapitulo;
-    return fuera;
-  };
-
-  const soltar = () => {
-    if (!pastillas.length) return;
-    donde().push('        <ul class="pastillas">', ...pastillas, "        </ul>", "");
-    pastillas = [];
-  };
-
-  /* Un grupo plegado: su título entre rayas y dentro lo que lleve. */
-  const plegado = (titulo, dentro, clase) => [
-    `        <details class="grupo${clase ? " " + clase : ""}">`,
-    `          <summary class="grupo-titulo">${titulo}</summary>`,
-    '          <div class="grupo-cuerpo">',
-    '            <div class="dentro">',
-    ...dentro,
-    "            </div>",
-    "          </div>",
-    "        </details>",
-    "",
-  ];
-
-  const cerrarTema = () => {
-    soltar();
-    if (tema === null) return;
-    (capitulo !== null ? enCapitulo : fuera).push(...plegado(tema, enTema));
-    enTema = [];
-    tema = null;
-  };
-
-  /* El capítulo NO se pliega: es el índice de lo que hay debajo, y plegado
-     escondía los temas, que son justo lo que se quiere ver de un vistazo. Se
-     pliegan los temas, que es donde está el contenido. */
-  const cerrarCapitulo = () => {
-    cerrarTema();
-    if (capitulo === null) return;
-    fuera.push(
-      `        <h3 class="capitulo">${capitulo}</h3>`,
-      "",
-      ...enCapitulo,
-    );
-    enCapitulo = [];
-    capitulo = null;
-  };
-
   for (const cosa of util) {
+    /* Un capítulo y un tema son encabezados: lo que hacen es partir la lista. */
     if (cosa.capitulo !== undefined) {
-      cerrarCapitulo();
-      capitulo = cosa.capitulo;
+      fuera.push(`        <h3>${cosa.capitulo}</h3>`, "");
       continue;
     }
     if (cosa.divisor !== undefined) {
-      cerrarTema();
-      tema = cosa.divisor;
+      fuera.push(`        <h3>${cosa.divisor}</h3>`, "");
       continue;
     }
 
+    const nombre = [cosa.etiqueta, cosa.nombre].filter(Boolean).join(" · ");
     const debajo = cosa.demostracion || cosa.resolucion || cosa.solucion;
 
-    /* Un ejercicio se lee al revés que un teorema: el problema se plantea y la
-       resolución se mira después, si se mira. Por eso va en pastilla. */
-    if (estilo === "pastilla" && debajo) {
-      pastillas.push(
-        desplegable({
-          id: cosa.id,
-          titulo: rotulo(cosa),
-          sub: cosa.cuerpo || "",
-          numerada: true,
-          cuerpo: debajo,
-        }),
-      );
-      continue;
-    }
-
-    soltar();
-
-    /* Una definición no necesita marco: es una frase que se lee y se sigue
-       leyendo. El nombre delante, en negrita, y ya. Si trae algo debajo
-       —cualquier enunciado puede llevar demostración, no solo los teoremas— se
-       pliega igual que los demás, tocándolo. */
-    if (estilo === "simple") {
-      const frase =
-        `        <p class="simple" id="${cosa.id || ""}"><b>${rotulo(cosa)}.</b> ` +
-        `${quitarParrafo(cosa.cuerpo)}</p>`;
-      if (!debajo) {
-        donde().push(frase, "", ...tambienEn(cosa));
-        continue;
-      }
-      donde().push(
-        '        <details class="prueba">',
-        '          <summary class="prueba-enunciado">',
-        "  " + frase,
-        "          </summary>",
-        '          <div class="prueba-cuerpo">',
-        '            <div class="dentro">',
-        `              <p>${quitarParrafo(debajo)}</p>`,
-        ...tambienEn(cosa).map((l) => (l ? "    " + l : l)),
-        "            </div>",
-        "          </div>",
-        "        </details>",
-        "",
-      );
-      continue;
-    }
-
-    /* El enunciado va en su recuadro, con el nombre en el filo. Si trae
-       demostración, el recuadro ENTERO es lo que se toca para abrirla: no hay
-       botón aparte, se pulsa el enunciado y debajo aparece la prueba. */
-    if (!debajo) {
-      donde().push(
-        enunciado({ etiqueta: rotulo(cosa), cuerpo: `          ${cosa.cuerpo}`, id: cosa.id }),
-        "",
-        ...tambienEn(cosa),
-      );
-      continue;
-    }
-
-    donde().push(
-      '        <details class="prueba">',
-      '          <summary class="prueba-enunciado">',
-      sangrar(
-        enunciado({ etiqueta: rotulo(cosa), cuerpo: `          ${cosa.cuerpo}`, id: cosa.id }),
-        2,
-      ),
-      "          </summary>",
-      '          <div class="prueba-cuerpo">',
-      '            <div class="dentro">',
-      `              <p>${quitarParrafo(debajo)}</p>`,
-      ...tambienEn(cosa).map((l) => (l ? "    " + l : l)),
-      "            </div>",
-      "          </div>",
-      "        </details>",
+    fuera.push(
+      `        <h4${cosa.id ? ` id="${cosa.id}"` : ""}>${nombre}</h4>`,
+      cosa.cuerpo || "",
+      /* La demostración va escrita detrás del enunciado, no escondida tras un
+         clic: lo que se pidió es ver el texto. */
+      debajo || "",
       "",
     );
   }
 
-  cerrarCapitulo();
-  soltar();
-
-  /* La sección no se pliega —solo los capítulos y los temas—: se quiere ver de
-     un vistazo de qué se compone la materia. */
-  return fuera;
+  return fuera.filter((x) => x !== "" || true);
 }
+
 
 /** Quita el <p> de fuera, si lo trae: aquí se va a envolver de otra manera. */
 function quitarParrafo(texto) {
@@ -1027,7 +1038,7 @@ for (const m of materias) {
       cuerpo.push(
         `        <h2>${titulo}</h2>`,
         "",
-        portadas(suyos.map((l) => ({ ...l, href: libro(l.id) })), "carrusel"),
+        filasDeLibros(suyos.map((l) => ({ ...l, href: libro(l.id) }))),
         "",
       );
     }
@@ -1127,12 +1138,12 @@ function listaParaSinRed() {
     "assets/favicon.svg",
     "assets/icono-192.png",
     "assets/icono-512.png",
-    "assets/tema.js",
     "assets/rejilla.js",
-    "assets/intro.js",
     "assets/desplegable.js",
     "assets/favoritos.js",
     "assets/sinred.js",
+    "assets/volver.js",
+    "assets/tema.js",
     "assets/katex/katex.min.css",
     "assets/fondo-claro.webp",
     "assets/fondo-oscuro.webp",
@@ -1177,7 +1188,7 @@ for (const p of paginas) {
      de fuera, un ancla o algo que ya sube no se toca. */
   const hondo = p.archivo.split("/").length - 1;
   const raiz = "../".repeat(hondo);
-  const hecha = conFichas(plantilla(p));
+  const hecha = conFichas(plantilla({ ...p, archivo: p.archivo }));
   const salida = raiz ? conRaiz(hecha, raiz) : hecha;
 
   const destino = path.join(__dirname, p.archivo);

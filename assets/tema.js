@@ -1,95 +1,79 @@
 /**
- * Tema claro/oscuro.
+ * El modo claro u oscuro, elegido una vez y recordado en todo el sitio.
  *
- * Por defecto manda la preferencia del sistema; si el usuario elige a mano, su
- * eleccion se guarda y pisa a la del sistema mediante data-tema en el <html>.
+ * El sitio nace siguiendo al teléfono: si el sistema está en oscuro, papel negro
+ * y tinta clara. Este botón permite llevar la contraria, y esa contraria vale
+ * para todas las páginas —son ciento cuarenta y cinco documentos sueltos, así
+ * que la elección tiene que vivir fuera de cualquiera de ellos: se guarda en el
+ * almacén del navegador, que es del sitio entero y no de la página.
  *
- * Este script va en el <head> y sin defer a proposito: el atributo tiene que
- * estar puesto antes del primer pintado o se ve un fogonazo del tema
- * equivocado. Es la unica parte que necesita bloquear, y son cuatro lineas.
+ * Aquí NO se aplica el modo al cargar. Eso lo hace un trozo suelto que va en la
+ * cabecera de cada página, escrito en línea a propósito: tiene que estar
+ * decidido antes del primer fotograma, y un archivo como este llega más tarde
+ * —se vería un destello del modo anterior en cada cambio de página—. Este
+ * archivo solo se ocupa de lo que pasa después: el botón y las otras pestañas.
+ *
+ * Sin él el botón no hace nada, y el sitio sigue el modo del teléfono como
+ * siempre; por eso el botón se esconde donde no haya JavaScript.
  */
 (function () {
   "use strict";
 
-  var CLAVE = "aram_tema";
   var raiz = document.documentElement;
-  var boton;
+  var boton = document.querySelector(".tema");
+  if (!boton) return;
 
-  function guardado() {
+  /* Qué se está viendo ahora mismo: lo elegido, si se eligió algo, y si no, lo
+     que diga el teléfono. */
+  function enClaro() {
+    if (raiz.dataset.tema) return raiz.dataset.tema === "claro";
+    return !matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  /* El botón dice a dónde lleva, no dónde se está: se toca para cambiar. */
+  function etiquetar() {
+    var va = enClaro() ? "oscuro" : "claro";
+    boton.setAttribute("aria-label", "Cambiar a modo " + va);
+    boton.setAttribute("title", "Cambiar a modo " + va);
+  }
+
+  function poner(modo) {
+    raiz.dataset.tema = modo;
     try {
-      return localStorage.getItem(CLAVE);
-    } catch (e) {
-      return null; /* modo privado o cookies bloqueadas */
+      localStorage.setItem("tema", modo);
+    } catch (_) {
+      /* Sin almacén —modo privado, permisos— el cambio vale para esta página y
+         se pierde al pasar a la siguiente. Es peor que recordarlo, y mejor que
+         no dejar cambiarlo. */
     }
+    etiquetar();
   }
 
-  /* Antes de nada: aplicar lo que hubiera guardado. */
-  var elegido = guardado();
-  if (elegido === "claro" || elegido === "oscuro") {
-    raiz.setAttribute("data-tema", elegido);
-  }
-
-  function actual() {
-    var puesto = raiz.getAttribute("data-tema");
-    if (puesto) return puesto;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "oscuro"
-      : "claro";
-  }
-
-  function rotular() {
-    if (!boton) return;
-    var oscuro = actual() === "oscuro";
-    /* El icono anuncia el destino, no el estado: se pulsa para ir al otro. */
-    boton.textContent = oscuro ? "☀" : "☾";
-    boton.setAttribute(
-      "aria-label",
-      oscuro ? "Cambiar a modo claro" : "Cambiar a modo oscuro",
-    );
-  }
-
-  function alternar() {
-    var nuevo = actual() === "oscuro" ? "claro" : "oscuro";
-    raiz.setAttribute("data-tema", nuevo);
-    try {
-      localStorage.setItem(CLAVE, nuevo);
-    } catch (e) {}
-    rotular();
-  }
-
-  function montar() {
-    boton = document.createElement("button");
-    boton.className = "tema";
-    boton.type = "button";
-    boton.addEventListener("click", alternar);
-    rotular();
-    document.body.appendChild(boton);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", montar);
-  } else {
-    montar();
-  }
-
-  /** Vuelve a poner el tema que este guardado, venga de donde venga el cambio. */
-  function repasar() {
-    var g = guardado();
-    if (g === "claro" || g === "oscuro") raiz.setAttribute("data-tema", g);
-    else raiz.removeAttribute("data-tema");
-    rotular();
-  }
-
-  /* Al volver con el gesto de retroceso.
-     El navegador guarda la pagina entera y la devuelve tal cual: con el tema
-     que tenia puesto cuando se salio de ella. Se cambiaba el modo, se volvia
-     atras y esa pagina seguia en el anterior hasta recargarla a mano. */
-  window.addEventListener("pageshow", function (e) {
-    if (e.persisted) repasar();
+  boton.addEventListener("click", function () {
+    var siguiente = enClaro() ? "oscuro" : "claro";
+    /* Con un fundido, que el cambio de golpe de blanco a negro deslumbra. Si el
+       navegador no sabe hacerlo, o si se ha pedido no ver movimiento, cambia
+       directamente. */
+    if (
+      document.startViewTransition &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      document.startViewTransition(function () {
+        poner(siguiente);
+      });
+    } else {
+      poner(siguiente);
+    }
   });
 
-  /* Y si se cambia desde otra pestaña, esta se entera. */
-  window.addEventListener("storage", function (e) {
-    if (e.key === CLAVE) repasar();
+  /* Otra pestaña del sitio abierta: el almacén avisa a las demás, y cambian sin
+     tener que recargarlas. */
+  addEventListener("storage", function (e) {
+    if (e.key !== "tema") return;
+    if (e.newValue === "claro" || e.newValue === "oscuro") raiz.dataset.tema = e.newValue;
+    else delete raiz.dataset.tema;
+    etiquetar();
   });
+
+  etiquetar();
 })();
