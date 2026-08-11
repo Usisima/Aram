@@ -33,10 +33,53 @@
       /* Cómo se ha llegado a esta página, antes de pintarla: si viene de otra
          del sitio, la ventana ya está quieta y la barra no tiene que esperar a
          nada. Va en línea y no en un archivo porque tiene que estar decidido
-         antes del primer fotograma. */
-      addEventListener("pagereveal", function (e) {
-        if (e.viewTransition) document.documentElement.dataset.llegada = "dentro";
-      });
+         antes del primer fotograma.
+
+         Y de paso se compara la palabra de la pastilla con la de la página de
+         la que se viene: el navegador no compara textos —ve dos elementos con
+         el mismo nombre y hace el relevo igual—, así que si dicen lo mismo se
+         apaga aquí. Sin esto, ir de Materias a una materia apagaba y encendía
+         una palabra que no cambia. */
+      (function () {
+        var palabra = "Regresar";
+        var trazo = "M12 4L4 12L12 20L4 12L20 12";
+        addEventListener("pageswap", function () {
+          try {
+            sessionStorage.setItem("pastilla", palabra);
+            sessionStorage.setItem("trazo", trazo);
+          } catch (_) {}
+        });
+        addEventListener("pagereveal", function (e) {
+          if (!e.viewTransition) return;
+          document.documentElement.dataset.llegada = "dentro";
+          try {
+            if (sessionStorage.getItem("pastilla") === palabra)
+              document.documentElement.dataset.palabra = "misma";
+          } catch (_) {}
+
+          /* La transformación del icono tercero, punto a punto. */
+          try {
+            var antes = sessionStorage.getItem("trazo");
+            if (!trazo || !antes || antes === trazo) return;
+            /* Mientras dura el viaje, el dibujo se queda con la forma de la que
+               se viene: se le impone desde la hoja, que llega antes de que el
+               navegador saque la foto. */
+            var puesta = document.createElement("style");
+            puesta.textContent =
+              '.barra a:nth-child(3) svg path{d:path("' + antes + '")}';
+            document.head.appendChild(puesta);
+            e.viewTransition.finished.then(function () {
+              puesta.remove();
+              var p = document.querySelector(".barra a:nth-child(3) svg path");
+              if (!p || !p.animate) return;
+              p.animate(
+                [{ d: 'path("' + antes + '")' }, { d: 'path("' + trazo + '")' }],
+                { duration: 320, easing: "cubic-bezier(0.2, 0, 0.2, 1)" },
+              );
+            });
+          } catch (_) {}
+        });
+      })();
     </script>
     <script src="../../assets/favoritos.js"></script>
   </head>
@@ -131,17 +174,17 @@
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z" /></svg>
         <span>Favoritos</span>
       </a>
-      <a href="../../matematicas/matematicos/index.html" class="aqui volver" aria-current="page" data-salida="../../matematicas/index.html">
+      <a href="../../matematicas/matematicos/index.html" class="aqui volver" aria-current="page" style="--sangria: 5.5px; --sangria-sale: 5.5px" data-salida="../../matematicas/index.html">
         <span class="pastilla"></span>
-        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M20 12H4" /><path d="M12 4l-8 8 8 8" /></svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" class="linea" aria-hidden="true"><path d="M12 4L4 12L12 20L4 12L20 12" /></svg>
         <span>Regresar</span>
       </a>
       <a href="../../matematicas/materias/index.html">
-        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 4h6v15H4z" /><path d="M10 4h6v15h-6z" /><path d="M16 5l4 1-2 14-4-1" /></svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" class="linea" aria-hidden="true"><path class="frente" d="M4.5 4h10v15h-10z" /><path d="M16.5 5l3.8 1-2 14-3.8-1" /></svg>
         <span>Materias</span>
       </a>
       <a href="../../buscar.html">
-        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4.4-4.4" /></svg>
+        <svg viewBox="0 0 24 24" width="24" height="24" class="linea" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4.4-4.4" /><circle class="nucleo" cx="11" cy="11" r="4.2" /></svg>
         <span>Buscar</span>
       </a>
     </nav>

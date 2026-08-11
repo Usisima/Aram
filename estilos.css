@@ -47,12 +47,31 @@ html {
      Acotado ya solo podía moverse entre cuatro y ocho píxeles, así que de
      variable no le quedaba casi nada; puesto del todo quieto, no se mueve. */
   --gesto: 0.5rem;
+  /* Lo que dura el viaje de la barra al cambiar de página. De fábrica el
+     navegador tarda 0,25 s; aquí está alargado A PROPÓSITO y de forma
+     el relevo de la palabra y su retraso se calculan a partir de esto, así que
+     tocando este número se recoloca el conjunto entero.
+
+     Y no conviene alargarlo mucho: mientras dura, el navegador no deja tocar
+     nada —lo que se ve son fotos, no elementos vivos—, así que un viaje largo
+     es un rato con la barra muerta. Se probó a 1,4 s para mirarlo de cerca y
+     era insufrible. */
+  --viaje: 0.42s;
   /* El sitio sigue el modo del teléfono: en oscuro, papel negro y tinta clara,
      los del propio navegador. Sin esto se queda en blanco siempre. */
   color-scheme: light dark;
-  /* El tono de la franja de abajo. Vive aquí porque lo usan dos: la propia
-     franja y su delantal. */
-  --franja: color-mix(in srgb, CanvasText 7%, Canvas);
+  /* Los dos tonos de la franja de abajo, que no son el mismo.
+
+     El de la franja es traslúcido: el papel a poco más de la mitad, y detrás un
+     desenfoque ancho —cuanto más se transparenta, más hay que desenfocar para
+     que el texto de debajo no compita con los dibujos—. Así lo que pasa por debajo se adivina en vez de
+     desaparecer, y la barra se lee como algo puesto ENCIMA de la página.
+
+     El del delantal es macizo, porque el delantal cae por debajo del borde de
+     la ventana: allí no hay página que desenfocar, sino el fondo del sistema, y
+     un tono traslúcido quedaría deslavado. */
+  --franja: color-mix(in srgb, Canvas 55%, transparent);
+  --franja-maciza: color-mix(in srgb, CanvasText 7%, Canvas);
   /* iOS agranda por su cuenta la letra al girar a horizontal. */
   -webkit-text-size-adjust: 100%;
 }
@@ -229,6 +248,37 @@ h4 {
   overflow-wrap: break-word;
 }
 
+/* ── Las materias, en bandas ──
+   PROVISIONAL, mientras se decide cómo se ven. Cada una ocupa una banda ancha
+   de color macizo, alta como cinco veces su letra, con las esquinas redondas.
+   El tono lo pone cada una en el HTML, repartido por la rueda según su sitio en
+   el plan.
+
+   La tinta sale del mismo tono, muy oscurecida: así se lee sobre su propio
+   color sin tener que elegir un color de letra por cada banda, y vale igual con
+   el sitio en claro que en oscuro, porque la banda siempre es clara. */
+
+.materias {
+  list-style: none;
+  padding: 0;
+}
+
+.materias li {
+  margin: 0.6rem 0;
+}
+
+.materias a {
+  display: flex;
+  align-items: center;
+  /* Cinco veces la letra, que es lo que se pidió. */
+  min-height: 5em;
+  padding: 0 1.25em;
+  border-radius: 1.75rem;
+  background: hsl(var(--tono, 210) 62% 86%);
+  color: hsl(var(--tono, 210) 45% 20%);
+  text-decoration: none;
+}
+
 /* En una lista de enlaces, sitio para el dedo: en el teléfono se pulsa con
    algo que mide un centímetro, no con la punta de una flecha. */
 li {
@@ -245,6 +295,91 @@ li {
    por no tenerlo. */
 @view-transition {
   navigation: auto;
+}
+
+/* PROVISIONAL: el viaje de la barra, a cámara lenta para poder mirarlo. Se
+   alarga solo lo de la barra, no la página entera. La medida está arriba, en
+   `--viaje`. */
+::view-transition-group(pastilla),
+::view-transition-group(etiqueta),
+::view-transition-group(franja),
+::view-transition-group(barra-1),
+::view-transition-group(barra-2),
+::view-transition-group(barra-3),
+::view-transition-group(barra-4),
+::view-transition-group(barra-5),
+::view-transition-group(icono-1),
+::view-transition-group(icono-2),
+::view-transition-group(icono-3),
+::view-transition-group(icono-4),
+::view-transition-group(icono-5),
+::view-transition-old(pastilla),
+::view-transition-new(pastilla) {
+  animation-duration: var(--viaje);
+}
+
+/* Y que la pastilla no cambie de alto por el camino. Sin esto, su imagen deduce
+   el alto del ancho para guardar la proporción, y como el ancho viaja de una
+   palabra a la otra, el alto viaja también: la vieja se queda baja y la nueva
+   sobresale. Escrito el alto y estirando a lo ancho, no hay nada que suba ni
+   baje —y estirar a lo ancho no se nota, porque es un rectángulo de esquinas
+   redondas de un solo color—. */
+::view-transition-old(pastilla),
+::view-transition-new(pastilla) {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: fill;
+}
+
+/* El relevo de la palabra, en dos tiempos y no a la vez.
+
+   La vieja se apaga enseguida: si es la más larga de las dos, quedarse mientras
+   la pastilla encoge la deja fuera de sus bordes.
+
+   Y la nueva no entra hasta que el viaje va por sus dos tercios, que es cuando
+   el ancho ya está casi hecho: entrando antes, una palabra más larga que la
+   pastilla de salida se sale por el lado mientras se anima. */
+::view-transition-old(etiqueta) {
+  animation-duration: calc(var(--viaje) * 0.15);
+  animation-name: palabra-sale;
+}
+
+::view-transition-new(etiqueta) {
+  animation-duration: calc(var(--viaje) * 0.25);
+  animation-delay: calc(var(--viaje) * 0.65);
+  animation-name: palabra-entra;
+  /* Mientras espera su turno, invisible: sin esto se quedaría puesta desde el
+     primer fotograma, que es justo lo que se quiere evitar. */
+  animation-fill-mode: backwards;
+}
+
+/* La vieja sube al irse y la nueva entra desde abajo. Un texto no se puede
+   transformar en otro punto a punto —no son figuras, son letras—, pero con el
+   relevo en movimiento el ojo lee «esto se ha reescrito» en vez de «esto se ha
+   apagado y encendido». Poca distancia: un tercio de la altura de la letra basta
+   para que se lea como un giro y no como un salto. */
+@keyframes palabra-sale {
+  to {
+    opacity: 0;
+    transform: translateY(-0.35em);
+  }
+}
+
+@keyframes palabra-entra {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+/* Y si la palabra no cambia, no hay relevo que hacer. La cabecera de cada
+   página compara la suya con la de la anterior y lo deja dicho aquí; sin
+   animación, las dos imágenes se quedan puestas, y como son la misma palabra no
+   se ve nada. Antes, ir de Materias a una materia apagaba y encendía un texto
+   idéntico. */
+:root[data-palabra="misma"]::view-transition-old(etiqueta),
+:root[data-palabra="misma"]::view-transition-new(etiqueta) {
+  animation-name: none;
 }
 
 /* Cada uno con su nombre, por posición: así el navegador sabe que el primero de
@@ -312,6 +447,12 @@ li {
 ::view-transition-new(etiqueta) {
   object-fit: none;
   object-position: left center;
+  /* El alto, escrito. Sin esto lo calcula del ancho para guardar la proporción,
+     y como el ancho viaja de una palabra a la otra, el alto viajaba con él y la
+     palabra —centrada dentro— subía o bajaba. Midiendo lo que el grupo, que es
+     siempre un renglón, se queda a nivel. */
+  block-size: 100%;
+  inline-size: 100%;
 }
 
 /* La cabecera es igual en todas las páginas: con nombre propio, el navegador la
@@ -381,6 +522,11 @@ header {
      que vale igual en claro —un gris muy claro sobre blanco— que en oscuro —un
      gris muy oscuro sobre negro—: no hay dos colores que mantener a la par. */
   background: var(--franja);
+  /* El desenfoque de lo que queda por detrás. Es lo que convierte un papel
+     traslúcido en vidrio esmerilado: sin él se vería el texto de debajo nítido
+     y medio borrado, que se lee peor que taparlo del todo. */
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
   /* Y un delantal del mismo tono por debajo. Debajo de la barra no hay nada
      pintado: el sitio acaba donde acaba la ventana, y entre ese borde y el canto
      del teléfono pinta el sistema, que es negro. Cuando el teléfono devuelve los
@@ -391,7 +537,7 @@ header {
      misma caja corrida hacia abajo, y las sombras se pintan pero no ocupan
      sitio. Con un trozo de verdad, el documento mediría dos centímetros más y
      aparecería un desplazamiento de la nada. */
-  box-shadow: 0 2rem 0 var(--franja);
+  box-shadow: 0 2rem 0 var(--franja-maciza);
   /* Y una raya fina arriba, para que el canto sea nítido allí donde el tono
      solo no basta. */
   border-top: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
@@ -422,12 +568,41 @@ header {
   font-size: 0.8125rem;
 }
 
+/* Donde no haya desenfoque, el tono macizo de siempre: un papel traslúcido sin
+   nada detrás que lo empañe deja ver el texto nítido por debajo de los dibujos,
+   y eso se lee peor que una franja opaca. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .barra {
+    background: var(--franja-maciza);
+  }
+}
+
 /* El de la página: relleno por detrás y con su nombre al lado del dibujo. El
    ancho es el que pida el nombre —«Buscar» y «Matemáticos» no miden lo mismo—;
    lo que no cambia nunca es el alto. */
 .barra .aqui {
   width: auto;
-  padding: 0 0.9rem;
+  /* El hueco entre el canto de la pastilla y la TINTA del dibujo, no entre el
+     canto y su cuadro, que es invisible. Cada dibujo trae apuntado su margen
+     óptico —cuánta tinta tiene cerca del borde, no dónde cae su punto más
+     extremo— y aquí se le descuenta, así que todos pesan lo mismo contra el
+     canto. La cuenta de ese margen está junto a los dibujos, en el generador.
+
+     Trece píxeles, algo más que antes: a diez quedaban apretados.
+
+     A la derecha, algo más todavía: ahí no hay dibujo sino letra, y una letra
+     necesita más aire que un trazo para no parecer apretada. */
+  padding-left: calc(13px - var(--sangria, 5.25px));
+  padding-right: 0.75rem;
+  /* El hueco hasta la palabra no lo pone `gap`, que mide entre cajas: lo pone
+     el propio dibujo con su margen, descontando lo que su tinta se queda corta
+     por la derecha. Si no, la sigma —que acaba casi seis píxeles antes que la
+     casa dentro de su cuadro— dejaba su palabra más lejos que las demás. */
+  gap: 0;
+}
+
+.barra .aqui svg {
+  margin-right: calc(10.6px - var(--sangria-sale, 4.88px));
 }
 
 /* El relleno, en su propia capa detrás del dibujo y la palabra. Con nombre
@@ -439,7 +614,7 @@ header {
   inset: 0;
   z-index: -1;
   border-radius: 999px;
-  background: color-mix(in srgb, currentColor 12%, transparent);
+  background: color-mix(in srgb, currentColor 8%, transparent);
   view-transition-name: pastilla;
 }
 
@@ -447,7 +622,7 @@ header {
    color con el que el sistema marca lo elegido, para que se distinga de las
    otras tres sin tener que leerla. */
 .barra .volver .pastilla {
-  background: color-mix(in srgb, Highlight 25%, transparent);
+  background: color-mix(in srgb, Highlight 18%, transparent);
 }
 
 /* Los demás enseñan el dibujo y nada más. El nombre sigue escrito, para quien
@@ -475,6 +650,32 @@ header {
 .barra .aqui svg {
   fill: currentColor;
   stroke-width: 2;
+}
+
+/* Menos los que son trazo abierto: rellenarlos los cierra por donde no debe y
+   sale un borrón. A una línea solo se le puede engordar. */
+.barra .aqui svg.linea {
+  fill: none;
+  stroke-width: 2.25;
+}
+
+/* De la estantería se rellena solo el libro de delante; el de detrás se queda
+   hueco, igual que cuando no está seleccionado. */
+.barra .aqui svg .frente {
+  fill: currentColor;
+}
+
+/* El núcleo de la lupa: no está mientras no toque, y al encenderse aparece
+   macizo. Un dibujo que se cierra del todo deja de leerse; con el núcleo gana
+   peso y sigue siendo una lupa. */
+.barra .nucleo {
+  display: none;
+}
+
+.barra .aqui .nucleo {
+  display: inline;
+  fill: currentColor;
+  stroke: none;
 }
 
 .barra svg,

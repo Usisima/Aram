@@ -117,25 +117,51 @@ const MARCA = `<svg class="marca-dibujo" viewBox="0 0 512 512" aria-hidden="true
 
 /* Los dibujos de la barra, en trazo y sin relleno. Heredan el color del texto.
    Son más que huecos: el tercero cambia de dibujo con la página. */
+/* Los dos trazados que se transforman el uno en el otro al entrar y salir de una
+   ficha. Están escritos con la misma sucesión de órdenes —un desplazamiento y
+   cuatro líneas— porque es la condición para que el navegador pueda interpolar
+   uno en otro: mismo número de puntos y del mismo tipo. Es lo mismo que pide el
+   Transform de Manim, solo que allí el remuestreo lo hace la biblioteca y aquí
+   hay que dibujarlos ya emparejados.
+
+   El emparejamiento se eligió a mano, punto por punto, para que el movimiento
+   tenga sentido:
+
+     sigma   (17.5,5)  (7,5)   (12.5,12)  (7,19)   (17.5,19)
+     flecha  (12,4)    (4,12)  (12,20)    (4,12)   (20,12)
+
+   Las dos puntas derechas de la sigma se van a la punta de la flecha y al final
+   del asta; las dos izquierdas se juntan en el vértice. La flecha repite el
+   vértice en su cuarto punto: así se dibuja el asta y la punta sin levantar el
+   lápiz, y de paso le sobra un punto para emparejar. */
+const MORFEO = {
+  matematicas: "M17.5 5L7 5L12.5 12L7 19L17.5 19",
+  volver: "M12 4L4 12L12 20L4 12L20 12",
+};
+
 const DIBUJOS = {
   inicio: '<path d="M3 11 12 3l9 8" /><path d="M5 10v10h14V10" />',
-  /* Matemáticas: una pi. Tres trazos y se lee de lejos, que es lo que se le
-     pide a un dibujo de esta medida. Las patas, a la misma distancia de cada
-     punta del travesaño; y llenando de arriba abajo lo mismo que los demás, que
-     antes ocupaba dos tercios y el botón parecía más pequeño. */
-  matematicas:
-    '<path d="M4 4.5h16" /><path d="M8.5 4.5v15.5" /><path d="M15.5 4.5v15.5" />',
+  /* Matemáticas: una sigma. Antes era una pi y ocupaba el cuadro entero: al lado
+     de una casa o una estrella, que son siluetas, dos palos y un travesaño largo
+     pesan más de la cuenta. La sigma es más estrecha y se lee igual.
+
+     Escrita como una línea de cinco puntos, y no con órdenes abreviadas, para
+     poder transformarla en la flecha: ver MORFEO. */
+  matematicas: `<path d="${MORFEO.matematicas}" />`,
   /* Una materia: los libros en el estante. */
   materia:
-    '<path d="M4 4h6v15H4z" /><path d="M10 4h6v15h-6z" /><path d="M16 5l4 1-2 14-4-1" />',
+    '<path class="frente" d="M4.5 4h10v15h-10z" /><path d="M16.5 5l3.8 1-2 14-3.8-1" />',
   /* Un matemático: alguien. */
   matematico: '<circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" />',
-  /* Volver: una flecha a la izquierda, con la punta abierta de arriba abajo
-     como el resto —cerrada ocupaba trece y medio contra los diecisiete de los
-     otros—. */
-  volver: '<path d="M20 12H4" /><path d="M12 4l-8 8 8 8" />',
-  /* Buscar: la lupa. */
-  buscar: '<circle cx="11" cy="11" r="7" /><path d="M20 20l-4.4-4.4" />',
+  /* Volver: una flecha a la izquierda. También de cinco puntos, emparejada con
+     la sigma para poder transformarse en ella: pasa dos veces por el vértice,
+     que es lo que permite dibujar el asta y la punta de un solo trazo. */
+  volver: `<path d="${MORFEO.volver}" />`,
+  /* Buscar: la lupa. El núcleo solo se ve cuando está encendida —lo decide la
+     hoja—: es lo que le da peso sin rellenar el cristal entero, que dejaría un
+     borrón redondo en vez de una lupa. */
+  buscar:
+    '<circle cx="11" cy="11" r="7" /><path d="M20 20l-4.4-4.4" /><circle class="nucleo" cx="11" cy="11" r="4.2" />',
   /* Favoritos: la estrella de siempre. */
   favoritos:
     '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z" />',
@@ -149,6 +175,49 @@ const DIBUJOS = {
 
    Arriba y no en la barra de abajo porque abajo se va a donde se quiere ir, y
    esto no es un sitio: es un ajuste, y se toca una vez cada mucho. */
+/* El margen óptico de cada dibujo, en unidades de su cuadro de 24. Dos por
+   dibujo: por dónde entra la tinta y por dónde sale.
+
+   NO es el punto más extremo de la tinta. Eso es alineación geométrica y el ojo
+   no la ve: lo que ve es cuánta tinta hay cerca del borde. Un círculo toca el
+   extremo en un punto y se retira, así que puede acercarse al canto sin parecer
+   pegado; un canto recto llega igual en toda su altura y pide más aire; y una
+   sigma, que por la izquierda solo tiene las puntas de dos barras, queda metida
+   hacia dentro si se alinea por el extremo —era lo que se veía raro—.
+
+   La fórmula, midiendo el dibujo píxel a píxel:
+
+       0,7 · (promedio de por dónde empieza la tinta en cada renglón)
+     + 0,3 · (el punto más extremo)
+     con tope en  extremo + 2,5
+
+   El promedio es lo que pesa a la vista; el extremo es lo que puede chocar; y el
+   tope está por la flecha, cuyo lado derecho está casi todo vacío —solo lo cruza
+   la raya fina— y sin él el texto se le echaría encima de la punta.
+
+   Al cambiar un dibujo hay que volver a medirlo. */
+const SANGRIA = {
+  /*            entra  sale */
+  inicio: [4.18, 4.18],
+  matematicas: [7.51, 8.0],
+  materia: [4.0, 3.65],
+  matematico: [5.42, 5.42],
+  volver: [5.5, 5.5],
+  buscar: [5.25, 4.88],
+  favoritos: [5.0, 5.0],
+};
+
+/* Los dibujos que no se rellenan al encenderse.
+
+   Tres motivos, uno por dibujo: los que son trazo abierto —la sigma, la
+   flecha—, porque el relleno los cierra por donde no debe y además las puntas
+   redondeadas del trazo asoman por fuera de la mancha; los que están hechos de
+   varias piezas pegadas —la estantería—, porque el relleno las funde en un
+   tocho; y la lupa, que se llenaría entera y dejaría de parecer una lupa. Al encenderse, los demás se
+   rellenan y quedan macizos; estos no pueden: rellenar una línea la cierra por
+   donde no debe y sale un borrón. Se quedan en trazo, más gordo. */
+const SOLO_LINEA = new Set(["matematicas", "materia", "buscar", "volver"]);
+
 const INTERRUPTOR = [
   '      <button class="tema" type="button" title="Cambiar el modo">',
   '        <svg class="sol" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>',
@@ -255,7 +324,7 @@ function barra(archivo) {
          lee quien lo atiende para devolver por donde se vino. */
       const otra = aqui && id === "volver" && salida ? ` data-salida="${salida}"` : "";
       return [
-        `      <a href="${href}"${aqui ? ` class="aqui${id === "volver" ? " volver" : ""}" aria-current="page"` : ""}${otra}>`,
+        `      <a href="${href}"${aqui ? ` class="aqui${id === "volver" ? " volver" : ""}" aria-current="page" style="--sangria: ${SANGRIA[id][0]}px; --sangria-sale: ${SANGRIA[id][1]}px"` : ""}${otra}>`,
         /* La pastilla es una capa aparte y solo la lleva el encendido: así,
            en las dos páginas hay una y es la misma, y el navegador la mueve
            de un hueco al otro en vez de apagarla aquí y encenderla allá. */
@@ -263,7 +332,7 @@ function barra(archivo) {
         /* Las medidas van en la etiqueta y no solo en la hoja: un svg sin ellas
            ocupa 300×150 hasta que el CSS llega, y la barra nacía enorme y
            encogía de golpe. */
-        `        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">${DIBUJOS[id]}</svg>`,
+        `        <svg viewBox="0 0 24 24" width="24" height="24"${SOLO_LINEA.has(id) ? ' class="linea"' : ""} aria-hidden="true">${DIBUJOS[id]}</svg>`,
         /* El nombre siempre está escrito —un lector de pantalla lo necesita—;
            lo que decide si se ve es la hoja. */
         `        <span>${nombre}</span>`,
@@ -305,9 +374,16 @@ const PAJA = [
   .join("\n\n");
 
 function plantilla({ titulo, cuerpo, archivo, favoritos }) {
+  const barraAqui = barraDe(archivo);
   /* El botón de regresar solo está dentro de un libro, y solo ahí hace falta lo
      que limpia el historial. */
-  const conVuelta = barraDe(archivo).encendido === "volver";
+  const conVuelta = barraAqui.encendido === "volver";
+  /* La palabra de la pastilla de esta página. Va a la cabecera para poder
+     compararla con la de la página anterior: si no cambia, el relevo sobra. */
+  const suPalabra = (barraAqui.sitios.find(([id]) => id === barraAqui.encendido) || [])[1] || "";
+  /* El trazado del hueco tercero, si es de los que se transforman. Vacío en las
+     páginas cuyo tercero no es ni la sigma ni la flecha. */
+  const suTrazo = MORFEO[barraAqui.sitios[2][0]] || "";
   return `<!doctype html>
 <html lang="es">
   <head>
@@ -344,10 +420,53 @@ function plantilla({ titulo, cuerpo, archivo, favoritos }) {
       /* Cómo se ha llegado a esta página, antes de pintarla: si viene de otra
          del sitio, la ventana ya está quieta y la barra no tiene que esperar a
          nada. Va en línea y no en un archivo porque tiene que estar decidido
-         antes del primer fotograma. */
-      addEventListener("pagereveal", function (e) {
-        if (e.viewTransition) document.documentElement.dataset.llegada = "dentro";
-      });
+         antes del primer fotograma.
+
+         Y de paso se compara la palabra de la pastilla con la de la página de
+         la que se viene: el navegador no compara textos —ve dos elementos con
+         el mismo nombre y hace el relevo igual—, así que si dicen lo mismo se
+         apaga aquí. Sin esto, ir de Materias a una materia apagaba y encendía
+         una palabra que no cambia. */
+      (function () {
+        var palabra = ${JSON.stringify(suPalabra)};
+        var trazo = ${JSON.stringify(suTrazo)};
+        addEventListener("pageswap", function () {
+          try {
+            sessionStorage.setItem("pastilla", palabra);
+            sessionStorage.setItem("trazo", trazo);
+          } catch (_) {}
+        });
+        addEventListener("pagereveal", function (e) {
+          if (!e.viewTransition) return;
+          document.documentElement.dataset.llegada = "dentro";
+          try {
+            if (sessionStorage.getItem("pastilla") === palabra)
+              document.documentElement.dataset.palabra = "misma";
+          } catch (_) {}
+
+          /* La transformación del icono tercero, punto a punto. */
+          try {
+            var antes = sessionStorage.getItem("trazo");
+            if (!trazo || !antes || antes === trazo) return;
+            /* Mientras dura el viaje, el dibujo se queda con la forma de la que
+               se viene: se le impone desde la hoja, que llega antes de que el
+               navegador saque la foto. */
+            var puesta = document.createElement("style");
+            puesta.textContent =
+              '.barra a:nth-child(3) svg path{d:path("' + antes + '")}';
+            document.head.appendChild(puesta);
+            e.viewTransition.finished.then(function () {
+              puesta.remove();
+              var p = document.querySelector(".barra a:nth-child(3) svg path");
+              if (!p || !p.animate) return;
+              p.animate(
+                [{ d: 'path("' + antes + '")' }, { d: 'path("' + trazo + '")' }],
+                { duration: 320, easing: "cubic-bezier(0.2, 0, 0.2, 1)" },
+              );
+            });
+          } catch (_) {}
+        });
+      })();
     </script>${
       favoritos ? '\n    <script src="assets/favoritos.js"></script>' : ""
     }
@@ -934,9 +1053,13 @@ paginas.push({
 
        Solo el nombre. Debajo iban el asunto de la materia y el recuento de lo
        que lleva dentro; eso se lee entrando, y en la lista solo estorbaba. */
-    '        <ul class="lista">',
+    /* PROVISIONAL: cada materia en una banda ancha de color. El tono sale de su
+       sitio en el plan —repartidos por la rueda—, así que dos seguidas nunca
+       coinciden y la lista se recorre también por color. */
+    '        <ul class="lista materias">',
     ...materias.map(
-      (m) => `          <li><a href="${materia(m.id)}">${m.nombre}</a></li>`,
+      (m, i) =>
+        `          <li style="--tono: ${Math.round((i * 360) / materias.length)}"><a href="${materia(m.id)}">${m.nombre}</a></li>`,
     ),
     "        </ul>",
     "",

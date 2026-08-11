@@ -118,10 +118,31 @@ self.addEventListener("fetch", (e) => {
      no podría decirlo nunca. */
   if (url.href === LISTA.href) return;
 
+  /* El código del sitio —las páginas, la hoja y los scripts— se pide a la red
+     antes que a la copia. Es lo que cambia, y servirlo de la copia hacía que un
+     cambio se viera una recarga tarde: se leía la versión de ayer creyendo que
+     era la de hoy. Lo demás —fuentes, retratos, banderas— sigue saliendo de la
+     copia sin tocar la red, que es lo que hace que el sitio se lea sin
+     internet. */
+  const suyo =
+    pide.mode === "navigate" || /\.(css|js)$/.test(url.pathname);
+
   e.respondWith(
     (async () => {
       const cache = await almacenActual();
       const guardada = cache ? await cache.match(pide, { ignoreSearch: true }) : null;
+
+      if (suyo) {
+        e.waitUntil(comprobarVersion());
+        try {
+          const r = await fetch(pide);
+          if (r.ok && r.type === "basic" && cache) cache.put(pide, r.clone());
+          return r;
+        } catch (err) {
+          /* Sin red: lo guardado, que para eso está. */
+          if (guardada) return guardada;
+        }
+      }
 
       if (guardada) {
         /* Se enseña lo guardado ya, y por detrás se mira si el sitio cambió y
