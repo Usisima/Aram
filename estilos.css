@@ -76,6 +76,56 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* ── La letra ──
+   GFS Artemisia, convertida desde el paquete de CTAN —el README cuenta cómo— y
+   guardada en el sitio, así que se lee igual sin internet y no depende de lo que
+   tenga instalado cada aparato. Hasta ahora estaba descargándose sin que ninguna
+   página la usara: el sitio salía en Roboto en Android y en Times New Roman en
+   Windows, o sea dos sitios distintos.
+
+   Las rutas van desde la raíz: una `url()` de una hoja se resuelve contra la
+   hoja y no contra la página que la usa, y esta hoja vive en la raíz. Es lo
+   mismo que un día mandó las banderas a un 404.
+
+   `optional` y no `swap`: con `swap` el texto sale con la del sistema y cambia
+   cuando llega la buena, y ese cambio se ve. Con `optional`, si no está lista
+   casi al instante esta carga entera se hace con la del sistema y la siguiente
+   ya sale bien; nunca cambia a mitad. Para que ese «casi al instante» se cumpla,
+   la cabecera de cada página las pide por adelantado, y a partir de la primera
+   visita salen del disco porque el sitio se guarda entero. */
+
+@font-face {
+  font-family: Artemisia;
+  src: url(assets/fuentes/artemisia-400.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: Artemisia;
+  src: url(assets/fuentes/artemisia-400i.woff2) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: Artemisia;
+  src: url(assets/fuentes/artemisia-700.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: Artemisia;
+  src: url(assets/fuentes/artemisia-700i.woff2) format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: optional;
+}
+
 /* El hueco de la barra de desplazamiento, reservado siempre: sin él, una página
    que no llega a desbordar mide unos píxeles más de ancho que una que sí, y la
    barra de abajo —que va pegada a los dos bordes— movía sus iconos en cada
@@ -142,7 +192,17 @@ body {
      caracteres es lo que se lee sin perder el renglón al volver. */
   max-width: 34rem;
   /* Un poco más de aire entre renglones que el que trae de fábrica. */
-  line-height: 1.5;
+  line-height: 1.55;
+  font-family: Artemisia, Georgia, serif;
+  /* Diecisiete píxeles y no dieciséis: la equis de Artemisia mide 0,483 em
+     contra los ~0,52 de una letra de sistema, así que a 16 px se lee un cuerpo
+     menos de lo que parece. Y a 17 px la columna de 34rem da por fin los
+     sesenta y tantos caracteres que promete el comentario de arriba. */
+  font-size: 1.0625rem;
+  /* Cifras de caja alta. KaTeX solo tiene de esas, y Artemisia trae las dos;
+     mezcladas en una misma línea —«1777 – 1855» al lado de una fórmula— se
+     descolocan. */
+  font-variant-numeric: lining-nums;
 }
 
 /* ── La cabecera ──
@@ -235,6 +295,17 @@ table {
   max-width: 100%;
 }
 
+/* KaTeX agranda su Computer Modern un 21 % de fábrica para casarla con una
+   letra de interfaz. Contra Artemisia sobra: la proporción de sus equis es
+   0,483 / 0,431 = 1,12. Solo cambia el tamaño de entrada; dentro, todas las
+   medidas de KaTeX son relativas a su propio em y no se descoloca nada.
+
+   Y el par no es casual: Artemisia es una didona griega y Computer Modern
+   deriva de la Didot. Mismo eje vertical, mismo contraste de trazo. */
+.katex {
+  font-size: 1.12em;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
@@ -259,30 +330,107 @@ h4 {
    el sitio en claro que en oscuro, porque la banda siempre es clara. */
 
 .materias {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   list-style: none;
   padding: 0;
 }
 
 .materias li {
-  margin: 0.6rem 0;
+  margin: 0;
 }
 
 .materias a {
-  display: flex;
-  align-items: center;
-  /* Cinco veces la letra, que es lo que se pidió. */
-  min-height: 5em;
-  padding: 0 1.25em;
   border-radius: 1.75rem;
   background: hsl(var(--tono, 210) 62% 86%);
   color: hsl(var(--tono, 210) 45% 20%);
+  display: grid;
+  font-weight: 700;
+  gap: 0.75rem;
+  grid-template-rows: 1fr auto;
+  min-height: 13rem;
+  padding: 0.75rem;
   text-decoration: none;
+}
+
+.materias a::before {
+  align-items: center;
+  background: linear-gradient(135deg, hsl(var(--tono, 210) 68% 72%), hsl(var(--tono, 210) 55% 53%));
+  border-radius: 1rem;
+  color: hsl(var(--tono, 210) 50% 18%);
+  content: attr(data-icono);
+  display: flex;
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  justify-content: center;
+  line-height: 1;
+  min-height: 7.5rem;
+}
+
+.materias a:hover,
+.materias a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+  .materias { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .materias a { min-height: 10.5rem; }
+  .materias a::before { font-size: 3rem; min-height: 5.75rem; }
 }
 
 /* En una lista de enlaces, sitio para el dedo: en el teléfono se pulsa con
    algo que mide un centímetro, no con la punta de una flecha. */
 li {
   margin: 0.35rem 0;
+}
+
+/* ── Las dos hojas de un libro ──
+   Sin estilo todavía: aquí está solo lo que hace falta para que el carril
+   funcione, que es mecánica y no adorno.
+
+   El carril es un desplazamiento horizontal con puntos de anclaje: eso es lo que
+   hace que el dedo lo deslice y que se quede cuadrado en una hoja o en la otra,
+   sin una línea de JavaScript. Y cada hoja se desplaza a lo alto por su cuenta,
+   que es lo que permite ir a los teoremas y volver a las definiciones sin perder
+   por dónde iba ninguna de las dos.
+
+   A lo alto no hay nada recortado: cada hoja mide lo que mide su contenido y
+   quien se desplaza es la página entera, como en el resto del sitio. Lo que se
+   ajusta es el carril, que mide lo que la hoja visible; así el recorrido del
+   documento es el de esa hoja, y cada una recuerda por dónde iba.
+
+   Se probaron dos cosas antes y se descartaron: recortar cada hoja a un alto
+   fijo con su propio desplazamiento dentro —dejaba de desplazarse la página—, y
+   dejar el carril con el alto de la más larga —al pasar a la corta quedaba medio
+   kilómetro en blanco—. */
+
+.dual {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  /* El carril mide lo que la hoja que se está viendo, no lo que la más alta: así
+     el recorrido del documento empieza y acaba donde esa hoja, y no queda medio
+     kilómetro en blanco al pasar a la corta. La medida la pone el archivo que
+     lo atiende, porque cambia con la hoja. */
+  height: var(--hoja, auto);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  /* El deslizamiento lateral se queda dentro del carril: sin esto, al llegar al
+     final el gesto se lo lleva el navegador y se dispara su «atrás». */
+  overscroll-behavior-x: contain;
+}
+
+.dual > .hoja {
+  scroll-snap-align: start;
+}
+
+/* Cada hoja mide lo que mide su contenido y se apoya arriba: sin esto la corta
+   se estiraría hasta el alto de la larga y su final quedaría a media pantalla. */
+.dual > .hoja {
+  align-self: start;
 }
 
 /* ── El paso de una página a otra ──
@@ -379,6 +527,16 @@ li {
    idéntico. */
 :root[data-palabra="misma"]::view-transition-old(etiqueta),
 :root[data-palabra="misma"]::view-transition-new(etiqueta) {
+  animation-name: none;
+}
+
+/* Y lo mismo al cambiar de claro a oscuro. Ese fundido usa el mismo mecanismo
+   que el paso de una página a otra, así que el navegador anima todo lo que tiene
+   nombre; pero ahí la barra no va a ninguna parte, solo cambia de color, y la
+   palabra acababa relevándose a sí misma. El botón del modo deja dicho que el
+   fundido es suyo mientras dura. */
+:root[data-cambio="modo"]::view-transition-old(etiqueta),
+:root[data-cambio="modo"]::view-transition-new(etiqueta) {
   animation-name: none;
 }
 
